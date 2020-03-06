@@ -8,7 +8,16 @@ from torch.utils.data import Dataset, DataLoader
 import os.path
 import torch.nn as nn
 import torchvision.transforms as transforms
-from model import *
+# from model import *
+import os
+
+if not os.path.isdir('data/'):
+    # print("naf")
+    os.mkdir('data/')
+
+if not os.path.isdir('ckpt/'):
+    # print("naf")
+    os.mkdir('ckpt/')
 
 print('==> Preparing data..')
 transform_train = transforms.Compose([
@@ -43,5 +52,5 @@ for batch_idx, (inputs, targets) in enumerate(trainloader):
     node_num = 1
     # print(inputs)
     # print(targets)
-    main_node = Node(inputs, targets, class_bit, 0, node_num, 10, device)
-    main_node.work()
+    # main_node = Node(inputs, targets, class_bit, 0, node_num, 10, device)
+    # main_node.work()
