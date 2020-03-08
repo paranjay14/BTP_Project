@@ -126,7 +126,7 @@ class Node:
         self.cnn_model.to(self.device)
         self.mlp_model.to(self.device)
         if self.is_train:
-            end_epoch = 4
+            end_epoch = 1
             # end_epoch = 200
             self.cnn_model.train()
             self.train_cnn(end_epoch)
@@ -172,7 +172,7 @@ class Node:
 
         if self.is_train:
             # end_epoch = 40
-            end_epoch = 4
+            end_epoch = 1
             self.mlp_model.train()
             self.train_mlp(end_epoch, image_next_flat, actual_cluster_ids)
 
@@ -181,9 +181,46 @@ class Node:
         self.mlp_model.eval()
 
         # inputs = inputs.to(self.device)
-        # est_labels = self.mlp_model(inputs)
-        # _, predicted = est_labels.max(1)
+        # print(image_next_flat)
+        est_labels = self.mlp_model(image_next_flat)
+        print("fsfsafsfsaf")
+        # print(est_labels[0])
+        # print(est_labels[1])
+        _, predicted = est_labels.max(1)
+        # print(predicted)
+        limages = []
+        rimages = []
+        llabels = []
+        rlabels = []
+        lclasses = [0]*10
+        rclasses = [0]*10
+        for i in predicted:
+            if i==0:
+                limages.append((image_next[i].detach()).tolist())
+                lclasses[self.labels[1].item()]+=1
+                llabels.append(self.labels[i].item())
+            else:
+                rimages.append((image_next[i].detach()).tolist())
+                rclasses[self.labels[i].item()]+=1
+                rlabels.append(self.labels[i].item())
+
+        print(lclasses)
+        print(rclasses)
+        # print(len(limages))
+        # print(len(rimages))
+        print("ASfsa")
+        ltensor = torch.tensor(limages)
+        rtensor = torch.tensor(rimages)
         
+
+    # def test(self):
+    #     ckpt = torch.load('ckpt/node_mlp_'+str(self.parent)+'_'+str(self.node_num)+'.pth')
+    #     self.mlp_model.load_state_dict(ckpt['model_state_dict'])
+    #     self.mlp_model.eval()
+
+    #     # inputs = inputs.to(self.device)
+    #     est_labels = self.mlp_model(image_next_flat)
+    #     print(est_labels)
 
     # def predict_next_node_class(self, ):
 

@@ -9,6 +9,7 @@ import os.path
 import torch.nn as nn
 import torchvision.transforms as transforms
 # from model import *
+from node import *
 import os
 
 if not os.path.isdir('data/'):
@@ -38,6 +39,7 @@ trainloader = torch.utils.data.DataLoader(trainset, batch_size=10000, shuffle=Tr
 # testloader = torch.utils.data.DataLoader(testset, batch_size=100, shuffle=False, num_workers=2)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 for batch_idx, (inputs, targets) in enumerate(trainloader):
+    print(inputs.shape)
 # (inputs, targets) = trainloader.
     # one_hot = torch.zeros([1000, 10])
     # for i in range(1000):
@@ -52,5 +54,5 @@ for batch_idx, (inputs, targets) in enumerate(trainloader):
     node_num = 1
     # print(inputs)
     # print(targets)
-    # main_node = Node(inputs, targets, class_bit, 0, node_num, 10, device)
-    # main_node.work()
+    main_node = Node(inputs, targets, class_bit, 0, node_num, 10, device)
+    main_node.work()
