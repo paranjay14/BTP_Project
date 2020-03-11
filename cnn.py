@@ -15,7 +15,10 @@ class CNN(nn.Module):
         self.fc_layer = nn.Linear(in_features=self.features, out_features=num_class)
 
     def forward(self, img):
-        out = F.relu(self.conv1(img))
+        # print("rrrr ",img.shape)
+        out = self.conv1(img)
+        # print(out.shape)
+        out = F.relu(out)
         flat_out = out.view(-1, self.features)
         final = self.fc_layer(flat_out)
         return out, flat_out, final

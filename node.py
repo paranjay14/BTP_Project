@@ -90,6 +90,9 @@ class Node:
                     'train_loss':train_loss,
                     }, 'ckpt/node_cnn_'+str(self.parent)+'_'+str(self.node_num)+'.pth')
 
+
+    # def validation_test(self, val)
+
     def train_mlp(self, end_epoch, inputs, targets):
         loss_fn = nn.CrossEntropyLoss()
         # loss_fn = nn.BCELoss()
@@ -126,8 +129,8 @@ class Node:
         self.cnn_model.to(self.device)
         self.mlp_model.to(self.device)
         if self.is_train:
-            end_epoch = 1
-            # end_epoch = 200
+            # end_epoch = 1
+            end_epoch = 200
             self.cnn_model.train()
             self.train_cnn(end_epoch)
 
@@ -171,8 +174,8 @@ class Node:
         print(actual_cluster_ids.shape)
 
         if self.is_train:
-            # end_epoch = 40
-            end_epoch = 1
+            end_epoch = 40
+            # end_epoch = 1
             self.mlp_model.train()
             self.train_mlp(end_epoch, image_next_flat, actual_cluster_ids)
 
@@ -194,10 +197,10 @@ class Node:
         rlabels = []
         lclasses = [0]*10
         rclasses = [0]*10
-        for i in predicted:
-            if i==0:
+        for i, val in enumerate(predicted):
+            if val==0:
                 limages.append((image_next[i].detach()).tolist())
-                lclasses[self.labels[1].item()]+=1
+                lclasses[self.labels[i].item()]+=1
                 llabels.append(self.labels[i].item())
             else:
                 rimages.append((image_next[i].detach()).tolist())
