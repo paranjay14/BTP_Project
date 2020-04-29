@@ -10,6 +10,8 @@ class CNN(nn.Module):
         self.num_class = num_class
         self.batch_size = batch_size
         self.conv1 = nn.Conv2d(in_channels=in_channels, out_channels=out_channels, kernel_size=kernel, stride=1, padding=0)
+        self.conv2 = nn.ConvTranspose2d(in_channels=out_channels, out_channels=in_channels, kernel_size=kernel, stride=1, padding=0)
+        
         # self.softmax = nn.Softmax(dim=10) 
         self.features = (img_size-kernel+1)*(img_size-kernel+1)*out_channels
         self.fc_layer = nn.Linear(in_features=self.features, out_features=num_class)

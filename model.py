@@ -1,4 +1,5 @@
 import argparse
+import sys
 import torch
 import numpy as np
 import torchvision
@@ -15,7 +16,7 @@ from sklearn.model_selection import train_test_split
 # from queue import Queue
 
 class Tree:
-	def __init__(self, device, maxDepth=4, dominanceThreshold=0.95, classThreshold=2, dataNumThreshold=100, numClasses=10):
+	def __init__(self, device, maxDepth=1, dominanceThreshold=0.95, classThreshold=2, dataNumThreshold=100, numClasses=10):
 		self.maxDepth=maxDepth                         # depth threshold
 		self.dominanceThreshold=dominanceThreshold     # threshold on class dominance
 		self.classThreshold=classThreshold             # threshold on number of class in a node 
@@ -28,21 +29,81 @@ class Tree:
 	
 	def tree_traversal(self, trainInputDict, valInputDict):
 		nodeId = 1
-		rootNode = Node(0, nodeId=nodeId, device=self.device, isTrain=True)
-		rootNode.setInput(trainInputDict, valInputDict, self.numClasses)
-		lTrainDict, lValDict, rTrainDict, rValDict = rootNode.work()
+		rootNode = Node(0, nodeId=nodeId, device=self.device, isTrain=True, level=0)
+		# rootNode = Node(0, nodeId=nodeId, device=self.device, isTrain=False)
+		rootNode.setInput(trainInputDict, valInputDict, self.numClasses, 0.9, False)
+		# lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio = rootNode.work()
 
-		# rootNode = Node(0, nodeId, self.device, True)
-		# rootNode.setInput()
 
 		# q = Queue(maxsize=self.maxNumberOfNodes)
 		# queue = []
-		# nodeNumbers = 1
+		self.nodeArray = []
+		nodeNumbers = 1
 		# newNode = Node(0, nodeNumbers, 10, self.numClasses, self.device, True)
-		# queue.append(newNode)
-		# while queue:
-		#     q = queue.pop(0)
-		#     q.work()
+		self.nodeArray.append(rootNode)
+		start = 0
+		end = 1
+		while start != end:
+			node = self.nodeArray[start]
+			print("Running nodeId: ", node.nodeId)
+			start+=1
+			if not node.isLeaf:
+				lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.work()
+			else:
+				node.work()
+
+			if not node.isLeaf:
+				lNode = Node(node.nodeId, end+1, self.device, True, node.level+1)
+				rNode = Node(node.nodeId, end+2, self.device, True, node.level+1)
+
+				if node.level + 1 >= self.maxDepth:
+					lNode.setInput(lTrainDict, lValDict, noOfLeftClasses, giniLeftRatio, True)
+					rNode.setInput(rTrainDict, rValDict, noOfRightClasses, giniRightRatio, True)
+				else:
+					lNode.setInput(lTrainDict, lValDict, noOfLeftClasses, giniLeftRatio, False)
+					rNode.setInput(rTrainDict, rValDict, noOfRightClasses, giniRightRatio, False)
+
+				self.nodeArray.append(lNode)
+				self.nodeArray.append(rNode)
+				end += 2
+			# end = min(end, 3)
+
+		
+
+	def testTraversal(self, valInputDict):
+		rootNode = Node(0, nodeId=1, device=self.device, isTrain=False, level=0)
+		if self.maxDepth == 0:
+			rootNode.setInput(valInputDict, {}, self.numClasses, 0.9, False)
+		else:
+			rootNode.setInput(valInputDict, {}, self.numClasses, 0.9, True)
+		# lTrainDict, rTrainDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = rootNode.work()
+		q = []
+		q.append(rootNode)
+		start = 0
+		end = 1
+		while start != end:
+			node = q[start]
+			start+=1
+			if not node.isLeaf:
+				lTrainDict, rTrainDict,  giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.work()
+			else:
+				node.work()
+			if not node.isLeaf:
+				lNode = Node(node.nodeId, end+1, self.device, False, node.level+1)
+				rNode = Node(node.nodeId, end+2, self.device, False, node.level+1)
+
+				if node.level + 1 >= self.maxDepth:
+					lNode.setInput(lTrainDict, {}, noOfLeftClasses, giniLeftRatio, True)
+					rNode.setInput(rTrainDict, {}, noOfRightClasses, giniRightRatio, True)
+				else:
+					lNode.setInput(lTrainDict, {}, noOfLeftClasses, giniLeftRatio, False)
+					rNode.setInput(rTrainDict, {}, noOfRightClasses, giniRightRatio, False)
+
+				q.append(lNode)
+				q.append(rNode)
+				end += 2
+
+
 			
 			
 def load_image(path):
@@ -140,8 +201,8 @@ def loadNewDictionaries():
 	# print(len(train_idx))
 	# print(train_idx)
 
-	train_loader = torch.utils.data.DataLoader(trainset, batch_size=50000, sampler=train_sampler)
-	valid_loader = torch.utils.data.DataLoader(trainset, batch_size=10000, sampler=valid_sampler)
+	train_loader = torch.utils.data.DataLoader(trainset, batch_size=40000, sampler=train_sampler, num_workers=4)
+	valid_loader = torch.utils.data.DataLoader(trainset, batch_size=10000, sampler=valid_sampler, num_workers=4)
 
 
 	# trainloader = torch.utils.data.DataLoader(trainset, batch_size=40000, shuffle=True, num_workers=4)
@@ -155,7 +216,20 @@ def loadNewDictionaries():
 	c2 = next(vIterator)
 	valData = c2[0].clone().detach()
 	valLabels = c2[1].clone().detach()
-	return {"data":trainData, "label":trainLabels}, {"data":valData, "label":valLabels}
+
+	# print(trainData.shape)
+	# print(valData.shape)
+
+	testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform_test)
+	testloader = torch.utils.data.DataLoader(testset, batch_size=10000, shuffle=False)
+
+	testIterator = iter(testloader)
+	c3 = next(testIterator)
+	testData = c3[0].clone().detach()
+	testLabels = c3[1].clone().detach()
+
+	return {"data":trainData, "label":trainLabels}, {"data":valData, "label":valLabels}, {"data":testData, "label":testLabels}
+
 
 
 			
@@ -166,13 +240,21 @@ if __name__ == '__main__':
 	# print(len(next(it)[0][0]))
 
 	rootPath = "./data/"
-	
-	trainInputDict, valInputDict = loadNewDictionaries()
+	maxDepth = int(sys.argv[1])
+	trainInputDict, valInputDict, testInputDict = loadNewDictionaries()
 	# print(trainInputDict["data"][0].shape)
 
 		
 	device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-	# tree = Tree(device, maxDepth=1, classThreshold = 2, dataNumThreshold = 1, numClasses = 10)
+	# if torch.cuda.is_available():
+	# 	print("cuda is_available")
+	# else:
+	# 	print("cpu pe chl rha :(")
+	# print(device)
+	# device = torch.device("cpu")
+	tree = Tree(device, maxDepth=maxDepth, classThreshold = 2, dataNumThreshold = 1, numClasses = 10)
 	# tree.tree_traversal(trainInputDict, valInputDict)
+	# tree.tree_traversal(valInputDict, valInputDict)
+	tree.testTraversal(testInputDict)
 
 
