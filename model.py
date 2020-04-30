@@ -13,6 +13,9 @@ from sklearn.model_selection import train_test_split
 from new_node import Node
 import cv2
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
+# from resources.plotcm import plot_confusion_matrix
 # from queue import Queue
 
 class Tree:
@@ -33,7 +36,6 @@ class Tree:
 		# rootNode = Node(0, nodeId=nodeId, device=self.device, isTrain=False)
 		rootNode.setInput(trainInputDict, valInputDict, self.numClasses, 0.9, False)
 		# lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio = rootNode.work()
-
 
 		# q = Queue(maxsize=self.maxNumberOfNodes)
 		# queue = []
@@ -73,10 +75,23 @@ class Tree:
 	def testTraversal(self, valInputDict):
 		rootNode = Node(0, nodeId=1, device=self.device, isTrain=False, level=0)
 		if self.maxDepth == 0:
-			rootNode.setInput(valInputDict, {}, self.numClasses, 0.9, False)
-		else:
 			rootNode.setInput(valInputDict, {}, self.numClasses, 0.9, True)
+		else:
+			rootNode.setInput(valInputDict, {}, self.numClasses, 0.9, False)
 		# lTrainDict, rTrainDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = rootNode.work()
+		
+		testPredDict = {}
+		testPredDict['actual'] = torch.rand(0)
+		testPredDict['pred'] = torch.rand(0)
+		testPredDict['actual'] = testPredDict['actual'].long()
+		testPredDict['pred'] = testPredDict['pred'].long()
+		testPredDict['actual'] = testPredDict['actual'].to(self.device)
+		testPredDict['pred'] = testPredDict['pred'].to(self.device)
+
+		torch.save({
+					'testPredDict':testPredDict,
+					}, 'ckpt/testPred.pth')
+
 		q = []
 		q.append(rootNode)
 		start = 0
@@ -103,6 +118,16 @@ class Tree:
 				q.append(rNode)
 				end += 2
 
+		ckpt = torch.load('ckpt/testPred.pth')
+		testPredDict = ckpt['testPredDict']
+		testPredDict['actual'] = testPredDict['actual'].to("cpu")
+		testPredDict['pred'] = testPredDict['pred'].to("cpu")
+		cm = confusion_matrix(testPredDict['actual'], testPredDict['pred'])
+		print(cm)
+		print()
+		correct = testPredDict['pred'].eq(testPredDict['actual']).sum().item()
+		total = len(testPredDict['actual'])
+		print('Acc: %.3f'% (100.*correct/total))
 
 			
 			
@@ -161,24 +186,24 @@ def loadDictionaries(rootPath):
 
 def loadNewDictionaries():
 	if not os.path.isdir('data/'):
-	    # print("naf")
-	    os.mkdir('data/')
+		# print("naf")
+		os.mkdir('data/')
 
 	if not os.path.isdir('ckpt/'):
-	    # print("naf")
-	    os.mkdir('ckpt/')
+		# print("naf")
+		os.mkdir('ckpt/')
 
 
 	print('==> Preparing data..')
 	transform_train = transforms.Compose([
-	    transforms.RandomHorizontalFlip(),
-	    transforms.ToTensor(),
-	    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+		transforms.RandomHorizontalFlip(),
+		transforms.ToTensor(),
+		transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
 	])
 
 	transform_test = transforms.Compose([
-	    transforms.ToTensor(),
-	    transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+		transforms.ToTensor(),
+		transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
 	])
 
 	trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform_train)
