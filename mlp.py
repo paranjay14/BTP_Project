@@ -11,7 +11,6 @@ class MLP(nn.Module):
         self.fc_layer_3 = nn.Linear(in_features=256, out_features=128)
         self.fc_layer_4 = nn.Linear(in_features=128, out_features=32)
         self.fc_layer_5 = nn.Linear(in_features=32, out_features=8)
-        # self.fc_layer_6 = nn.Linear(in_features=8, out_features=2) # for cross entropy
         self.fc_layer_6 = nn.Linear(in_features=8, out_features=1) # for bce
         self.dropout_1 = nn.Dropout(0.4)
         self.dropout_2 = nn.Dropout(0.3)
@@ -27,5 +26,4 @@ class MLP(nn.Module):
         x = F.leaky_relu(self.dropout_4(self.fc_layer_4(x)), negative_slope = 0.2)
         x = F.leaky_relu(self.dropout_5(self.fc_layer_5(x)), negative_slope = 0.2)
         x = torch.sigmoid(self.fc_layer_6(x))
-        # x = F.sigmoid(self.fc_layer_6(x)) # when device == cuda
         return x

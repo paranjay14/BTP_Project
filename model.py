@@ -11,6 +11,7 @@ import torch.nn as nn
 import torchvision.transforms as transforms
 from sklearn.model_selection import train_test_split
 from new_node import Node
+# from prev_new_node import Node
 import cv2
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
@@ -50,9 +51,9 @@ class Tree:
 			print("Running nodeId: ", node.nodeId)
 			start+=1
 			if not node.isLeaf:
-				lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.work()
+				lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.workTrain()
 			else:
-				node.work()
+				node.workTrain()
 
 			if not node.isLeaf:
 				lNode = Node(node.nodeId, end+1, self.device, True, node.level+1)
@@ -100,10 +101,16 @@ class Tree:
 			node = q[start]
 			start+=1
 			if not node.isLeaf:
-				lTrainDict, rTrainDict,  giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.work()
+				lTrainDict, rTrainDict,  giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.workTest()
 			else:
-				node.work()
+				node.workTest()
 			if not node.isLeaf:
+				ckpt = torch.load('ckpt/node_cnn_'+str(node.nodeId)+'_'+str(end+1)+'.pth')['labelMap']
+				noOfLeftClasses = len(ckpt)
+				ckpt = torch.load('ckpt/node_cnn_'+str(node.nodeId)+'_'+str(end+2)+'.pth')['labelMap']
+				noOfRightClasses = len(ckpt)
+				ckpt = None
+				print ('Nodes sizez = ', noOfLeftClasses, noOfRightClasses)
 				lNode = Node(node.nodeId, end+1, self.device, False, node.level+1)
 				rNode = Node(node.nodeId, end+2, self.device, False, node.level+1)
 
