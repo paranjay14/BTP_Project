@@ -16,8 +16,10 @@ import cv2
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
+from getOptions import getOptions
 # from resources.plotcm import plot_confusion_matrix
 # from queue import Queue
+
 
 class Tree:
 	def __init__(self, device, maxDepth=1, dominanceThreshold=0.95, classThreshold=2, dataNumThreshold=100, numClasses=10):
@@ -32,17 +34,13 @@ class Tree:
 		# self.maxNumberOfNodes = maxNumberOfNodes
 	
 	def tree_traversal(self, trainInputDict, valInputDict):
-		nodeId = 1
-		rootNode = Node(0, nodeId=nodeId, device=self.device, isTrain=True, level=0)
-		# rootNode = Node(0, nodeId=nodeId, device=self.device, isTrain=False)
-		rootNode.setInput(trainInputDict, valInputDict, self.numClasses, 0.9, False)
-		# lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio = rootNode.work()
+		rootNode = Node(parentId=0, nodeId=1, device=self.device, isTrain=True, level=0)
+		if self.maxDepth == 0:
+			rootNode.setInput(trainInputDict=trainInputDict, valInputDict=valInputDict, numClasses=self.numClasses, giniValue=0.9, isLeaf=True)
+		else:
+			rootNode.setInput(trainInputDict=trainInputDict, valInputDict=valInputDict, numClasses=self.numClasses, giniValue=0.9, isLeaf=False)
 
-		# q = Queue(maxsize=self.maxNumberOfNodes)
-		# queue = []
 		self.nodeArray = []
-		nodeNumbers = 1
-		# newNode = Node(0, nodeNumbers, 10, self.numClasses, self.device, True)
 		self.nodeArray.append(rootNode)
 		start = 0
 		end = 1
@@ -51,8 +49,10 @@ class Tree:
 			print("Running nodeId: ", node.nodeId)
 			start+=1
 			if not node.isLeaf:
+				# lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.work()
 				lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.workTrain()
 			else:
+				# node.work()
 				node.workTrain()
 
 			if not node.isLeaf:
@@ -69,17 +69,14 @@ class Tree:
 				self.nodeArray.append(lNode)
 				self.nodeArray.append(rNode)
 				end += 2
-			# end = min(end, 3)
-
 		
 
 	def testTraversal(self, valInputDict):
 		rootNode = Node(0, nodeId=1, device=self.device, isTrain=False, level=0)
 		if self.maxDepth == 0:
-			rootNode.setInput(valInputDict, {}, self.numClasses, 0.9, True)
+			rootNode.setInput(trainInputDict=valInputDict, valInputDict={}, numClasses=self.numClasses, giniValue=0.9, isLeaf=True)
 		else:
-			rootNode.setInput(valInputDict, {}, self.numClasses, 0.9, False)
-		# lTrainDict, rTrainDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = rootNode.work()
+			rootNode.setInput(trainInputDict=valInputDict, valInputDict={}, numClasses=self.numClasses, giniValue=0.9, isLeaf=False)
 		
 		testPredDict = {}
 		testPredDict['actual'] = torch.rand(0)
@@ -101,8 +98,10 @@ class Tree:
 			node = q[start]
 			start+=1
 			if not node.isLeaf:
+				# lTrainDict, rTrainDict,  giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.work()
 				lTrainDict, rTrainDict,  giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.workTest()
 			else:
+				# node.work()
 				node.workTest()
 			if not node.isLeaf:
 				ckpt = torch.load('ckpt/node_cnn_'+str(node.nodeId)+'_'+str(end+1)+'.pth')['labelMap']
@@ -110,7 +109,7 @@ class Tree:
 				ckpt = torch.load('ckpt/node_cnn_'+str(node.nodeId)+'_'+str(end+2)+'.pth')['labelMap']
 				noOfRightClasses = len(ckpt)
 				ckpt = None
-				print ('Nodes sizez = ', noOfLeftClasses, noOfRightClasses)
+				print ('Nodes sizes = ', noOfLeftClasses, noOfRightClasses)
 				lNode = Node(node.nodeId, end+1, self.device, False, node.level+1)
 				rNode = Node(node.nodeId, end+2, self.device, False, node.level+1)
 
@@ -205,39 +204,40 @@ def loadNewDictionaries():
 	transform_train = transforms.Compose([
 		transforms.RandomHorizontalFlip(),
 		transforms.ToTensor(),
-		transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+		# transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
 	])
 
 	transform_test = transforms.Compose([
 		transforms.ToTensor(),
-		transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
+		# transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
 	])
 
 	trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform_train)
 	class_labels = trainset.targets
 
+	# train_idx, valid_idx= train_test_split(
+	# np.arange(len(class_labels)),
+	# test_size=0.2,
+	# shuffle=True,
+	# stratify=class_labels)
 	train_idx, valid_idx= train_test_split(
 	np.arange(len(class_labels)),
-	test_size=0.2,
+	test_size=0.0002,
 	shuffle=True,
 	stratify=class_labels)
-
 
 	train_sampler = torch.utils.data.SubsetRandomSampler(train_idx)
 	valid_sampler = torch.utils.data.SubsetRandomSampler(valid_idx)
 
-
 	# train_batch_sampler = StratifiedSampler(class_labels, 10000)
-
 
 	# print(len(train_idx))
 	# print(train_idx)
 
-	train_loader = torch.utils.data.DataLoader(trainset, batch_size=40000, sampler=train_sampler, num_workers=4)
-	valid_loader = torch.utils.data.DataLoader(trainset, batch_size=10000, sampler=valid_sampler, num_workers=4)
-
-
-	# trainloader = torch.utils.data.DataLoader(trainset, batch_size=40000, shuffle=True, num_workers=4)
+	# train_loader = torch.utils.data.DataLoader(trainset, batch_size=40000, sampler=train_sampler, num_workers=4)
+	train_loader = torch.utils.data.DataLoader(trainset, batch_size=49900, sampler=train_sampler, num_workers=4)
+	# valid_loader = torch.utils.data.DataLoader(trainset, batch_size=10000, sampler=valid_sampler, num_workers=4)
+	valid_loader = torch.utils.data.DataLoader(trainset, batch_size=100, sampler=valid_sampler, num_workers=4)
 
 	iterator = iter(train_loader)
 	c1 = next(iterator)
@@ -266,27 +266,14 @@ def loadNewDictionaries():
 
 			
 if __name__ == '__main__':
-	# trainImages, trainLabels, valImages, valLabels = loadDataset()
-	# print(len(trainImages))
-	# it = iter(valLoader)
-	# print(len(next(it)[0][0]))
+	options = getOptions(sys.argv[1:])
 
-	rootPath = "./data/"
-	maxDepth = int(sys.argv[1])
 	trainInputDict, valInputDict, testInputDict = loadNewDictionaries()
-	# print(trainInputDict["data"][0].shape)
-
 		
 	device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-	# if torch.cuda.is_available():
-	# 	print("cuda is_available")
-	# else:
-	# 	print("cpu pe chl rha :(")
-	# print(device)
-	# device = torch.device("cpu")
-	tree = Tree(device, maxDepth=maxDepth, classThreshold = 2, dataNumThreshold = 1, numClasses = 10)
+
+	tree = Tree(device, maxDepth=options.maxDepth, classThreshold = 2, dataNumThreshold = 1, numClasses = 10)
 	# tree.tree_traversal(trainInputDict, valInputDict)
 	# tree.tree_traversal(valInputDict, valInputDict)
 	tree.testTraversal(testInputDict)
-
 
