@@ -28,7 +28,8 @@ class CNN(nn.Module):
 
     def forward(self, img):
         out = F.relu(self.conv1(img))
-        f_same = F.relu(self.conv2(out))
+        # f_same = F.relu(self.conv2(out))
+        f_same = None
         flat_out = out.view(-1, self.features)
         final = self.fc_layer(flat_out)
         return out, flat_out, final, f_same

@@ -27,7 +27,7 @@ class Node:
 		self.isTrain = isTrain
 		self.level = level
 
-	def setInput(self, trainInputDict, valInputDict, numClasses, giniValue, isLeaf):
+	def setInput(self, trainInputDict, valInputDict, numClasses, giniValue, isLeaf, leafClass, lchildId, rchildId):
 		self.trainInputDict = trainInputDict
 		self.valInputDict = valInputDict
 		imgSize = trainInputDict["data"][0].shape[2]
@@ -37,10 +37,14 @@ class Node:
 		kernel = 5
 		self.cnnModel = CNN(img_size=imgSize, in_channels=inChannels, out_channels=outChannels, num_class=numClasses, kernel=kernel, use_bn=False)
 		numFeatures = self.cnnModel.features
-		self.mlpModel = MLP(numFeatures, use_bn=True)
+		self.mlpModel = MLP(numFeatures, use_bn=False)
 		self.numClasses = numClasses
 		self.giniValue = giniValue
 		self.isLeaf = isLeaf
+		self.leafClass = leafClass
+		self.lchildId = lchildId
+		self.rchildId = rchildId
+		print("nodeId:", self.nodeId, ",  parentId:", self.parentId, ",  level:", self.level, ",  lchildId:", self.lchildId, ",  rchildId:", self.rchildId, ",  isLeaf:", self.isLeaf, ",  leafClass:", self.leafClass)
 
 	def trainCNN(self, labelMap, reverseLabelMap):
 		loss_fn = nn.CrossEntropyLoss()
@@ -54,15 +58,19 @@ class Node:
 		trainInputs = trainInputs.to(self.device)
 
 		numBatches = 100
-		batchSize = int((len(trainInputs) + numBatches - 1)/numBatches)
+		batchSize = int((len(trainInputs))/(numBatches-1))
 		numEpochs = options.cnnEpochs
 
 		st_btch = 0
 		batch_sep = []
 		for i in range(numBatches):
 			end_btch = min(st_btch + batchSize, len(trainInputs))
-			batch_sep.append([st_btch, end_btch])
-			st_btch = end_btch
+			if end_btch == st_btch:
+				numBatches-=1
+				break
+			else:
+				batch_sep.append([st_btch, end_btch])
+				st_btch = end_btch
 
 		self.cnnModel.train()
 		for epoch in range(numEpochs):
@@ -72,13 +80,15 @@ class Node:
 			random.shuffle(batch_sep)
 			for batch in range(numBatches):
 				st_btch, end_btch = batch_sep[batch]
+				# print("st_btch: ",st_btch, ",  end_btch: ",end_btch, ",  trainLabels.shape: ",trainLabels.shape )
 				optimizer.zero_grad()
 				_, _, est_labels, feat_same = self.cnnModel(trainInputs[st_btch:end_btch])
 				batch_loss_label = loss_fn(est_labels, trainLabels[st_btch:end_btch])
 				# print(feat_same.shape)
 				# print(trainInputs[st_btch:end_btch].shape)
-				batch_loss_featr = loss_fn_mse(feat_same, trainInputs[st_btch:end_btch])
-				batch_loss = batch_loss_featr + batch_loss_label
+				# batch_loss_featr = loss_fn_mse(feat_same, trainInputs[st_btch:end_btch])
+				# batch_loss = batch_loss_featr + batch_loss_label
+				batch_loss =  batch_loss_label
 				batch_loss.backward()
 				optimizer.step()
 				# print(batch_loss_featr.item(), batch_loss_label.item())
@@ -114,14 +124,19 @@ class Node:
 		self.mlpModel.to(self.device)
 
 		numBatches = 200
-		batchSize = int((len(trainInputs) + numBatches - 1)/numBatches)
+		batchSize = int((len(trainInputs))/(numBatches-1))
 
 		st_btch = 0
 		batch_sep = []
+
 		for i in range(numBatches):
 			end_btch = min(st_btch + batchSize, len(trainInputs))
-			batch_sep.append([st_btch, end_btch])
-			st_btch = end_btch
+			if end_btch == st_btch:
+				numBatches-=1
+				break
+			else:
+				batch_sep.append([st_btch, end_btch])
+				st_btch = end_btch
 
 		numEpochs = options.mlpEpochs
 		self.mlpModel.train()
@@ -133,6 +148,7 @@ class Node:
 
 			for batch in range(numBatches):    
 				st_btch, end_btch = batch_sep[batch]
+				# print("st_btch: ",st_btch, ",  end_btch: ",end_btch, ",  trainTargets.shape: ",trainTargets.shape )
 				optimizer.zero_grad()
 				est_labels = self.mlpModel(trainInputs[st_btch:end_btch])
 				# print(est_labels.shape)
@@ -210,9 +226,9 @@ class Node:
 		for i, val in enumerate(self.trainInputDict["label"]):
 			self.trainInputDict["label"][i] = labelMap[val.item()]
 
-		newData, newLabel = self.balanceData();
-		self.trainInputDict["data"] = newData
-		self.trainInputDict["label"] = newLabel
+		# newData, newLabel = self.balanceData();
+		# self.trainInputDict["data"] = newData
+		# self.trainInputDict["label"] = newLabel
 		return labelMap, reverseLabelMap
 
 	def loadMLPModel(self):
@@ -226,13 +242,13 @@ class Node:
 		self.cnnModel.load_state_dict(ckpt['model_state_dict'])
 		self.cnnModel.eval()
 		self.cnnModel.to(self.device)
-		return ckpt['reverseLabelMap'], ckpt['reverseLabelMap']
+		return ckpt['reverseLabelMap'], ckpt['labelMap']
 
 	def separateLabels(self, cluster_ids):
 		leftCnt = {}
 		rightCnt = {}
 		for i in range(len(self.trainInputDict["data"])):
-			label = self.trainInputDict["label"][i].item()
+			label = self.trainInputDict["label"][i].item() # 0-indexed according to self.trainInputDict["label"]
 			if cluster_ids[i] == 0:
 				if label in leftCnt:
 					leftCnt[label]+=1
@@ -260,24 +276,25 @@ class Node:
 		print(expected_dict)                
 		leftSortedListOfTuples = sorted(leftCnt.items(), reverse=True, key=lambda x: x[1])
 		rightSortedListOfTuples = sorted(rightCnt.items(), reverse=True, key=lambda x: x[1])
-		return leftSortedListOfTuples, rightSortedListOfTuples
+		return leftSortedListOfTuples, rightSortedListOfTuples, expected_dict
 
-	def makeFinalDict(self, leftSortedListOfTuples, rightSortedListOfTuples):
-		final_dict = {}
-		for ind, element in enumerate(leftSortedListOfTuples):
-			if ind >= self.numClasses/2:
-				final_dict[element[0]] = 1
-			else:
-				final_dict[element[0]] = 0  
+	def makeFinalDict(self, leftSortedListOfTuples, rightSortedListOfTuples, expected_dict):
+		final_dict = expected_dict
+		# final_dict = {}
+		# for ind, element in enumerate(leftSortedListOfTuples):
+		# 	if ind >= self.numClasses/2:
+		# 		final_dict[element[0]] = 1
+		# 	else:
+		# 		final_dict[element[0]] = 0  
 
-		for ind, element in enumerate(rightSortedListOfTuples):
-			if ind >= self.numClasses/2:
-				final_dict[element[0]] = 0
-			else:
-				final_dict[element[0]] = 1             
+		# for ind, element in enumerate(rightSortedListOfTuples):
+		# 	if ind >= self.numClasses/2:
+		# 		final_dict[element[0]] = 0
+		# 	else:
+		# 		final_dict[element[0]] = 1             
 
 		print("Printing final_dict items...")
-		# print(final_dict)
+		print(final_dict)
 
 		#TODO: separate for validation set too
 		torch.save({
@@ -309,14 +326,13 @@ class Node:
 		correct = predicted.eq(self.trainInputDict["label"].to(self.device)).sum().item()
 		total = len(est_labels)
 
-		if not self.isLeaf:
-			print('Root Node Acc: %.3f'% (100.*correct/total))
+		print('Node %d Acc: %.3f'% ( self.nodeId, 100.*correct/total))
 		
 		if self.isLeaf:
 			self.setFinalPredictions(predicted)
 
 	def doLabelCounting(self, mlpPrediction):
-		lclasses = [0]*10
+		lclasses = [0]*10 # 0-indexed according to self.trainInputDict["label"]
 		rclasses = [0]*10
 
 		for i, val in enumerate(mlpPrediction):
@@ -412,8 +428,13 @@ class Node:
 		trainRimages = []
 		trainLLabels = []
 		trainRLabels = []
-		lclasses = [0]*10
+		lclasses = [0]*10 # 0-indexed in Train according to self.trainInputDict["label"]
 		rclasses = [0]*10
+		maxLeft=0
+		maxRight=0
+		maxLeftClassIndex=-1
+		maxRightClassIndex=-1
+
 		for i, val in enumerate(mlpPrediction):
 			# print("i : ", i)
 			if val<=0.5:
@@ -422,6 +443,16 @@ class Node:
 						trainLimages.append((image_next[i].detach()).tolist())
 						lclasses[self.trainInputDict["label"][i].item()]+=1
 						trainLLabels.append(reverseLabelMap[self.trainInputDict["label"][i].item()])
+						if lclasses[self.trainInputDict["label"][i].item()] > maxLeft:
+							maxLeft = lclasses[self.trainInputDict["label"][i].item()]
+							maxLeftClassIndex = reverseLabelMap[self.trainInputDict["label"][i].item()]
+					else:
+						trainRimages.append((image_next[i].detach()).tolist())
+						rclasses[self.trainInputDict["label"][i].item()]+=1
+						trainRLabels.append(reverseLabelMap[self.trainInputDict["label"][i].item()])
+						if rclasses[self.trainInputDict["label"][i].item()] > maxRight:
+							maxRight = rclasses[self.trainInputDict["label"][i].item()]
+							maxRightClassIndex = reverseLabelMap[self.trainInputDict["label"][i].item()]
 				else:
 					trainLimages.append((image_next[i].detach()).tolist())
 					lclasses[self.trainInputDict["label"][i].item()]+=1
@@ -433,6 +464,16 @@ class Node:
 						trainRimages.append((image_next[i].detach()).tolist())
 						rclasses[self.trainInputDict["label"][i].item()]+=1
 						trainRLabels.append(reverseLabelMap[self.trainInputDict["label"][i].item()])
+						if rclasses[self.trainInputDict["label"][i].item()] > maxRight:
+							maxRight = rclasses[self.trainInputDict["label"][i].item()]
+							maxRightClassIndex = reverseLabelMap[self.trainInputDict["label"][i].item()]
+					else:
+						trainLimages.append((image_next[i].detach()).tolist())
+						lclasses[self.trainInputDict["label"][i].item()]+=1
+						trainLLabels.append(reverseLabelMap[self.trainInputDict["label"][i].item()])
+						if lclasses[self.trainInputDict["label"][i].item()] > maxLeft:
+							maxLeft = lclasses[self.trainInputDict["label"][i].item()]
+							maxLeftClassIndex = reverseLabelMap[self.trainInputDict["label"][i].item()]
 				else:
 					trainRimages.append((image_next[i].detach()).tolist())
 					rclasses[self.trainInputDict["label"][i].item()]+=1
@@ -445,63 +486,83 @@ class Node:
 		print("lTrainDict[data].shape: ", lTrainDict["data"].shape, "  lTrainDict[label].shape: ", lTrainDict["label"].shape)
 		print("rTrainDict[data].shape: ", rTrainDict["data"].shape, "  rTrainDict[label].shape: ", rTrainDict["label"].shape)
 
+
+		leftDataNum = len(trainLLabels)
+		rightDataNum = len(trainRLabels)
+
+		if not (len(trainLLabels) == 0):
+			maxLeft = float(float(maxLeft)/float(len(trainLLabels)))
+		if not (len(trainRLabels) == 0):
+			maxRight = float(float(maxRight)/float(len(trainRLabels)))
+
+		handleLeafDict = {"lvl":self.level+1,"noOfLeftClasses":noOfLeftClasses, "noOfRightClasses":noOfRightClasses, "maxLeft":maxLeft, "maxRight":maxRight, "leftDataNum":leftDataNum, "rightDataNum":rightDataNum,"maxLeftClassIndex":maxLeftClassIndex,"maxRightClassIndex":maxRightClassIndex}		
+
+
 		lValDict = {}
 		rValDict = {}
 		print("RETURNING FROM WORK...")
 		#TODO: populate validation dictionaries too
 		# return lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio
 		if self.isTrain and not self.isLeaf:
-			return lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses
+			return lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, handleLeafDict
 		elif not self.isTrain and not self.isLeaf:
 			return lTrainDict, rTrainDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses
 		elif self.isTrain and self.isLeaf:
-			return ""
+			return
 		else:
-			return ""
+			return
 
 
 	def workTest(self):
-		reverseLabelMap, labelMap = self.loadCNNModel()
-		image_next, image_next_flat, est_labels, _ = self.cnnModel(self.trainInputDict["data"].to(self.device))
-
-		if not self.isTrain:
+		if not (self.leafClass == -1):
+			x=torch.Tensor(1,1).long()
+			x[0] = self.leafClass
+			est_labels = torch.cat(len(self.trainInputDict["label"].to(self.device))*[x])
+			reverseLabelMap[self.leafClass] = self.leafClass
 			self.checkTestPreds(reverseLabelMap, est_labels)
-			
-		if self.isLeaf:
 			return
 
-		self.loadMLPModel()
+		else:
+			reverseLabelMap, labelMap = self.loadCNNModel()
+			image_next, image_next_flat, est_labels, _ = self.cnnModel(self.trainInputDict["data"].to(self.device))
 
-		est_labels = self.mlpModel(image_next_flat)
-		est_labels = est_labels.view(-1)
-		mlpPrediction = est_labels.detach()
-		mlpPrediction += 0.5
-		mlpPrediction = mlpPrediction.long()
-		return self.classifyLabels(mlpPrediction, image_next, reverseLabelMap, labelMap)
+			if not self.isTrain:
+				self.checkTestPreds(reverseLabelMap, est_labels)
+				
+			if self.isLeaf:
+				return
+
+			self.loadMLPModel()
+
+			est_labels = self.mlpModel(image_next_flat)
+			est_labels = est_labels.view(-1)
+			mlpPrediction = est_labels.detach()
+			mlpPrediction += 0.5
+			mlpPrediction = mlpPrediction.long()
+			return self.classifyLabels(mlpPrediction, image_next, reverseLabelMap, labelMap)
 
 	
 	def getTrainPredictionsNotLeaf(self):
 		self.loadCNNModel()
-		image_next, image_next_flat, _, _ = self.cnnModel(self.trainInputDict["data"].to(self.device))
-		image_next = image_next.detach()
+		_, image_next_flat, _, _ = self.cnnModel(self.trainInputDict["data"].to(self.device))
 		image_next_flat = image_next_flat.detach().cpu()
-		img_flat_nmpy = image_next_flat
+		img_flat_nmpy = image_next_flat.numpy()
 		print("image_next_flat.shape : ", image_next_flat.shape)
 		countImageTotal = image_next_flat.shape[0]
-		img_flat_nmpy = img_flat_nmpy.numpy()
 		kmeans = KMeans(n_clusters=2, n_jobs=-1).fit(img_flat_nmpy)
 		cluster_ids = kmeans.labels_
-		# leftSortedListOfTuples, rightSortedListOfTuples = self.separateLabels(cluster_ids)
-		# final_dict = self.makeFinalDict(leftSortedListOfTuples, rightSortedListOfTuples)
+
+		leftSortedListOfTuples, rightSortedListOfTuples, expected_dict = self.separateLabels(cluster_ids)
+		final_dict = self.makeFinalDict(leftSortedListOfTuples, rightSortedListOfTuples, expected_dict)
 
 		expectedMlpLabels = []
 		weightVector = []
 		countImageRight = int(np.sum(cluster_ids))
 		countImageLeft = countImageTotal - countImageRight
-		print("Image Statistics : ", countImageLeft, countImageRight)
+		print("Image Statistics : L R : ", countImageLeft, countImageRight)
 		minCountImage = min(countImageLeft, countImageRight)
 		for i in range(len(self.trainInputDict["data"])):
-			label = self.trainInputDict["label"][i].item()
+			# label = self.trainInputDict["label"][i].item()
 			# expectedMlpLabels.append(final_dict[label])
 			expectedMlpLabels.append(cluster_ids[i])
 			if cluster_ids[i] == 0:
@@ -519,22 +580,37 @@ class Node:
 
 
 	def workTrain(self):
-		oldData = self.trainInputDict["data"]
-		oldLabel = self.trainInputDict["label"]
-		labelMap, reverseLabelMap = self.make_labels_list()			
+		nodeDict = {}
+		nodeDict['nodeId'] = self.nodeId
+		nodeDict['parentId'] = self.parentId
+		nodeDict['level'] = self.level
+		nodeDict['isLeaf'] = self.isLeaf
+		nodeDict['leafClass'] = self.leafClass
+		nodeDict['lchildId'] = self.lchildId
+		nodeDict['rchildId'] = self.rchildId
 
-		self.cnnModel.to(self.device)
-		self.trainCNN(labelMap, reverseLabelMap)
-		print("CNN trained successfully...")		
+		torch.save({
+					'nodeDict':nodeDict,
+					}, 'ckpt/node_'+str(self.nodeId)+'.pth')
 
-		if not self.isLeaf:
-			image_next_flat, expectedMlpLabels, weightVector = self.getTrainPredictionsNotLeaf()
-			self.mlpModel.to(self.device)
-			self.trainMLP(image_next_flat, expectedMlpLabels, weightVector)
-			# self.trainMLP(self.getTrainPredictionsNotLeaf)
-			print("MLP trained successfully...")
-		self.trainInputDict["data"] = oldData
-		self.trainInputDict["label"] = oldLabel
+		if not (self.leafClass == -1):
+			return
+		else:
+			oldData = self.trainInputDict["data"]
+			oldLabel = self.trainInputDict["label"]
+			labelMap, reverseLabelMap = self.make_labels_list()			
 
-		return self.workTest()
-	
+			self.cnnModel.to(self.device)
+			self.trainCNN(labelMap, reverseLabelMap)
+			print("CNN trained successfully...")		
+
+			if not self.isLeaf:
+				image_next_flat, expectedMlpLabels, weightVector = self.getTrainPredictionsNotLeaf()
+				self.mlpModel.to(self.device)
+				self.trainMLP(image_next_flat, expectedMlpLabels, weightVector)
+				# self.trainMLP(self.getTrainPredictionsNotLeaf)
+				print("MLP trained successfully...")
+			self.trainInputDict["data"] = oldData
+			self.trainInputDict["label"] = oldLabel
+
+			return self.workTest()

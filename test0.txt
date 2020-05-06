@@ -1,0 +1,44 @@
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+len(trainInputDict):  2 ,  len(valInputDict):  2 ,  len(testInputDict):  2
+nodeId:  1 , imgTensorShape :  torch.Size([10000, 3, 32, 32])
+nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: 2 ,  rchildId: 3 ,  isLeaf: False ,  leafClass: -1
+Node 1 Acc: 53.190
+Split Acc: 77.180
+# of Left images:  6136.0
+# of Right images:  3864.0
+giniRightRatio:  0.8510385723287424
+giniLeftRatio:  0.8805840964219966
+impurityDrop:  0.8979566199054009
+giniGain:  0.0020433800945991454
+lclasses:  [197, 438, 720, 806, 842, 813, 933, 813, 162, 412]
+rclasses:  [803, 562, 280, 194, 158, 187, 67, 187, 838, 588]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([6136, 16, 28, 28])   lTrainDict[label].shape:  torch.Size([6136])
+rTrainDict[data].shape:  torch.Size([3864, 16, 28, 28])   rTrainDict[label].shape:  torch.Size([3864])
+RETURNING FROM WORK...
+nodeId:  2 , imgTensorShape :  torch.Size([6136, 16, 28, 28])
+nodeId: 2 ,  parentId: 1 ,  level: 1 ,  lchildId: 4 ,  rchildId: 5 ,  isLeaf: False ,  leafClass: -1
+nodeId:  3 , imgTensorShape :  torch.Size([3864, 16, 28, 28])
+nodeId: 3 ,  parentId: 1 ,  level: 1 ,  lchildId: 6 ,  rchildId: 7 ,  isLeaf: False ,  leafClass: -1
+Node 2 Acc: 54.188
+Split Acc: 71.398
+# of Left images:  3849.0
+# of Right images:  2287.0
+giniRightRatio:  0.8303697119648729
+giniLeftRatio:  0.8745615955286878
+impurityDrop:  0.9047442462180971
+giniGain:  -0.024160149796100483
+lclasses:  [105, 384, 250, 655, 265, 653, 466, 586, 113, 372]
+rclasses:  [92, 54, 470, 151, 577, 160, 467, 227, 49, 40]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([3849, 16, 24, 24])   lTrainDict[label].shape:  torch.Size([3849])
+rTrainDict[data].shape:  torch.Size([2287, 16, 24, 24])   rTrainDict[label].shape:  torch.Size([2287])
+RETURNING FROM WORK...
+nodeId:  4 , imgTensorShape :  torch.Size([3849, 16, 24, 24])
+nodeId: 4 ,  parentId: 2 ,  level: 2 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1
+nodeId:  5 , imgTensorShape :  torch.Size([2287, 16, 24, 24])
+nodeId: 5 ,  parentId: 2 ,  level: 2 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1

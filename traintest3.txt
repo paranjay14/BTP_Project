@@ -1,0 +1,184 @@
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+nodeId:  1 , imgTensorShape :  torch.Size([49900, 3, 32, 32])
+nodeId:  1 ,  parentId:  0 ,  level:  0 ,  lchildId:  -1 ,  rchildId:  -1 ,  isLeaf:  False ,  leafClass:  -1
+Running nodeId:  1
+0 Train Loss: 178.677 | Train Acc: 37.261
+1 Train Loss: 148.809 | Train Acc: 47.717
+2 Train Loss: 137.714 | Train Acc: 51.659
+3 Train Loss: 132.360 | Train Acc: 53.505
+4 Train Loss: 127.904 | Train Acc: 54.798
+CNN trained successfully...
+image_next_flat.shape :  torch.Size([49900, 12544])
+printing expected split from k means
+{5: 0, 6: 0, 3: 0, 7: 0, 4: 0, 1: 1, 0: 1, 2: 0, 9: 1, 8: 1}
+Printing final_dict items...
+{5: 0, 6: 0, 3: 0, 7: 0, 4: 0, 1: 1, 0: 1, 2: 0, 9: 1, 8: 1}
+Image Statistics : L R :  30610 19290
+expectedMlpLabels.shape :  torch.Size([49900])
+0 Loss: 10.677 | Acc: 96.972
+1 Loss: 5.655 | Acc: 98.445
+2 Loss: 4.605 | Acc: 98.707
+3 Loss: 4.049 | Acc: 98.832
+4 Loss: 3.758 | Acc: 98.968
+MLP trained successfully...
+# of Left images:  30648.0
+# of Right images:  19252.0
+giniRightRatio:  0.8331341496722917
+giniLeftRatio:  0.8885478966257832
+impurityDrop:  0.9213494268710558
+giniGain:  -0.021349426871055788
+lclasses:  [1011, 2260, 3615, 3981, 4123, 4118, 4989, 4082, 725, 2096]
+rclasses:  [3975, 2730, 1374, 1008, 870, 873, 0, 910, 4263, 2897]
+noOfLeftClasses:  10
+noOfRightClasses:  9
+lTrainDict[data].shape:  torch.Size([31000, 16, 28, 28])   lTrainDict[label].shape:  torch.Size([31000])
+rTrainDict[data].shape:  torch.Size([18900, 16, 28, 28])   rTrainDict[label].shape:  torch.Size([18900])
+RETURNING FROM WORK...
+nodeId:  2 , imgTensorShape :  torch.Size([31000, 16, 28, 28])
+nodeId:  2 ,  parentId:  1 ,  level:  1 ,  lchildId:  -1 ,  rchildId:  -1 ,  isLeaf:  False ,  leafClass:  -1
+nodeId:  3 , imgTensorShape :  torch.Size([18900, 16, 28, 28])
+nodeId:  3 ,  parentId:  1 ,  level:  1 ,  lchildId:  -1 ,  rchildId:  -1 ,  isLeaf:  False ,  leafClass:  -1
+Running nodeId:  2
+0 Train Loss: 166.088 | Train Acc: 39.932
+1 Train Loss: 142.344 | Train Acc: 49.055
+2 Train Loss: 134.254 | Train Acc: 52.300
+3 Train Loss: 127.634 | Train Acc: 54.839
+4 Train Loss: 122.777 | Train Acc: 56.332
+CNN trained successfully...
+image_next_flat.shape :  torch.Size([31000, 9216])
+printing expected split from k means
+{3: 0, 6: 0, 4: 1, 1: 0, 7: 0, 5: 0, 9: 0, 2: 1, 0: 0, 8: 0}
+Printing final_dict items...
+{3: 0, 6: 0, 4: 1, 1: 0, 7: 0, 5: 0, 9: 0, 2: 1, 0: 0, 8: 0}
+Image Statistics : L R :  20164 10836
+expectedMlpLabels.shape :  torch.Size([31000])
+0 Loss: 11.007 | Acc: 96.645
+1 Loss: 5.699 | Acc: 98.245
+2 Loss: 4.608 | Acc: 98.590
+3 Loss: 4.958 | Acc: 98.526
+4 Loss: 3.508 | Acc: 98.939
+MLP trained successfully...
+# of Left images:  19738.0
+# of Right images:  11262.0
+giniRightRatio:  0.7739293442467382
+giniLeftRatio:  0.9029400944243129
+impurityDrop:  1.0000360914501627
+giniGain:  -0.11148819482437955
+lclasses:  [568, 2260, 1308, 3292, 1394, 3313, 2591, 2838, 725, 2096]
+rclasses:  [443, 0, 2307, 689, 2729, 805, 2398, 1244, 0, 0]
+noOfLeftClasses:  10
+noOfRightClasses:  7
+lTrainDict[data].shape:  torch.Size([20385, 16, 24, 24])   lTrainDict[label].shape:  torch.Size([20385])
+rTrainDict[data].shape:  torch.Size([10615, 16, 24, 24])   rTrainDict[label].shape:  torch.Size([10615])
+RETURNING FROM WORK...
+nodeId:  4 , imgTensorShape :  torch.Size([20385, 16, 24, 24])
+nodeId:  4 ,  parentId:  2 ,  level:  2 ,  lchildId:  -1 ,  rchildId:  -1 ,  isLeaf:  True ,  leafClass:  -1
+nodeId:  5 , imgTensorShape :  torch.Size([10615, 16, 24, 24])
+nodeId:  5 ,  parentId:  2 ,  level:  2 ,  lchildId:  -1 ,  rchildId:  -1 ,  isLeaf:  True ,  leafClass:  -1
+Running nodeId:  3
+0 Train Loss: 147.531 | Train Acc: 46.381
+1 Train Loss: 119.882 | Train Acc: 57.217
+2 Train Loss: 110.667 | Train Acc: 60.619
+3 Train Loss: 105.238 | Train Acc: 62.720
+4 Train Loss: 100.836 | Train Acc: 64.571
+CNN trained successfully...
+image_next_flat.shape :  torch.Size([18900, 9216])
+printing expected split from k means
+{0: 0, 1: 1, 2: 1, 7: 1, 6: 1, 8: 1, 4: 1, 5: 1, 3: 1}
+Printing final_dict items...
+{0: 0, 1: 1, 2: 1, 7: 1, 6: 1, 8: 1, 4: 1, 5: 1, 3: 1}
+Image Statistics : L R :  5483 13417
+expectedMlpLabels.shape :  torch.Size([18900])
+0 Loss: 12.507 | Acc: 95.122
+1 Loss: 8.121 | Acc: 96.963
+2 Loss: 7.184 | Acc: 97.378
+3 Loss: 6.484 | Acc: 97.697
+4 Loss: 5.713 | Acc: 97.851
+MLP trained successfully...
+# of Left images:  5638.0
+# of Right images:  13262.0
+giniRightRatio:  0.9044215348677026
+giniLeftRatio:  0.5503665581486595
+impurityDrop:  0.7539041197913969
+giniGain:  0.07923002988089478
+lclasses:  [2199, 0, 470, 0, 0, 0, 0, 2153, 0, 0]
+rclasses:  [1776, 2730, 904, 1008, 870, 873, 910, 2110, 2897, 0]
+noOfLeftClasses:  3
+noOfRightClasses:  9
+lTrainDict[data].shape:  torch.Size([4822, 16, 24, 24])   lTrainDict[label].shape:  torch.Size([4822])
+rTrainDict[data].shape:  torch.Size([14078, 16, 24, 24])   rTrainDict[label].shape:  torch.Size([14078])
+RETURNING FROM WORK...
+nodeId:  6 , imgTensorShape :  torch.Size([4822, 16, 24, 24])
+nodeId:  6 ,  parentId:  3 ,  level:  2 ,  lchildId:  -1 ,  rchildId:  -1 ,  isLeaf:  True ,  leafClass:  -1
+nodeId:  7 , imgTensorShape :  torch.Size([14078, 16, 24, 24])
+nodeId:  7 ,  parentId:  3 ,  level:  2 ,  lchildId:  -1 ,  rchildId:  -1 ,  isLeaf:  True ,  leafClass:  -1
+Running nodeId:  4
+0 Train Loss: 163.767 | Train Acc: 40.657
+1 Train Loss: 139.286 | Train Acc: 51.258
+2 Train Loss: 131.565 | Train Acc: 53.662
+3 Train Loss: 127.737 | Train Acc: 54.918
+4 Train Loss: 124.249 | Train Acc: 56.267
+CNN trained successfully...
+Running nodeId:  5
+0 Train Loss: 142.056 | Train Acc: 46.962
+1 Train Loss: 120.488 | Train Acc: 55.657
+2 Train Loss: 113.965 | Train Acc: 57.918
+3 Train Loss: 109.483 | Train Acc: 60.113
+4 Train Loss: 106.381 | Train Acc: 61.300
+CNN trained successfully...
+Running nodeId:  6
+0 Train Loss: 67.077 | Train Acc: 69.812
+1 Train Loss: 53.152 | Train Acc: 77.958
+2 Train Loss: 48.863 | Train Acc: 79.333
+3 Train Loss: 44.674 | Train Acc: 81.771
+4 Train Loss: 42.729 | Train Acc: 82.583
+CNN trained successfully...
+Running nodeId:  7
+0 Train Loss: 153.638 | Train Acc: 43.749
+1 Train Loss: 129.330 | Train Acc: 54.134
+2 Train Loss: 120.500 | Train Acc: 57.522
+3 Train Loss: 116.508 | Train Acc: 59.071
+4 Train Loss: 112.360 | Train Acc: 60.733
+CNN trained successfully...
+nodeId:  1 , imgTensorShape :  torch.Size([10000, 3, 32, 32])
+nodeId:  1 ,  parentId:  0 ,  level:  0 ,  lchildId:  2 ,  rchildId:  3 ,  isLeaf:  False ,  leafClass:  -1
+Node 1 Acc: 53.190
+Split Acc: 77.180
+# of Left images:  6136.0
+# of Right images:  3864.0
+giniRightRatio:  0.8510385723287424
+giniLeftRatio:  0.8805840964219966
+impurityDrop:  0.8979566199054009
+giniGain:  0.0020433800945991454
+lclasses:  [197, 438, 720, 806, 842, 813, 933, 813, 162, 412]
+rclasses:  [803, 562, 280, 194, 158, 187, 67, 187, 838, 588]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([6136, 16, 28, 28])   lTrainDict[label].shape:  torch.Size([6136])
+rTrainDict[data].shape:  torch.Size([3864, 16, 28, 28])   rTrainDict[label].shape:  torch.Size([3864])
+RETURNING FROM WORK...
+nodeId:  2 , imgTensorShape :  torch.Size([6136, 16, 28, 28])
+nodeId:  2 ,  parentId:  1 ,  level:  1 ,  lchildId:  4 ,  rchildId:  5 ,  isLeaf:  False ,  leafClass:  -1
+nodeId:  3 , imgTensorShape :  torch.Size([3864, 16, 28, 28])
+nodeId:  3 ,  parentId:  1 ,  level:  1 ,  lchildId:  6 ,  rchildId:  7 ,  isLeaf:  False ,  leafClass:  -1
+Node 2 Acc: 54.188
+Split Acc: 71.398
+# of Left images:  3849.0
+# of Right images:  2287.0
+giniRightRatio:  0.8303697119648729
+giniLeftRatio:  0.8745615955286878
+impurityDrop:  0.9047442462180971
+giniGain:  -0.024160149796100483
+lclasses:  [105, 384, 250, 655, 265, 653, 466, 586, 113, 372]
+rclasses:  [92, 54, 470, 151, 577, 160, 467, 227, 49, 40]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([3849, 16, 24, 24])   lTrainDict[label].shape:  torch.Size([3849])
+rTrainDict[data].shape:  torch.Size([2287, 16, 24, 24])   rTrainDict[label].shape:  torch.Size([2287])
+RETURNING FROM WORK...
+nodeId:  4 , imgTensorShape :  torch.Size([3849, 16, 24, 24])
+nodeId:  4 ,  parentId:  2 ,  level:  2 ,  lchildId:  -1 ,  rchildId:  -1 ,  isLeaf:  True ,  leafClass:  -1
+nodeId:  5 , imgTensorShape :  torch.Size([2287, 16, 24, 24])
+nodeId:  5 ,  parentId:  2 ,  level:  2 ,  lchildId:  -1 ,  rchildId:  -1 ,  isLeaf:  True ,  leafClass:  -1

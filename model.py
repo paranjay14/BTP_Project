@@ -33,12 +33,68 @@ class Tree:
 		self.root = None
 		# self.maxNumberOfNodes = maxNumberOfNodes
 	
+
+	def checkLeafNodes(self, handleLeafDict):
+		isLeafLeft=False
+		isLeafRight=False
+		isemptyNodeLeft=False
+		isemptyNodeRight=False
+		leftLeafClass = -1
+		rightLeafClass = -1
+
+		############# maxDepth #############
+		if handleLeafDict["lvl"]==self.maxDepth:
+			isLeafLeft=True
+			isLeafRight=True
+
+
+		############# dataNumThreshold #############
+		if handleLeafDict["leftDataNum"] <= self.dataNumThreshold:
+			isLeafLeft=True
+		if handleLeafDict["rightDataNum"] <= self.dataNumThreshold:
+			isLeafRight=True		
+
+
+		############# classThreshold #############
+		#TODO : HANDLE 0, 1 & 2 cases
+		if handleLeafDict["noOfLeftClasses"]==0 or handleLeafDict["noOfRightClasses"]==0:
+			if handleLeafDict["noOfLeftClasses"]==0:
+				isemptyNodeLeft=True
+			if handleLeafDict["noOfRightClasses"]==0:
+				isemptyNodeRight=True
+
+		elif handleLeafDict["noOfLeftClasses"]==1 or handleLeafDict["noOfRightClasses"]==1:
+			if handleLeafDict["noOfLeftClasses"]==1:
+				isLeafLeft=True
+				leftLeafClass=handleLeafDict["maxLeftClassIndex"]
+			if handleLeafDict["noOfRightClasses"]==1:
+				isLeafRight=True
+				rightLeafClass=handleLeafDict["maxRightClassIndex"]
+
+		elif handleLeafDict["noOfLeftClasses"]==2 or handleLeafDict["noOfRightClasses"]==2:
+			if handleLeafDict["noOfLeftClasses"]==2:
+				isLeafLeft=True
+			if handleLeafDict["noOfRightClasses"]==2:
+				isLeafRight=True
+
+
+		############# dominanceThreshold #############
+		if handleLeafDict["maxLeft"] >= self.dominanceThreshold:
+			isLeafLeft=True
+			leftLeafClass=handleLeafDict["maxLeftClassIndex"]
+		if handleLeafDict["maxRight"] >= self.dominanceThreshold:
+			isLeafRight=True
+			rightLeafClass=handleLeafDict["maxRightClassIndex"]
+
+		return isLeafLeft, isLeafRight, isemptyNodeLeft, isemptyNodeRight, leftLeafClass, rightLeafClass
+
+
 	def tree_traversal(self, trainInputDict, valInputDict):
 		rootNode = Node(parentId=0, nodeId=1, device=self.device, isTrain=True, level=0)
 		if self.maxDepth == 0:
-			rootNode.setInput(trainInputDict=trainInputDict, valInputDict=valInputDict, numClasses=self.numClasses, giniValue=0.9, isLeaf=True)
+			rootNode.setInput(trainInputDict=trainInputDict, valInputDict=valInputDict, numClasses=self.numClasses, giniValue=0.9, isLeaf=True, leafClass=-1, lchildId=-1, rchildId=-1)
 		else:
-			rootNode.setInput(trainInputDict=trainInputDict, valInputDict=valInputDict, numClasses=self.numClasses, giniValue=0.9, isLeaf=False)
+			rootNode.setInput(trainInputDict=trainInputDict, valInputDict=valInputDict, numClasses=self.numClasses, giniValue=0.9, isLeaf=False, leafClass=-1, lchildId=-1, rchildId=-1)
 
 		self.nodeArray = []
 		self.nodeArray.append(rootNode)
@@ -50,33 +106,47 @@ class Tree:
 			start+=1
 			if not node.isLeaf:
 				# lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.work()
-				lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.workTrain()
+				lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, handleLeafDict = node.workTrain()
 			else:
 				# node.work()
 				node.workTrain()
 
 			if not node.isLeaf:
-				lNode = Node(node.nodeId, end+1, self.device, True, node.level+1)
-				rNode = Node(node.nodeId, end+2, self.device, True, node.level+1)
+				isLeafLeft, isLeafRight, isemptyNodeLeft, isemptyNodeRight, leftLeafClass, rightLeafClass = self.checkLeafNodes(handleLeafDict)
+				ParentNodeDict = torch.load('ckpt/node_'+str(node.nodeId)+'.pth')['nodeDict']
 
-				if node.level + 1 >= self.maxDepth:
-					lNode.setInput(lTrainDict, lValDict, noOfLeftClasses, giniLeftRatio, True)
-					rNode.setInput(rTrainDict, rValDict, noOfRightClasses, giniRightRatio, True)
-				else:
-					lNode.setInput(lTrainDict, lValDict, noOfLeftClasses, giniLeftRatio, False)
-					rNode.setInput(rTrainDict, rValDict, noOfRightClasses, giniRightRatio, False)
+				if not isemptyNodeLeft:
+					end += 1
+					lNode = Node(node.nodeId, end, self.device, True, node.level+1)
+					if not isLeafLeft:
+						lNode.setInput(lTrainDict, lValDict, handleLeafDict["noOfLeftClasses"], giniLeftRatio, False, leftLeafClass, -1, -1)
+					else:
+						lNode.setInput(lTrainDict, lValDict, handleLeafDict["noOfLeftClasses"], giniLeftRatio, True, leftLeafClass, -1, -1)
+					self.nodeArray.append(lNode)
+					ParentNodeDict['lchildId'] = lNode.nodeId
 
-				self.nodeArray.append(lNode)
-				self.nodeArray.append(rNode)
-				end += 2
+				if not isemptyNodeRight:
+					end += 1
+					rNode = Node(node.nodeId, end, self.device, True, node.level+1)
+					if not isLeafRight:
+						rNode.setInput(rTrainDict, rValDict, handleLeafDict["noOfRightClasses"], giniRightRatio, False, rightLeafClass, -1, -1)
+					else:
+						rNode.setInput(rTrainDict, rValDict, handleLeafDict["noOfRightClasses"], giniRightRatio, True, rightLeafClass, -1, -1)
+					self.nodeArray.append(rNode)
+					ParentNodeDict['rchildId'] = rNode.nodeId
+
+				torch.save({
+					'nodeDict':ParentNodeDict,
+					}, 'ckpt/node_'+str(node.nodeId)+'.pth')
+
+				# end += 2
 		
 
-	def testTraversal(self, valInputDict):
-		rootNode = Node(0, nodeId=1, device=self.device, isTrain=False, level=0)
-		if self.maxDepth == 0:
-			rootNode.setInput(trainInputDict=valInputDict, valInputDict={}, numClasses=self.numClasses, giniValue=0.9, isLeaf=True)
-		else:
-			rootNode.setInput(trainInputDict=valInputDict, valInputDict={}, numClasses=self.numClasses, giniValue=0.9, isLeaf=False)
+	def testTraversal(self, testInputDict):
+		nodeId=1
+		rootNodeDict = torch.load('ckpt/node_'+str(nodeId)+'.pth')['nodeDict']
+		rootNode = Node(parentId=rootNodeDict['parentId'], nodeId=rootNodeDict['nodeId'], device=self.device, isTrain=False, level=rootNodeDict['level'])
+		rootNode.setInput(trainInputDict=testInputDict, valInputDict={}, numClasses=self.numClasses, giniValue=0.9, isLeaf=rootNodeDict['isLeaf'], leafClass=rootNodeDict['leafClass'], lchildId=rootNodeDict['lchildId'], rchildId=rootNodeDict['rchildId'])
 		
 		testPredDict = {}
 		testPredDict['actual'] = torch.rand(0)
@@ -104,25 +174,27 @@ class Tree:
 				# node.work()
 				node.workTest()
 			if not node.isLeaf:
-				ckpt = torch.load('ckpt/node_cnn_'+str(node.nodeId)+'_'+str(end+1)+'.pth')['labelMap']
-				noOfLeftClasses = len(ckpt)
-				ckpt = torch.load('ckpt/node_cnn_'+str(node.nodeId)+'_'+str(end+2)+'.pth')['labelMap']
-				noOfRightClasses = len(ckpt)
-				ckpt = None
-				print ('Nodes sizes = ', noOfLeftClasses, noOfRightClasses)
-				lNode = Node(node.nodeId, end+1, self.device, False, node.level+1)
-				rNode = Node(node.nodeId, end+2, self.device, False, node.level+1)
+				# ckpt2 = torch.load('ckpt/node_cnn_'+str(node.nodeId)+'_'+str(end+1)+'.pth')['labelMap']
+				# noOfLeftClasses = len(ckpt2)
+				# ckpt2 = torch.load('ckpt/node_cnn_'+str(node.nodeId)+'_'+str(end+2)+'.pth')['labelMap']
+				# noOfRightClasses = len(ckpt2)
+				# ckpt2 = None
+				# print ('Nodes sizes = ', noOfLeftClasses, noOfRightClasses)
 
-				if node.level + 1 >= self.maxDepth:
-					lNode.setInput(lTrainDict, {}, noOfLeftClasses, giniLeftRatio, True)
-					rNode.setInput(rTrainDict, {}, noOfRightClasses, giniRightRatio, True)
-				else:
-					lNode.setInput(lTrainDict, {}, noOfLeftClasses, giniLeftRatio, False)
-					rNode.setInput(rTrainDict, {}, noOfRightClasses, giniRightRatio, False)
+				if not (node.lchildId == -1):
+					leftNodeDict = torch.load('ckpt/node_'+str(node.lchildId)+'.pth')['nodeDict']		
+					lNode = Node(node.nodeId, node.lchildId, self.device, False, leftNodeDict['level'])
+					lNode.setInput(lTrainDict, {}, noOfLeftClasses, giniLeftRatio, leftNodeDict['isLeaf'], leftNodeDict['leafClass'], leftNodeDict['lchildId'], leftNodeDict['rchildId'])
+					q.append(lNode)
+					end+=1
+				
+				if not (node.rchildId == -1):
+					rightNodeDict = torch.load('ckpt/node_'+str(node.rchildId)+'.pth')['nodeDict']		
+					rNode = Node(node.nodeId, node.rchildId, self.device, False, rightNodeDict['level'])
+					rNode.setInput(rTrainDict, {}, noOfRightClasses, giniRightRatio, rightNodeDict['isLeaf'], rightNodeDict['leafClass'], rightNodeDict['lchildId'], rightNodeDict['rchildId'])
+					q.append(rNode)
+					end+=1
 
-				q.append(lNode)
-				q.append(rNode)
-				end += 2
 
 		ckpt = torch.load('ckpt/testPred.pth')
 		testPredDict = ckpt['testPredDict']
@@ -269,7 +341,7 @@ if __name__ == '__main__':
 	options = getOptions(sys.argv[1:])
 
 	trainInputDict, valInputDict, testInputDict = loadNewDictionaries()
-		
+	print("len(trainInputDict): ",len(trainInputDict), ",  len(valInputDict): ",len(valInputDict), ",  len(testInputDict): ",len(testInputDict))		
 	device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 	tree = Tree(device, maxDepth=options.maxDepth, classThreshold = 2, dataNumThreshold = 1, numClasses = 10)
