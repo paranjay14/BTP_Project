@@ -46,45 +46,58 @@ class Tree:
 		if handleLeafDict["lvl"]==self.maxDepth:
 			isLeafLeft=True
 			isLeafRight=True
-
+			print("MAX DEPTH REACHED", self.maxDepth)
 
 		############# dataNumThreshold #############
 		if handleLeafDict["leftDataNum"] <= self.dataNumThreshold:
 			isLeafLeft=True
+			print("DATANUM THRESHOLD REACHED IN LEFT", handleLeafDict["leftDataNum"], self.dataNumThreshold)
 		if handleLeafDict["rightDataNum"] <= self.dataNumThreshold:
 			isLeafRight=True		
-
+			print("DATANUM THRESHOLD REACHED IN RIGHT", handleLeafDict["rightDataNum"], self.dataNumThreshold)
 
 		############# classThreshold #############
 		#TODO : HANDLE 0, 1 & 2 cases
 		if handleLeafDict["noOfLeftClasses"]==0 or handleLeafDict["noOfRightClasses"]==0:
 			if handleLeafDict["noOfLeftClasses"]==0:
 				isemptyNodeLeft=True
+				print("CLASS THRESHOLD REACHED 0 IN LEFT", handleLeafDict["noOfLeftClasses"], self.classThreshold)
 			if handleLeafDict["noOfRightClasses"]==0:
 				isemptyNodeRight=True
+				print("CLASS THRESHOLD REACHED 0 IN RIGHT", handleLeafDict["noOfRightClasses"], self.classThreshold)
 
 		elif handleLeafDict["noOfLeftClasses"]==1 or handleLeafDict["noOfRightClasses"]==1:
 			if handleLeafDict["noOfLeftClasses"]==1:
 				isLeafLeft=True
 				leftLeafClass=handleLeafDict["maxLeftClassIndex"]
+				print("CLASS THRESHOLD REACHED 1 IN LEFT", handleLeafDict["noOfLeftClasses"], self.classThreshold, leftLeafClass)
+
 			if handleLeafDict["noOfRightClasses"]==1:
 				isLeafRight=True
 				rightLeafClass=handleLeafDict["maxRightClassIndex"]
+				print("CLASS THRESHOLD REACHED 1 IN RIGHT", handleLeafDict["noOfRightClasses"], self.classThreshold, rightLeafClass)
 
 		elif handleLeafDict["noOfLeftClasses"]==2 or handleLeafDict["noOfRightClasses"]==2:
 			if handleLeafDict["noOfLeftClasses"]==2:
 				isLeafLeft=True
+				print("CLASS THRESHOLD REACHED 2 IN LEFT", handleLeafDict["noOfLeftClasses"], self.classThreshold)
+
 			if handleLeafDict["noOfRightClasses"]==2:
 				isLeafRight=True
+				print("CLASS THRESHOLD REACHED 2 IN RIGHT", handleLeafDict["noOfRightClasses"], self.classThreshold)
 
 
 		############# dominanceThreshold #############
 		if handleLeafDict["maxLeft"] >= self.dominanceThreshold:
 			isLeafLeft=True
 			leftLeafClass=handleLeafDict["maxLeftClassIndex"]
+			print("DOMINANCE THRESHOLD REACHED IN LEFT", handleLeafDict["maxLeft"], self.dominanceThreshold, leftLeafClass)
+
 		if handleLeafDict["maxRight"] >= self.dominanceThreshold:
 			isLeafRight=True
 			rightLeafClass=handleLeafDict["maxRightClassIndex"]
+			print("DOMINANCE THRESHOLD REACHED IN RIGHT", handleLeafDict["maxRight"], self.dominanceThreshold, rightLeafClass)
+
 
 		return isLeafLeft, isLeafRight, isemptyNodeLeft, isemptyNodeRight, leftLeafClass, rightLeafClass
 
@@ -113,7 +126,7 @@ class Tree:
 
 			if not node.isLeaf:
 				isLeafLeft, isLeafRight, isemptyNodeLeft, isemptyNodeRight, leftLeafClass, rightLeafClass = self.checkLeafNodes(handleLeafDict)
-				ParentNodeDict = torch.load('ckpt/node_'+str(node.nodeId)+'.pth')['nodeDict']
+				ParentNodeDict = torch.load(options.ckptDir+'/node_'+str(node.nodeId)+'.pth')['nodeDict']
 
 				if not isemptyNodeLeft:
 					end += 1
@@ -137,16 +150,25 @@ class Tree:
 
 				torch.save({
 					'nodeDict':ParentNodeDict,
-					}, 'ckpt/node_'+str(node.nodeId)+'.pth')
+					}, options.ckptDir+'/node_'+str(node.nodeId)+'.pth')
 
 				# end += 2
 		
 
 	def testTraversal(self, testInputDict):
 		nodeId=1
-		rootNodeDict = torch.load('ckpt/node_'+str(nodeId)+'.pth')['nodeDict']
+		ckptRoot = torch.load(options.ckptDir+'/node_cnn_'+str(nodeId)+'.pth')['labelMap']
+		noOfClasses = len(ckptRoot)
+		rootNodeDict = torch.load(options.ckptDir+'/node_'+str(nodeId)+'.pth')['nodeDict']
+		isLeafRoot = rootNodeDict['isLeaf']
+		leftChildId = rootNodeDict['lchildId']
+		rightChildId = rootNodeDict['rchildId']
+		if rootNodeDict['level']>=self.maxDepth:
+			isLeafRoot=True
+			leftChildId=-1
+			rightChildId=-1
 		rootNode = Node(parentId=rootNodeDict['parentId'], nodeId=rootNodeDict['nodeId'], device=self.device, isTrain=False, level=rootNodeDict['level'])
-		rootNode.setInput(trainInputDict=testInputDict, valInputDict={}, numClasses=self.numClasses, giniValue=0.9, isLeaf=rootNodeDict['isLeaf'], leafClass=rootNodeDict['leafClass'], lchildId=rootNodeDict['lchildId'], rchildId=rootNodeDict['rchildId'])
+		rootNode.setInput(trainInputDict=testInputDict, valInputDict={}, numClasses=noOfClasses, giniValue=0.9, isLeaf=isLeafRoot, leafClass=rootNodeDict['leafClass'], lchildId=leftChildId, rchildId=rightChildId)
 		
 		testPredDict = {}
 		testPredDict['actual'] = torch.rand(0)
@@ -158,7 +180,7 @@ class Tree:
 
 		torch.save({
 					'testPredDict':testPredDict,
-					}, 'ckpt/testPred.pth')
+					}, options.ckptDir+'/testPred.pth')
 
 		q = []
 		q.append(rootNode)
@@ -174,29 +196,49 @@ class Tree:
 				# node.work()
 				node.workTest()
 			if not node.isLeaf:
-				# ckpt2 = torch.load('ckpt/node_cnn_'+str(node.nodeId)+'_'+str(end+1)+'.pth')['labelMap']
-				# noOfLeftClasses = len(ckpt2)
-				# ckpt2 = torch.load('ckpt/node_cnn_'+str(node.nodeId)+'_'+str(end+2)+'.pth')['labelMap']
-				# noOfRightClasses = len(ckpt2)
-				# ckpt2 = None
-				# print ('Nodes sizes = ', noOfLeftClasses, noOfRightClasses)
 
 				if not (node.lchildId == -1):
-					leftNodeDict = torch.load('ckpt/node_'+str(node.lchildId)+'.pth')['nodeDict']		
+					leftNodeDict = torch.load(options.ckptDir+'/node_'+str(node.lchildId)+'.pth')['nodeDict']
+					noOfLeftClasses = 1		
+					if (leftNodeDict['leafClass'] == -1):
+						ckptLeft = torch.load(options.ckptDir+'/node_cnn_'+str(node.lchildId)+'.pth')['labelMap']
+						noOfLeftClasses = len(ckptLeft)
+ 
 					lNode = Node(node.nodeId, node.lchildId, self.device, False, leftNodeDict['level'])
-					lNode.setInput(lTrainDict, {}, noOfLeftClasses, giniLeftRatio, leftNodeDict['isLeaf'], leftNodeDict['leafClass'], leftNodeDict['lchildId'], leftNodeDict['rchildId'])
+					isLeafLeft = leftNodeDict['isLeaf']
+					leftChildId = leftNodeDict['lchildId']
+					rightChildId = leftNodeDict['rchildId']
+					if leftNodeDict['level']>=self.maxDepth:
+						isLeafLeft=True
+						leftChildId=-1
+						rightChildId=-1
+					lNode.setInput(lTrainDict, {}, noOfLeftClasses, giniLeftRatio, isLeafLeft, leftNodeDict['leafClass'], leftChildId, rightChildId)
 					q.append(lNode)
 					end+=1
 				
 				if not (node.rchildId == -1):
-					rightNodeDict = torch.load('ckpt/node_'+str(node.rchildId)+'.pth')['nodeDict']		
+					rightNodeDict = torch.load(options.ckptDir+'/node_'+str(node.rchildId)+'.pth')['nodeDict']
+					noOfRightClasses=1
+					if (rightNodeDict['leafClass'] == -1):		
+						ckptRight = torch.load(options.ckptDir+'/node_cnn_'+str(node.rchildId)+'.pth')['labelMap']
+						noOfRightClasses = len(ckptRight)
+						
 					rNode = Node(node.nodeId, node.rchildId, self.device, False, rightNodeDict['level'])
-					rNode.setInput(rTrainDict, {}, noOfRightClasses, giniRightRatio, rightNodeDict['isLeaf'], rightNodeDict['leafClass'], rightNodeDict['lchildId'], rightNodeDict['rchildId'])
+					isLeafRight = rightNodeDict['isLeaf']
+					leftChildId = rightNodeDict['lchildId']
+					rightChildId = rightNodeDict['rchildId']
+					if rightNodeDict['level']>=self.maxDepth:
+						isLeafRight=True
+						leftChildId=-1
+						rightChildId=-1
+					rNode.setInput(rTrainDict, {}, noOfRightClasses, giniRightRatio, isLeafRight, rightNodeDict['leafClass'], leftChildId, rightChildId)
 					q.append(rNode)
 					end+=1
 
+				print ('Nodes sizes = ', noOfLeftClasses, noOfRightClasses)
 
-		ckpt = torch.load('ckpt/testPred.pth')
+
+		ckpt = torch.load(options.ckptDir+'/testPred.pth')
 		testPredDict = ckpt['testPredDict']
 		testPredDict['actual'] = testPredDict['actual'].to("cpu")
 		testPredDict['pred'] = testPredDict['pred'].to("cpu")
@@ -267,9 +309,9 @@ def loadNewDictionaries():
 		# print("naf")
 		os.mkdir('data/')
 
-	if not os.path.isdir('ckpt/'):
+	if not os.path.isdir(options.ckptDir+'/'):
 		# print("naf")
-		os.mkdir('ckpt/')
+		os.mkdir(options.ckptDir+'/')
 
 
 	print('==> Preparing data..')
@@ -341,11 +383,13 @@ if __name__ == '__main__':
 	options = getOptions(sys.argv[1:])
 
 	trainInputDict, valInputDict, testInputDict = loadNewDictionaries()
-	print("len(trainInputDict): ",len(trainInputDict), ",  len(valInputDict): ",len(valInputDict), ",  len(testInputDict): ",len(testInputDict))		
+	print("len(trainInputDict[\"data\"]): ",len(trainInputDict["data"]), ",  len(valInputDict[\"data\"]): ",len(valInputDict["data"]), ",  len(testInputDict[\"data\"]): ",len(testInputDict["data"]))		
 	device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 	tree = Tree(device, maxDepth=options.maxDepth, classThreshold = 2, dataNumThreshold = 1, numClasses = 10)
-	# tree.tree_traversal(trainInputDict, valInputDict)
-	# tree.tree_traversal(valInputDict, valInputDict)
+	
+	if options.trainFlg == True:
+		tree.tree_traversal(trainInputDict, valInputDict)
+		# tree.tree_traversal(valInputDict, valInputDict)
 	tree.testTraversal(testInputDict)
 

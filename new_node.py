@@ -44,7 +44,7 @@ class Node:
 		self.leafClass = leafClass
 		self.lchildId = lchildId
 		self.rchildId = rchildId
-		print("nodeId:", self.nodeId, ",  parentId:", self.parentId, ",  level:", self.level, ",  lchildId:", self.lchildId, ",  rchildId:", self.rchildId, ",  isLeaf:", self.isLeaf, ",  leafClass:", self.leafClass)
+		print("nodeId:", self.nodeId, ",  parentId:", self.parentId, ",  level:", self.level, ",  lchildId:", self.lchildId, ",  rchildId:", self.rchildId, ",  isLeaf:", self.isLeaf, ",  leafClass:", self.leafClass, ",  numClasses:", self.numClasses)
 
 	def trainCNN(self, labelMap, reverseLabelMap):
 		loss_fn = nn.CrossEntropyLoss()
@@ -73,6 +73,7 @@ class Node:
 				st_btch = end_btch
 
 		self.cnnModel.train()
+		train_loss = 0
 		for epoch in range(numEpochs):
 			total = 0
 			correct = 0
@@ -102,14 +103,15 @@ class Node:
 			
 			print(epoch, 'Train Loss: %.3f | Train Acc: %.3f'% (train_loss, 100.*correct/total))
 
-			torch.save({
-					'epoch':epoch,
-					'model_state_dict':self.cnnModel.state_dict(),
-					'optimizer_state_dict':optimizer.state_dict(),
-					'train_loss':train_loss,
-					'labelMap':labelMap,
-					'reverseLabelMap':reverseLabelMap,  
-					}, 'ckpt/node_cnn_'+str(self.parentId)+'_'+str(self.nodeId)+'.pth')
+		epoch = numEpochs
+		torch.save({
+				'epoch':epoch,
+				'model_state_dict':self.cnnModel.state_dict(),
+				'optimizer_state_dict':optimizer.state_dict(),
+				'train_loss':train_loss,
+				'labelMap':labelMap,
+				'reverseLabelMap':reverseLabelMap,  
+				}, options.ckptDir+'/node_cnn_'+str(self.nodeId)+'.pth')
 
 
 	def trainMLP(self, trainInputs, trainTargets, weightVector):
@@ -140,6 +142,7 @@ class Node:
 
 		numEpochs = options.mlpEpochs
 		self.mlpModel.train()
+		train_loss=0
 		for epoch in range(numEpochs):
 			train_loss = 0
 			correct = 0
@@ -175,12 +178,13 @@ class Node:
 			
 			print(epoch, 'Loss: %.3f | Acc: %.3f'% (train_loss, 100.*correct/total))
 
-			torch.save({
-					'epoch':epoch,
-					'model_state_dict':self.mlpModel.state_dict(),
-					'optimizer_state_dict':optimizer.state_dict(),
-					'train_loss':train_loss,
-					}, 'ckpt/node_mlp_'+str(self.parentId)+'_'+str(self.nodeId)+'.pth')
+		epoch = numEpochs
+		torch.save({
+				'epoch':epoch,
+				'model_state_dict':self.mlpModel.state_dict(),
+				'optimizer_state_dict':optimizer.state_dict(),
+				'train_loss':train_loss,
+				}, options.ckptDir+'/node_mlp_'+str(self.nodeId)+'.pth')
 
 
 	def balanceData(self):
@@ -232,13 +236,13 @@ class Node:
 		return labelMap, reverseLabelMap
 
 	def loadMLPModel(self):
-		ckpt = torch.load('ckpt/node_mlp_'+str(self.parentId)+'_'+str(self.nodeId)+'.pth')
+		ckpt = torch.load(options.ckptDir+'/node_mlp_'+str(self.nodeId)+'.pth')
 		self.mlpModel.load_state_dict(ckpt['model_state_dict'])
 		self.mlpModel.eval()
 		self.mlpModel.to(self.device)
 
 	def loadCNNModel(self):
-		ckpt = torch.load('ckpt/node_cnn_'+str(self.parentId)+'_'+str(self.nodeId)+'.pth')
+		ckpt = torch.load(options.ckptDir+'/node_cnn_'+str(self.nodeId)+'.pth')
 		self.cnnModel.load_state_dict(ckpt['model_state_dict'])
 		self.cnnModel.eval()
 		self.cnnModel.to(self.device)
@@ -299,15 +303,15 @@ class Node:
 		#TODO: separate for validation set too
 		torch.save({
 				'splittingDict':final_dict,
-				}, 'ckpt/node_split_'+str(self.parentId)+'_'+str(self.nodeId)+'.pth')
+				}, options.ckptDir+'/node_split_'+str(self.nodeId)+'.pth')
 		return final_dict
 
 	def getSavedFinalSplit(self):
-		ckpt = torch.load('ckpt/node_split_'+str(self.parentId)+'_'+str(self.nodeId)+'.pth')
+		ckpt = torch.load(options.ckptDir+'/node_split_'+str(self.nodeId)+'.pth')
 		return ckpt['splittingDict']
 
 	def setFinalPredictions(self, predicted):
-		ckpt = torch.load('ckpt/testPred.pth')
+		ckpt = torch.load(options.ckptDir+'/testPred.pth')
 		testPredDict = ckpt['testPredDict']
 		testPredDict['actual'] = testPredDict['actual'].to(self.device)
 		testPredDict['pred'] = testPredDict['pred'].to(self.device)
@@ -315,7 +319,7 @@ class Node:
 		testPredDict['pred'] = torch.cat((testPredDict['pred'],predicted),0)
 		torch.save({
 			'testPredDict':testPredDict,
-			}, 'ckpt/testPred.pth')
+			}, options.ckptDir+'/testPred.pth')
 
 	def checkTestPreds(self, reverseLabelMap, est_labels):
 		_, predicted = est_labels.max(1)
@@ -434,12 +438,14 @@ class Node:
 		maxRight=0
 		maxLeftClassIndex=-1
 		maxRightClassIndex=-1
+		final_dict = self.getSavedFinalSplit()
 
 		for i, val in enumerate(mlpPrediction):
 			# print("i : ", i)
 			if val<=0.5:
 				if self.isTrain:
-					if not (self.trainInputDict["label"][i].item() in leftClassesToBeRemoved):
+					# if not (self.trainInputDict["label"][i].item() in leftClassesToBeRemoved):
+					if final_dict[self.trainInputDict["label"][i].item()] == 0:
 						trainLimages.append((image_next[i].detach()).tolist())
 						lclasses[self.trainInputDict["label"][i].item()]+=1
 						trainLLabels.append(reverseLabelMap[self.trainInputDict["label"][i].item()])
@@ -460,7 +466,8 @@ class Node:
 
 			else:
 				if self.isTrain:
-					if not (self.trainInputDict["label"][i].item() in rightClassesToBeRemoved):
+					# if not (self.trainInputDict["label"][i].item() in rightClassesToBeRemoved):
+					if final_dict[self.trainInputDict["label"][i].item()] == 1:
 						trainRimages.append((image_next[i].detach()).tolist())
 						rclasses[self.trainInputDict["label"][i].item()]+=1
 						trainRLabels.append(reverseLabelMap[self.trainInputDict["label"][i].item()])
@@ -516,9 +523,10 @@ class Node:
 	def workTest(self):
 		if not (self.leafClass == -1):
 			x=torch.Tensor(1,1).long()
-			x[0] = self.leafClass
+			x[0] = 1
 			est_labels = torch.cat(len(self.trainInputDict["label"].to(self.device))*[x])
-			reverseLabelMap[self.leafClass] = self.leafClass
+			reverseLabelMap = {}
+			reverseLabelMap[0] = self.leafClass
 			self.checkTestPreds(reverseLabelMap, est_labels)
 			return
 
@@ -591,7 +599,7 @@ class Node:
 
 		torch.save({
 					'nodeDict':nodeDict,
-					}, 'ckpt/node_'+str(self.nodeId)+'.pth')
+					}, options.ckptDir+'/node_'+str(self.nodeId)+'.pth')
 
 		if not (self.leafClass == -1):
 			return

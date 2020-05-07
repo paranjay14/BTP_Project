@@ -1,0 +1,28 @@
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+len(trainInputDict["data"]):  49900 ,  len(valInputDict["data"]):  10 ,  len(testInputDict["data"]):  10000
+nodeId:  1 , imgTensorShape :  torch.Size([49900, 3, 32, 32])
+nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1
+Running nodeId:  1
+0 Train Loss: 177.864 | Train Acc: 37.535
+1 Train Loss: 145.123 | Train Acc: 49.248
+2 Train Loss: 134.539 | Train Acc: 52.471
+3 Train Loss: 129.406 | Train Acc: 54.537
+4 Train Loss: 126.491 | Train Acc: 55.575
+CNN trained successfully...
+nodeId:  1 , imgTensorShape :  torch.Size([10000, 3, 32, 32])
+nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1
+Node 1 Acc: 53.330
+[[610  55  47   4   8  16  21  20 152  67]
+ [ 31 741   8   5   0  12  10   6  63 124]
+ [ 95  30 453  19  45 139  96  50  36  37]
+ [ 49  37  98 122  26 364 168  43  20  73]
+ [ 66  18 208  20 268 122 162  89  26  21]
+ [ 28  15 115  46  21 589  67  62  24  33]
+ [ 11  30  84  18  23  71 702  13  20  28]
+ [ 44  20  57  16  23 132  44 574  17  73]
+ [116  90  14   5   1  21   9   8 680  56]
+ [ 58 205   8   6   1  27  21  20  60 594]]
+
+Acc: 53.330

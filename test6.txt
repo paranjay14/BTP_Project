@@ -1,0 +1,964 @@
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+len(trainInputDict["data"]):  49900 ,  len(valInputDict["data"]):  10 ,  len(testInputDict["data"]):  10000
+nodeId:  1 , imgTensorShape :  torch.Size([10000, 3, 32, 32])
+nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: 2 ,  rchildId: 3 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10
+Node 1 Acc: 59.100
+Split Acc: 77.510
+# of Left images:  3587.0
+# of Right images:  6413.0
+giniRightRatio:  0.8828747664314036
+giniLeftRatio:  0.8452610793133741
+impurityDrop:  0.8618362048077686
+giniGain:  0.03816379519223145
+lclasses:  [804, 464, 245, 180, 134, 162, 65, 168, 802, 563]
+rclasses:  [196, 536, 755, 820, 866, 838, 935, 832, 198, 437]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([3587, 16, 28, 28])   lTrainDict[label].shape:  torch.Size([3587])
+rTrainDict[data].shape:  torch.Size([6413, 16, 28, 28])   rTrainDict[label].shape:  torch.Size([6413])
+RETURNING FROM WORK...
+nodeId:  2 , imgTensorShape :  torch.Size([3587, 16, 28, 28])
+nodeId: 2 ,  parentId: 1 ,  level: 1 ,  lchildId: 4 ,  rchildId: 5 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 9
+nodeId:  3 , imgTensorShape :  torch.Size([6413, 16, 28, 28])
+nodeId: 3 ,  parentId: 1 ,  level: 1 ,  lchildId: 6 ,  rchildId: 7 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10
+Nodes sizes =  9 10
+Node 2 Acc: 51.129
+Split Acc: 68.497
+# of Left images:  1428.0
+# of Right images:  2159.0
+giniRightRatio:  0.8196540822147388
+giniLeftRatio:  0.8078172445448768
+impurityDrop:  0.8118249927323105
+giniGain:  0.03343608658106367
+lclasses:  [458, 18, 185, 97, 96, 118, 22, 63, 330, 41]
+rclasses:  [346, 446, 60, 83, 38, 44, 43, 105, 472, 522]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([1428, 16, 24, 24])   lTrainDict[label].shape:  torch.Size([1428])
+rTrainDict[data].shape:  torch.Size([2159, 16, 24, 24])   rTrainDict[label].shape:  torch.Size([2159])
+RETURNING FROM WORK...
+nodeId:  4 , imgTensorShape :  torch.Size([1428, 16, 24, 24])
+nodeId: 4 ,  parentId: 2 ,  level: 2 ,  lchildId: 8 ,  rchildId: 9 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+nodeId:  5 , imgTensorShape :  torch.Size([2159, 16, 24, 24])
+nodeId: 5 ,  parentId: 2 ,  level: 2 ,  lchildId: 10 ,  rchildId: 11 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+Nodes sizes =  6 6
+Node 3 Acc: 55.684
+Split Acc: 71.605
+# of Left images:  2242.0
+# of Right images:  4171.0
+giniRightRatio:  0.8753774233512085
+giniLeftRatio:  0.8459755013563938
+impurityDrop:  0.8595732734801045
+giniGain:  0.02330149295129913
+lclasses:  [111, 72, 450, 187, 556, 149, 367, 202, 101, 47]
+rclasses:  [85, 464, 305, 633, 310, 689, 568, 630, 97, 390]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([2242, 16, 24, 24])   lTrainDict[label].shape:  torch.Size([2242])
+rTrainDict[data].shape:  torch.Size([4171, 16, 24, 24])   rTrainDict[label].shape:  torch.Size([4171])
+RETURNING FROM WORK...
+nodeId:  6 , imgTensorShape :  torch.Size([2242, 16, 24, 24])
+nodeId: 6 ,  parentId: 3 ,  level: 2 ,  lchildId: 12 ,  rchildId: 13 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 8
+nodeId:  7 , imgTensorShape :  torch.Size([4171, 16, 24, 24])
+nodeId: 7 ,  parentId: 3 ,  level: 2 ,  lchildId: 14 ,  rchildId: 15 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 8
+Nodes sizes =  8 8
+Node 4 Acc: 49.720
+Split Acc: 67.507
+# of Left images:  593.0
+# of Right images:  835.0
+giniRightRatio:  0.865663164688587
+giniLeftRatio:  0.5996035819808957
+impurityDrop:  0.6767130658315079
+giniGain:  0.13110417871336888
+lclasses:  [305, 9, 35, 2, 13, 2, 1, 4, 215, 7]
+rclasses:  [153, 9, 150, 95, 83, 116, 21, 59, 115, 34]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([593, 16, 20, 20])   lTrainDict[label].shape:  torch.Size([593])
+rTrainDict[data].shape:  torch.Size([835, 16, 20, 20])   rTrainDict[label].shape:  torch.Size([835])
+RETURNING FROM WORK...
+nodeId:  8 , imgTensorShape :  torch.Size([593, 16, 20, 20])
+nodeId: 8 ,  parentId: 4 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 2
+nodeId:  9 , imgTensorShape :  torch.Size([835, 16, 20, 20])
+nodeId: 9 ,  parentId: 4 ,  level: 3 ,  lchildId: 16 ,  rchildId: 17 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+Nodes sizes =  2 6
+Node 5 Acc: 57.063
+Split Acc: 63.502
+# of Left images:  1166.0
+# of Right images:  993.0
+giniRightRatio:  0.8499638456101066
+giniLeftRatio:  0.7504214611240729
+impurityDrop:  0.733079233011199
+giniGain:  0.08657484920353975
+lclasses:  [237, 302, 8, 2, 7, 0, 0, 4, 367, 239]
+rclasses:  [109, 144, 52, 81, 31, 44, 43, 101, 105, 283]
+noOfLeftClasses:  8
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([1166, 16, 20, 20])   lTrainDict[label].shape:  torch.Size([1166])
+rTrainDict[data].shape:  torch.Size([993, 16, 20, 20])   rTrainDict[label].shape:  torch.Size([993])
+RETURNING FROM WORK...
+nodeId:  10 , imgTensorShape :  torch.Size([1166, 16, 20, 20])
+nodeId: 10 ,  parentId: 5 ,  level: 3 ,  lchildId: 18 ,  rchildId: 19 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 4
+nodeId:  11 , imgTensorShape :  torch.Size([993, 16, 20, 20])
+nodeId: 11 ,  parentId: 5 ,  level: 3 ,  lchildId: 20 ,  rchildId: 21 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+Nodes sizes =  4 6
+Node 6 Acc: 48.930
+Split Acc: 86.039
+# of Left images:  391.0
+# of Right images:  1851.0
+giniRightRatio:  0.812024746942751
+giniLeftRatio:  0.8590733969558022
+impurityDrop:  0.8219631705813804
+giniGain:  0.024012330775013413
+lclasses:  [71, 66, 45, 13, 32, 6, 24, 15, 82, 37]
+rclasses:  [40, 6, 405, 174, 524, 143, 343, 187, 19, 10]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([391, 16, 20, 20])   lTrainDict[label].shape:  torch.Size([391])
+rTrainDict[data].shape:  torch.Size([1851, 16, 20, 20])   rTrainDict[label].shape:  torch.Size([1851])
+RETURNING FROM WORK...
+nodeId:  12 , imgTensorShape :  torch.Size([391, 16, 20, 20])
+nodeId: 12 ,  parentId: 6 ,  level: 3 ,  lchildId: 22 ,  rchildId: 23 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 4
+nodeId:  13 , imgTensorShape :  torch.Size([1851, 16, 20, 20])
+nodeId: 13 ,  parentId: 6 ,  level: 3 ,  lchildId: 24 ,  rchildId: 25 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+Nodes sizes =  4 6
+Node 7 Acc: 52.457
+Split Acc: 86.958
+# of Left images:  3293.0
+# of Right images:  878.0
+giniRightRatio:  0.7104804354481348
+giniLeftRatio:  0.846876971451742
+impurityDrop:  1.222045120026584
+giniGain:  -0.34666769667537556
+lclasses:  [51, 69, 290, 614, 289, 665, 543, 590, 33, 149]
+rclasses:  [34, 395, 15, 19, 21, 24, 25, 40, 64, 241]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([3293, 16, 20, 20])   lTrainDict[label].shape:  torch.Size([3293])
+rTrainDict[data].shape:  torch.Size([878, 16, 20, 20])   rTrainDict[label].shape:  torch.Size([878])
+RETURNING FROM WORK...
+nodeId:  14 , imgTensorShape :  torch.Size([3293, 16, 20, 20])
+nodeId: 14 ,  parentId: 7 ,  level: 3 ,  lchildId: 26 ,  rchildId: 27 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 7
+nodeId:  15 , imgTensorShape :  torch.Size([878, 16, 20, 20])
+nodeId: 15 ,  parentId: 7 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 2
+Nodes sizes =  7 2
+Node 8 Acc: 70.152
+Node 9 Acc: 33.413
+Split Acc: 52.455
+# of Left images:  324.0
+# of Right images:  511.0
+giniRightRatio:  0.8621290512827388
+giniLeftRatio:  0.8486511202560587
+impurityDrop:  0.8535833572462528
+giniGain:  0.012079807442334167
+lclasses:  [61, 2, 76, 43, 44, 34, 7, 32, 18, 7]
+rclasses:  [92, 7, 74, 52, 39, 82, 14, 27, 97, 27]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([324, 16, 16, 16])   lTrainDict[label].shape:  torch.Size([324])
+rTrainDict[data].shape:  torch.Size([511, 16, 16, 16])   rTrainDict[label].shape:  torch.Size([511])
+RETURNING FROM WORK...
+nodeId:  16 , imgTensorShape :  torch.Size([324, 16, 16, 16])
+nodeId: 16 ,  parentId: 9 ,  level: 4 ,  lchildId: 28 ,  rchildId: 29 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+nodeId:  17 , imgTensorShape :  torch.Size([511, 16, 16, 16])
+nodeId: 17 ,  parentId: 9 ,  level: 4 ,  lchildId: 30 ,  rchildId: 31 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+Nodes sizes =  6 6
+Node 10 Acc: 64.751
+Split Acc: 68.954
+# of Left images:  352.0
+# of Right images:  814.0
+giniRightRatio:  0.7348459694897042
+giniLeftRatio:  0.7300490702479339
+impurityDrop:  0.7327716346824521
+giniGain:  0.01764982644162083
+lclasses:  [127, 54, 3, 1, 4, 0, 0, 3, 108, 52]
+rclasses:  [110, 248, 5, 1, 3, 0, 0, 1, 259, 187]
+noOfLeftClasses:  8
+noOfRightClasses:  8
+lTrainDict[data].shape:  torch.Size([352, 16, 16, 16])   lTrainDict[label].shape:  torch.Size([352])
+rTrainDict[data].shape:  torch.Size([814, 16, 16, 16])   rTrainDict[label].shape:  torch.Size([814])
+RETURNING FROM WORK...
+nodeId:  18 , imgTensorShape :  torch.Size([352, 16, 16, 16])
+nodeId: 18 ,  parentId: 10 ,  level: 4 ,  lchildId: 32 ,  rchildId: 33 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 4
+nodeId:  19 , imgTensorShape :  torch.Size([814, 16, 16, 16])
+nodeId: 19 ,  parentId: 10 ,  level: 4 ,  lchildId: 34 ,  rchildId: 35 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 4
+Nodes sizes =  4 4
+Node 11 Acc: 43.605
+Split Acc: 64.250
+# of Left images:  263.0
+# of Right images:  730.0
+giniRightRatio:  0.8034753237005067
+giniLeftRatio:  0.8691465830068383
+impurityDrop:  0.8271349691766234
+giniGain:  0.02282887643348319
+lclasses:  [59, 13, 26, 27, 15, 19, 18, 49, 18, 19]
+rclasses:  [50, 131, 26, 54, 16, 25, 25, 52, 87, 264]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([263, 16, 16, 16])   lTrainDict[label].shape:  torch.Size([263])
+rTrainDict[data].shape:  torch.Size([730, 16, 16, 16])   rTrainDict[label].shape:  torch.Size([730])
+RETURNING FROM WORK...
+nodeId:  20 , imgTensorShape :  torch.Size([263, 16, 16, 16])
+nodeId: 20 ,  parentId: 11 ,  level: 4 ,  lchildId: 36 ,  rchildId: 37 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+nodeId:  21 , imgTensorShape :  torch.Size([730, 16, 16, 16])
+nodeId: 21 ,  parentId: 11 ,  level: 4 ,  lchildId: 38 ,  rchildId: 39 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+Nodes sizes =  6 6
+Node 12 Acc: 32.481
+Split Acc: 41.688
+# of Left images:  278.0
+# of Right images:  113.0
+giniRightRatio:  0.7718693711332132
+giniLeftRatio:  0.8749029553335749
+impurityDrop:  1.025350224298705
+giniGain:  -0.16627682734290272
+lclasses:  [46, 38, 38, 11, 32, 5, 24, 15, 47, 22]
+rclasses:  [25, 28, 7, 2, 0, 1, 0, 0, 35, 15]
+noOfLeftClasses:  10
+noOfRightClasses:  7
+lTrainDict[data].shape:  torch.Size([278, 16, 16, 16])   lTrainDict[label].shape:  torch.Size([278])
+rTrainDict[data].shape:  torch.Size([113, 16, 16, 16])   rTrainDict[label].shape:  torch.Size([113])
+RETURNING FROM WORK...
+nodeId:  22 , imgTensorShape :  torch.Size([278, 16, 16, 16])
+nodeId: 22 ,  parentId: 12 ,  level: 4 ,  lchildId: 40 ,  rchildId: 41 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 4
+nodeId:  23 , imgTensorShape :  torch.Size([113, 16, 16, 16])
+nodeId: 23 ,  parentId: 12 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 2
+Nodes sizes =  4 2
+Node 13 Acc: 51.108
+Split Acc: 67.477
+# of Left images:  1088.0
+# of Right images:  763.0
+giniRightRatio:  0.734659523265581
+giniLeftRatio:  0.8152117349697232
+impurityDrop:  0.8495229653810551
+giniGain:  -0.03749821843830414
+lclasses:  [24, 4, 230, 132, 313, 125, 66, 172, 16, 6]
+rclasses:  [16, 2, 175, 42, 211, 18, 277, 15, 3, 4]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([1088, 16, 16, 16])   lTrainDict[label].shape:  torch.Size([1088])
+rTrainDict[data].shape:  torch.Size([763, 16, 16, 16])   rTrainDict[label].shape:  torch.Size([763])
+RETURNING FROM WORK...
+nodeId:  24 , imgTensorShape :  torch.Size([1088, 16, 16, 16])
+nodeId: 24 ,  parentId: 13 ,  level: 4 ,  lchildId: 42 ,  rchildId: 43 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+nodeId:  25 , imgTensorShape :  torch.Size([763, 16, 16, 16])
+nodeId: 25 ,  parentId: 13 ,  level: 4 ,  lchildId: 44 ,  rchildId: 45 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3
+Nodes sizes =  6 3
+Node 14 Acc: 48.831
+Split Acc: 66.231
+# of Left images:  1540.0
+# of Right images:  1753.0
+giniRightRatio:  0.802906857741061
+giniLeftRatio:  0.8378250969809411
+impurityDrop:  0.8335823217624047
+giniGain:  0.013294649689337357
+lclasses:  [39, 60, 103, 143, 145, 160, 343, 412, 16, 119]
+rclasses:  [12, 9, 187, 471, 144, 505, 200, 178, 17, 30]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([1540, 16, 16, 16])   lTrainDict[label].shape:  torch.Size([1540])
+rTrainDict[data].shape:  torch.Size([1753, 16, 16, 16])   rTrainDict[label].shape:  torch.Size([1753])
+RETURNING FROM WORK...
+nodeId:  26 , imgTensorShape :  torch.Size([1540, 16, 16, 16])
+nodeId: 26 ,  parentId: 14 ,  level: 4 ,  lchildId: 46 ,  rchildId: 47 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 7
+nodeId:  27 , imgTensorShape :  torch.Size([1753, 16, 16, 16])
+nodeId: 27 ,  parentId: 14 ,  level: 4 ,  lchildId: 48 ,  rchildId: 49 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+Nodes sizes =  7 6
+Node 15 Acc: 58.656
+Node 16 Acc: 30.864
+Split Acc: 61.111
+# of Left images:  96.0
+# of Right images:  228.0
+giniRightRatio:  0.8516466605109264
+giniLeftRatio:  0.7771267361111112
+impurityDrop:  0.82026985023732
+giniGain:  0.02838127001873869
+lclasses:  [35, 0, 22, 8, 14, 1, 1, 5, 7, 3]
+rclasses:  [26, 2, 54, 35, 30, 33, 6, 27, 11, 4]
+noOfLeftClasses:  9
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([96, 16, 12, 12])   lTrainDict[label].shape:  torch.Size([96])
+rTrainDict[data].shape:  torch.Size([228, 16, 12, 12])   rTrainDict[label].shape:  torch.Size([228])
+RETURNING FROM WORK...
+nodeId:  28 , imgTensorShape :  torch.Size([96, 16, 12, 12])
+nodeId: 28 ,  parentId: 16 ,  level: 5 ,  lchildId: 50 ,  rchildId: 51 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 4
+nodeId:  29 , imgTensorShape :  torch.Size([228, 16, 12, 12])
+nodeId: 29 ,  parentId: 16 ,  level: 5 ,  lchildId: 52 ,  rchildId: 53 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+Nodes sizes =  4 6
+Node 17 Acc: 36.399
+Split Acc: 59.295
+# of Left images:  219.0
+# of Right images:  292.0
+giniRightRatio:  0.854686620379058
+giniLeftRatio:  0.8109088634515546
+impurityDrop:  0.8218533026834304
+giniGain:  0.04027574859930838
+lclasses:  [56, 4, 24, 5, 21, 15, 1, 10, 65, 18]
+rclasses:  [36, 3, 50, 47, 18, 67, 13, 17, 32, 9]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([219, 16, 12, 12])   lTrainDict[label].shape:  torch.Size([219])
+rTrainDict[data].shape:  torch.Size([292, 16, 12, 12])   rTrainDict[label].shape:  torch.Size([292])
+RETURNING FROM WORK...
+nodeId:  30 , imgTensorShape :  torch.Size([219, 16, 12, 12])
+nodeId: 30 ,  parentId: 17 ,  level: 5 ,  lchildId: 54 ,  rchildId: 55 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 5
+nodeId:  31 , imgTensorShape :  torch.Size([292, 16, 12, 12])
+nodeId: 31 ,  parentId: 17 ,  level: 5 ,  lchildId: 56 ,  rchildId: 57 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+Nodes sizes =  5 6
+Node 18 Acc: 61.648
+Split Acc: 65.625
+# of Left images:  130.0
+# of Right images:  222.0
+giniRightRatio:  0.7408489570651732
+giniLeftRatio:  0.64
+impurityDrop:  0.6817932614864681
+giniGain:  0.048255808761465735
+lclasses:  [40, 18, 0, 0, 0, 0, 0, 0, 64, 8]
+rclasses:  [87, 36, 3, 1, 4, 0, 0, 3, 44, 44]
+noOfLeftClasses:  4
+noOfRightClasses:  8
+lTrainDict[data].shape:  torch.Size([130, 16, 12, 12])   lTrainDict[label].shape:  torch.Size([130])
+rTrainDict[data].shape:  torch.Size([222, 16, 12, 12])   rTrainDict[label].shape:  torch.Size([222])
+RETURNING FROM WORK...
+nodeId:  32 , imgTensorShape :  torch.Size([130, 16, 12, 12])
+nodeId: 32 ,  parentId: 18 ,  level: 5 ,  lchildId: 58 ,  rchildId: 59 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3
+nodeId:  33 , imgTensorShape :  torch.Size([222, 16, 12, 12])
+nodeId: 33 ,  parentId: 18 ,  level: 5 ,  lchildId: 60 ,  rchildId: 61 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 4
+Nodes sizes =  3 4
+Node 19 Acc: 65.725
+Split Acc: 64.742
+# of Left images:  369.0
+# of Right images:  445.0
+giniRightRatio:  0.7059108698396667
+giniLeftRatio:  0.7040488833072613
+impurityDrop:  0.7043668855015597
+giniGain:  0.030479083988144473
+lclasses:  [36, 136, 2, 0, 1, 0, 0, 0, 68, 126]
+rclasses:  [74, 112, 3, 1, 2, 0, 0, 1, 191, 61]
+noOfLeftClasses:  6
+noOfRightClasses:  8
+lTrainDict[data].shape:  torch.Size([369, 16, 12, 12])   lTrainDict[label].shape:  torch.Size([369])
+rTrainDict[data].shape:  torch.Size([445, 16, 12, 12])   rTrainDict[label].shape:  torch.Size([445])
+RETURNING FROM WORK...
+nodeId:  34 , imgTensorShape :  torch.Size([369, 16, 12, 12])
+nodeId: 34 ,  parentId: 19 ,  level: 5 ,  lchildId: 62 ,  rchildId: 63 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 4
+nodeId:  35 , imgTensorShape :  torch.Size([445, 16, 12, 12])
+nodeId: 35 ,  parentId: 19 ,  level: 5 ,  lchildId: 64 ,  rchildId: 65 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 4
+Nodes sizes =  4 4
+Node 20 Acc: 36.882
+Split Acc: 48.289
+# of Left images:  75.0
+# of Right images:  188.0
+giniRightRatio:  0.8806586690810323
+giniLeftRatio:  0.7804444444444445
+impurityDrop:  0.8406795901036701
+giniGain:  0.02846699290316823
+lclasses:  [30, 4, 9, 3, 2, 6, 0, 12, 6, 3]
+rclasses:  [29, 9, 17, 24, 13, 13, 18, 37, 12, 16]
+noOfLeftClasses:  9
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([75, 16, 12, 12])   lTrainDict[label].shape:  torch.Size([75])
+rTrainDict[data].shape:  torch.Size([188, 16, 12, 12])   rTrainDict[label].shape:  torch.Size([188])
+RETURNING FROM WORK...
+nodeId:  36 , imgTensorShape :  torch.Size([75, 16, 12, 12])
+nodeId: 36 ,  parentId: 20 ,  level: 5 ,  lchildId: 66 ,  rchildId: 67 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+nodeId:  37 , imgTensorShape :  torch.Size([188, 16, 12, 12])
+nodeId: 37 ,  parentId: 20 ,  level: 5 ,  lchildId: 68 ,  rchildId: 69 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 5
+Nodes sizes =  6 5
+Node 21 Acc: 44.384
+Split Acc: 53.425
+# of Left images:  383.0
+# of Right images:  347.0
+giniRightRatio:  0.8352531787490968
+giniLeftRatio:  0.7463681666655306
+impurityDrop:  0.7371466668528264
+giniGain:  0.0663286568476803
+lclasses:  [33, 103, 6, 14, 4, 4, 8, 13, 47, 151]
+rclasses:  [17, 28, 20, 40, 12, 21, 17, 39, 40, 113]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([383, 16, 12, 12])   lTrainDict[label].shape:  torch.Size([383])
+rTrainDict[data].shape:  torch.Size([347, 16, 12, 12])   rTrainDict[label].shape:  torch.Size([347])
+RETURNING FROM WORK...
+nodeId:  38 , imgTensorShape :  torch.Size([383, 16, 12, 12])
+nodeId: 38 ,  parentId: 21 ,  level: 5 ,  lchildId: 70 ,  rchildId: 71 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 4
+nodeId:  39 , imgTensorShape :  torch.Size([347, 16, 12, 12])
+nodeId: 39 ,  parentId: 21 ,  level: 5 ,  lchildId: 72 ,  rchildId: 73 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 5
+Nodes sizes =  4 5
+Node 22 Acc: 33.453
+Split Acc: 47.122
+# of Left images:  225.0
+# of Right images:  53.0
+giniRightRatio:  0.8757564969740121
+giniLeftRatio:  0.8726913580246914
+impurityDrop:  0.8627441146419903
+giniGain:  0.012158840691584571
+lclasses:  [35, 33, 30, 8, 26, 3, 20, 11, 40, 19]
+rclasses:  [11, 5, 8, 3, 6, 2, 4, 4, 7, 3]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([225, 16, 12, 12])   lTrainDict[label].shape:  torch.Size([225])
+rTrainDict[data].shape:  torch.Size([53, 16, 12, 12])   rTrainDict[label].shape:  torch.Size([53])
+RETURNING FROM WORK...
+nodeId:  40 , imgTensorShape :  torch.Size([225, 16, 12, 12])
+nodeId: 40 ,  parentId: 22 ,  level: 5 ,  lchildId: 74 ,  rchildId: 75 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 4
+nodeId:  41 , imgTensorShape :  torch.Size([53, 16, 12, 12])
+nodeId: 41 ,  parentId: 22 ,  level: 5 ,  lchildId: 76 ,  rchildId: 77 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3
+Nodes sizes =  4 3
+Node 23 Acc: 38.053
+Node 24 Acc: 41.544
+Split Acc: 67.739
+# of Left images:  425.0
+# of Right images:  663.0
+giniRightRatio:  0.8196164879688969
+giniLeftRatio:  0.7239750865051903
+impurityDrop:  0.7583078972870336
+giniGain:  0.056903837682689584
+lclasses:  [6, 0, 51, 16, 169, 37, 11, 130, 3, 2]
+rclasses:  [18, 4, 179, 116, 144, 88, 55, 42, 13, 4]
+noOfLeftClasses:  9
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([425, 16, 12, 12])   lTrainDict[label].shape:  torch.Size([425])
+rTrainDict[data].shape:  torch.Size([663, 16, 12, 12])   rTrainDict[label].shape:  torch.Size([663])
+RETURNING FROM WORK...
+nodeId:  42 , imgTensorShape :  torch.Size([425, 16, 12, 12])
+nodeId: 42 ,  parentId: 24 ,  level: 5 ,  lchildId: 78 ,  rchildId: 79 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 5
+nodeId:  43 , imgTensorShape :  torch.Size([663, 16, 12, 12])
+nodeId: 43 ,  parentId: 24 ,  level: 5 ,  lchildId: 80 ,  rchildId: 81 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+Nodes sizes =  5 6
+Node 25 Acc: 60.813
+Split Acc: 53.866
+# of Left images:  269.0
+# of Right images:  494.0
+giniRightRatio:  0.7374321821370617
+giniLeftRatio:  0.6492447589170961
+impurityDrop:  0.6894110954039225
+giniGain:  0.0452484278616585
+lclasses:  [8, 1, 80, 10, 29, 3, 134, 3, 1, 0]
+rclasses:  [8, 1, 95, 32, 182, 15, 143, 12, 2, 4]
+noOfLeftClasses:  9
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([269, 16, 12, 12])   lTrainDict[label].shape:  torch.Size([269])
+rTrainDict[data].shape:  torch.Size([494, 16, 12, 12])   rTrainDict[label].shape:  torch.Size([494])
+RETURNING FROM WORK...
+nodeId:  44 , imgTensorShape :  torch.Size([269, 16, 12, 12])
+nodeId: 44 ,  parentId: 25 ,  level: 5 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 2
+nodeId:  45 , imgTensorShape :  torch.Size([494, 16, 12, 12])
+nodeId: 45 ,  parentId: 25 ,  level: 5 ,  lchildId: 82 ,  rchildId: 83 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3
+Nodes sizes =  2 3
+Node 26 Acc: 49.156
+Split Acc: 76.494
+# of Left images:  524.0
+# of Right images:  1016.0
+giniRightRatio:  0.7903601432202865
+giniLeftRatio:  0.6667734980478993
+impurityDrop:  0.7266205742534254
+giniGain:  0.11120452272751569
+lclasses:  [22, 19, 52, 45, 46, 20, 288, 13, 2, 17]
+rclasses:  [17, 41, 51, 98, 99, 140, 55, 399, 14, 102]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([524, 16, 12, 12])   lTrainDict[label].shape:  torch.Size([524])
+rTrainDict[data].shape:  torch.Size([1016, 16, 12, 12])   rTrainDict[label].shape:  torch.Size([1016])
+RETURNING FROM WORK...
+nodeId:  46 , imgTensorShape :  torch.Size([524, 16, 12, 12])
+nodeId: 46 ,  parentId: 26 ,  level: 5 ,  lchildId: 84 ,  rchildId: 85 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3
+nodeId:  47 , imgTensorShape :  torch.Size([1016, 16, 12, 12])
+nodeId: 47 ,  parentId: 26 ,  level: 5 ,  lchildId: 86 ,  rchildId: 87 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 5
+Nodes sizes =  3 5
+Node 27 Acc: 42.784
+Split Acc: 64.689
+# of Left images:  712.0
+# of Right images:  1041.0
+giniRightRatio:  0.7529946543309333
+giniLeftRatio:  0.798912700416614
+impurityDrop:  0.7844006570331472
+giniGain:  0.018506200707913756
+lclasses:  [5, 6, 87, 215, 63, 99, 181, 37, 8, 11]
+rclasses:  [7, 3, 100, 256, 81, 406, 19, 141, 9, 19]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([712, 16, 12, 12])   lTrainDict[label].shape:  torch.Size([712])
+rTrainDict[data].shape:  torch.Size([1041, 16, 12, 12])   rTrainDict[label].shape:  torch.Size([1041])
+RETURNING FROM WORK...
+nodeId:  48 , imgTensorShape :  torch.Size([712, 16, 12, 12])
+nodeId: 48 ,  parentId: 27 ,  level: 5 ,  lchildId: 88 ,  rchildId: 89 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 5
+nodeId:  49 , imgTensorShape :  torch.Size([1041, 16, 12, 12])
+nodeId: 49 ,  parentId: 27 ,  level: 5 ,  lchildId: 90 ,  rchildId: 91 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 5
+Nodes sizes =  5 5
+Node 28 Acc: 37.500
+Split Acc: 52.083
+# of Left images:  63.0
+# of Right images:  33.0
+giniRightRatio:  0.701561065197429
+giniLeftRatio:  0.7881078357268833
+impurityDrop:  0.8667867180263871
+giniGain:  -0.08965998191527591
+lclasses:  [19, 0, 16, 3, 13, 0, 1, 4, 5, 2]
+rclasses:  [16, 0, 6, 5, 1, 1, 0, 1, 2, 1]
+noOfLeftClasses:  8
+noOfRightClasses:  8
+lTrainDict[data].shape:  torch.Size([63, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([63])
+rTrainDict[data].shape:  torch.Size([33, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([33])
+RETURNING FROM WORK...
+nodeId:  50 , imgTensorShape :  torch.Size([63, 16, 8, 8])
+nodeId: 50 ,  parentId: 28 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 3
+nodeId:  51 , imgTensorShape :  torch.Size([33, 16, 8, 8])
+nodeId: 51 ,  parentId: 28 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 4
+Nodes sizes =  3 4
+Node 29 Acc: 28.947
+Split Acc: 55.702
+# of Left images:  76.0
+# of Right images:  152.0
+giniRightRatio:  0.861668975069252
+giniLeftRatio:  0.8022853185595568
+impurityDrop:  0.8319771468144044
+giniGain:  0.019669513696522034
+lclasses:  [8, 0, 25, 6, 10, 13, 0, 12, 0, 2]
+rclasses:  [18, 2, 29, 29, 20, 20, 6, 15, 11, 2]
+noOfLeftClasses:  7
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([76, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([76])
+rTrainDict[data].shape:  torch.Size([152, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([152])
+RETURNING FROM WORK...
+nodeId:  52 , imgTensorShape :  torch.Size([76, 16, 8, 8])
+nodeId: 52 ,  parentId: 29 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 5
+nodeId:  53 , imgTensorShape :  torch.Size([152, 16, 8, 8])
+nodeId: 53 ,  parentId: 29 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 6
+Nodes sizes =  5 6
+Node 30 Acc: 40.639
+Split Acc: 60.731
+# of Left images:  50.0
+# of Right images:  169.0
+giniRightRatio:  0.7785441686215467
+giniLeftRatio:  0.8016
+impurityDrop:  0.7853654205086631
+giniGain:  0.02554344294289146
+lclasses:  [10, 0, 15, 3, 10, 5, 0, 1, 6, 0]
+rclasses:  [46, 4, 9, 2, 11, 10, 1, 9, 59, 18]
+noOfLeftClasses:  7
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([50, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([50])
+rTrainDict[data].shape:  torch.Size([169, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([169])
+RETURNING FROM WORK...
+nodeId:  54 , imgTensorShape :  torch.Size([50, 16, 8, 8])
+nodeId: 54 ,  parentId: 30 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 5
+nodeId:  55 , imgTensorShape :  torch.Size([169, 16, 8, 8])
+nodeId: 55 ,  parentId: 30 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 5
+Nodes sizes =  5 5
+Node 31 Acc: 31.507
+Split Acc: 51.027
+# of Left images:  131.0
+# of Right images:  161.0
+giniRightRatio:  0.8359245399483044
+giniLeftRatio:  0.8501835557368452
+impurityDrop:  0.847526596273142
+giniGain:  0.007160024105915985
+lclasses:  [20, 2, 10, 20, 6, 31, 4, 10, 23, 5]
+rclasses:  [16, 1, 40, 27, 12, 36, 9, 7, 9, 4]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([131, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([131])
+rTrainDict[data].shape:  torch.Size([161, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([161])
+RETURNING FROM WORK...
+nodeId:  56 , imgTensorShape :  torch.Size([131, 16, 8, 8])
+nodeId: 56 ,  parentId: 31 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 6
+nodeId:  57 , imgTensorShape :  torch.Size([161, 16, 8, 8])
+nodeId: 57 ,  parentId: 31 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 6
+Nodes sizes =  6 6
+Node 32 Acc: 61.538
+Split Acc: 66.923
+# of Left images:  36.0
+# of Right images:  94.0
+giniRightRatio:  0.6509732910819376
+giniLeftRatio:  0.6080246913580247
+impurityDrop:  0.6345248911876731
+giniGain:  0.005475108812326934
+lclasses:  [11, 5, 0, 0, 0, 0, 0, 0, 19, 1]
+rclasses:  [29, 13, 0, 0, 0, 0, 0, 0, 45, 7]
+noOfLeftClasses:  4
+noOfRightClasses:  4
+lTrainDict[data].shape:  torch.Size([36, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([36])
+rTrainDict[data].shape:  torch.Size([94, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([94])
+RETURNING FROM WORK...
+nodeId:  58 , imgTensorShape :  torch.Size([36, 16, 8, 8])
+nodeId: 58 ,  parentId: 32 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 3
+nodeId:  59 , imgTensorShape :  torch.Size([94, 16, 8, 8])
+nodeId: 59 ,  parentId: 32 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 3
+Nodes sizes =  3 3
+Node 33 Acc: 63.063
+Split Acc: 63.514
+# of Left images:  101.0
+# of Right images:  121.0
+giniRightRatio:  0.7398401748514446
+giniLeftRatio:  0.6646407214978923
+impurityDrop:  0.6770703832092233
+giniGain:  0.06377857385594987
+lclasses:  [45, 3, 2, 0, 1, 0, 0, 1, 34, 15]
+rclasses:  [42, 33, 1, 1, 3, 0, 0, 2, 10, 29]
+noOfLeftClasses:  7
+noOfRightClasses:  8
+lTrainDict[data].shape:  torch.Size([101, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([101])
+rTrainDict[data].shape:  torch.Size([121, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([121])
+RETURNING FROM WORK...
+nodeId:  60 , imgTensorShape :  torch.Size([101, 16, 8, 8])
+nodeId: 60 ,  parentId: 33 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 3
+nodeId:  61 , imgTensorShape :  torch.Size([121, 16, 8, 8])
+nodeId: 61 ,  parentId: 33 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 4
+Nodes sizes =  3 4
+Node 34 Acc: 68.293
+Split Acc: 74.255
+# of Left images:  252.0
+# of Right images:  117.0
+giniRightRatio:  0.6916502301117685
+giniLeftRatio:  0.6320546737213404
+impurityDrop:  0.5632905701939234
+giniGain:  0.14075831311333797
+lclasses:  [21, 121, 1, 0, 1, 0, 0, 0, 19, 89]
+rclasses:  [15, 15, 1, 0, 0, 0, 0, 0, 49, 37]
+noOfLeftClasses:  6
+noOfRightClasses:  5
+lTrainDict[data].shape:  torch.Size([252, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([252])
+rTrainDict[data].shape:  torch.Size([117, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([117])
+RETURNING FROM WORK...
+nodeId:  62 , imgTensorShape :  torch.Size([252, 16, 8, 8])
+nodeId: 62 ,  parentId: 34 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 4
+nodeId:  63 , imgTensorShape :  torch.Size([117, 16, 8, 8])
+nodeId: 63 ,  parentId: 34 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 4
+Nodes sizes =  4 4
+Node 35 Acc: 60.674
+Split Acc: 58.652
+# of Left images:  265.0
+# of Right images:  180.0
+giniRightRatio:  0.684567901234568
+giniLeftRatio:  0.7150444998220007
+impurityDrop:  0.7294362269327328
+giniGain:  -0.023525357093066135
+lclasses:  [40, 64, 2, 0, 1, 0, 0, 1, 110, 47]
+rclasses:  [34, 48, 1, 1, 1, 0, 0, 0, 81, 14]
+noOfLeftClasses:  7
+noOfRightClasses:  7
+lTrainDict[data].shape:  torch.Size([265, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([265])
+rTrainDict[data].shape:  torch.Size([180, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([180])
+RETURNING FROM WORK...
+nodeId:  64 , imgTensorShape :  torch.Size([265, 16, 8, 8])
+nodeId: 64 ,  parentId: 35 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 4
+nodeId:  65 , imgTensorShape :  torch.Size([180, 16, 8, 8])
+nodeId: 65 ,  parentId: 35 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 4
+Nodes sizes =  4 4
+Node 36 Acc: 42.667
+Split Acc: 46.667
+# of Left images:  49.0
+# of Right images:  26.0
+giniRightRatio:  0.6153846153846155
+giniLeftRatio:  0.834652228238234
+impurityDrop:  1.028619731916435
+giniGain:  -0.24817528747199047
+lclasses:  [15, 4, 7, 3, 2, 5, 0, 7, 4, 2]
+rclasses:  [15, 0, 2, 0, 0, 1, 0, 5, 2, 1]
+noOfLeftClasses:  9
+noOfRightClasses:  6
+lTrainDict[data].shape:  torch.Size([49, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([49])
+rTrainDict[data].shape:  torch.Size([26, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([26])
+RETURNING FROM WORK...
+nodeId:  66 , imgTensorShape :  torch.Size([49, 16, 8, 8])
+nodeId: 66 ,  parentId: 36 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 6
+nodeId:  67 , imgTensorShape :  torch.Size([26, 16, 8, 8])
+nodeId: 67 ,  parentId: 36 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 5
+Nodes sizes =  6 5
+Node 37 Acc: 30.319
+Split Acc: 42.021
+# of Left images:  53.0
+# of Right images:  135.0
+giniRightRatio:  0.8840603566529492
+giniLeftRatio:  0.844428622285511
+impurityDrop:  0.8685012313086957
+giniGain:  0.012157437772336577
+lclasses:  [8, 5, 5, 4, 1, 4, 4, 16, 3, 3]
+rclasses:  [21, 4, 12, 20, 12, 9, 14, 21, 9, 13]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([53, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([53])
+rTrainDict[data].shape:  torch.Size([135, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([135])
+RETURNING FROM WORK...
+nodeId:  68 , imgTensorShape :  torch.Size([53, 16, 8, 8])
+nodeId: 68 ,  parentId: 37 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 5
+nodeId:  69 , imgTensorShape :  torch.Size([135, 16, 8, 8])
+nodeId: 69 ,  parentId: 37 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 5
+Nodes sizes =  5 5
+Node 38 Acc: 49.869
+Split Acc: 50.131
+# of Left images:  215.0
+# of Right images:  168.0
+giniRightRatio:  0.6879251700680272
+giniLeftRatio:  0.777025419145484
+impurityDrop:  0.8019522745421533
+giniGain:  -0.05558410787662271
+lclasses:  [23, 48, 5, 8, 3, 2, 7, 5, 37, 77]
+rclasses:  [10, 55, 1, 6, 1, 2, 1, 8, 10, 74]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([215, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([215])
+rTrainDict[data].shape:  torch.Size([168, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([168])
+RETURNING FROM WORK...
+nodeId:  70 , imgTensorShape :  torch.Size([215, 16, 8, 8])
+nodeId: 70 ,  parentId: 38 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 4
+nodeId:  71 , imgTensorShape :  torch.Size([168, 16, 8, 8])
+nodeId: 71 ,  parentId: 38 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 3
+Nodes sizes =  4 3
+Node 39 Acc: 37.464
+Split Acc: 64.553
+# of Left images:  46.0
+# of Right images:  301.0
+giniRightRatio:  0.8357082151411133
+giniLeftRatio:  0.8081285444234405
+impurityDrop:  0.8314933817423991
+giniGain:  0.003759797006697707
+lclasses:  [3, 9, 2, 2, 1, 3, 1, 4, 5, 16]
+rclasses:  [14, 19, 18, 38, 11, 18, 16, 35, 35, 97]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([46, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([46])
+rTrainDict[data].shape:  torch.Size([301, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([301])
+RETURNING FROM WORK...
+nodeId:  72 , imgTensorShape :  torch.Size([46, 16, 8, 8])
+nodeId: 72 ,  parentId: 39 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 4
+nodeId:  73 , imgTensorShape :  torch.Size([301, 16, 8, 8])
+nodeId: 73 ,  parentId: 39 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 4
+Nodes sizes =  4 4
+Node 40 Acc: 27.111
+Split Acc: 37.333
+# of Left images:  135.0
+# of Right images:  90.0
+giniRightRatio:  0.868395061728395
+giniLeftRatio:  0.8615637860082305
+impurityDrop:  0.8581481481481483
+giniGain:  0.014543209876543117
+lclasses:  [18, 19, 22, 6, 12, 2, 14, 5, 30, 7]
+rclasses:  [17, 14, 8, 2, 14, 1, 6, 6, 10, 12]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([135, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([135])
+rTrainDict[data].shape:  torch.Size([90, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([90])
+RETURNING FROM WORK...
+nodeId:  74 , imgTensorShape :  torch.Size([135, 16, 8, 8])
+nodeId: 74 ,  parentId: 40 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 4
+nodeId:  75 , imgTensorShape :  torch.Size([90, 16, 8, 8])
+nodeId: 75 ,  parentId: 40 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 3
+Nodes sizes =  4 3
+Node 41 Acc: 26.415
+Split Acc: 32.075
+# of Left images:  40.0
+# of Right images:  13.0
+giniRightRatio:  0.7692307692307692
+giniLeftRatio:  0.8825
+impurityDrop:  1.117751479289941
+giniGain:  -0.24199498231592886
+lclasses:  [8, 4, 6, 3, 3, 2, 4, 4, 3, 3]
+rclasses:  [3, 1, 2, 0, 3, 0, 0, 0, 4, 0]
+noOfLeftClasses:  10
+noOfRightClasses:  5
+lTrainDict[data].shape:  torch.Size([40, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([40])
+rTrainDict[data].shape:  torch.Size([13, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([13])
+RETURNING FROM WORK...
+nodeId:  76 , imgTensorShape :  torch.Size([40, 16, 8, 8])
+nodeId: 76 ,  parentId: 41 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 3
+nodeId:  77 , imgTensorShape :  torch.Size([13, 16, 8, 8])
+nodeId: 77 ,  parentId: 41 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 3
+Nodes sizes =  3 3
+Node 42 Acc: 45.882
+Split Acc: 66.118
+# of Left images:  127.0
+# of Right images:  298.0
+giniRightRatio:  0.7205080852213864
+giniLeftRatio:  0.7239134478268956
+impurityDrop:  0.7219593639156806
+giniGain:  0.002015722589509661
+lclasses:  [1, 0, 23, 6, 49, 6, 2, 38, 1, 1]
+rclasses:  [5, 0, 28, 10, 120, 31, 9, 92, 2, 1]
+noOfLeftClasses:  9
+noOfRightClasses:  9
+lTrainDict[data].shape:  torch.Size([127, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([127])
+rTrainDict[data].shape:  torch.Size([298, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([298])
+RETURNING FROM WORK...
+nodeId:  78 , imgTensorShape :  torch.Size([127, 16, 8, 8])
+nodeId: 78 ,  parentId: 42 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 5
+nodeId:  79 , imgTensorShape :  torch.Size([298, 16, 8, 8])
+nodeId: 79 ,  parentId: 42 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 5
+Nodes sizes =  5 5
+Node 43 Acc: 32.428
+Split Acc: 70.437
+# of Left images:  167.0
+# of Right images:  496.0
+giniRightRatio:  0.8277185223725285
+giniLeftRatio:  0.7680447488257018
+impurityDrop:  0.8076267478113994
+giniGain:  0.01198974015749743
+lclasses:  [9, 1, 65, 19, 36, 18, 9, 10, 0, 0]
+rclasses:  [9, 3, 114, 97, 108, 70, 46, 32, 13, 4]
+noOfLeftClasses:  8
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([167, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([167])
+rTrainDict[data].shape:  torch.Size([496, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([496])
+RETURNING FROM WORK...
+nodeId:  80 , imgTensorShape :  torch.Size([167, 16, 8, 8])
+nodeId: 80 ,  parentId: 43 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 6
+nodeId:  81 , imgTensorShape :  torch.Size([496, 16, 8, 8])
+nodeId: 81 ,  parentId: 43 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 6
+Nodes sizes =  6 6
+Node 44 Acc: 68.030
+Node 45 Acc: 55.466
+Split Acc: 56.883
+# of Left images:  296.0
+# of Right images:  198.0
+giniRightRatio:  0.6785021936537089
+giniLeftRatio:  0.6987079985390796
+impurityDrop:  0.708708851462142
+giniGain:  0.028723330674919723
+lclasses:  [3, 0, 34, 26, 90, 7, 128, 4, 2, 2]
+rclasses:  [5, 1, 61, 6, 92, 8, 15, 8, 0, 2]
+noOfLeftClasses:  9
+noOfRightClasses:  9
+lTrainDict[data].shape:  torch.Size([296, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([296])
+rTrainDict[data].shape:  torch.Size([198, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([198])
+RETURNING FROM WORK...
+nodeId:  82 , imgTensorShape :  torch.Size([296, 16, 8, 8])
+nodeId: 82 ,  parentId: 45 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 3
+nodeId:  83 , imgTensorShape :  torch.Size([198, 16, 8, 8])
+nodeId: 83 ,  parentId: 45 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 2
+Nodes sizes =  3 2
+Node 46 Acc: 55.916
+Split Acc: 60.687
+# of Left images:  414.0
+# of Right images:  110.0
+giniRightRatio:  0.859504132231405
+giniLeftRatio:  0.5743657961679385
+impurityDrop:  -0.2136528780438236
+giniGain:  0.8804263760917229
+lclasses:  [9, 11, 31, 34, 33, 15, 263, 7, 1, 10]
+rclasses:  [13, 8, 21, 11, 13, 5, 25, 6, 1, 7]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([414, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([414])
+rTrainDict[data].shape:  torch.Size([110, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([110])
+RETURNING FROM WORK...
+nodeId:  84 , imgTensorShape :  torch.Size([414, 16, 8, 8])
+nodeId: 84 ,  parentId: 46 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 6 ,  numClasses: 1
+nodeId:  85 , imgTensorShape :  torch.Size([110, 16, 8, 8])
+nodeId: 85 ,  parentId: 46 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 3
+Nodes sizes =  1 3
+Node 47 Acc: 47.539
+Split Acc: 62.106
+# of Left images:  339.0
+# of Right images:  677.0
+giniRightRatio:  0.8572139227498151
+giniLeftRatio:  0.4383707068333899
+impurityDrop:  0.6474829771136731
+giniGain:  0.14287716610661338
+lclasses:  [2, 8, 14, 12, 31, 12, 3, 251, 2, 4]
+rclasses:  [15, 33, 37, 86, 68, 128, 52, 148, 12, 98]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([339, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([339])
+rTrainDict[data].shape:  torch.Size([677, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([677])
+RETURNING FROM WORK...
+nodeId:  86 , imgTensorShape :  torch.Size([339, 16, 8, 8])
+nodeId: 86 ,  parentId: 47 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 2
+nodeId:  87 , imgTensorShape :  torch.Size([677, 16, 8, 8])
+nodeId: 87 ,  parentId: 47 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 5
+Nodes sizes =  2 5
+Node 48 Acc: 36.798
+Split Acc: 59.551
+# of Left images:  387.0
+# of Right images:  325.0
+giniRightRatio:  0.7772213017751479
+giniLeftRatio:  0.7834865693167476
+impurityDrop:  0.784681789586222
+giniGain:  0.014230910830391963
+lclasses:  [1, 1, 21, 136, 39, 75, 73, 31, 4, 6]
+rclasses:  [4, 5, 66, 79, 24, 24, 108, 6, 4, 5]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([387, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([387])
+rTrainDict[data].shape:  torch.Size([325, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([325])
+RETURNING FROM WORK...
+nodeId:  88 , imgTensorShape :  torch.Size([387, 16, 8, 8])
+nodeId: 88 ,  parentId: 48 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 5
+nodeId:  89 , imgTensorShape :  torch.Size([325, 16, 8, 8])
+nodeId: 89 ,  parentId: 48 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 3
+Nodes sizes =  5 3
+Node 49 Acc: 42.171
+Split Acc: 81.748
+# of Left images:  897.0
+# of Right images:  144.0
+giniRightRatio:  0.7536651234567902
+giniLeftRatio:  0.7475481880018743
+impurityDrop:  0.7155617130188765
+giniGain:  0.03743294131205677
+lclasses:  [3, 2, 66, 223, 77, 354, 19, 131, 8, 14]
+rclasses:  [4, 1, 34, 33, 4, 52, 0, 10, 1, 5]
+noOfLeftClasses:  10
+noOfRightClasses:  9
+lTrainDict[data].shape:  torch.Size([897, 16, 8, 8])   lTrainDict[label].shape:  torch.Size([897])
+rTrainDict[data].shape:  torch.Size([144, 16, 8, 8])   rTrainDict[label].shape:  torch.Size([144])
+RETURNING FROM WORK...
+nodeId:  90 , imgTensorShape :  torch.Size([897, 16, 8, 8])
+nodeId: 90 ,  parentId: 49 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 5
+nodeId:  91 , imgTensorShape :  torch.Size([144, 16, 8, 8])
+nodeId: 91 ,  parentId: 49 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 4
+Nodes sizes =  5 4
+Node 50 Acc: 34.921
+Node 51 Acc: 39.394
+Node 52 Acc: 30.263
+Node 53 Acc: 27.632
+Node 54 Acc: 32.000
+Node 55 Acc: 40.237
+Node 56 Acc: 29.771
+Node 57 Acc: 32.919
+Node 58 Acc: 69.444
+Node 59 Acc: 60.638
+Node 60 Acc: 57.426
+Node 61 Acc: 65.289
+Node 62 Acc: 70.238
+Node 63 Acc: 67.521
+Node 64 Acc: 58.491
+Node 65 Acc: 64.444
+Node 66 Acc: 24.490
+Node 67 Acc: 50.000
+Node 68 Acc: 37.736
+Node 69 Acc: 21.481
+Node 70 Acc: 43.721
+Node 71 Acc: 57.143
+Node 72 Acc: 36.957
+Node 73 Acc: 38.206
+Node 74 Acc: 25.185
+Node 75 Acc: 28.889
+Node 76 Acc: 20.000
+Node 77 Acc: 53.846
+Node 78 Acc: 43.307
+Node 79 Acc: 46.644
+Node 80 Acc: 34.132
+Node 81 Acc: 31.250
+Node 82 Acc: 58.108
+Node 83 Acc: 56.566
+Node 84 Acc: 63.527
+Node 85 Acc: 29.091
+Node 86 Acc: 71.681
+Node 87 Acc: 36.041
+Node 88 Acc: 33.333
+Node 89 Acc: 38.462
+Node 90 Acc: 42.921
+Node 91 Acc: 38.889
+[[540  57  75  34  28  12  23  18 144  69]
+ [ 77 605  15  23  12   7  14  23  67 157]
+ [ 93  15 342 137 137  67  98  64  30  17]
+ [ 27  25 113 316  82 195 117  67  20  38]
+ [ 36  18 141  90 378  72 107 116  20  22]
+ [ 16  21  91 210  80 379  48 118  17  20]
+ [ 19  18  74  93  74  38 620  20  11  33]
+ [ 35  34  52  98  89  98  20 518  10  46]
+ [169  87  23  34  24  14   8  12 558  71]
+ [ 56 137  23  44  21  22  19  32  85 561]]
+
+Acc: 48.170
