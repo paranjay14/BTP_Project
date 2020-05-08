@@ -1,0 +1,928 @@
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+len(trainInputDict["data"]):  49900 ,  len(valInputDict["data"]):  10 ,  len(testInputDict["data"]):  10000
+nodeId:  1 , imgTensorShape :  torch.Size([49900, 3, 32, 32])
+nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10
+Running nodeId:  1
+0 Train Loss: 191.093 | Train Acc: 32.343
+1 Train Loss: 154.737 | Train Acc: 45.313
+2 Train Loss: 140.636 | Train Acc: 50.317
+3 Train Loss: 135.168 | Train Acc: 52.317
+4 Train Loss: 131.263 | Train Acc: 53.639
+5 Train Loss: 126.479 | Train Acc: 55.319
+6 Train Loss: 124.911 | Train Acc: 56.032
+7 Train Loss: 121.084 | Train Acc: 57.210
+8 Train Loss: 119.092 | Train Acc: 58.070
+9 Train Loss: 115.582 | Train Acc: 59.140
+10 Train Loss: 112.902 | Train Acc: 60.253
+11 Train Loss: 111.555 | Train Acc: 60.667
+12 Train Loss: 109.915 | Train Acc: 61.178
+13 Train Loss: 107.340 | Train Acc: 62.403
+14 Train Loss: 104.710 | Train Acc: 63.032
+15 Train Loss: 104.477 | Train Acc: 63.214
+16 Train Loss: 101.257 | Train Acc: 64.411
+17 Train Loss: 98.610 | Train Acc: 65.289
+18 Train Loss: 97.118 | Train Acc: 65.651
+19 Train Loss: 96.737 | Train Acc: 65.908
+20 Train Loss: 87.745 | Train Acc: 69.433
+21 Train Loss: 86.109 | Train Acc: 70.255
+22 Train Loss: 85.400 | Train Acc: 70.246
+23 Train Loss: 84.588 | Train Acc: 70.703
+24 Train Loss: 83.135 | Train Acc: 71.074
+25 Train Loss: 81.757 | Train Acc: 71.788
+26 Train Loss: 80.598 | Train Acc: 72.106
+27 Train Loss: 79.886 | Train Acc: 72.435
+28 Train Loss: 78.732 | Train Acc: 72.641
+29 Train Loss: 76.849 | Train Acc: 73.433
+30 Train Loss: 75.938 | Train Acc: 73.968
+31 Train Loss: 74.692 | Train Acc: 74.365
+32 Train Loss: 73.950 | Train Acc: 74.487
+33 Train Loss: 73.058 | Train Acc: 74.884
+34 Train Loss: 72.153 | Train Acc: 74.948
+35 Train Loss: 70.949 | Train Acc: 75.609
+36 Train Loss: 70.393 | Train Acc: 75.649
+37 Train Loss: 69.765 | Train Acc: 76.190
+38 Train Loss: 68.185 | Train Acc: 76.727
+39 Train Loss: 67.688 | Train Acc: 76.972
+40 Train Loss: 63.789 | Train Acc: 78.782
+41 Train Loss: 63.040 | Train Acc: 79.281
+42 Train Loss: 62.839 | Train Acc: 79.232
+43 Train Loss: 62.405 | Train Acc: 79.527
+44 Train Loss: 62.017 | Train Acc: 79.595
+45 Train Loss: 61.878 | Train Acc: 79.733
+46 Train Loss: 61.352 | Train Acc: 80.004
+47 Train Loss: 61.107 | Train Acc: 80.080
+48 Train Loss: 60.844 | Train Acc: 79.958
+49 Train Loss: 60.520 | Train Acc: 80.182
+50 Train Loss: 60.273 | Train Acc: 80.251
+51 Train Loss: 59.891 | Train Acc: 80.411
+52 Train Loss: 59.653 | Train Acc: 80.515
+53 Train Loss: 59.492 | Train Acc: 80.617
+54 Train Loss: 59.172 | Train Acc: 80.721
+55 Train Loss: 58.740 | Train Acc: 80.792
+56 Train Loss: 58.416 | Train Acc: 81.030
+57 Train Loss: 58.011 | Train Acc: 81.186
+58 Train Loss: 57.920 | Train Acc: 81.218
+59 Train Loss: 57.534 | Train Acc: 81.315
+60 Train Loss: 55.847 | Train Acc: 82.212
+61 Train Loss: 55.728 | Train Acc: 82.319
+62 Train Loss: 55.653 | Train Acc: 82.377
+63 Train Loss: 55.393 | Train Acc: 82.461
+64 Train Loss: 55.292 | Train Acc: 82.511
+65 Train Loss: 55.213 | Train Acc: 82.397
+66 Train Loss: 55.100 | Train Acc: 82.613
+67 Train Loss: 54.941 | Train Acc: 82.523
+68 Train Loss: 54.822 | Train Acc: 82.715
+69 Train Loss: 54.832 | Train Acc: 82.601
+70 Train Loss: 54.607 | Train Acc: 82.693
+71 Train Loss: 54.513 | Train Acc: 82.739
+72 Train Loss: 54.251 | Train Acc: 82.920
+73 Train Loss: 54.225 | Train Acc: 82.868
+74 Train Loss: 54.255 | Train Acc: 82.850
+75 Train Loss: 53.985 | Train Acc: 82.936
+76 Train Loss: 53.872 | Train Acc: 83.056
+77 Train Loss: 53.794 | Train Acc: 83.112
+78 Train Loss: 53.602 | Train Acc: 83.138
+79 Train Loss: 53.603 | Train Acc: 83.046
+80 Train Loss: 52.804 | Train Acc: 83.523
+81 Train Loss: 52.698 | Train Acc: 83.569
+82 Train Loss: 52.685 | Train Acc: 83.583
+83 Train Loss: 52.598 | Train Acc: 83.579
+84 Train Loss: 52.550 | Train Acc: 83.611
+85 Train Loss: 52.525 | Train Acc: 83.717
+86 Train Loss: 52.490 | Train Acc: 83.627
+87 Train Loss: 52.471 | Train Acc: 83.635
+88 Train Loss: 52.379 | Train Acc: 83.701
+89 Train Loss: 52.388 | Train Acc: 83.627
+90 Train Loss: 52.245 | Train Acc: 83.741
+91 Train Loss: 52.221 | Train Acc: 83.741
+92 Train Loss: 52.196 | Train Acc: 83.719
+93 Train Loss: 52.076 | Train Acc: 83.719
+94 Train Loss: 52.084 | Train Acc: 83.862
+95 Train Loss: 52.046 | Train Acc: 83.868
+96 Train Loss: 51.952 | Train Acc: 83.914
+97 Train Loss: 51.952 | Train Acc: 83.752
+98 Train Loss: 51.885 | Train Acc: 83.958
+99 Train Loss: 51.827 | Train Acc: 83.826
+CNN trained successfully...
+image_next_flat.shape :  torch.Size([49900, 12544])
+printing expected split from k means
+{7: 0, 8: 1, 2: 0, 3: 0, 6: 0, 4: 0, 5: 0, 1: 1, 0: 1, 9: 1}
+Printing final_dict items...
+{7: 0, 8: 1, 2: 0, 3: 0, 6: 0, 4: 0, 5: 0, 1: 1, 0: 1, 9: 1}
+Image Statistics : L R :  29944 19956
+expectedMlpLabels.shape :  torch.Size([49900])
+0 Loss: 46.361 | Acc: 88.663
+1 Loss: 37.292 | Acc: 90.962
+2 Loss: 33.774 | Acc: 91.944
+3 Loss: 30.987 | Acc: 92.601
+4 Loss: 27.981 | Acc: 93.283
+5 Loss: 25.269 | Acc: 94.004
+6 Loss: 22.727 | Acc: 94.615
+7 Loss: 20.298 | Acc: 95.240
+8 Loss: 17.940 | Acc: 95.768
+9 Loss: 17.164 | Acc: 96.008
+10 Loss: 12.578 | Acc: 97.166
+11 Loss: 10.537 | Acc: 97.613
+12 Loss: 9.453 | Acc: 97.870
+13 Loss: 8.819 | Acc: 98.106
+14 Loss: 8.023 | Acc: 98.251
+15 Loss: 7.686 | Acc: 98.317
+16 Loss: 7.017 | Acc: 98.481
+17 Loss: 6.550 | Acc: 98.575
+18 Loss: 6.200 | Acc: 98.754
+19 Loss: 5.451 | Acc: 98.822
+20 Loss: 4.492 | Acc: 99.104
+21 Loss: 3.852 | Acc: 99.220
+22 Loss: 3.553 | Acc: 99.293
+23 Loss: 3.375 | Acc: 99.341
+24 Loss: 3.373 | Acc: 99.339
+25 Loss: 3.065 | Acc: 99.383
+26 Loss: 3.022 | Acc: 99.435
+27 Loss: 2.966 | Acc: 99.423
+28 Loss: 2.869 | Acc: 99.419
+29 Loss: 2.898 | Acc: 99.421
+30 Loss: 2.332 | Acc: 99.567
+31 Loss: 2.220 | Acc: 99.577
+32 Loss: 2.256 | Acc: 99.605
+33 Loss: 2.068 | Acc: 99.625
+34 Loss: 1.929 | Acc: 99.621
+35 Loss: 2.152 | Acc: 99.587
+36 Loss: 2.134 | Acc: 99.605
+37 Loss: 2.090 | Acc: 99.583
+38 Loss: 1.923 | Acc: 99.637
+39 Loss: 1.815 | Acc: 99.649
+40 Loss: 1.894 | Acc: 99.649
+41 Loss: 1.673 | Acc: 99.681
+42 Loss: 1.777 | Acc: 99.691
+43 Loss: 1.720 | Acc: 99.691
+44 Loss: 1.600 | Acc: 99.719
+45 Loss: 1.809 | Acc: 99.681
+46 Loss: 1.704 | Acc: 99.701
+47 Loss: 1.600 | Acc: 99.697
+48 Loss: 1.760 | Acc: 99.689
+49 Loss: 1.641 | Acc: 99.721
+50 Loss: 1.596 | Acc: 99.699
+51 Loss: 1.491 | Acc: 99.733
+52 Loss: 1.472 | Acc: 99.758
+53 Loss: 1.415 | Acc: 99.754
+54 Loss: 1.461 | Acc: 99.731
+55 Loss: 1.524 | Acc: 99.725
+56 Loss: 1.543 | Acc: 99.721
+57 Loss: 1.452 | Acc: 99.721
+58 Loss: 1.489 | Acc: 99.739
+59 Loss: 1.401 | Acc: 99.752
+MLP trained successfully...
+# of Left images:  29938.0
+# of Right images:  19962.0
+giniRightRatio:  0.7498496567383449
+giniLeftRatio:  0.8334668810564881
+impurityDrop:  0.8752545491156905
+giniGain:  0.024745450884309572
+lclasses:  [0, 0, 4988, 4996, 4989, 4989, 4989, 4993, 0, 0]
+rclasses:  [4986, 4989, 0, 0, 0, 0, 0, 0, 4991, 4990]
+noOfLeftClasses:  6
+noOfRightClasses:  4
+lTrainDict[data].shape:  torch.Size([29944, 16, 28, 28])   lTrainDict[label].shape:  torch.Size([29944])
+rTrainDict[data].shape:  torch.Size([19956, 16, 28, 28])   rTrainDict[label].shape:  torch.Size([19956])
+RETURNING FROM WORK...
+nodeId:  2 , imgTensorShape :  torch.Size([29944, 16, 28, 28])
+nodeId: 2 ,  parentId: 1 ,  level: 1 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 6
+nodeId:  3 , imgTensorShape :  torch.Size([19956, 16, 28, 28])
+nodeId: 3 ,  parentId: 1 ,  level: 1 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 4
+Running nodeId:  2
+0 Train Loss: 155.739 | Train Acc: 37.777
+1 Train Loss: 135.212 | Train Acc: 47.766
+2 Train Loss: 131.143 | Train Acc: 49.656
+3 Train Loss: 127.817 | Train Acc: 50.922
+4 Train Loss: 126.243 | Train Acc: 51.646
+5 Train Loss: 124.191 | Train Acc: 52.578
+6 Train Loss: 122.453 | Train Acc: 53.376
+7 Train Loss: 120.893 | Train Acc: 54.021
+8 Train Loss: 119.156 | Train Acc: 54.619
+9 Train Loss: 118.879 | Train Acc: 54.739
+10 Train Loss: 117.548 | Train Acc: 55.103
+11 Train Loss: 116.403 | Train Acc: 55.794
+12 Train Loss: 116.632 | Train Acc: 55.627
+13 Train Loss: 116.232 | Train Acc: 55.908
+14 Train Loss: 114.859 | Train Acc: 56.005
+15 Train Loss: 113.707 | Train Acc: 56.786
+16 Train Loss: 113.993 | Train Acc: 56.769
+17 Train Loss: 112.745 | Train Acc: 57.026
+18 Train Loss: 114.173 | Train Acc: 56.272
+19 Train Loss: 112.581 | Train Acc: 56.980
+20 Train Loss: 108.657 | Train Acc: 58.893
+21 Train Loss: 107.808 | Train Acc: 59.364
+22 Train Loss: 107.905 | Train Acc: 59.234
+23 Train Loss: 107.847 | Train Acc: 59.237
+24 Train Loss: 107.297 | Train Acc: 59.565
+25 Train Loss: 107.167 | Train Acc: 59.498
+26 Train Loss: 107.119 | Train Acc: 59.314
+27 Train Loss: 107.041 | Train Acc: 59.531
+28 Train Loss: 106.955 | Train Acc: 59.524
+29 Train Loss: 107.062 | Train Acc: 59.367
+30 Train Loss: 106.705 | Train Acc: 59.758
+31 Train Loss: 106.552 | Train Acc: 59.648
+32 Train Loss: 106.319 | Train Acc: 59.855
+33 Train Loss: 106.117 | Train Acc: 59.872
+34 Train Loss: 106.050 | Train Acc: 59.815
+35 Train Loss: 106.170 | Train Acc: 59.782
+36 Train Loss: 105.801 | Train Acc: 59.772
+37 Train Loss: 105.755 | Train Acc: 59.772
+38 Train Loss: 105.930 | Train Acc: 60.009
+39 Train Loss: 105.476 | Train Acc: 60.196
+40 Train Loss: 103.590 | Train Acc: 61.057
+41 Train Loss: 103.645 | Train Acc: 60.957
+42 Train Loss: 103.538 | Train Acc: 61.041
+43 Train Loss: 103.752 | Train Acc: 60.817
+44 Train Loss: 103.592 | Train Acc: 60.900
+45 Train Loss: 103.527 | Train Acc: 60.950
+46 Train Loss: 103.465 | Train Acc: 60.877
+47 Train Loss: 103.410 | Train Acc: 61.051
+48 Train Loss: 103.252 | Train Acc: 61.021
+49 Train Loss: 103.259 | Train Acc: 61.034
+50 Train Loss: 103.183 | Train Acc: 61.104
+51 Train Loss: 103.061 | Train Acc: 61.157
+52 Train Loss: 103.118 | Train Acc: 61.241
+53 Train Loss: 103.034 | Train Acc: 61.101
+54 Train Loss: 102.947 | Train Acc: 61.261
+55 Train Loss: 103.061 | Train Acc: 61.124
+56 Train Loss: 103.034 | Train Acc: 60.954
+57 Train Loss: 103.179 | Train Acc: 61.084
+58 Train Loss: 102.875 | Train Acc: 61.111
+59 Train Loss: 102.875 | Train Acc: 61.214
+60 Train Loss: 102.110 | Train Acc: 61.485
+61 Train Loss: 102.049 | Train Acc: 61.508
+62 Train Loss: 101.960 | Train Acc: 61.595
+63 Train Loss: 101.884 | Train Acc: 61.732
+64 Train Loss: 101.972 | Train Acc: 61.595
+65 Train Loss: 102.028 | Train Acc: 61.578
+66 Train Loss: 101.925 | Train Acc: 61.568
+67 Train Loss: 101.855 | Train Acc: 61.685
+68 Train Loss: 101.816 | Train Acc: 61.715
+69 Train Loss: 101.776 | Train Acc: 61.755
+70 Train Loss: 101.872 | Train Acc: 61.622
+71 Train Loss: 101.775 | Train Acc: 61.789
+72 Train Loss: 101.859 | Train Acc: 61.658
+73 Train Loss: 101.765 | Train Acc: 61.648
+74 Train Loss: 101.762 | Train Acc: 61.755
+75 Train Loss: 101.736 | Train Acc: 61.889
+76 Train Loss: 101.738 | Train Acc: 61.845
+77 Train Loss: 101.754 | Train Acc: 61.545
+78 Train Loss: 101.706 | Train Acc: 61.749
+79 Train Loss: 101.690 | Train Acc: 61.862
+80 Train Loss: 101.372 | Train Acc: 61.732
+81 Train Loss: 101.305 | Train Acc: 61.982
+82 Train Loss: 101.267 | Train Acc: 61.882
+83 Train Loss: 101.277 | Train Acc: 62.016
+84 Train Loss: 101.260 | Train Acc: 61.932
+85 Train Loss: 101.249 | Train Acc: 61.982
+86 Train Loss: 101.168 | Train Acc: 61.972
+87 Train Loss: 100.993 | Train Acc: 62.103
+88 Train Loss: 100.808 | Train Acc: 62.206
+89 Train Loss: 100.569 | Train Acc: 62.396
+90 Train Loss: 100.308 | Train Acc: 62.427
+91 Train Loss: 100.093 | Train Acc: 62.480
+92 Train Loss: 99.853 | Train Acc: 62.624
+93 Train Loss: 99.637 | Train Acc: 62.794
+94 Train Loss: 99.385 | Train Acc: 62.911
+95 Train Loss: 99.139 | Train Acc: 63.031
+96 Train Loss: 98.933 | Train Acc: 63.175
+97 Train Loss: 98.753 | Train Acc: 63.198
+98 Train Loss: 98.529 | Train Acc: 63.342
+99 Train Loss: 98.214 | Train Acc: 63.372
+CNN trained successfully...
+image_next_flat.shape :  torch.Size([29944, 9216])
+printing expected split from k means
+{5: 0, 4: 0, 0: 1, 1: 1, 3: 0, 2: 1}
+Printing final_dict items...
+{5: 0, 4: 0, 0: 1, 1: 1, 3: 0, 2: 1}
+Image Statistics : L R :  14971 14973
+expectedMlpLabels.shape :  torch.Size([29944])
+0 Loss: 126.028 | Acc: 64.123
+1 Loss: 117.751 | Acc: 68.374
+2 Loss: 110.519 | Acc: 70.993
+3 Loss: 105.154 | Acc: 72.699
+4 Loss: 100.531 | Acc: 74.516
+5 Loss: 95.893 | Acc: 75.875
+6 Loss: 91.900 | Acc: 77.147
+7 Loss: 88.162 | Acc: 78.066
+8 Loss: 83.634 | Acc: 79.682
+9 Loss: 78.727 | Acc: 80.971
+10 Loss: 68.093 | Acc: 84.057
+11 Loss: 63.861 | Acc: 85.219
+12 Loss: 60.131 | Acc: 86.084
+13 Loss: 56.622 | Acc: 87.206
+14 Loss: 53.707 | Acc: 87.844
+15 Loss: 49.925 | Acc: 88.869
+16 Loss: 47.491 | Acc: 89.550
+17 Loss: 44.507 | Acc: 90.479
+18 Loss: 42.086 | Acc: 90.963
+19 Loss: 38.977 | Acc: 91.771
+20 Loss: 33.604 | Acc: 93.161
+21 Loss: 32.098 | Acc: 93.438
+22 Loss: 31.031 | Acc: 93.665
+23 Loss: 29.189 | Acc: 93.919
+24 Loss: 27.967 | Acc: 94.420
+25 Loss: 27.153 | Acc: 94.647
+26 Loss: 26.228 | Acc: 94.877
+27 Loss: 26.331 | Acc: 94.817
+28 Loss: 24.332 | Acc: 95.131
+29 Loss: 23.721 | Acc: 95.558
+30 Loss: 22.749 | Acc: 95.649
+31 Loss: 21.236 | Acc: 95.996
+32 Loss: 20.705 | Acc: 96.063
+33 Loss: 20.844 | Acc: 95.993
+34 Loss: 20.128 | Acc: 96.223
+35 Loss: 19.289 | Acc: 96.383
+36 Loss: 19.655 | Acc: 96.236
+37 Loss: 19.506 | Acc: 96.276
+38 Loss: 18.398 | Acc: 96.630
+39 Loss: 18.448 | Acc: 96.567
+40 Loss: 18.150 | Acc: 96.597
+41 Loss: 18.338 | Acc: 96.550
+42 Loss: 17.270 | Acc: 96.714
+43 Loss: 17.468 | Acc: 96.704
+44 Loss: 16.755 | Acc: 96.857
+45 Loss: 17.284 | Acc: 96.781
+46 Loss: 16.633 | Acc: 96.954
+47 Loss: 16.648 | Acc: 96.874
+48 Loss: 16.629 | Acc: 96.884
+49 Loss: 16.483 | Acc: 96.931
+50 Loss: 16.065 | Acc: 97.055
+51 Loss: 16.231 | Acc: 97.034
+52 Loss: 16.522 | Acc: 96.968
+53 Loss: 16.978 | Acc: 96.891
+54 Loss: 16.189 | Acc: 97.051
+55 Loss: 16.211 | Acc: 97.014
+56 Loss: 15.955 | Acc: 97.131
+57 Loss: 16.245 | Acc: 96.961
+58 Loss: 16.203 | Acc: 97.088
+59 Loss: 15.864 | Acc: 97.044
+MLP trained successfully...
+# of Left images:  14901.0
+# of Right images:  15043.0
+giniRightRatio:  0.6651081718811711
+giniLeftRatio:  0.6682251530211019
+impurityDrop:  0.668195729945793
+giniGain:  0.16527115111069512
+lclasses:  [0, 0, 0, 4989, 4989, 4993, 0, 0, 0, 0]
+rclasses:  [4988, 4996, 4989, 0, 0, 0, 0, 0, 0, 0]
+noOfLeftClasses:  3
+noOfRightClasses:  3
+lTrainDict[data].shape:  torch.Size([14971, 16, 24, 24])   lTrainDict[label].shape:  torch.Size([14971])
+rTrainDict[data].shape:  torch.Size([14973, 16, 24, 24])   rTrainDict[label].shape:  torch.Size([14973])
+RETURNING FROM WORK...
+nodeId:  4 , imgTensorShape :  torch.Size([14971, 16, 24, 24])
+nodeId: 4 ,  parentId: 2 ,  level: 2 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3
+nodeId:  5 , imgTensorShape :  torch.Size([14973, 16, 24, 24])
+nodeId: 5 ,  parentId: 2 ,  level: 2 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3
+Running nodeId:  3
+0 Train Loss: 100.189 | Train Acc: 57.386
+1 Train Loss: 78.503 | Train Acc: 69.102
+2 Train Loss: 70.515 | Train Acc: 72.499
+3 Train Loss: 62.967 | Train Acc: 76.032
+4 Train Loss: 57.907 | Train Acc: 78.067
+5 Train Loss: 53.592 | Train Acc: 79.640
+6 Train Loss: 49.817 | Train Acc: 80.978
+7 Train Loss: 45.912 | Train Acc: 82.632
+8 Train Loss: 44.204 | Train Acc: 83.469
+9 Train Loss: 40.939 | Train Acc: 84.621
+10 Train Loss: 38.563 | Train Acc: 85.458
+11 Train Loss: 36.790 | Train Acc: 86.240
+12 Train Loss: 33.897 | Train Acc: 87.432
+13 Train Loss: 31.432 | Train Acc: 88.535
+14 Train Loss: 28.888 | Train Acc: 89.742
+15 Train Loss: 27.927 | Train Acc: 89.998
+16 Train Loss: 25.918 | Train Acc: 90.715
+17 Train Loss: 24.436 | Train Acc: 91.196
+18 Train Loss: 23.079 | Train Acc: 91.857
+19 Train Loss: 22.367 | Train Acc: 92.123
+20 Train Loss: 16.494 | Train Acc: 95.084
+21 Train Loss: 14.760 | Train Acc: 95.941
+22 Train Loss: 14.168 | Train Acc: 96.332
+23 Train Loss: 13.634 | Train Acc: 96.537
+24 Train Loss: 13.247 | Train Acc: 96.688
+25 Train Loss: 12.805 | Train Acc: 96.953
+26 Train Loss: 12.254 | Train Acc: 97.079
+27 Train Loss: 11.822 | Train Acc: 97.329
+28 Train Loss: 11.520 | Train Acc: 97.459
+29 Train Loss: 11.094 | Train Acc: 97.595
+30 Train Loss: 10.881 | Train Acc: 97.499
+31 Train Loss: 10.349 | Train Acc: 97.765
+32 Train Loss: 10.061 | Train Acc: 97.800
+33 Train Loss: 9.451 | Train Acc: 98.126
+34 Train Loss: 9.039 | Train Acc: 98.246
+35 Train Loss: 8.704 | Train Acc: 98.311
+36 Train Loss: 8.549 | Train Acc: 98.406
+37 Train Loss: 8.147 | Train Acc: 98.462
+38 Train Loss: 7.891 | Train Acc: 98.607
+39 Train Loss: 7.415 | Train Acc: 98.717
+40 Train Loss: 6.270 | Train Acc: 99.168
+41 Train Loss: 6.012 | Train Acc: 99.223
+42 Train Loss: 5.899 | Train Acc: 99.308
+43 Train Loss: 5.807 | Train Acc: 99.268
+44 Train Loss: 5.708 | Train Acc: 99.313
+45 Train Loss: 5.570 | Train Acc: 99.384
+46 Train Loss: 5.475 | Train Acc: 99.399
+47 Train Loss: 5.399 | Train Acc: 99.419
+48 Train Loss: 5.266 | Train Acc: 99.409
+49 Train Loss: 5.152 | Train Acc: 99.404
+50 Train Loss: 5.038 | Train Acc: 99.474
+51 Train Loss: 4.960 | Train Acc: 99.494
+52 Train Loss: 4.877 | Train Acc: 99.474
+53 Train Loss: 4.739 | Train Acc: 99.489
+54 Train Loss: 4.711 | Train Acc: 99.509
+55 Train Loss: 4.601 | Train Acc: 99.549
+56 Train Loss: 4.508 | Train Acc: 99.534
+57 Train Loss: 4.388 | Train Acc: 99.579
+58 Train Loss: 4.342 | Train Acc: 99.549
+59 Train Loss: 4.161 | Train Acc: 99.564
+60 Train Loss: 3.808 | Train Acc: 99.679
+61 Train Loss: 3.752 | Train Acc: 99.664
+62 Train Loss: 3.709 | Train Acc: 99.679
+63 Train Loss: 3.688 | Train Acc: 99.684
+64 Train Loss: 3.642 | Train Acc: 99.679
+65 Train Loss: 3.625 | Train Acc: 99.684
+66 Train Loss: 3.559 | Train Acc: 99.694
+67 Train Loss: 3.534 | Train Acc: 99.709
+68 Train Loss: 3.489 | Train Acc: 99.714
+69 Train Loss: 3.466 | Train Acc: 99.724
+70 Train Loss: 3.425 | Train Acc: 99.734
+71 Train Loss: 3.397 | Train Acc: 99.754
+72 Train Loss: 3.337 | Train Acc: 99.759
+73 Train Loss: 3.297 | Train Acc: 99.785
+74 Train Loss: 3.257 | Train Acc: 99.775
+75 Train Loss: 3.233 | Train Acc: 99.754
+76 Train Loss: 3.188 | Train Acc: 99.759
+77 Train Loss: 3.167 | Train Acc: 99.769
+78 Train Loss: 3.122 | Train Acc: 99.800
+79 Train Loss: 3.078 | Train Acc: 99.790
+80 Train Loss: 2.941 | Train Acc: 99.795
+81 Train Loss: 2.924 | Train Acc: 99.805
+82 Train Loss: 2.902 | Train Acc: 99.815
+83 Train Loss: 2.880 | Train Acc: 99.805
+84 Train Loss: 2.864 | Train Acc: 99.795
+85 Train Loss: 2.852 | Train Acc: 99.820
+86 Train Loss: 2.837 | Train Acc: 99.815
+87 Train Loss: 2.827 | Train Acc: 99.815
+88 Train Loss: 2.811 | Train Acc: 99.815
+89 Train Loss: 2.804 | Train Acc: 99.830
+90 Train Loss: 2.782 | Train Acc: 99.820
+91 Train Loss: 2.761 | Train Acc: 99.810
+92 Train Loss: 2.747 | Train Acc: 99.820
+93 Train Loss: 2.730 | Train Acc: 99.825
+94 Train Loss: 2.711 | Train Acc: 99.840
+95 Train Loss: 2.697 | Train Acc: 99.840
+96 Train Loss: 2.673 | Train Acc: 99.835
+97 Train Loss: 2.672 | Train Acc: 99.845
+98 Train Loss: 2.642 | Train Acc: 99.835
+99 Train Loss: 2.623 | Train Acc: 99.850
+CNN trained successfully...
+image_next_flat.shape :  torch.Size([19956, 9216])
+printing expected split from k means
+{2: 0, 3: 1, 0: 0, 1: 1}
+Printing final_dict items...
+{2: 0, 3: 1, 0: 0, 1: 1}
+Image Statistics : L R :  9977 9979
+expectedMlpLabels.shape :  torch.Size([19956])
+0 Loss: 60.042 | Acc: 87.492
+1 Loss: 46.215 | Acc: 90.394
+2 Loss: 38.345 | Acc: 92.163
+3 Loss: 32.590 | Acc: 93.240
+4 Loss: 26.496 | Acc: 94.713
+5 Loss: 21.665 | Acc: 95.620
+6 Loss: 16.763 | Acc: 96.743
+7 Loss: 13.911 | Acc: 97.229
+8 Loss: 14.638 | Acc: 97.234
+9 Loss: 11.098 | Acc: 97.890
+10 Loss: 6.311 | Acc: 98.933
+11 Loss: 3.611 | Acc: 99.424
+12 Loss: 3.075 | Acc: 99.549
+13 Loss: 2.315 | Acc: 99.684
+14 Loss: 2.713 | Acc: 99.584
+15 Loss: 2.911 | Acc: 99.479
+16 Loss: 2.070 | Acc: 99.699
+17 Loss: 1.880 | Acc: 99.734
+18 Loss: 2.032 | Acc: 99.674
+19 Loss: 1.880 | Acc: 99.689
+20 Loss: 1.179 | Acc: 99.800
+21 Loss: 0.936 | Acc: 99.850
+22 Loss: 0.796 | Acc: 99.915
+23 Loss: 0.642 | Acc: 99.935
+24 Loss: 0.495 | Acc: 99.960
+25 Loss: 0.781 | Acc: 99.915
+26 Loss: 0.692 | Acc: 99.885
+27 Loss: 0.672 | Acc: 99.905
+28 Loss: 0.627 | Acc: 99.915
+29 Loss: 0.456 | Acc: 99.945
+30 Loss: 0.361 | Acc: 99.965
+31 Loss: 0.527 | Acc: 99.940
+32 Loss: 0.444 | Acc: 99.955
+33 Loss: 0.304 | Acc: 99.975
+34 Loss: 0.248 | Acc: 99.975
+35 Loss: 0.385 | Acc: 99.940
+36 Loss: 0.367 | Acc: 99.965
+37 Loss: 0.283 | Acc: 99.965
+38 Loss: 0.263 | Acc: 99.960
+39 Loss: 0.538 | Acc: 99.935
+40 Loss: 0.230 | Acc: 99.965
+41 Loss: 0.217 | Acc: 99.985
+42 Loss: 0.413 | Acc: 99.955
+43 Loss: 0.334 | Acc: 99.960
+44 Loss: 0.312 | Acc: 99.960
+45 Loss: 0.333 | Acc: 99.975
+46 Loss: 0.236 | Acc: 99.965
+47 Loss: 0.217 | Acc: 99.980
+48 Loss: 0.198 | Acc: 99.975
+49 Loss: 0.263 | Acc: 99.975
+50 Loss: 0.211 | Acc: 99.975
+51 Loss: 0.267 | Acc: 99.965
+52 Loss: 0.223 | Acc: 99.975
+53 Loss: 0.179 | Acc: 99.985
+54 Loss: 0.186 | Acc: 99.980
+55 Loss: 0.182 | Acc: 99.980
+56 Loss: 0.269 | Acc: 99.965
+57 Loss: 0.242 | Acc: 99.975
+58 Loss: 0.313 | Acc: 99.940
+59 Loss: 0.299 | Acc: 99.970
+MLP trained successfully...
+# of Left images:  9977.0
+# of Right images:  9979.0
+giniRightRatio:  0.49999999497893366
+giniLeftRatio:  0.4999998744230101
+impurityDrop:  0.49999987444717203
+giniGain:  0.24984978229117288
+lclasses:  [4986, 0, 4991, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [0, 4989, 0, 4990, 0, 0, 0, 0, 0, 0]
+noOfLeftClasses:  2
+noOfRightClasses:  2
+lTrainDict[data].shape:  torch.Size([9977, 16, 24, 24])   lTrainDict[label].shape:  torch.Size([9977])
+rTrainDict[data].shape:  torch.Size([9979, 16, 24, 24])   rTrainDict[label].shape:  torch.Size([9979])
+RETURNING FROM WORK...
+CLASS THRESHOLD REACHED 2 IN LEFT 2 2
+CLASS THRESHOLD REACHED 2 IN RIGHT 2 2
+nodeId:  6 , imgTensorShape :  torch.Size([9977, 16, 24, 24])
+nodeId: 6 ,  parentId: 3 ,  level: 2 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 2
+nodeId:  7 , imgTensorShape :  torch.Size([9979, 16, 24, 24])
+nodeId: 7 ,  parentId: 3 ,  level: 2 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 2
+Running nodeId:  4
+0 Train Loss: 73.318 | Train Acc: 64.999
+1 Train Loss: 51.740 | Train Acc: 78.665
+2 Train Loss: 49.770 | Train Acc: 79.594
+3 Train Loss: 48.683 | Train Acc: 80.135
+4 Train Loss: 47.398 | Train Acc: 80.669
+5 Train Loss: 46.247 | Train Acc: 81.063
+6 Train Loss: 45.775 | Train Acc: 81.157
+7 Train Loss: 43.181 | Train Acc: 82.399
+8 Train Loss: 40.854 | Train Acc: 83.435
+9 Train Loss: 38.725 | Train Acc: 84.597
+10 Train Loss: 36.851 | Train Acc: 85.231
+11 Train Loss: 35.844 | Train Acc: 85.525
+12 Train Loss: 33.940 | Train Acc: 86.581
+13 Train Loss: 31.864 | Train Acc: 87.215
+14 Train Loss: 31.784 | Train Acc: 87.015
+15 Train Loss: 29.542 | Train Acc: 88.044
+16 Train Loss: 27.964 | Train Acc: 88.912
+17 Train Loss: 26.406 | Train Acc: 89.580
+18 Train Loss: 24.872 | Train Acc: 90.482
+19 Train Loss: 24.071 | Train Acc: 90.595
+20 Train Loss: 19.874 | Train Acc: 92.799
+21 Train Loss: 18.913 | Train Acc: 93.320
+22 Train Loss: 17.933 | Train Acc: 93.721
+23 Train Loss: 17.398 | Train Acc: 94.149
+24 Train Loss: 16.958 | Train Acc: 94.289
+25 Train Loss: 16.152 | Train Acc: 94.643
+26 Train Loss: 15.406 | Train Acc: 95.044
+27 Train Loss: 15.172 | Train Acc: 95.037
+28 Train Loss: 14.473 | Train Acc: 95.338
+29 Train Loss: 14.153 | Train Acc: 95.571
+30 Train Loss: 13.192 | Train Acc: 96.039
+31 Train Loss: 12.559 | Train Acc: 96.360
+32 Train Loss: 11.752 | Train Acc: 96.760
+33 Train Loss: 11.177 | Train Acc: 96.841
+34 Train Loss: 10.764 | Train Acc: 97.121
+35 Train Loss: 9.962 | Train Acc: 97.288
+36 Train Loss: 9.286 | Train Acc: 97.716
+37 Train Loss: 8.689 | Train Acc: 97.929
+38 Train Loss: 8.188 | Train Acc: 98.176
+39 Train Loss: 7.761 | Train Acc: 98.237
+40 Train Loss: 6.694 | Train Acc: 98.791
+41 Train Loss: 6.448 | Train Acc: 98.885
+42 Train Loss: 6.255 | Train Acc: 98.905
+43 Train Loss: 6.127 | Train Acc: 98.951
+44 Train Loss: 5.950 | Train Acc: 99.118
+45 Train Loss: 5.809 | Train Acc: 99.092
+46 Train Loss: 5.734 | Train Acc: 99.112
+47 Train Loss: 5.543 | Train Acc: 99.198
+48 Train Loss: 5.379 | Train Acc: 99.272
+49 Train Loss: 5.173 | Train Acc: 99.272
+50 Train Loss: 5.001 | Train Acc: 99.372
+51 Train Loss: 4.916 | Train Acc: 99.399
+52 Train Loss: 4.823 | Train Acc: 99.372
+53 Train Loss: 4.566 | Train Acc: 99.479
+54 Train Loss: 4.441 | Train Acc: 99.459
+55 Train Loss: 4.222 | Train Acc: 99.499
+56 Train Loss: 4.119 | Train Acc: 99.566
+57 Train Loss: 4.010 | Train Acc: 99.573
+58 Train Loss: 3.889 | Train Acc: 99.646
+59 Train Loss: 3.737 | Train Acc: 99.653
+60 Train Loss: 3.432 | Train Acc: 99.699
+61 Train Loss: 3.380 | Train Acc: 99.713
+62 Train Loss: 3.364 | Train Acc: 99.719
+63 Train Loss: 3.306 | Train Acc: 99.719
+64 Train Loss: 3.252 | Train Acc: 99.726
+65 Train Loss: 3.210 | Train Acc: 99.753
+66 Train Loss: 3.167 | Train Acc: 99.746
+67 Train Loss: 3.096 | Train Acc: 99.773
+68 Train Loss: 3.074 | Train Acc: 99.760
+69 Train Loss: 3.013 | Train Acc: 99.760
+70 Train Loss: 2.989 | Train Acc: 99.760
+71 Train Loss: 2.955 | Train Acc: 99.800
+72 Train Loss: 2.880 | Train Acc: 99.786
+73 Train Loss: 2.852 | Train Acc: 99.793
+74 Train Loss: 2.788 | Train Acc: 99.820
+75 Train Loss: 2.781 | Train Acc: 99.826
+76 Train Loss: 2.714 | Train Acc: 99.813
+77 Train Loss: 2.662 | Train Acc: 99.840
+78 Train Loss: 2.646 | Train Acc: 99.833
+79 Train Loss: 2.601 | Train Acc: 99.860
+80 Train Loss: 2.481 | Train Acc: 99.866
+81 Train Loss: 2.461 | Train Acc: 99.860
+82 Train Loss: 2.454 | Train Acc: 99.866
+83 Train Loss: 2.435 | Train Acc: 99.873
+84 Train Loss: 2.412 | Train Acc: 99.880
+85 Train Loss: 2.398 | Train Acc: 99.873
+86 Train Loss: 2.377 | Train Acc: 99.880
+87 Train Loss: 2.363 | Train Acc: 99.880
+88 Train Loss: 2.346 | Train Acc: 99.873
+89 Train Loss: 2.344 | Train Acc: 99.880
+90 Train Loss: 2.315 | Train Acc: 99.886
+91 Train Loss: 2.295 | Train Acc: 99.886
+92 Train Loss: 2.276 | Train Acc: 99.900
+93 Train Loss: 2.265 | Train Acc: 99.900
+94 Train Loss: 2.251 | Train Acc: 99.893
+95 Train Loss: 2.226 | Train Acc: 99.886
+96 Train Loss: 2.214 | Train Acc: 99.920
+97 Train Loss: 2.194 | Train Acc: 99.920
+98 Train Loss: 2.184 | Train Acc: 99.913
+99 Train Loss: 2.176 | Train Acc: 99.913
+CNN trained successfully...
+image_next_flat.shape :  torch.Size([14971, 6400])
+printing expected split from k means
+{1: 0, 2: 1, 0: 1}
+Printing final_dict items...
+{1: 0, 2: 1, 0: 1}
+Image Statistics : L R :  4989 9982
+expectedMlpLabels.shape :  torch.Size([14971])
+0 Loss: 36.215 | Acc: 88.858
+1 Loss: 28.098 | Acc: 91.203
+2 Loss: 22.932 | Acc: 92.913
+3 Loss: 19.203 | Acc: 93.935
+4 Loss: 17.083 | Acc: 94.215
+5 Loss: 13.690 | Acc: 95.571
+6 Loss: 10.992 | Acc: 96.426
+7 Loss: 8.822 | Acc: 97.215
+8 Loss: 7.721 | Acc: 97.669
+9 Loss: 6.551 | Acc: 97.963
+10 Loss: 2.815 | Acc: 99.125
+11 Loss: 1.597 | Acc: 99.613
+12 Loss: 1.242 | Acc: 99.693
+13 Loss: 1.253 | Acc: 99.706
+14 Loss: 1.095 | Acc: 99.773
+15 Loss: 1.348 | Acc: 99.659
+16 Loss: 0.988 | Acc: 99.786
+17 Loss: 1.030 | Acc: 99.806
+18 Loss: 0.695 | Acc: 99.840
+19 Loss: 0.670 | Acc: 99.860
+20 Loss: 0.393 | Acc: 99.933
+21 Loss: 0.329 | Acc: 99.947
+22 Loss: 0.331 | Acc: 99.933
+23 Loss: 0.218 | Acc: 99.980
+24 Loss: 0.197 | Acc: 99.980
+25 Loss: 0.243 | Acc: 99.953
+26 Loss: 0.204 | Acc: 99.967
+27 Loss: 0.139 | Acc: 99.973
+28 Loss: 0.138 | Acc: 99.987
+29 Loss: 0.117 | Acc: 99.980
+30 Loss: 0.143 | Acc: 99.980
+31 Loss: 0.153 | Acc: 99.980
+32 Loss: 0.116 | Acc: 99.980
+33 Loss: 0.109 | Acc: 99.987
+34 Loss: 0.085 | Acc: 99.987
+35 Loss: 0.126 | Acc: 99.967
+36 Loss: 0.060 | Acc: 100.000
+37 Loss: 0.060 | Acc: 100.000
+38 Loss: 0.068 | Acc: 99.993
+39 Loss: 0.068 | Acc: 99.987
+40 Loss: 0.068 | Acc: 100.000
+41 Loss: 0.070 | Acc: 99.993
+42 Loss: 0.088 | Acc: 99.987
+43 Loss: 0.079 | Acc: 99.993
+44 Loss: 0.042 | Acc: 100.000
+45 Loss: 0.056 | Acc: 100.000
+46 Loss: 0.063 | Acc: 99.993
+47 Loss: 0.094 | Acc: 99.973
+48 Loss: 0.047 | Acc: 99.987
+49 Loss: 0.043 | Acc: 100.000
+50 Loss: 0.055 | Acc: 99.993
+51 Loss: 0.049 | Acc: 100.000
+52 Loss: 0.100 | Acc: 99.973
+53 Loss: 0.041 | Acc: 99.993
+54 Loss: 0.059 | Acc: 99.993
+55 Loss: 0.036 | Acc: 100.000
+56 Loss: 0.045 | Acc: 100.000
+57 Loss: 0.089 | Acc: 99.987
+58 Loss: 0.048 | Acc: 100.000
+59 Loss: 0.030 | Acc: 100.000
+MLP trained successfully...
+# of Left images:  4989.0
+# of Right images:  9982.0
+giniRightRatio:  0.49999991971122054
+giniLeftRatio:  0.0
+impurityDrop:  0.2501001401641078
+giniGain:  0.41812501285699405
+lclasses:  [0, 4989, 0, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [4989, 0, 4993, 0, 0, 0, 0, 0, 0, 0]
+noOfLeftClasses:  1
+noOfRightClasses:  2
+lTrainDict[data].shape:  torch.Size([4989, 16, 20, 20])   lTrainDict[label].shape:  torch.Size([4989])
+rTrainDict[data].shape:  torch.Size([9982, 16, 20, 20])   rTrainDict[label].shape:  torch.Size([9982])
+RETURNING FROM WORK...
+CLASS THRESHOLD REACHED 1 IN LEFT 1 2 6
+DOMINANCE THRESHOLD REACHED IN LEFT 1.0 0.95 6
+nodeId:  8 , imgTensorShape :  torch.Size([4989, 16, 20, 20])
+nodeId: 8 ,  parentId: 4 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 6 ,  numClasses: 1
+nodeId:  9 , imgTensorShape :  torch.Size([9982, 16, 20, 20])
+nodeId: 9 ,  parentId: 4 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2
+Running nodeId:  5
+0 Train Loss: 94.552 | Train Acc: 53.523
+1 Train Loss: 82.625 | Train Acc: 63.528
+2 Train Loss: 81.334 | Train Acc: 63.908
+3 Train Loss: 79.275 | Train Acc: 65.531
+4 Train Loss: 75.783 | Train Acc: 67.001
+5 Train Loss: 72.797 | Train Acc: 68.991
+6 Train Loss: 71.921 | Train Acc: 69.151
+7 Train Loss: 68.011 | Train Acc: 71.542
+8 Train Loss: 65.051 | Train Acc: 72.417
+9 Train Loss: 62.426 | Train Acc: 73.860
+10 Train Loss: 59.986 | Train Acc: 74.614
+11 Train Loss: 57.348 | Train Acc: 75.963
+12 Train Loss: 54.906 | Train Acc: 77.393
+13 Train Loss: 53.896 | Train Acc: 77.947
+14 Train Loss: 51.342 | Train Acc: 78.882
+15 Train Loss: 50.207 | Train Acc: 79.677
+16 Train Loss: 48.545 | Train Acc: 80.198
+17 Train Loss: 46.669 | Train Acc: 80.866
+18 Train Loss: 45.557 | Train Acc: 81.547
+19 Train Loss: 44.231 | Train Acc: 82.255
+20 Train Loss: 39.394 | Train Acc: 84.786
+21 Train Loss: 38.390 | Train Acc: 85.367
+22 Train Loss: 37.450 | Train Acc: 85.888
+23 Train Loss: 36.820 | Train Acc: 86.095
+24 Train Loss: 36.186 | Train Acc: 86.629
+25 Train Loss: 35.346 | Train Acc: 86.816
+26 Train Loss: 34.708 | Train Acc: 87.344
+27 Train Loss: 34.351 | Train Acc: 87.404
+28 Train Loss: 33.596 | Train Acc: 87.791
+29 Train Loss: 32.404 | Train Acc: 88.386
+30 Train Loss: 31.797 | Train Acc: 88.646
+31 Train Loss: 31.018 | Train Acc: 88.987
+32 Train Loss: 30.236 | Train Acc: 89.354
+33 Train Loss: 29.291 | Train Acc: 89.909
+34 Train Loss: 28.464 | Train Acc: 90.316
+35 Train Loss: 27.749 | Train Acc: 90.556
+36 Train Loss: 26.849 | Train Acc: 90.910
+37 Train Loss: 26.067 | Train Acc: 91.364
+38 Train Loss: 25.200 | Train Acc: 91.678
+39 Train Loss: 24.550 | Train Acc: 92.059
+40 Train Loss: 22.766 | Train Acc: 93.194
+41 Train Loss: 22.266 | Train Acc: 93.435
+42 Train Loss: 21.945 | Train Acc: 93.635
+43 Train Loss: 21.715 | Train Acc: 93.702
+44 Train Loss: 21.490 | Train Acc: 93.869
+45 Train Loss: 21.242 | Train Acc: 93.989
+46 Train Loss: 21.010 | Train Acc: 94.123
+47 Train Loss: 20.825 | Train Acc: 94.063
+48 Train Loss: 20.530 | Train Acc: 94.263
+49 Train Loss: 20.376 | Train Acc: 94.216
+50 Train Loss: 20.067 | Train Acc: 94.390
+51 Train Loss: 19.815 | Train Acc: 94.597
+52 Train Loss: 19.639 | Train Acc: 94.570
+53 Train Loss: 19.399 | Train Acc: 94.771
+54 Train Loss: 19.321 | Train Acc: 94.744
+55 Train Loss: 18.948 | Train Acc: 94.938
+56 Train Loss: 18.752 | Train Acc: 94.971
+57 Train Loss: 18.517 | Train Acc: 95.185
+58 Train Loss: 18.404 | Train Acc: 95.071
+59 Train Loss: 18.073 | Train Acc: 95.318
+60 Train Loss: 17.433 | Train Acc: 95.418
+61 Train Loss: 17.329 | Train Acc: 95.625
+62 Train Loss: 17.244 | Train Acc: 95.645
+63 Train Loss: 17.161 | Train Acc: 95.712
+64 Train Loss: 17.099 | Train Acc: 95.719
+65 Train Loss: 17.021 | Train Acc: 95.746
+66 Train Loss: 16.974 | Train Acc: 95.786
+67 Train Loss: 16.847 | Train Acc: 95.832
+68 Train Loss: 16.773 | Train Acc: 95.873
+69 Train Loss: 16.669 | Train Acc: 95.913
+70 Train Loss: 16.601 | Train Acc: 95.899
+71 Train Loss: 16.537 | Train Acc: 95.966
+72 Train Loss: 16.495 | Train Acc: 95.946
+73 Train Loss: 16.352 | Train Acc: 96.013
+74 Train Loss: 16.298 | Train Acc: 95.999
+75 Train Loss: 16.269 | Train Acc: 96.046
+76 Train Loss: 16.132 | Train Acc: 96.146
+77 Train Loss: 16.085 | Train Acc: 96.126
+78 Train Loss: 15.996 | Train Acc: 96.207
+79 Train Loss: 15.903 | Train Acc: 96.220
+80 Train Loss: 15.613 | Train Acc: 96.460
+81 Train Loss: 15.585 | Train Acc: 96.400
+82 Train Loss: 15.548 | Train Acc: 96.440
+83 Train Loss: 15.514 | Train Acc: 96.460
+84 Train Loss: 15.474 | Train Acc: 96.454
+85 Train Loss: 15.457 | Train Acc: 96.534
+86 Train Loss: 15.433 | Train Acc: 96.447
+87 Train Loss: 15.404 | Train Acc: 96.454
+88 Train Loss: 15.355 | Train Acc: 96.520
+89 Train Loss: 15.337 | Train Acc: 96.500
+90 Train Loss: 15.286 | Train Acc: 96.574
+91 Train Loss: 15.266 | Train Acc: 96.500
+92 Train Loss: 15.240 | Train Acc: 96.567
+93 Train Loss: 15.209 | Train Acc: 96.527
+94 Train Loss: 15.167 | Train Acc: 96.607
+95 Train Loss: 15.135 | Train Acc: 96.601
+96 Train Loss: 15.120 | Train Acc: 96.507
+97 Train Loss: 15.071 | Train Acc: 96.641
+98 Train Loss: 15.053 | Train Acc: 96.627
+99 Train Loss: 15.010 | Train Acc: 96.694
+CNN trained successfully...
+image_next_flat.shape :  torch.Size([14973, 6400])
+printing expected split from k means
+{0: 1, 1: 1, 2: 1}
+Printing final_dict items...
+{0: 1, 1: 1, 2: 1}
+Image Statistics : L R :  0 14973
+expectedMlpLabels.shape :  torch.Size([14973])
+0 Loss: 0.000 | Acc: 0.000
+1 Loss: 0.000 | Acc: 0.000
+2 Loss: 0.000 | Acc: 0.000
+3 Loss: 0.000 | Acc: 0.000
+4 Loss: 0.000 | Acc: 0.000
+5 Loss: 0.000 | Acc: 0.000
+6 Loss: 0.000 | Acc: 0.000
+7 Loss: 0.000 | Acc: 0.000
+8 Loss: 0.000 | Acc: 0.000
+9 Loss: 0.000 | Acc: 0.000
+10 Loss: 0.000 | Acc: 0.000
+11 Loss: 0.000 | Acc: 0.000
+12 Loss: 0.000 | Acc: 0.000
+13 Loss: 0.000 | Acc: 0.000
+14 Loss: 0.000 | Acc: 0.000
+15 Loss: 0.000 | Acc: 0.000
+16 Loss: 0.000 | Acc: 0.000
+17 Loss: 0.000 | Acc: 0.000
+18 Loss: 0.000 | Acc: 0.000
+19 Loss: 0.000 | Acc: 0.000
+20 Loss: 0.000 | Acc: 0.000
+21 Loss: 0.000 | Acc: 0.000
+22 Loss: 0.000 | Acc: 0.000
+23 Loss: 0.000 | Acc: 0.000
+24 Loss: 0.000 | Acc: 0.000
+25 Loss: 0.000 | Acc: 0.000
+26 Loss: 0.000 | Acc: 0.000
+27 Loss: 0.000 | Acc: 0.000
+28 Loss: 0.000 | Acc: 0.000
+29 Loss: 0.000 | Acc: 0.000
+30 Loss: 0.000 | Acc: 0.000
+31 Loss: 0.000 | Acc: 0.000
+32 Loss: 0.000 | Acc: 0.000
+33 Loss: 0.000 | Acc: 0.000
+34 Loss: 0.000 | Acc: 0.000
+35 Loss: 0.000 | Acc: 0.000
+36 Loss: 0.000 | Acc: 0.000
+37 Loss: 0.000 | Acc: 0.000
+38 Loss: 0.000 | Acc: 0.000
+39 Loss: 0.000 | Acc: 0.000
+40 Loss: 0.000 | Acc: 0.000
+41 Loss: 0.000 | Acc: 0.000
+42 Loss: 0.000 | Acc: 0.000
+43 Loss: 0.000 | Acc: 0.007
+44 Loss: 0.000 | Acc: 0.000
+45 Loss: 0.000 | Acc: 0.000
+46 Loss: 0.000 | Acc: 0.000
+47 Loss: 0.000 | Acc: 0.000
+48 Loss: 0.000 | Acc: 0.000
+49 Loss: 0.000 | Acc: 0.000
+50 Loss: 0.000 | Acc: 0.000
+51 Loss: 0.000 | Acc: 0.000
+52 Loss: 0.000 | Acc: 0.000
+53 Loss: 0.000 | Acc: 0.000
+54 Loss: 0.000 | Acc: 0.000
+55 Loss: 0.000 | Acc: 0.000
+56 Loss: 0.000 | Acc: 0.000
+57 Loss: 0.000 | Acc: 0.000
+58 Loss: 0.000 | Acc: 0.000
+59 Loss: 0.000 | Acc: 0.000
+MLP trained successfully...

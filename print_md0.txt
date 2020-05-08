@@ -1,0 +1,19 @@
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+len(trainInputDict["data"]):  50000 ,  len(valInputDict["data"]):  0 ,  len(testInputDict["data"]):  10000
+
+1
+
+-1
+
+True
+
+10
+
+50000
+
+[0 1 2 3 4 5 6 7 8 9]
+
+0.0
+

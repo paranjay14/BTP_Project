@@ -19,13 +19,19 @@ def kmeans_output(all_images_flat, device, num_clusters=2):
 	return cluster_ids_x, cluster_centers
 
 
-class Node:
-	def __init__(self, parentId, nodeId, device, isTrain, level):
+class myNode:
+	def __init__(self, parentId, nodeId, device, isTrain, level, parentNode=None):
 		self.parentId = parentId
 		self.nodeId = nodeId
 		self.device = device
 		self.isTrain = isTrain
 		self.level = level
+		self.children = []
+		if parentNode:
+			parentNode.children.append(self)
+
+	def __str__(self):
+		return str(self.nodeId)
 
 	def setInput(self, trainInputDict, valInputDict, numClasses, giniValue, isLeaf, leafClass, lchildId, rchildId):
 		self.trainInputDict = trainInputDict
@@ -40,17 +46,20 @@ class Node:
 		self.mlpModel = MLP(numFeatures, use_bn=False)
 		self.numClasses = numClasses
 		self.giniValue = giniValue
+		self.giniGain = 0.0
 		self.isLeaf = isLeaf
 		self.leafClass = leafClass
 		self.lchildId = lchildId
 		self.rchildId = rchildId
-		print("nodeId:", self.nodeId, ",  parentId:", self.parentId, ",  level:", self.level, ",  lchildId:", self.lchildId, ",  rchildId:", self.rchildId, ",  isLeaf:", self.isLeaf, ",  leafClass:", self.leafClass, ",  numClasses:", self.numClasses)
+		self.numData = trainInputDict["data"].shape[0]
+		self.classLabels = np.unique(trainInputDict["label"].numpy())
+		print("nodeId:", self.nodeId, ",  parentId:", self.parentId, ",  level:", self.level, ",  lchildId:", self.lchildId, ",  rchildId:", self.rchildId, ",  isLeaf:", self.isLeaf, ",  leafClass:", self.leafClass, ",  numClasses:", self.numClasses, ",  numData:", self.numData)
 
 	def trainCNN(self, labelMap, reverseLabelMap):
 		loss_fn = nn.CrossEntropyLoss()
 		loss_fn_mse = nn.MSELoss()
 		optimizer = torch.optim.Adam(self.cnnModel.parameters(),lr=options.cnnLR)
-		scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 25, 0.4)
+		scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 20, 0.4)
 		self.cnnModel.to(self.device)
 		trainLabels = self.trainInputDict["label"]
 		trainInputs = self.trainInputDict["data"]
@@ -116,7 +125,7 @@ class Node:
 
 	def trainMLP(self, trainInputs, trainTargets, weightVector):
 		# loss_fn = nn.CrossEntropyLoss()
-		loss_fn = nn.BCELoss(reduce=False)
+		loss_fn = nn.BCELoss(reduction='none')
 		optimizer = torch.optim.Adam(self.mlpModel.parameters(),lr=options.mlpLR)
 		scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 10, 0.4)
 
@@ -264,18 +273,54 @@ class Node:
 				else:
 					rightCnt[label] = 1
 		expected_dict = {}
+		
+		lCnt=0
+		rCnt=0
+		maxLeftRatio=0.0
+		maxRightRatio=0.0
+		lIndx=-1
+		rIndx=-1
+
 		for label, count in leftCnt.items():
+			lRatio=1.0
 			if label in rightCnt:
+				lRatio = float(count)/float(count+rightCnt[label])
+				if lRatio>maxLeftRatio:
+					maxLeftRatio = lRatio
+					lIndx = label
+				# rRatio = float(rightCnt[label])/float(count+rightCnt[label])
+				rRatio = 1.0 - lRatio
+				if rRatio>maxRightRatio:
+					maxRightRatio = rRatio
+					rIndx = label
+				
 				if count >= rightCnt[label]:
 					expected_dict[label] = 0
+					lCnt+=1
 				else:
 					expected_dict[label] = 1
+					rCnt+=1
 			else:
+				if lRatio>maxLeftRatio:
+					maxLeftRatio = lRatio
+					lIndx = label
 				expected_dict[label] = 0
+				lCnt+=1
 
 		for label, count in rightCnt.items():
 			if not (label in expected_dict):
+				rRatio=1.0
+				if rRatio>maxRightRatio:
+					maxRightRatio = rRatio
+					rIndx = label
 				expected_dict[label] = 1
+				rCnt+=1
+
+		if lCnt==0:
+			expected_dict[lIndx] = 0
+		if rCnt==0:
+			expected_dict[rIndx] = 1
+
 		print("printing expected split from k means")
 		print(expected_dict)                
 		leftSortedListOfTuples = sorted(leftCnt.items(), reverse=True, key=lambda x: x[1])
@@ -390,8 +435,8 @@ class Node:
 		giniRightRatio = 0.0
 		lcheck = 0.0
 		rcheck = 0.0
-		print("# of Left images: ", totalLeftImages)
-		print("# of Right images: ", totalRightImages)
+		print("# of Actaul Left images acc to Kmeans: ", totalLeftImages)
+		print("# of Actual Right images acc to Kmeans: ", totalRightImages)
 		noOfLeftClasses = 0
 		noOfRightClasses = 0
 		for i in lclasses:
@@ -415,14 +460,15 @@ class Node:
 		leftChildrenRatio = totalLeftImages/totalRightImages
 
 		impurityDrop = leftChildrenRatio*float(giniLeftRatio) + (1-leftChildrenRatio)*float(giniRightRatio)
+		giniGain = self.giniValue - impurityDrop
 
 		print("impurityDrop: ", impurityDrop)
-		print("giniGain: ", self.giniValue - impurityDrop)
+		print("giniGain: ", giniGain)
 		print("lclasses: ", lclasses)
 		print("rclasses: ", rclasses)
 		print("noOfLeftClasses: ", noOfLeftClasses)
 		print("noOfRightClasses: ", noOfRightClasses)
-		return giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses
+		return giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses, giniGain
 		
 
 
@@ -489,7 +535,7 @@ class Node:
 		lTrainDict = {"data":torch.tensor(trainLimages), "label":torch.tensor(trainLLabels)}
 		rTrainDict = {"data":torch.tensor(trainRimages), "label":torch.tensor(trainRLabels)}
 		
-		giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = self.getPredictionAnalysis(totalLeftImages, totalRightImages, lclasses, rclasses)
+		giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses, giniGain = self.getPredictionAnalysis(totalLeftImages, totalRightImages, lclasses, rclasses)
 		print("lTrainDict[data].shape: ", lTrainDict["data"].shape, "  lTrainDict[label].shape: ", lTrainDict["label"].shape)
 		print("rTrainDict[data].shape: ", rTrainDict["data"].shape, "  rTrainDict[label].shape: ", rTrainDict["label"].shape)
 
@@ -502,7 +548,7 @@ class Node:
 		if not (len(trainRLabels) == 0):
 			maxRight = float(float(maxRight)/float(len(trainRLabels)))
 
-		handleLeafDict = {"lvl":self.level+1,"noOfLeftClasses":noOfLeftClasses, "noOfRightClasses":noOfRightClasses, "maxLeft":maxLeft, "maxRight":maxRight, "leftDataNum":leftDataNum, "rightDataNum":rightDataNum,"maxLeftClassIndex":maxLeftClassIndex,"maxRightClassIndex":maxRightClassIndex}		
+		handleLeafDict = {"lvl":self.level+1,"noOfLeftClasses":noOfLeftClasses, "noOfRightClasses":noOfRightClasses, "maxLeft":maxLeft, "maxRight":maxRight, "leftDataNum":leftDataNum, "rightDataNum":rightDataNum,"maxLeftClassIndex":maxLeftClassIndex,"maxRightClassIndex":maxRightClassIndex, "giniGain":giniGain}		
 
 
 		lValDict = {}
@@ -565,15 +611,21 @@ class Node:
 
 		expectedMlpLabels = []
 		weightVector = []
-		countImageRight = int(np.sum(cluster_ids))
-		countImageLeft = countImageTotal - countImageRight
+		countImageRight = 0
+		countImageLeft = 0
+		for label, count in zip(*np.unique(self.trainInputDict['label'], return_counts=True)):
+			if final_dict[label] == 0:
+				countImageLeft += count
+			else:
+				countImageRight += count
 		print("Image Statistics : L R : ", countImageLeft, countImageRight)
 		minCountImage = min(countImageLeft, countImageRight)
 		for i in range(len(self.trainInputDict["data"])):
-			# label = self.trainInputDict["label"][i].item()
-			# expectedMlpLabels.append(final_dict[label])
-			expectedMlpLabels.append(cluster_ids[i])
-			if cluster_ids[i] == 0:
+			label = self.trainInputDict["label"][i].item()
+			expectedMlpLabels.append(final_dict[label])
+			
+			# expectedMlpLabels.append(cluster_ids[i])
+			if final_dict[label] == 0:
 				weightVector.append(minCountImage/countImageLeft)
 			else:
 				weightVector.append(minCountImage/countImageRight)
@@ -596,6 +648,10 @@ class Node:
 		nodeDict['leafClass'] = self.leafClass
 		nodeDict['lchildId'] = self.lchildId
 		nodeDict['rchildId'] = self.rchildId
+		nodeDict['numClasses'] = self.numClasses
+		nodeDict['numData'] = self.numData
+		nodeDict['classLabels'] = self.classLabels
+		nodeDict['giniGain'] = self.giniGain
 
 		torch.save({
 					'nodeDict':nodeDict,

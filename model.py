@@ -10,16 +10,16 @@ import os.path
 import torch.nn as nn
 import torchvision.transforms as transforms
 from sklearn.model_selection import train_test_split
-from new_node import Node
+from new_node import myNode
 # from prev_new_node import Node
 import cv2
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 from getOptions import getOptions
+from pptree import *
 # from resources.plotcm import plot_confusion_matrix
 # from queue import Queue
-
 
 class Tree:
 	def __init__(self, device, maxDepth=1, dominanceThreshold=0.95, classThreshold=2, dataNumThreshold=100, numClasses=10):
@@ -57,34 +57,33 @@ class Tree:
 			print("DATANUM THRESHOLD REACHED IN RIGHT", handleLeafDict["rightDataNum"], self.dataNumThreshold)
 
 		############# classThreshold #############
-		#TODO : HANDLE 0, 1 & 2 cases
-		if handleLeafDict["noOfLeftClasses"]==0 or handleLeafDict["noOfRightClasses"]==0:
-			if handleLeafDict["noOfLeftClasses"]==0:
-				isemptyNodeLeft=True
-				print("CLASS THRESHOLD REACHED 0 IN LEFT", handleLeafDict["noOfLeftClasses"], self.classThreshold)
-			if handleLeafDict["noOfRightClasses"]==0:
-				isemptyNodeRight=True
-				print("CLASS THRESHOLD REACHED 0 IN RIGHT", handleLeafDict["noOfRightClasses"], self.classThreshold)
+		# HANDLE 0, 1 & 2 cases
+		if handleLeafDict["noOfLeftClasses"]==0:
+			isemptyNodeLeft=True
+			print("CLASS THRESHOLD REACHED 0 IN LEFT", handleLeafDict["noOfLeftClasses"], self.classThreshold)
 
-		elif handleLeafDict["noOfLeftClasses"]==1 or handleLeafDict["noOfRightClasses"]==1:
-			if handleLeafDict["noOfLeftClasses"]==1:
-				isLeafLeft=True
-				leftLeafClass=handleLeafDict["maxLeftClassIndex"]
-				print("CLASS THRESHOLD REACHED 1 IN LEFT", handleLeafDict["noOfLeftClasses"], self.classThreshold, leftLeafClass)
+		elif handleLeafDict["noOfLeftClasses"]==1:
+			isLeafLeft=True
+			leftLeafClass=handleLeafDict["maxLeftClassIndex"]
+			print("CLASS THRESHOLD REACHED 1 IN LEFT", handleLeafDict["noOfLeftClasses"], self.classThreshold, leftLeafClass)
 
-			if handleLeafDict["noOfRightClasses"]==1:
-				isLeafRight=True
-				rightLeafClass=handleLeafDict["maxRightClassIndex"]
-				print("CLASS THRESHOLD REACHED 1 IN RIGHT", handleLeafDict["noOfRightClasses"], self.classThreshold, rightLeafClass)
+		# elif handleLeafDict["noOfLeftClasses"]==2:
+		# 	isLeafLeft=True
+		# 	print("CLASS THRESHOLD REACHED 2 IN LEFT", handleLeafDict["noOfLeftClasses"], self.classThreshold)
 
-		elif handleLeafDict["noOfLeftClasses"]==2 or handleLeafDict["noOfRightClasses"]==2:
-			if handleLeafDict["noOfLeftClasses"]==2:
-				isLeafLeft=True
-				print("CLASS THRESHOLD REACHED 2 IN LEFT", handleLeafDict["noOfLeftClasses"], self.classThreshold)
 
-			if handleLeafDict["noOfRightClasses"]==2:
-				isLeafRight=True
-				print("CLASS THRESHOLD REACHED 2 IN RIGHT", handleLeafDict["noOfRightClasses"], self.classThreshold)
+		if handleLeafDict["noOfRightClasses"]==0:
+			isemptyNodeRight=True
+			print("CLASS THRESHOLD REACHED 0 IN RIGHT", handleLeafDict["noOfRightClasses"], self.classThreshold)
+
+		elif handleLeafDict["noOfRightClasses"]==1:
+			isLeafRight=True
+			rightLeafClass=handleLeafDict["maxRightClassIndex"]
+			print("CLASS THRESHOLD REACHED 1 IN RIGHT", handleLeafDict["noOfRightClasses"], self.classThreshold, rightLeafClass)
+
+		# elif handleLeafDict["noOfRightClasses"]==2:
+		# 	isLeafRight=True
+		# 	print("CLASS THRESHOLD REACHED 2 IN RIGHT", handleLeafDict["noOfRightClasses"], self.classThreshold)
 
 
 		############# dominanceThreshold #############
@@ -103,7 +102,7 @@ class Tree:
 
 
 	def tree_traversal(self, trainInputDict, valInputDict):
-		rootNode = Node(parentId=0, nodeId=1, device=self.device, isTrain=True, level=0)
+		rootNode = myNode(parentId=0, nodeId=1, device=self.device, isTrain=True, level=0, parentNode=None)
 		if self.maxDepth == 0:
 			rootNode.setInput(trainInputDict=trainInputDict, valInputDict=valInputDict, numClasses=self.numClasses, giniValue=0.9, isLeaf=True, leafClass=-1, lchildId=-1, rchildId=-1)
 		else:
@@ -130,7 +129,7 @@ class Tree:
 
 				if not isemptyNodeLeft:
 					end += 1
-					lNode = Node(node.nodeId, end, self.device, True, node.level+1)
+					lNode = myNode(node.nodeId, end, self.device, True, node.level+1, node)
 					if not isLeafLeft:
 						lNode.setInput(lTrainDict, lValDict, handleLeafDict["noOfLeftClasses"], giniLeftRatio, False, leftLeafClass, -1, -1)
 					else:
@@ -140,7 +139,7 @@ class Tree:
 
 				if not isemptyNodeRight:
 					end += 1
-					rNode = Node(node.nodeId, end, self.device, True, node.level+1)
+					rNode = myNode(node.nodeId, end, self.device, True, node.level+1,node)
 					if not isLeafRight:
 						rNode.setInput(rTrainDict, rValDict, handleLeafDict["noOfRightClasses"], giniRightRatio, False, rightLeafClass, -1, -1)
 					else:
@@ -148,12 +147,11 @@ class Tree:
 					self.nodeArray.append(rNode)
 					ParentNodeDict['rchildId'] = rNode.nodeId
 
+				ParentNodeDict['giniGain'] = handleLeafDict["giniGain"]
 				torch.save({
 					'nodeDict':ParentNodeDict,
 					}, options.ckptDir+'/node_'+str(node.nodeId)+'.pth')
 
-				# end += 2
-		
 
 	def testTraversal(self, testInputDict):
 		nodeId=1
@@ -167,7 +165,7 @@ class Tree:
 			isLeafRoot=True
 			leftChildId=-1
 			rightChildId=-1
-		rootNode = Node(parentId=rootNodeDict['parentId'], nodeId=rootNodeDict['nodeId'], device=self.device, isTrain=False, level=rootNodeDict['level'])
+		rootNode = myNode(parentId=rootNodeDict['parentId'], nodeId=rootNodeDict['nodeId'], device=self.device, isTrain=False, level=rootNodeDict['level'], parentNode=None)
 		rootNode.setInput(trainInputDict=testInputDict, valInputDict={}, numClasses=noOfClasses, giniValue=0.9, isLeaf=isLeafRoot, leafClass=rootNodeDict['leafClass'], lchildId=leftChildId, rchildId=rightChildId)
 		
 		testPredDict = {}
@@ -204,7 +202,7 @@ class Tree:
 						ckptLeft = torch.load(options.ckptDir+'/node_cnn_'+str(node.lchildId)+'.pth')['labelMap']
 						noOfLeftClasses = len(ckptLeft)
  
-					lNode = Node(node.nodeId, node.lchildId, self.device, False, leftNodeDict['level'])
+					lNode = myNode(node.nodeId, node.lchildId, self.device, False, leftNodeDict['level'],node)
 					isLeafLeft = leftNodeDict['isLeaf']
 					leftChildId = leftNodeDict['lchildId']
 					rightChildId = leftNodeDict['rchildId']
@@ -223,7 +221,7 @@ class Tree:
 						ckptRight = torch.load(options.ckptDir+'/node_cnn_'+str(node.rchildId)+'.pth')['labelMap']
 						noOfRightClasses = len(ckptRight)
 						
-					rNode = Node(node.nodeId, node.rchildId, self.device, False, rightNodeDict['level'])
+					rNode = myNode(node.nodeId, node.rchildId, self.device, False, rightNodeDict['level'], node)
 					isLeafRight = rightNodeDict['isLeaf']
 					leftChildId = rightNodeDict['lchildId']
 					rightChildId = rightNodeDict['rchildId']
@@ -249,7 +247,58 @@ class Tree:
 		total = len(testPredDict['actual'])
 		print('Acc: %.3f'% (100.*correct/total))
 
-			
+	
+	def printTree(self):
+		nodeId=1
+		rootNodeDict = torch.load(options.ckptDir+'/node_'+str(nodeId)+'.pth')['nodeDict']
+		rootNode = myNode(parentId=rootNodeDict['parentId'], nodeId=rootNodeDict['nodeId'], device=self.device, isTrain=False, level=rootNodeDict['level'], parentNode=None)
+
+		q = []
+		q.append(rootNode)
+		start = 0
+		end = 1
+		while start != end:
+			node = q[start]
+			start+=1
+			currNodeDict = torch.load(options.ckptDir+'/node_'+str(node.nodeId)+'.pth')['nodeDict']
+			node.isLeaf = currNodeDict['isLeaf']
+			node.lchildId = currNodeDict['lchildId']
+			node.rchildId = currNodeDict['rchildId']
+			node.level	= 	currNodeDict['level']
+			node.leafClass = currNodeDict['leafClass']
+			node.numClasses = currNodeDict['numClasses']
+			node.numData = currNodeDict['numData']
+			node.classLabels = currNodeDict['classLabels']
+			node.giniGain = currNodeDict['giniGain']
+
+			if not node.isLeaf:
+				if not (node.rchildId == -1):
+					rNode = myNode(node.nodeId, node.rchildId, self.device, False, 0, node)
+					q.append(rNode)
+					end+=1
+
+				if not (node.lchildId == -1):
+					lNode = myNode(node.nodeId, node.lchildId, self.device, False, 0, node)
+					q.append(lNode)
+					end+=1
+				
+		
+		print()
+		print_tree(rootNode, "children", "nodeId", horizontal=False)	
+		print()	
+		print_tree(rootNode, "children", "leafClass", horizontal=False)		
+		print()	
+		print_tree(rootNode, "children", "isLeaf", horizontal=False)
+		print()	
+		print_tree(rootNode, "children", "numClasses", horizontal=False)
+		print()
+		print_tree(rootNode, "children", "numData", horizontal=False)
+		print()	
+		print_tree(rootNode, "children", "classLabels", horizontal=False)
+		print()	
+		print_tree(rootNode, "children", "giniGain", horizontal=False)
+		print()	
+
 			
 def load_image(path):
 	img = cv2.imread(path)
@@ -329,11 +378,11 @@ def loadNewDictionaries():
 	trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform_train)
 	class_labels = trainset.targets
 
-	# train_idx, valid_idx= train_test_split(
-	# np.arange(len(class_labels)),
-	# test_size=0.2,
-	# shuffle=True,
-	# stratify=class_labels)
+	# train_batch_sampler = StratifiedSampler(class_labels, 10000)
+
+
+
+	'''   -->  PREPEND # FOR NO VALIDATION
 	train_idx, valid_idx= train_test_split(
 	np.arange(len(class_labels)),
 	test_size=0.0002,
@@ -343,16 +392,9 @@ def loadNewDictionaries():
 	train_sampler = torch.utils.data.SubsetRandomSampler(train_idx)
 	valid_sampler = torch.utils.data.SubsetRandomSampler(valid_idx)
 
-	# train_batch_sampler = StratifiedSampler(class_labels, 10000)
-
-	# print(len(train_idx))
-	# print(train_idx)
-
-	# train_loader = torch.utils.data.DataLoader(trainset, batch_size=40000, sampler=train_sampler, num_workers=4)
 	train_loader = torch.utils.data.DataLoader(trainset, batch_size=49900, sampler=train_sampler, num_workers=4)
-	# valid_loader = torch.utils.data.DataLoader(trainset, batch_size=10000, sampler=valid_sampler, num_workers=4)
-	valid_loader = torch.utils.data.DataLoader(trainset, batch_size=100, sampler=valid_sampler, num_workers=4)
-
+	valid_loader = torch.utils.data.DataLoader(trainset, batch_size=10, sampler=valid_sampler, num_workers=4)
+	
 	iterator = iter(train_loader)
 	c1 = next(iterator)
 	trainData = c1[0].clone().detach()
@@ -362,9 +404,20 @@ def loadNewDictionaries():
 	c2 = next(vIterator)
 	valData = c2[0].clone().detach()
 	valLabels = c2[1].clone().detach()
+	
 
-	# print(trainData.shape)
-	# print(valData.shape)
+	'''
+	train_loader = torch.utils.data.DataLoader(trainset, batch_size=50000, num_workers=4)
+	iterator = iter(train_loader)
+	c1 = next(iterator)
+	trainData = c1[0].clone().detach()
+	trainLabels = c1[1].clone().detach()
+
+	valData=torch.empty(0)
+	valLabels=torch.empty(0)
+	# '''
+
+
 
 	testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform_test)
 	testloader = torch.utils.data.DataLoader(testset, batch_size=10000, shuffle=False)
@@ -390,6 +443,6 @@ if __name__ == '__main__':
 	
 	if options.trainFlg == True:
 		tree.tree_traversal(trainInputDict, valInputDict)
-		# tree.tree_traversal(valInputDict, valInputDict)
 	tree.testTraversal(testInputDict)
 
+	tree.printTree()

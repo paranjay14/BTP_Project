@@ -1,5 +1,6 @@
 import argparse
 import sys
+import os
 
 def getOptions(args=sys.argv[1:]):
     parser = argparse.ArgumentParser(description="Parses command.")
@@ -15,3 +16,11 @@ def getOptions(args=sys.argv[1:]):
     return options
 
 options = getOptions(sys.argv[1:])
+
+if not os.path.isdir(options.ckptDir+'/'):
+		os.mkdir(options.ckptDir+'/')
+
+if options.trainFlg == True:
+	with open(options.ckptDir+r"/options.txt","w") as f:
+		L = ["options.ckptDir:\t" + options.ckptDir + "\n","options.maxDepth:\t" + str(options.maxDepth) + "\n","options.cnnLR:\t" + str(options.cnnLR) + "\n","options.mlpLR:\t" + str(options.mlpLR) + "\n","options.cnnEpochs:\t" + str(options.cnnEpochs) + "\n","options.mlpEpochs:\t" + str(options.mlpEpochs) + "\n"]
+		f.writelines(L)
