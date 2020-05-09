@@ -2,8 +2,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from cnn import CNN
-# from mlp import MLP
-from mlp_small import MLP
+from mlp import MLP
+# from mlp_small import MLP
 from torchsummary import summary
 import time
 from sklearn.cluster import KMeans
@@ -26,6 +26,7 @@ class myNode:
 		self.device = device
 		self.isTrain = isTrain
 		self.level = level
+		self.splitAcc = 0.0
 		self.children = []
 		if parentNode:
 			parentNode.children.append(self)
@@ -47,12 +48,13 @@ class myNode:
 		self.numClasses = numClasses
 		self.giniValue = giniValue
 		self.giniGain = 0.0
+		self.splitAcc = 0.0
 		self.isLeaf = isLeaf
 		self.leafClass = leafClass
 		self.lchildId = lchildId
 		self.rchildId = rchildId
 		self.numData = trainInputDict["data"].shape[0]
-		self.classLabels = np.unique(trainInputDict["label"].numpy())
+		self.classLabels = { l:cnt for l,cnt in zip(*np.unique(trainInputDict["label"].numpy(),return_counts=True))}
 		print("nodeId:", self.nodeId, ",  parentId:", self.parentId, ",  level:", self.level, ",  lchildId:", self.lchildId, ",  rchildId:", self.rchildId, ",  isLeaf:", self.isLeaf, ",  leafClass:", self.leafClass, ",  numClasses:", self.numClasses, ",  numData:", self.numData)
 
 	def trainCNN(self, labelMap, reverseLabelMap):
@@ -68,6 +70,9 @@ class myNode:
 
 		numBatches = 100
 		batchSize = int((len(trainInputs))/(numBatches-1))
+		if(batchSize<5):
+			batchSize=int(len(trainInputs))
+			numBatches=1
 		numEpochs = options.cnnEpochs
 
 		st_btch = 0
@@ -136,6 +141,9 @@ class myNode:
 
 		numBatches = 200
 		batchSize = int((len(trainInputs))/(numBatches-1))
+		if(batchSize<3):
+			batchSize=int(len(trainInputs))
+			numBatches=1
 
 		st_btch = 0
 		batch_sep = []
@@ -329,18 +337,29 @@ class myNode:
 
 	def makeFinalDict(self, leftSortedListOfTuples, rightSortedListOfTuples, expected_dict):
 		final_dict = expected_dict
-		# final_dict = {}
-		# for ind, element in enumerate(leftSortedListOfTuples):
-		# 	if ind >= self.numClasses/2:
-		# 		final_dict[element[0]] = 1
-		# 	else:
-		# 		final_dict[element[0]] = 0  
+		final_dict = {}
+		fullDict = {}
 
-		# for ind, element in enumerate(rightSortedListOfTuples):
-		# 	if ind >= self.numClasses/2:
-		# 		final_dict[element[0]] = 0
-		# 	else:
-		# 		final_dict[element[0]] = 1             
+		for ind, element in enumerate(leftSortedListOfTuples):
+			fullDict[element[0]] = element[1]
+			if ind >= self.numClasses/2:
+				final_dict[element[0]] = 1
+			else:
+				final_dict[element[0]] = 0  
+
+		for ind, element in enumerate(rightSortedListOfTuples):
+			if element[0] not in fullDict:
+				fullDict[element[0]] = -1*element[1]
+
+			if ind >= self.numClasses/2:
+				final_dict[element[0]] = 0
+			else:
+				final_dict[element[0]] = 1        
+
+		fullSortedListOfTuples = sorted(fullDict.items(), reverse=True, key=lambda x: (x[1],x[0]))
+
+		# if (self.numClasses%2 == 1):
+		# 	final_dict[fullSortedListOfTuples[int(self.numClasses/2)][0]] = -1
 
 		print("Printing final_dict items...")
 		print(final_dict)
@@ -394,49 +413,55 @@ class myNode:
 	def countBalanceAndThreshold(self, mlpPrediction, labelMap):
 		final_dict = self.getSavedFinalSplit()
 		lclasses, rclasses = self.doLabelCounting(mlpPrediction)
-		totalLeftImages = 0.0
-		totalRightImages = 0.0
+		# totalLeftImages = 0.0
+		# totalRightImages = 0.0
 		maxLeftClasses = 0.0
 		maxRightClasses = 0.0
 		testCorrectResults = 0.0
 		# print(final_dict)
 		for i, val in enumerate(lclasses):
-			totalLeftImages += val
-			if not self.isTrain and (i in labelMap) and final_dict[labelMap[i]] == 0:
+			# totalLeftImages += val
+			if not self.isTrain and (i in labelMap) and (final_dict[labelMap[i]] == 0 or final_dict[labelMap[i]] == -1):
 				testCorrectResults += val
 			maxLeftClasses = max(maxLeftClasses, val)
 
 		for i, val in enumerate(rclasses):
-			totalRightImages += val
-			if not self.isTrain and (i in labelMap) and final_dict[labelMap[i]] == 1:
+			# totalRightImages += val
+			if not self.isTrain and (i in labelMap) and (final_dict[labelMap[i]] == 1 or final_dict[labelMap[i]] == -1):
 				testCorrectResults += val
 			maxRightClasses = max(maxRightClasses, val)
 
 		if not self.isTrain:
 			total = float(len(self.trainInputDict["label"]))
-			print('Split Acc: %.3f'% (100.*testCorrectResults/total))
+			splitAcc = float(100.*testCorrectResults/total)
+			print('Split Acc: %.3f'% (splitAcc))
+			NodeDict = torch.load(options.ckptDir+'/node_'+str(self.nodeId)+'.pth')['nodeDict']
+			NodeDict['splitAcc'] = splitAcc
+			torch.save({
+				'nodeDict':NodeDict,
+				}, options.ckptDir+'/node_'+str(self.nodeId)+'.pth')
 
 		leftClassesToBeRemoved = []
 		rightClassesToBeRemoved = []
 
-		threshold = 15.0
-		for i, val in enumerate(lclasses):
-			if float(100*val)/maxLeftClasses < threshold:
-				leftClassesToBeRemoved.append(i)
+		# threshold = 15.0
+		# for i, val in enumerate(lclasses):
+		# 	if float(100*val)/maxLeftClasses < threshold:
+		# 		leftClassesToBeRemoved.append(i)
 
-		for i, val in enumerate(rclasses):
-			if float(100*val)/maxRightClasses < threshold:
-				rightClassesToBeRemoved.append(i)
+		# for i, val in enumerate(rclasses):
+		# 	if float(100*val)/maxRightClasses < threshold:
+		# 		rightClassesToBeRemoved.append(i)
 		
-		return totalLeftImages, totalRightImages, maxLeftClasses, maxRightClasses, testCorrectResults, leftClassesToBeRemoved, rightClassesToBeRemoved
+		return maxLeftClasses, maxRightClasses, testCorrectResults, leftClassesToBeRemoved, rightClassesToBeRemoved
 
 	def getPredictionAnalysis(self, totalLeftImages, totalRightImages, lclasses, rclasses):
 		giniLeftRatio = 0.0
 		giniRightRatio = 0.0
 		lcheck = 0.0
 		rcheck = 0.0
-		print("# of Actaul Left images acc to Kmeans: ", totalLeftImages)
-		print("# of Actual Right images acc to Kmeans: ", totalRightImages)
+		print("# of Left images: ", totalLeftImages)
+		print("# of Right images: ", totalRightImages)
 		noOfLeftClasses = 0
 		noOfRightClasses = 0
 		for i in lclasses:
@@ -473,7 +498,9 @@ class myNode:
 
 
 	def classifyLabels(self, mlpPrediction, image_next, reverseLabelMap, labelMap):
-		totalLeftImages, totalRightImages, maxLeftClasses, maxRightClasses, testCorrectResults, leftClassesToBeRemoved, rightClassesToBeRemoved = self.countBalanceAndThreshold(mlpPrediction, labelMap)
+		maxLeftClasses, maxRightClasses, testCorrectResults, leftClassesToBeRemoved, rightClassesToBeRemoved = self.countBalanceAndThreshold(mlpPrediction, labelMap)
+		totalLeftImages = 0.0
+		totalRightImages = 0.0
 		trainLimages = []
 		trainRimages = []
 		trainLLabels = []
@@ -485,52 +512,81 @@ class myNode:
 		maxLeftClassIndex=-1
 		maxRightClassIndex=-1
 		final_dict = self.getSavedFinalSplit()
+		splitClassIndx = -1
+		splitClassCnt = -1
+		leftSplitClassCnt = 0
+		rightSplitClassCnt = 0
+		lmaxSplitClassCnt = 0
+		rmaxSplitClassCnt = 0
+		# resDict = dict(zip(self.trainInputDict["label"].tolist(), mlpPrediction.tolist()))
+
+
+		for k,v in final_dict.items():
+			if v == -1:
+				splitClassIndx = k
+				splitClassCnt = (self.trainInputDict["label"].tolist()).count(splitClassIndx)
+				lmaxSplitClassCnt = int((splitClassCnt+1)/2)
+				rmaxSplitClassCnt = int(splitClassCnt/2)
+				break
+
 
 		for i, val in enumerate(mlpPrediction):
+			label = self.trainInputDict["label"][i].item()
 			# print("i : ", i)
 			if val<=0.5:
 				if self.isTrain:
-					# if not (self.trainInputDict["label"][i].item() in leftClassesToBeRemoved):
-					if final_dict[self.trainInputDict["label"][i].item()] == 0:
+					### if not (label in leftClassesToBeRemoved):
+					if (final_dict[label] == 0) or ((final_dict[label] == -1) and leftSplitClassCnt<lmaxSplitClassCnt):
 						trainLimages.append((image_next[i].detach()).tolist())
-						lclasses[self.trainInputDict["label"][i].item()]+=1
-						trainLLabels.append(reverseLabelMap[self.trainInputDict["label"][i].item()])
-						if lclasses[self.trainInputDict["label"][i].item()] > maxLeft:
-							maxLeft = lclasses[self.trainInputDict["label"][i].item()]
-							maxLeftClassIndex = reverseLabelMap[self.trainInputDict["label"][i].item()]
+						lclasses[label]+=1
+						trainLLabels.append(reverseLabelMap[label])
+						if (final_dict[label] == -1):
+							leftSplitClassCnt += 1
+						if lclasses[label] > maxLeft:
+							maxLeft = lclasses[label]
+							maxLeftClassIndex = reverseLabelMap[label]
 					else:
 						trainRimages.append((image_next[i].detach()).tolist())
-						rclasses[self.trainInputDict["label"][i].item()]+=1
-						trainRLabels.append(reverseLabelMap[self.trainInputDict["label"][i].item()])
-						if rclasses[self.trainInputDict["label"][i].item()] > maxRight:
-							maxRight = rclasses[self.trainInputDict["label"][i].item()]
-							maxRightClassIndex = reverseLabelMap[self.trainInputDict["label"][i].item()]
+						rclasses[label]+=1
+						trainRLabels.append(reverseLabelMap[label])
+						if (final_dict[label] == -1):
+							rightSplitClassCnt += 1
+						if rclasses[label] > maxRight:
+							maxRight = rclasses[label]
+							maxRightClassIndex = reverseLabelMap[label]
 				else:
 					trainLimages.append((image_next[i].detach()).tolist())
-					lclasses[self.trainInputDict["label"][i].item()]+=1
-					trainLLabels.append(self.trainInputDict["label"][i].item())
+					lclasses[label]+=1
+					trainLLabels.append(label)
 
 			else:
 				if self.isTrain:
-					# if not (self.trainInputDict["label"][i].item() in rightClassesToBeRemoved):
-					if final_dict[self.trainInputDict["label"][i].item()] == 1:
+					### if not (label in rightClassesToBeRemoved):
+					if (final_dict[label] == 1) or ((final_dict[label] == -1) and leftSplitClassCnt>=lmaxSplitClassCnt):
 						trainRimages.append((image_next[i].detach()).tolist())
-						rclasses[self.trainInputDict["label"][i].item()]+=1
-						trainRLabels.append(reverseLabelMap[self.trainInputDict["label"][i].item()])
-						if rclasses[self.trainInputDict["label"][i].item()] > maxRight:
-							maxRight = rclasses[self.trainInputDict["label"][i].item()]
-							maxRightClassIndex = reverseLabelMap[self.trainInputDict["label"][i].item()]
+						rclasses[label]+=1
+						trainRLabels.append(reverseLabelMap[label])
+						if (final_dict[label] == -1):
+							rightSplitClassCnt += 1
+						if rclasses[label] > maxRight:
+							maxRight = rclasses[label]
+							maxRightClassIndex = reverseLabelMap[label]
 					else:
 						trainLimages.append((image_next[i].detach()).tolist())
-						lclasses[self.trainInputDict["label"][i].item()]+=1
-						trainLLabels.append(reverseLabelMap[self.trainInputDict["label"][i].item()])
-						if lclasses[self.trainInputDict["label"][i].item()] > maxLeft:
-							maxLeft = lclasses[self.trainInputDict["label"][i].item()]
-							maxLeftClassIndex = reverseLabelMap[self.trainInputDict["label"][i].item()]
+						lclasses[label]+=1
+						trainLLabels.append(reverseLabelMap[label])
+						if (final_dict[label] == -1):
+							leftSplitClassCnt += 1
+						if lclasses[label] > maxLeft:
+							maxLeft = lclasses[label]
+							maxLeftClassIndex = reverseLabelMap[label]
 				else:
 					trainRimages.append((image_next[i].detach()).tolist())
-					rclasses[self.trainInputDict["label"][i].item()]+=1
-					trainRLabels.append(self.trainInputDict["label"][i].item())
+					rclasses[label]+=1
+					trainRLabels.append(label)
+
+		totalLeftImages += float(len(trainLLabels))
+		totalRightImages += float(len(trainRLabels))
 
 		lTrainDict = {"data":torch.tensor(trainLimages), "label":torch.tensor(trainLLabels)}
 		rTrainDict = {"data":torch.tensor(trainRimages), "label":torch.tensor(trainRLabels)}
@@ -567,6 +623,12 @@ class myNode:
 
 
 	def workTest(self):
+		NodeDict = torch.load(options.ckptDir+'/node_'+str(self.nodeId)+'.pth')['nodeDict']
+		NodeDict['splitAcc'] = 0.0
+		torch.save({
+			'nodeDict':NodeDict,
+			}, options.ckptDir+'/node_'+str(self.nodeId)+'.pth')
+
 		if not (self.leafClass == -1):
 			x=torch.Tensor(1,1).long()
 			x[0] = 1
@@ -613,24 +675,45 @@ class myNode:
 		weightVector = []
 		countImageRight = 0
 		countImageLeft = 0
+
+		# countImageRight = int(np.sum(cluster_ids))
+		# countImageLeft = countImageTotal - countImageRight
+		leftSplitClassCnt = 0
+		rightSplitClassCnt = 0
+		lmaxSplitClassCnt = 0
+		rmaxSplitClassCnt = 0
+
 		for label, count in zip(*np.unique(self.trainInputDict['label'], return_counts=True)):
 			if final_dict[label] == 0:
 				countImageLeft += count
-			else:
+			elif final_dict[label] == 1:
 				countImageRight += count
-		print("Image Statistics : L R : ", countImageLeft, countImageRight)
+			else:
+				countImageLeft += int((count+1)/2)
+				countImageRight += int((count)/2)
+				lmaxSplitClassCnt = int((count+1)/2)
+				rmaxSplitClassCnt = int(count/2)
+
+
+		print("Image Statistics before MLP : L R : ", countImageLeft, countImageRight)
 		minCountImage = min(countImageLeft, countImageRight)
 		for i in range(len(self.trainInputDict["data"])):
 			label = self.trainInputDict["label"][i].item()
-			expectedMlpLabels.append(final_dict[label])
 			
 			# expectedMlpLabels.append(cluster_ids[i])
-			if final_dict[label] == 0:
-				weightVector.append(minCountImage/countImageLeft)
-			else:
-				weightVector.append(minCountImage/countImageRight)
+			# if cluster_ids[i] == 0:
 
-		# expectedMlpLabels = torch.tensor(expectedMlpLabels, device=self.device)
+			if (final_dict[label] == 0) or ((final_dict[label] == -1) and (leftSplitClassCnt<lmaxSplitClassCnt)):
+				expectedMlpLabels.append(0)
+				weightVector.append(minCountImage/countImageLeft)
+				if (final_dict[label] == -1):
+					leftSplitClassCnt += 1
+			else:
+				expectedMlpLabels.append(1)
+				weightVector.append(minCountImage/countImageRight)
+				if (final_dict[label] == -1):
+					rightSplitClassCnt += 1
+
 		expectedMlpLabels = torch.tensor(expectedMlpLabels).cpu()
 		weightVector = torch.tensor(weightVector, dtype=torch.float32).cpu()
 		# print(weightVector)
@@ -652,6 +735,7 @@ class myNode:
 		nodeDict['numData'] = self.numData
 		nodeDict['classLabels'] = self.classLabels
 		nodeDict['giniGain'] = self.giniGain
+		nodeDict['splitAcc'] = self.splitAcc
 
 		torch.save({
 					'nodeDict':nodeDict,

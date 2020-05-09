@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 from getOptions import getOptions
 from pptree import *
+import random
 # from resources.plotcm import plot_confusion_matrix
 # from queue import Queue
 
@@ -101,7 +102,7 @@ class Tree:
 		return isLeafLeft, isLeafRight, isemptyNodeLeft, isemptyNodeRight, leftLeafClass, rightLeafClass
 
 
-	def tree_traversal(self, trainInputDict, valInputDict):
+	def tree_traversal(self, trainInputDict, valInputDict, resumeTrain, resumeFromNodeId):
 		rootNode = myNode(parentId=0, nodeId=1, device=self.device, isTrain=True, level=0, parentNode=None)
 		if self.maxDepth == 0:
 			rootNode.setInput(trainInputDict=trainInputDict, valInputDict=valInputDict, numClasses=self.numClasses, giniValue=0.9, isLeaf=True, leafClass=-1, lchildId=-1, rchildId=-1)
@@ -117,11 +118,15 @@ class Tree:
 			print("Running nodeId: ", node.nodeId)
 			start+=1
 			if not node.isLeaf:
-				# lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.work()
-				lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, handleLeafDict = node.workTrain()
+				if (resumeTrain) and (node.nodeId<resumeFromNodeId):
+					lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, handleLeafDict = node.workTest()
+				else:
+					lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, handleLeafDict = node.workTrain()
 			else:
-				# node.work()
-				node.workTrain()
+				if (resumeTrain) and (node.nodeId<resumeFromNodeId):
+					node.workTest()
+				else:
+					node.workTrain()
 
 			if not node.isLeaf:
 				isLeafLeft, isLeafRight, isemptyNodeLeft, isemptyNodeRight, leftLeafClass, rightLeafClass = self.checkLeafNodes(handleLeafDict)
@@ -188,10 +193,8 @@ class Tree:
 			node = q[start]
 			start+=1
 			if not node.isLeaf:
-				# lTrainDict, rTrainDict,  giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.work()
 				lTrainDict, rTrainDict,  giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.workTest()
 			else:
-				# node.work()
 				node.workTest()
 			if not node.isLeaf:
 
@@ -270,17 +273,19 @@ class Tree:
 			node.numData = currNodeDict['numData']
 			node.classLabels = currNodeDict['classLabels']
 			node.giniGain = currNodeDict['giniGain']
+			node.splitAcc = currNodeDict['splitAcc']
 
 			if not node.isLeaf:
+				if not (node.lchildId == -1):
+					lNode = myNode(node.nodeId, node.lchildId, self.device, False, node.level+1, node)
+					q.append(lNode)
+					end+=1
+
 				if not (node.rchildId == -1):
-					rNode = myNode(node.nodeId, node.rchildId, self.device, False, 0, node)
+					rNode = myNode(node.nodeId, node.rchildId, self.device, False, node.level+1, node)
 					q.append(rNode)
 					end+=1
 
-				if not (node.lchildId == -1):
-					lNode = myNode(node.nodeId, node.lchildId, self.device, False, 0, node)
-					q.append(lNode)
-					end+=1
 				
 		
 		print()
@@ -288,13 +293,15 @@ class Tree:
 		print()	
 		print_tree(rootNode, "children", "leafClass", horizontal=False)		
 		print()	
-		print_tree(rootNode, "children", "isLeaf", horizontal=False)
-		print()	
-		print_tree(rootNode, "children", "numClasses", horizontal=False)
-		print()
+		# print_tree(rootNode, "children", "isLeaf", horizontal=False)
+		# print()	
+		# print_tree(rootNode, "children", "numClasses", horizontal=False)
+		# print()
 		print_tree(rootNode, "children", "numData", horizontal=False)
 		print()	
 		print_tree(rootNode, "children", "classLabels", horizontal=False)
+		print()	
+		print_tree(rootNode, "children", "splitAcc", horizontal=False)
 		print()	
 		print_tree(rootNode, "children", "giniGain", horizontal=False)
 		print()	
@@ -354,6 +361,14 @@ def loadDictionaries(rootPath):
 
 
 def loadNewDictionaries():
+
+	torch.manual_seed(0)
+	torch.cuda.manual_seed(0)
+	np.random.seed(0)
+	random.seed(0)
+
+	torch.backends.cudnn.deterministic=True
+
 	if not os.path.isdir('data/'):
 		# print("naf")
 		os.mkdir('data/')
@@ -392,8 +407,8 @@ def loadNewDictionaries():
 	train_sampler = torch.utils.data.SubsetRandomSampler(train_idx)
 	valid_sampler = torch.utils.data.SubsetRandomSampler(valid_idx)
 
-	train_loader = torch.utils.data.DataLoader(trainset, batch_size=49900, sampler=train_sampler, num_workers=4)
-	valid_loader = torch.utils.data.DataLoader(trainset, batch_size=10, sampler=valid_sampler, num_workers=4)
+	train_loader = torch.utils.data.DataLoader(trainset, batch_size=49900, sampler=train_sampler, num_workers=0)
+	valid_loader = torch.utils.data.DataLoader(trainset, batch_size=10, sampler=valid_sampler, num_workers=0)
 	
 	iterator = iter(train_loader)
 	c1 = next(iterator)
@@ -407,7 +422,7 @@ def loadNewDictionaries():
 	
 
 	'''
-	train_loader = torch.utils.data.DataLoader(trainset, batch_size=50000, num_workers=4)
+	train_loader = torch.utils.data.DataLoader(trainset, batch_size=50000, num_workers=0)
 	iterator = iter(train_loader)
 	c1 = next(iterator)
 	trainData = c1[0].clone().detach()
@@ -439,10 +454,15 @@ if __name__ == '__main__':
 	print("len(trainInputDict[\"data\"]): ",len(trainInputDict["data"]), ",  len(valInputDict[\"data\"]): ",len(valInputDict["data"]), ",  len(testInputDict[\"data\"]): ",len(testInputDict["data"]))		
 	device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-	tree = Tree(device, maxDepth=options.maxDepth, classThreshold = 2, dataNumThreshold = 1, numClasses = 10)
+	tree = Tree(device, maxDepth=options.maxDepth, classThreshold = 2, dataNumThreshold = 100, numClasses = 10)
 	
 	if options.trainFlg == True:
-		tree.tree_traversal(trainInputDict, valInputDict)
+		resumeFromNodeId = -1
+		tree.tree_traversal(trainInputDict, valInputDict, resumeTrain=False, resumeFromNodeId=resumeFromNodeId)
+
+		# resumeFromNodeId = 27
+		# tree.tree_traversal(trainInputDict, valInputDict, resumeTrain=True, resumeFromNodeId=resumeFromNodeId)
+
 	tree.testTraversal(testInputDict)
 
 	tree.printTree()

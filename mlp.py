@@ -4,7 +4,7 @@ import torch.nn.functional as F
 from torchsummary import summary
 
 class MLP(nn.Module):
-    def __init__(self, num_features):
+    def __init__(self, num_features, use_bn):
         super(MLP, self).__init__()
         self.fc_layer_1 = nn.Linear(in_features=num_features, out_features=512) # remember to check this when num_features decrease!!
         self.fc_layer_2 = nn.Linear(in_features=512, out_features=256)

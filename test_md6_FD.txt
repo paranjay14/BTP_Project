@@ -1,0 +1,270 @@
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+len(trainInputDict["data"]):  50000 ,  len(valInputDict["data"]):  0 ,  len(testInputDict["data"]):  10000
+nodeId:  1 , imgTensorShape :  torch.Size([10000, 3, 32, 32])
+nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: 2 ,  rchildId: 3 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 10000
+Node 1 Acc: 60.460
+Split Acc: 86.490
+# of Left images:  4955.0
+# of Right images:  5045.0
+giniRightRatio:  0.8436606517556069
+giniLeftRatio:  0.8415954284829867
+impurityDrop:  0.8416322709199611
+giniGain:  0.058367729080038955
+lclasses:  [921, 955, 582, 161, 167, 110, 106, 109, 944, 900]
+rclasses:  [79, 45, 418, 839, 833, 890, 894, 891, 56, 100]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([4955, 16, 28, 28])   lTrainDict[label].shape:  torch.Size([4955])
+rTrainDict[data].shape:  torch.Size([5045, 16, 28, 28])   rTrainDict[label].shape:  torch.Size([5045])
+RETURNING FROM WORK...
+nodeId:  2 , imgTensorShape :  torch.Size([4955, 16, 28, 28])
+nodeId: 2 ,  parentId: 1 ,  level: 1 ,  lchildId: 4 ,  rchildId: 5 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 5 ,  numData: 4955
+nodeId:  3 , imgTensorShape :  torch.Size([5045, 16, 28, 28])
+nodeId: 3 ,  parentId: 1 ,  level: 1 ,  lchildId: 6 ,  rchildId: 7 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 5 ,  numData: 5045
+Nodes sizes =  5 5
+Node 2 Acc: 66.963
+Split Acc: 78.022
+# of Left images:  2084.0
+# of Right images:  2871.0
+giniRightRatio:  0.7854999386725688
+giniLeftRatio:  0.6721142900298777
+impurityDrop:  0.7031956224860942
+giniGain:  0.1383998059968925
+lclasses:  [800, 57, 94, 45, 55, 19, 21, 33, 870, 90]
+rclasses:  [121, 898, 488, 116, 112, 91, 85, 76, 74, 810]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([2084, 16, 24, 24])   lTrainDict[label].shape:  torch.Size([2084])
+rTrainDict[data].shape:  torch.Size([2871, 16, 24, 24])   rTrainDict[label].shape:  torch.Size([2871])
+RETURNING FROM WORK...
+nodeId:  4 , imgTensorShape :  torch.Size([2084, 16, 24, 24])
+nodeId: 4 ,  parentId: 2 ,  level: 2 ,  lchildId: 8 ,  rchildId: 9 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2 ,  numData: 2084
+nodeId:  5 , imgTensorShape :  torch.Size([2871, 16, 24, 24])
+nodeId: 5 ,  parentId: 2 ,  level: 2 ,  lchildId: 10 ,  rchildId: 11 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3 ,  numData: 2871
+Nodes sizes =  2 3
+Node 3 Acc: 56.036
+Split Acc: 73.677
+# of Left images:  2007.0
+# of Right images:  3038.0
+giniRightRatio:  0.7929264211365279
+giniLeftRatio:  0.7329970414957714
+impurityDrop:  0.753335155521321
+giniGain:  0.09032549623428587
+lclasses:  [41, 18, 198, 149, 616, 73, 787, 84, 16, 25]
+rclasses:  [38, 27, 220, 690, 217, 817, 107, 807, 40, 75]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([2007, 16, 24, 24])   lTrainDict[label].shape:  torch.Size([2007])
+rTrainDict[data].shape:  torch.Size([3038, 16, 24, 24])   rTrainDict[label].shape:  torch.Size([3038])
+RETURNING FROM WORK...
+nodeId:  6 , imgTensorShape :  torch.Size([2007, 16, 24, 24])
+nodeId: 6 ,  parentId: 3 ,  level: 2 ,  lchildId: 12 ,  rchildId: 13 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2 ,  numData: 2007
+nodeId:  7 , imgTensorShape :  torch.Size([3038, 16, 24, 24])
+nodeId: 7 ,  parentId: 3 ,  level: 2 ,  lchildId: 14 ,  rchildId: 15 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3 ,  numData: 3038
+Nodes sizes =  2 3
+Node 4 Acc: 71.305
+Split Acc: 71.881
+# of Left images:  1040.0
+# of Right images:  1044.0
+giniRightRatio:  0.4126132176568165
+giniLeftRatio:  0.5234763313609467
+impurityDrop:  0.5230515684731915
+giniGain:  0.1490627215566862
+lclasses:  [706, 29, 71, 26, 36, 10, 14, 23, 78, 47]
+rclasses:  [94, 28, 23, 19, 19, 9, 7, 10, 792, 43]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([1040, 16, 20, 20])   lTrainDict[label].shape:  torch.Size([1040])
+rTrainDict[data].shape:  torch.Size([1044, 16, 20, 20])   rTrainDict[label].shape:  torch.Size([1044])
+RETURNING FROM WORK...
+nodeId:  8 , imgTensorShape :  torch.Size([1040, 16, 20, 20])
+nodeId: 8 ,  parentId: 4 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 0 ,  numClasses: 1 ,  numData: 1040
+nodeId:  9 , imgTensorShape :  torch.Size([1044, 16, 20, 20])
+nodeId: 9 ,  parentId: 4 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 8 ,  numClasses: 1 ,  numData: 1044
+Nodes sizes =  1 1
+Node 5 Acc: 66.736
+Split Acc: 68.791
+# of Left images:  991.0
+# of Right images:  1880.0
+giniRightRatio:  0.7733363512901765
+giniLeftRatio:  0.36304541071459484
+impurityDrop:  0.557060648039963
+giniGain:  0.22843929063260582
+lclasses:  [24, 784, 13, 19, 4, 7, 9, 11, 26, 94]
+rclasses:  [97, 114, 475, 97, 108, 84, 76, 65, 48, 716]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([991, 16, 20, 20])   lTrainDict[label].shape:  torch.Size([991])
+rTrainDict[data].shape:  torch.Size([1880, 16, 20, 20])   rTrainDict[label].shape:  torch.Size([1880])
+RETURNING FROM WORK...
+nodeId:  10 , imgTensorShape :  torch.Size([991, 16, 20, 20])
+nodeId: 10 ,  parentId: 5 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 1 ,  numClasses: 1 ,  numData: 991
+nodeId:  11 , imgTensorShape :  torch.Size([1880, 16, 20, 20])
+nodeId: 11 ,  parentId: 5 ,  level: 3 ,  lchildId: 16 ,  rchildId: 17 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2 ,  numData: 1880
+Nodes sizes =  1 2
+Node 6 Acc: 63.528
+Split Acc: 64.275
+# of Left images:  1087.0
+# of Right images:  920.0
+giniRightRatio:  0.617726843100189
+giniLeftRatio:  0.5125676113709822
+impurityDrop:  0.4934789247418762
+giniGain:  0.23951811675389517
+lclasses:  [20, 12, 92, 85, 70, 26, 744, 10, 7, 21]
+rclasses:  [21, 6, 106, 64, 546, 47, 43, 74, 9, 4]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([1087, 16, 20, 20])   lTrainDict[label].shape:  torch.Size([1087])
+rTrainDict[data].shape:  torch.Size([920, 16, 20, 20])   rTrainDict[label].shape:  torch.Size([920])
+RETURNING FROM WORK...
+nodeId:  12 , imgTensorShape :  torch.Size([1087, 16, 20, 20])
+nodeId: 12 ,  parentId: 6 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 6 ,  numClasses: 1 ,  numData: 1087
+nodeId:  13 , imgTensorShape :  torch.Size([920, 16, 20, 20])
+nodeId: 13 ,  parentId: 6 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 4 ,  numClasses: 1 ,  numData: 920
+Nodes sizes =  1 1
+Node 7 Acc: 53.522
+Split Acc: 67.907
+# of Left images:  1017.0
+# of Right images:  2021.0
+giniRightRatio:  0.748976910181834
+giniLeftRatio:  0.5219604965343342
+impurityDrop:  0.6347385664512515
+giniGain:  0.1581878546852764
+lclasses:  [8, 8, 47, 61, 87, 72, 11, 689, 7, 27]
+rclasses:  [30, 19, 173, 629, 130, 745, 96, 118, 33, 48]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([1017, 16, 20, 20])   lTrainDict[label].shape:  torch.Size([1017])
+rTrainDict[data].shape:  torch.Size([2021, 16, 20, 20])   rTrainDict[label].shape:  torch.Size([2021])
+RETURNING FROM WORK...
+nodeId:  14 , imgTensorShape :  torch.Size([1017, 16, 20, 20])
+nodeId: 14 ,  parentId: 7 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 7 ,  numClasses: 1 ,  numData: 1017
+nodeId:  15 , imgTensorShape :  torch.Size([2021, 16, 20, 20])
+nodeId: 15 ,  parentId: 7 ,  level: 3 ,  lchildId: 18 ,  rchildId: 19 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2 ,  numData: 2021
+Nodes sizes =  1 2
+Node 8 Acc: 67.885
+Node 9 Acc: 75.862
+Node 10 Acc: 79.112
+Node 11 Acc: 61.755
+Split Acc: 61.436
+# of Left images:  992.0
+# of Right images:  888.0
+giniRightRatio:  0.6998899237074913
+giniLeftRatio:  0.48874869927159215
+impurityDrop:  0.4640204477610814
+giniGain:  0.3093159035290951
+lclasses:  [52, 99, 18, 25, 6, 15, 18, 30, 31, 698]
+rclasses:  [45, 15, 457, 72, 102, 69, 58, 35, 17, 18]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([992, 16, 16, 16])   lTrainDict[label].shape:  torch.Size([992])
+rTrainDict[data].shape:  torch.Size([888, 16, 16, 16])   rTrainDict[label].shape:  torch.Size([888])
+RETURNING FROM WORK...
+nodeId:  16 , imgTensorShape :  torch.Size([992, 16, 16, 16])
+nodeId: 16 ,  parentId: 11 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 9 ,  numClasses: 1 ,  numData: 992
+nodeId:  17 , imgTensorShape :  torch.Size([888, 16, 16, 16])
+nodeId: 17 ,  parentId: 11 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 2 ,  numClasses: 1 ,  numData: 888
+Nodes sizes =  1 1
+Node 12 Acc: 68.445
+Node 13 Acc: 59.348
+Node 14 Acc: 67.748
+Node 15 Acc: 48.144
+Split Acc: 48.095
+# of Left images:  1026.0
+# of Right images:  995.0
+giniRightRatio:  0.6601328249286635
+giniLeftRatio:  0.7523188521444394
+impurityDrop:  0.7551909796255339
+giniGain:  -0.006214069443699954
+lclasses:  [19, 14, 105, 437, 82, 210, 58, 52, 18, 31]
+rclasses:  [11, 5, 68, 192, 48, 535, 38, 66, 15, 17]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+lTrainDict[data].shape:  torch.Size([1026, 16, 16, 16])   lTrainDict[label].shape:  torch.Size([1026])
+rTrainDict[data].shape:  torch.Size([995, 16, 16, 16])   rTrainDict[label].shape:  torch.Size([995])
+RETURNING FROM WORK...
+nodeId:  18 , imgTensorShape :  torch.Size([1026, 16, 16, 16])
+nodeId: 18 ,  parentId: 15 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 3 ,  numClasses: 1 ,  numData: 1026
+nodeId:  19 , imgTensorShape :  torch.Size([995, 16, 16, 16])
+nodeId: 19 ,  parentId: 15 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 5 ,  numClasses: 1 ,  numData: 995
+Nodes sizes =  1 1
+Node 16 Acc: 70.363
+Node 17 Acc: 51.464
+Node 18 Acc: 42.593
+Node 19 Acc: 53.769
+[[706  24  45  19  21  11  20   8  94  52]
+ [ 29 784  15  14   6   5  12   8  28  99]
+ [ 71  13 457 105 106  68  92  47  23  18]
+ [ 26  19  72 437  64 192  85  61  19  25]
+ [ 36   4 102  82 546  48  70  87  19   6]
+ [ 10   7  69 210  47 535  26  72   9  15]
+ [ 14   9  58  58  43  38 744  11   7  18]
+ [ 23  11  35  52  74  66  10 689  10  30]
+ [ 78  26  17  18   9  15   7   7 792  31]
+ [ 47  94  18  31   4  17  21  27  43 698]]
+
+#1:: Case 1 WITH SMALL_MLP ARCH :-
+Acc: 63.880
+
+NODE_ID                                                      1                                                                 
+                   ┌─────────────────────────────────────────┴───────────────────────────┐                                     
+                   2                                                                     3                                     
+       ┌───────────┴─────────────┐                                         ┌─────────────┴─────────────┐                       
+       4                         5                                         6                           7                       
+ ┌─────┴─────┐            ┌──────┴─────────────┐                    ┌──────┴──────┐             ┌──────┴─────────────┐         
+ 8           9            10                   11                   12            13            14                   15        
+                                        ┌──────┴──────┐                                                       ┌──────┴──────┐  
+                                        16            17                                                      18            19 
+
+LEAF_CLASS                                            -1                                                      
+                   ┌───────────────────────────────────┴───────────────────────┐                               
+                   -1                                                          -1                              
+       ┌───────────┴───────────┐                                   ┌───────────┴───────────┐                   
+       -1                      -1                                  -1                      -1                  
+ ┌─────┴─────┐           ┌─────┴───────────┐                 ┌─────┴─────┐           ┌─────┴───────────┐       
+ 0           8           1                 -1                6           4           7                 -1      
+                                     ┌─────┴─────┐                                               ┌─────┴─────┐ 
+                                     9           2                                               3           5 
+
+NUM_DATA                                                                 50000                                                                         
+                           ┌───────────────────────────────────────────────┴───────────────────────────────┐                                           
+                         25000                                                                           25000                                         
+           ┌───────────────┴───────────────┐                                               ┌───────────────┴───────────────┐                           
+         10000                           15000                                           10000                           15000                         
+   ┌───────┴───────┐               ┌───────┴───────────────┐                       ┌───────┴───────┐               ┌───────┴───────────────┐           
+  5000            5000            5000                   10000                    5000            5000            5000                   10000         
+                                                   ┌───────┴───────┐                                                               ┌───────┴───────┐   
+                                                  5000            5000                                                            5000            5000 
+
+CLASS_LIST                                   {0: 5000, 1: 5000, 2: 5000, 3: 5000, 4: 5000, 5: 5000, 6: 5000, 7: 5000, 8: 5000, 9: 5000}                                                  
+                                   ┌───────────────────────────────────────────────────────────┴───────────────────────────────────────┐                                                       
+             {0: 5000, 1: 5000, 2: 5000, 8: 5000, 9: 5000}                                                       {3: 5000, 4: 5000, 5: 5000, 6: 5000, 7: 5000}                                 
+               ┌───────────────────┴───────────────────┐                                                           ┌───────────────────┴───────────────────┐                                   
+       {0: 5000, 8: 5000}                 {1: 5000, 2: 5000, 9: 5000}                                      {4: 5000, 6: 5000}                 {3: 5000, 5: 5000, 7: 5000}                      
+     ┌─────────┴─────────┐                   ┌─────────┴───────────────────┐                             ┌─────────┴─────────┐                   ┌─────────┴───────────────────┐               
+ {0: 5000}           {8: 5000}           {1: 5000}                 {2: 5000, 9: 5000}                {6: 5000}           {4: 5000}           {7: 5000}                 {3: 5000, 5: 5000}      
+                                                                 ┌─────────┴─────────┐                                                                               ┌─────────┴─────────┐     
+                                                             {9: 5000}           {2: 5000}                                                                       {3: 5000}           {5: 5000} 
+
+SPLIT_ACC                                                      86.49                                                               
+                       ┌─────────────────────────────────────────┴───────────────────────────┐                                     
+               78.02219979818365                                                     73.67690782953419                             
+         ┌─────────────┴─────────────┐                                         ┌─────────────┴─────────────┐                       
+  71.8809980806142           68.79136189481017                         64.27503736920777           67.90651744568795               
+  ┌──────┴──────┐             ┌──────┴─────────────┐                    ┌──────┴──────┐             ┌──────┴─────────────┐         
+ 0.0           0.0           0.0           61.43617021276596           0.0           0.0           0.0           48.09500247402276 
+                                            ┌──────┴──────┐                                                       ┌──────┴──────┐  
+                                           0.0           0.0                                                     0.0           0.0 
+
+GINI_GAIN                                                0.09999999999999987                                                         
+                       ┌──────────────────────────────────────────┴───────────────────────────┐                                      
+              0.24444444444444458                                                    0.24444444444444458                             
+         ┌─────────────┴──────────────┐                                         ┌─────────────┴──────────────┐                       
+        0.5                  0.41666666666666674                               0.5                  0.41666666666666674              
+  ┌──────┴──────┐             ┌──────┴─────────────┐                     ┌──────┴──────┐             ┌──────┴─────────────┐          
+ 0.0           0.0           0.0                  0.5                   0.0           0.0           0.0                  0.5         
+                                            ┌──────┴──────┐                                                        ┌──────┴──────┐   
+                                           0.0           0.0                                                      0.0           0.0  
+
