@@ -61,8 +61,8 @@ class myNode:
 		loss_fn = nn.CrossEntropyLoss()
 		# loss_fn_mse = nn.MSELoss()
 		optimizer = torch.optim.Adam(self.cnnModel.parameters(),lr=options.cnnLR)
-		# scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 20, 0.4)
-		scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=1, factor=0.2, mode='max',verbose=True)
+		scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 20, 0.4)
+		# scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=1, factor=0.2, mode='max',verbose=True)
 		self.cnnModel.to(self.device)
 		trainLabels = self.trainInputDict["label"]
 		trainInputs = self.trainInputDict["data"]
@@ -117,19 +117,20 @@ class myNode:
 				total += end_btch - st_btch
 				correct += predicted.eq(trainLabels[st_btch:end_btch]).sum().item()
 			# scheduler.step(train_loss_tensor)
-			# scheduler.step(train_loss)
+			scheduler.step()
 			# train_loss = train_loss_tensor.item()
 			#TODO: Add validation iteration here(first change mode to eval)
 
-			if epoch%10 == 0:
-				self.cnnModel.eval()
-				_, _, est_labels, _ = self.cnnModel(self.valInputDict["data"].to(self.device))
-				val_loss = loss_fn(est_labels, self.valInputDict["label"].to(self.device))
-				_, predicted = est_labels.max(1)
-				valTotalSize = float(len(self.valInputDict["data"]))
-				valCorrect = predicted.eq(self.valInputDict["label"].to(self.device)).sum().item()
-				scheduler.step(valCorrect)
-				print(epoch, 'Train Loss: %.3f | Train Acc: %.3f | Val Loss: %.3f | Val Accuracy: %.3f'% (train_loss, 100.*correct/total, val_loss.item(), 100.*float(valCorrect)/valTotalSize))
+			# if epoch%10 == 0:
+			# 	self.cnnModel.eval()
+			# 	_, _, est_labels, _ = self.cnnModel(self.valInputDict["data"].to(self.device))
+			# 	val_loss = loss_fn(est_labels, self.valInputDict["label"].to(self.device))
+			# 	_, predicted = est_labels.max(1)
+			# 	valTotalSize = float(len(self.valInputDict["data"]))
+			# 	valCorrect = predicted.eq(self.valInputDict["label"].to(self.device)).sum().item()
+			# 	scheduler.step(valCorrect)
+			#	print(epoch, 'Train Loss: %.3f | Train Acc: %.3f | Val Loss: %.3f | Val Accuracy: %.3f'% (train_loss, 100.*correct/total, val_loss.item(), 100.*float(valCorrect)/valTotalSize))
+			print(epoch, 'Train Loss: %.3f | Train Acc: %.3f '% (train_loss, 100.*correct/total))
 
 		epoch = numEpochs
 		torch.save({

@@ -5,7 +5,7 @@ import os
 def getOptions(args=sys.argv[1:]):
     parser = argparse.ArgumentParser(description="Parses command.")
     parser.add_argument("-tf", "--trainFlg", type=bool, help="Train Flag", default=False)
-    parser.add_argument("-md", "--maxDepth", type=int, help="Max Depth (0-indexed)", default=0)
+    parser.add_argument("-md", "--maxDepth", type=int, help="Max Depth (0-indexed)", default=6)
     parser.add_argument("-cLR", "--cnnLR", type=float, help="CNN Learning Rate", default=0.001)
     parser.add_argument("-mLR", "--mlpLR", type=float, help="MLP Learning Rate", default=0.001)
     parser.add_argument("-cE", "--cnnEpochs", type=int, help="No. of Epochs in CNN", default=100)

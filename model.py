@@ -398,7 +398,7 @@ def loadNewDictionaries():
 
 
 
-	# '''   -->  PREPEND # FOR NO VALIDATION
+	'''   -->  PREPEND # FOR NO VALIDATION
 	train_idx, valid_idx= train_test_split(
 	np.arange(len(class_labels)),
 	test_size=0.02,
