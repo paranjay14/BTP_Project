@@ -2,11 +2,12 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from cnn import CNN
-from mlp import MLP
-# from mlp_small import MLP
+# from mlp import MLP
+from mlp_small import MLP
 from torchsummary import summary
 import time
 from sklearn.cluster import KMeans
+from sklearn.cluster import MiniBatchKMeans
 import numpy as np
 import smote_variants as sv
 import random
@@ -26,7 +27,6 @@ class myNode:
 		self.device = device
 		self.isTrain = isTrain
 		self.level = level
-		self.splitAcc = 0.0
 		self.children = []
 		if parentNode:
 			parentNode.children.append(self)
@@ -40,7 +40,7 @@ class myNode:
 		imgSize = trainInputDict["data"][0].shape[2]
 		inChannels = trainInputDict["data"][0].shape[0]
 		print("nodeId: ", self.nodeId, ", imgTensorShape : ", trainInputDict["data"].shape)
-		outChannels = 16
+		outChannels = options.cnnOut
 		kernel = 5
 		self.cnnModel = CNN(img_size=imgSize, in_channels=inChannels, out_channels=outChannels, num_class=numClasses, kernel=kernel, use_bn=False)
 		numFeatures = self.cnnModel.features
@@ -59,9 +59,10 @@ class myNode:
 
 	def trainCNN(self, labelMap, reverseLabelMap):
 		loss_fn = nn.CrossEntropyLoss()
-		loss_fn_mse = nn.MSELoss()
+		# loss_fn_mse = nn.MSELoss()
 		optimizer = torch.optim.Adam(self.cnnModel.parameters(),lr=options.cnnLR)
-		scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 20, 0.4)
+		# scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 20, 0.4)
+		scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=1, factor=0.2, mode='max',verbose=True)
 		self.cnnModel.to(self.device)
 		trainLabels = self.trainInputDict["label"]
 		trainInputs = self.trainInputDict["data"]
@@ -86,9 +87,9 @@ class myNode:
 				batch_sep.append([st_btch, end_btch])
 				st_btch = end_btch
 
-		self.cnnModel.train()
 		train_loss = 0
 		for epoch in range(numEpochs):
+			self.cnnModel.train()
 			total = 0
 			correct = 0
 			train_loss = 0
@@ -107,15 +108,28 @@ class myNode:
 				batch_loss.backward()
 				optimizer.step()
 				# print(batch_loss_featr.item(), batch_loss_label.item())
+				# if batch == 0:
+				# 	train_loss_tensor = batch_loss
+				# else:
+				# 	train_loss_tensor += batch_loss
 				train_loss += batch_loss.item()
 				_, predicted = est_labels.max(1)
 				total += end_btch - st_btch
 				correct += predicted.eq(trainLabels[st_btch:end_btch]).sum().item()
-			scheduler.step()
-
+			# scheduler.step(train_loss_tensor)
+			# scheduler.step(train_loss)
+			# train_loss = train_loss_tensor.item()
 			#TODO: Add validation iteration here(first change mode to eval)
-			
-			print(epoch, 'Train Loss: %.3f | Train Acc: %.3f'% (train_loss, 100.*correct/total))
+
+			if epoch%10 == 0:
+				self.cnnModel.eval()
+				_, _, est_labels, _ = self.cnnModel(self.valInputDict["data"].to(self.device))
+				val_loss = loss_fn(est_labels, self.valInputDict["label"].to(self.device))
+				_, predicted = est_labels.max(1)
+				valTotalSize = float(len(self.valInputDict["data"]))
+				valCorrect = predicted.eq(self.valInputDict["label"].to(self.device)).sum().item()
+				scheduler.step(valCorrect)
+				print(epoch, 'Train Loss: %.3f | Train Acc: %.3f | Val Loss: %.3f | Val Accuracy: %.3f'% (train_loss, 100.*correct/total, val_loss.item(), 100.*float(valCorrect)/valTotalSize))
 
 		epoch = numEpochs
 		torch.save({
@@ -246,6 +260,9 @@ class myNode:
 
 		for i, val in enumerate(self.trainInputDict["label"]):
 			self.trainInputDict["label"][i] = labelMap[val.item()]
+
+		for i, val in enumerate(self.valInputDict["label"]):
+			self.valInputDict["label"][i] = labelMap[val.item()]
 
 		# newData, newLabel = self.balanceData();
 		# self.trainInputDict["data"] = newData
@@ -505,6 +522,10 @@ class myNode:
 		trainRimages = []
 		trainLLabels = []
 		trainRLabels = []
+		leftChildIndexList = []
+		rightChildIndexList = []
+		leftValIndexList = []
+		rightValIndexList = []
 		lclasses = [0]*10 # 0-indexed in Train according to self.trainInputDict["label"]
 		rclasses = [0]*10
 		maxLeft=0
@@ -537,81 +558,104 @@ class myNode:
 				if self.isTrain:
 					### if not (label in leftClassesToBeRemoved):
 					if (final_dict[label] == 0) or ((final_dict[label] == -1) and leftSplitClassCnt<lmaxSplitClassCnt):
-						trainLimages.append((image_next[i].detach()).tolist())
+						# trainLimages.append((image_next[i].detach()).tolist())
 						lclasses[label]+=1
-						trainLLabels.append(reverseLabelMap[label])
+						# trainLLabels.append(reverseLabelMap[label])
+						leftChildIndexList.append(i)
 						if (final_dict[label] == -1):
 							leftSplitClassCnt += 1
 						if lclasses[label] > maxLeft:
 							maxLeft = lclasses[label]
 							maxLeftClassIndex = reverseLabelMap[label]
 					else:
-						trainRimages.append((image_next[i].detach()).tolist())
+						# trainRimages.append((image_next[i].detach()).tolist())
 						rclasses[label]+=1
-						trainRLabels.append(reverseLabelMap[label])
+						# trainRLabels.append(reverseLabelMap[label])
+						rightChildIndexList.append(i)
 						if (final_dict[label] == -1):
 							rightSplitClassCnt += 1
 						if rclasses[label] > maxRight:
 							maxRight = rclasses[label]
 							maxRightClassIndex = reverseLabelMap[label]
+					self.trainInputDict["label"][i] = reverseLabelMap[self.trainInputDict["label"][i].item()]
 				else:
-					trainLimages.append((image_next[i].detach()).tolist())
+					# trainLimages.append((image_next[i].detach()).tolist())
 					lclasses[label]+=1
-					trainLLabels.append(label)
+					# trainLLabels.append(label)
+					leftChildIndexList.append(i)
 
 			else:
 				if self.isTrain:
 					### if not (label in rightClassesToBeRemoved):
 					if (final_dict[label] == 1) or ((final_dict[label] == -1) and leftSplitClassCnt>=lmaxSplitClassCnt):
-						trainRimages.append((image_next[i].detach()).tolist())
+						# trainRimages.append((image_next[i].detach()).tolist())
 						rclasses[label]+=1
-						trainRLabels.append(reverseLabelMap[label])
+						# trainRLabels.append(reverseLabelMap[label])
+						rightChildIndexList.append(i)
 						if (final_dict[label] == -1):
 							rightSplitClassCnt += 1
 						if rclasses[label] > maxRight:
 							maxRight = rclasses[label]
 							maxRightClassIndex = reverseLabelMap[label]
 					else:
-						trainLimages.append((image_next[i].detach()).tolist())
+						# trainLimages.append((image_next[i].detach()).tolist())
 						lclasses[label]+=1
-						trainLLabels.append(reverseLabelMap[label])
+						# trainLLabels.append(reverseLabelMap[label])
+						leftChildIndexList.append(i)
 						if (final_dict[label] == -1):
 							leftSplitClassCnt += 1
 						if lclasses[label] > maxLeft:
 							maxLeft = lclasses[label]
 							maxLeftClassIndex = reverseLabelMap[label]
+					self.trainInputDict["label"][i] = reverseLabelMap[self.trainInputDict["label"][i].item()]
 				else:
-					trainRimages.append((image_next[i].detach()).tolist())
+					# trainRimages.append((image_next[i].detach()).tolist())
 					rclasses[label]+=1
-					trainRLabels.append(label)
+					# trainRLabels.append(label)
+					rightChildIndexList.append(i)
 
-		totalLeftImages += float(len(trainLLabels))
-		totalRightImages += float(len(trainRLabels))
+		totalLeftImages += float(len(leftChildIndexList))
+		totalRightImages += float(len(rightChildIndexList))
 
-		lTrainDict = {"data":torch.tensor(trainLimages), "label":torch.tensor(trainLLabels)}
-		rTrainDict = {"data":torch.tensor(trainRimages), "label":torch.tensor(trainRLabels)}
-		
-		giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses, giniGain = self.getPredictionAnalysis(totalLeftImages, totalRightImages, lclasses, rclasses)
+		# lTrainDict = {"data":torch.tensor(trainLimages), "label":torch.tensor(trainLLabels)}
+		# rTrainDict = {"data":torch.tensor(trainRimages), "label":torch.tensor(trainRLabels)}
+		lTrainDict = {"data":self.trainInputDict["data"][leftChildIndexList], "label":self.trainInputDict["label"][leftChildIndexList]}
+		rTrainDict = {"data":self.trainInputDict["data"][rightChildIndexList], "label":self.trainInputDict["label"][rightChildIndexList]}
 		print("lTrainDict[data].shape: ", lTrainDict["data"].shape, "  lTrainDict[label].shape: ", lTrainDict["label"].shape)
 		print("rTrainDict[data].shape: ", rTrainDict["data"].shape, "  rTrainDict[label].shape: ", rTrainDict["label"].shape)
 
+		lValDict={}
+		rValDict={}
 
-		leftDataNum = len(trainLLabels)
-		rightDataNum = len(trainRLabels)
+		if self.isTrain:
+			for i, val in enumerate(self.valInputDict["label"]):
+				label = self.valInputDict["label"][i].item()
+				if (final_dict[label] == 0):
+					leftValIndexList.append(i)
+				elif (final_dict[label] == 1):
+					rightValIndexList.append(i)
+				self.valInputDict["label"][i] = reverseLabelMap[val.item()]
 
-		if not (len(trainLLabels) == 0):
-			maxLeft = float(float(maxLeft)/float(len(trainLLabels)))
-		if not (len(trainRLabels) == 0):
-			maxRight = float(float(maxRight)/float(len(trainRLabels)))
+			lValDict = {"data":self.valInputDict["data"][leftValIndexList], "label":self.valInputDict["label"][leftValIndexList]}
+			rValDict = {"data":self.valInputDict["data"][rightValIndexList], "label":self.valInputDict["label"][rightValIndexList]}
+			print("lValDict[data].shape: ", lValDict["data"].shape, "  lValDict[label].shape: ", lValDict["label"].shape)
+			print("rValDict[data].shape: ", rValDict["data"].shape, "  rValDict[label].shape: ", rValDict["label"].shape)
+
+		giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses, giniGain = self.getPredictionAnalysis(totalLeftImages, totalRightImages, lclasses, rclasses)
+
+		leftDataNum = int(totalLeftImages)
+		rightDataNum = int(totalRightImages)
+
+		if not (len(leftChildIndexList) == 0):
+			maxLeft = float(float(maxLeft)/float(len(leftChildIndexList)))
+		if not (len(rightChildIndexList) == 0):
+			maxRight = float(float(maxRight)/float(len(rightChildIndexList)))
 
 		handleLeafDict = {"lvl":self.level+1,"noOfLeftClasses":noOfLeftClasses, "noOfRightClasses":noOfRightClasses, "maxLeft":maxLeft, "maxRight":maxRight, "leftDataNum":leftDataNum, "rightDataNum":rightDataNum,"maxLeftClassIndex":maxLeftClassIndex,"maxRightClassIndex":maxRightClassIndex, "giniGain":giniGain}		
 
 
-		lValDict = {}
-		rValDict = {}
 		print("RETURNING FROM WORK...")
-		#TODO: populate validation dictionaries too
-		# return lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio
+
 		if self.isTrain and not self.isLeaf:
 			return lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, handleLeafDict
 		elif not self.isTrain and not self.isLeaf:
@@ -623,12 +667,6 @@ class myNode:
 
 
 	def workTest(self):
-		NodeDict = torch.load(options.ckptDir+'/node_'+str(self.nodeId)+'.pth')['nodeDict']
-		NodeDict['splitAcc'] = 0.0
-		torch.save({
-			'nodeDict':NodeDict,
-			}, options.ckptDir+'/node_'+str(self.nodeId)+'.pth')
-
 		if not (self.leafClass == -1):
 			x=torch.Tensor(1,1).long()
 			x[0] = 1
@@ -665,8 +703,11 @@ class myNode:
 		img_flat_nmpy = image_next_flat.numpy()
 		print("image_next_flat.shape : ", image_next_flat.shape)
 		countImageTotal = image_next_flat.shape[0]
-		kmeans = KMeans(n_clusters=2, n_jobs=-1).fit(img_flat_nmpy)
+		# kmeans = KMeans(n_clusters=2, n_jobs=-1).fit(img_flat_nmpy)
+		kmeans = MiniBatchKMeans(n_clusters=2,random_state=0).fit(img_flat_nmpy)
 		cluster_ids = kmeans.labels_
+		print("Kmeans trained successfully...")		
+
 
 		leftSortedListOfTuples, rightSortedListOfTuples, expected_dict = self.separateLabels(cluster_ids)
 		final_dict = self.makeFinalDict(leftSortedListOfTuples, rightSortedListOfTuples, expected_dict)
@@ -761,4 +802,7 @@ class myNode:
 			self.trainInputDict["data"] = oldData
 			self.trainInputDict["label"] = oldLabel
 
-			return self.workTest()
+			if self.isLeaf:
+				return
+			else:
+				return self.workTest()

@@ -1,0 +1,106 @@
+['options.ckptDir:valDir1024_cOut32_mFC2_32', 'options.maxDepth:6', 'options.cnnLR:0.001', 'options.mlpLR:0.001', 'options.cnnEpochs:200', 'options.mlpEpochs:60', 'options.cnnOut:32', 'options.mlpFC1:1024', 'options.mlpFC2:32']
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+len(trainInputDict["data"]):  49000 ,  len(valInputDict["data"]):  1000 ,  len(testInputDict["data"]):  10000
+nodeId:  1 , imgTensorShape :  torch.Size([49000, 3, 32, 32])
+nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 49000
+Running nodeId:  1
+0 Train Loss: 181.696 | Train Acc: 37.198 | Val Loss: 1.506 | Val Accuracy: 48.600
+10 Train Loss: 96.041 | Train Acc: 67.088 | Val Loss: 1.137 | Val Accuracy: 61.200
+20 Train Loss: 74.727 | Train Acc: 74.935 | Val Loss: 1.164 | Val Accuracy: 60.700
+30 Train Loss: 60.400 | Train Acc: 79.849 | Val Loss: 1.213 | Val Accuracy: 61.400
+40 Train Loss: 46.864 | Train Acc: 85.339 | Val Loss: 1.325 | Val Accuracy: 60.400
+Epoch     6: reducing learning rate of group 0 to 2.0000e-04.
+50 Train Loss: 37.310 | Train Acc: 88.976 | Val Loss: 1.447 | Val Accuracy: 60.300
+60 Train Loss: 29.855 | Train Acc: 92.927 | Val Loss: 1.475 | Val Accuracy: 60.300
+Epoch     8: reducing learning rate of group 0 to 4.0000e-05.
+70 Train Loss: 28.042 | Train Acc: 93.549 | Val Loss: 1.506 | Val Accuracy: 60.100
+80 Train Loss: 26.328 | Train Acc: 94.359 | Val Loss: 1.516 | Val Accuracy: 59.900
+Epoch    10: reducing learning rate of group 0 to 8.0000e-06.
+90 Train Loss: 25.903 | Train Acc: 94.480 | Val Loss: 1.526 | Val Accuracy: 59.800
+100 Train Loss: 25.531 | Train Acc: 94.627 | Val Loss: 1.530 | Val Accuracy: 60.000
+Epoch    12: reducing learning rate of group 0 to 1.6000e-06.
+110 Train Loss: 25.431 | Train Acc: 94.639 | Val Loss: 1.532 | Val Accuracy: 60.000
+120 Train Loss: 25.351 | Train Acc: 94.716 | Val Loss: 1.532 | Val Accuracy: 59.800
+Epoch    14: reducing learning rate of group 0 to 3.2000e-07.
+130 Train Loss: 25.332 | Train Acc: 94.724 | Val Loss: 1.533 | Val Accuracy: 59.900
+140 Train Loss: 25.313 | Train Acc: 94.745 | Val Loss: 1.533 | Val Accuracy: 59.800
+Epoch    16: reducing learning rate of group 0 to 6.4000e-08.
+150 Train Loss: 25.309 | Train Acc: 94.737 | Val Loss: 1.533 | Val Accuracy: 59.800
+160 Train Loss: 25.305 | Train Acc: 94.737 | Val Loss: 1.533 | Val Accuracy: 59.800
+Epoch    18: reducing learning rate of group 0 to 1.2800e-08.
+170 Train Loss: 25.304 | Train Acc: 94.737 | Val Loss: 1.533 | Val Accuracy: 59.800
+180 Train Loss: 25.304 | Train Acc: 94.739 | Val Loss: 1.533 | Val Accuracy: 59.800
+Epoch    20: reducing learning rate of group 0 to 2.5600e-09.
+190 Train Loss: 25.304 | Train Acc: 94.739 | Val Loss: 1.533 | Val Accuracy: 59.800
+CNN trained successfully...
+image_next_flat.shape :  torch.Size([49000, 25088])
+Kmeans trained successfully...
+printing expected split from k means
+{9: 1, 2: 0, 1: 1, 5: 0, 4: 0, 7: 0, 3: 0, 6: 0, 0: 1, 8: 1}
+Printing final_dict items...
+{6: 0, 5: 0, 7: 0, 4: 0, 3: 0, 2: 1, 1: 1, 9: 1, 0: 1, 8: 1}
+Image Statistics before MLP : L R :  24500 24500
+expectedMlpLabels.shape :  torch.Size([49000])
+0 Loss: 79.291 | Acc: 82.586
+1 Loss: 67.147 | Acc: 85.555
+2 Loss: 59.890 | Acc: 86.988
+3 Loss: 55.278 | Acc: 88.143
+4 Loss: 50.795 | Acc: 89.167
+5 Loss: 46.647 | Acc: 90.067
+6 Loss: 42.536 | Acc: 90.922
+7 Loss: 37.508 | Acc: 92.096
+8 Loss: 35.089 | Acc: 92.706
+9 Loss: 31.904 | Acc: 93.378
+10 Loss: 22.102 | Acc: 95.439
+11 Loss: 19.187 | Acc: 96.018
+12 Loss: 17.113 | Acc: 96.637
+13 Loss: 15.710 | Acc: 96.878
+14 Loss: 14.210 | Acc: 97.253
+15 Loss: 13.111 | Acc: 97.433
+16 Loss: 11.763 | Acc: 97.759
+17 Loss: 10.637 | Acc: 98.024
+18 Loss: 11.014 | Acc: 97.969
+19 Loss: 10.022 | Acc: 98.169
+20 Loss: 6.898 | Acc: 98.729
+21 Loss: 5.626 | Acc: 99.010
+22 Loss: 5.265 | Acc: 99.016
+23 Loss: 4.767 | Acc: 99.194
+24 Loss: 4.682 | Acc: 99.167
+25 Loss: 4.434 | Acc: 99.141
+26 Loss: 4.460 | Acc: 99.214
+27 Loss: 4.283 | Acc: 99.247
+28 Loss: 3.843 | Acc: 99.322
+29 Loss: 4.005 | Acc: 99.300
+30 Loss: 3.359 | Acc: 99.445
+31 Loss: 2.962 | Acc: 99.486
+32 Loss: 2.705 | Acc: 99.543
+33 Loss: 2.829 | Acc: 99.510
+34 Loss: 2.640 | Acc: 99.559
+35 Loss: 2.562 | Acc: 99.563
+36 Loss: 2.356 | Acc: 99.602
+37 Loss: 2.508 | Acc: 99.616
+38 Loss: 2.319 | Acc: 99.639
+39 Loss: 1.902 | Acc: 99.669
+40 Loss: 1.823 | Acc: 99.712
+41 Loss: 1.847 | Acc: 99.694
+42 Loss: 1.915 | Acc: 99.694
+43 Loss: 1.809 | Acc: 99.716
+44 Loss: 1.770 | Acc: 99.676
+45 Loss: 1.603 | Acc: 99.743
+46 Loss: 1.622 | Acc: 99.729
+47 Loss: 1.632 | Acc: 99.718
+48 Loss: 1.526 | Acc: 99.761
+49 Loss: 1.607 | Acc: 99.759
+50 Loss: 1.531 | Acc: 99.761
+51 Loss: 1.576 | Acc: 99.765
+52 Loss: 1.645 | Acc: 99.745
+53 Loss: 1.425 | Acc: 99.761
+54 Loss: 1.556 | Acc: 99.749
+55 Loss: 1.433 | Acc: 99.778
+56 Loss: 1.666 | Acc: 99.739
+57 Loss: 1.567 | Acc: 99.749
+58 Loss: 1.501 | Acc: 99.761
+59 Loss: 1.728 | Acc: 99.720
+MLP trained successfully...

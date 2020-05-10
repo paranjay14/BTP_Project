@@ -159,6 +159,7 @@ class Tree:
 
 
 	def testTraversal(self, testInputDict):
+		print("TESTING STARTS")
 		nodeId=1
 		ckptRoot = torch.load(options.ckptDir+'/node_cnn_'+str(nodeId)+'.pth')['labelMap']
 		noOfClasses = len(ckptRoot)
@@ -397,18 +398,18 @@ def loadNewDictionaries():
 
 
 
-	'''   -->  PREPEND # FOR NO VALIDATION
+	# '''   -->  PREPEND # FOR NO VALIDATION
 	train_idx, valid_idx= train_test_split(
 	np.arange(len(class_labels)),
-	test_size=0.0002,
+	test_size=0.02,
 	shuffle=True,
 	stratify=class_labels)
 
 	train_sampler = torch.utils.data.SubsetRandomSampler(train_idx)
 	valid_sampler = torch.utils.data.SubsetRandomSampler(valid_idx)
 
-	train_loader = torch.utils.data.DataLoader(trainset, batch_size=49900, sampler=train_sampler, num_workers=0)
-	valid_loader = torch.utils.data.DataLoader(trainset, batch_size=10, sampler=valid_sampler, num_workers=0)
+	train_loader = torch.utils.data.DataLoader(trainset, batch_size=49000, sampler=train_sampler, num_workers=0)
+	valid_loader = torch.utils.data.DataLoader(trainset, batch_size=1000, sampler=valid_sampler, num_workers=0)
 	
 	iterator = iter(train_loader)
 	c1 = next(iterator)
@@ -449,6 +450,8 @@ def loadNewDictionaries():
 			
 if __name__ == '__main__':
 	options = getOptions(sys.argv[1:])
+	L = ["options.ckptDir: " + options.ckptDir,"options.maxDepth: " + str(options.maxDepth),"options.cnnLR: " + str(options.cnnLR),"options.mlpLR: " + str(options.mlpLR),"options.cnnEpochs: " + str(options.cnnEpochs),"options.mlpEpochs: " + str(options.mlpEpochs),"options.cnnOut: " + str(options.cnnOut),"options.mlpFC1: " + str(options.mlpFC1),"options.mlpFC2: " + str(options.mlpFC2)]
+	print(L)
 
 	trainInputDict, valInputDict, testInputDict = loadNewDictionaries()
 	print("len(trainInputDict[\"data\"]): ",len(trainInputDict["data"]), ",  len(valInputDict[\"data\"]): ",len(valInputDict["data"]), ",  len(testInputDict[\"data\"]): ",len(testInputDict["data"]))		
@@ -460,7 +463,7 @@ if __name__ == '__main__':
 		resumeFromNodeId = -1
 		tree.tree_traversal(trainInputDict, valInputDict, resumeTrain=False, resumeFromNodeId=resumeFromNodeId)
 
-		# resumeFromNodeId = 27
+		# resumeFromNodeId = 7
 		# tree.tree_traversal(trainInputDict, valInputDict, resumeTrain=True, resumeFromNodeId=resumeFromNodeId)
 
 	tree.testTraversal(testInputDict)

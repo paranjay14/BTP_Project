@@ -1,0 +1,48 @@
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+len(trainInputDict["data"]):  40000 ,  len(valInputDict["data"]):  10000 ,  len(testInputDict["data"]):  10000
+nodeId:  1 , imgTensorShape :  torch.Size([40000, 3, 32, 32])
+nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 40000
+Running nodeId:  1
+0 Train Loss: 182.255 | Train Acc: 36.340 | Val Accuracy: 46.760
+25 Train Loss: 63.117 | Train Acc: 79.745 | Val Accuracy: 61.930
+50 Train Loss: 47.437 | Train Acc: 86.185 | Val Accuracy: 61.510
+75 Train Loss: 42.055 | Train Acc: 88.435 | Val Accuracy: 61.300
+100 Train Loss: 40.068 | Train Acc: 89.340 | Val Accuracy: 61.300
+125 Train Loss: 39.580 | Train Acc: 89.600 | Val Accuracy: 61.350
+150 Train Loss: 39.408 | Train Acc: 89.618 | Val Accuracy: 61.320
+175 Train Loss: 39.348 | Train Acc: 89.690 | Val Accuracy: 61.310
+200 Train Loss: 39.325 | Train Acc: 89.698 | Val Accuracy: 61.300
+225 Train Loss: 39.320 | Train Acc: 89.700 | Val Accuracy: 61.300
+250 Train Loss: 39.318 | Train Acc: 89.700 | Val Accuracy: 61.300
+275 Train Loss: 39.318 | Train Acc: 89.700 | Val Accuracy: 61.300
+CNN trained successfully...
+nodeId:  1 , imgTensorShape :  torch.Size([10000, 3, 32, 32])
+nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 10000
+Node 1 Acc: 61.010
+[[658  34  64  29  21  14  17  16 100  47]
+ [ 48 720  12  17   6  12  10  11  44 120]
+ [ 69  10 458  84 118  84  93  43  24  17]
+ [ 26  19  88 433  76 189  81  51  16  21]
+ [ 45   3 110  79 528  53  72  79  18  13]
+ [ 23   8  95 190  57 513  29  58  15  12]
+ [ 17  16  65  70  45  46 709  10   4  18]
+ [ 31  10  40  45  76  78  17 672   6  25]
+ [ 92  58  17  20  11  11  12   6 720  53]
+ [ 48 118  14  24  16  13  12  24  41 690]]
+
+Acc: 61.010
+
+1
+
+-1
+
+40000
+
+{0: 4000, 1: 4000, 2: 4000, 3: 4000, 4: 4000, 5: 4000, 6: 4000, 7: 4000, 8: 4000, 9: 4000}
+
+0.0
+
+0.0
+

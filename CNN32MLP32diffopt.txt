@@ -1,0 +1,44 @@
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+len(trainInputDict["data"]):  40000 ,  len(valInputDict["data"]):  10000 ,  len(testInputDict["data"]):  10000
+nodeId:  1 , imgTensorShape :  torch.Size([40000, 3, 32, 32])
+nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 40000
+Running nodeId:  1
+24 Train Loss: 212.503 | Train Acc: 22.968 | Val Accuracy: 21.560
+49 Train Loss: 208.229 | Train Acc: 24.745 | Val Accuracy: 22.910
+74 Train Loss: 208.229 | Train Acc: 24.745 | Val Accuracy: 22.910
+99 Train Loss: 208.229 | Train Acc: 24.745 | Val Accuracy: 22.910
+124 Train Loss: 208.229 | Train Acc: 24.745 | Val Accuracy: 22.910
+149 Train Loss: 208.229 | Train Acc: 24.747 | Val Accuracy: 22.910
+174 Train Loss: 208.229 | Train Acc: 24.747 | Val Accuracy: 22.910
+199 Train Loss: 208.229 | Train Acc: 24.747 | Val Accuracy: 22.910
+CNN trained successfully...
+nodeId:  1 , imgTensorShape :  torch.Size([10000, 3, 32, 32])
+nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 10000
+Node 1 Acc: 23.030
+[[381  59  52  27  83  47  54 117  99  81]
+ [ 51 391   9  36  17  33  63  50  92 258]
+ [335  52  63  42  89  87  77 119  81  55]
+ [159  74  48 131  86 153  80 134  62  73]
+ [276  53  37  51 135  96  79 142  79  52]
+ [174  49  54  90 109 195  91 143  35  60]
+ [172 129  28  52  84  92 175  74  89 105]
+ [149  61  47  69 100 123  74 253  43  81]
+ [222 154  45  29  26  49  49  51 216 159]
+ [ 69 271  14  26  32  24  44  54 103 363]]
+
+Acc: 23.030
+
+1
+
+-1
+
+40000
+
+{0: 4000, 1: 4000, 2: 4000, 3: 4000, 4: 4000, 5: 4000, 6: 4000, 7: 4000, 8: 4000, 9: 4000}
+
+0.0
+
+0.0
+
