@@ -19,6 +19,7 @@ from sklearn.metrics import confusion_matrix
 from getOptions import getOptions
 from pptree import *
 import random
+import time
 # from resources.plotcm import plot_confusion_matrix
 # from queue import Queue
 
@@ -181,17 +182,33 @@ class Tree:
 		testPredDict['pred'] = testPredDict['pred'].long()
 		testPredDict['actual'] = testPredDict['actual'].to(self.device)
 		testPredDict['pred'] = testPredDict['pred'].to(self.device)
-
 		torch.save({
 					'testPredDict':testPredDict,
 					}, options.ckptDir+'/testPred.pth')
 
+		LevelDict = {}
+		LevelDict['levelAcc'] = {}
+		LevelDict['leafAcc'] = [0,0]
+		torch.save({
+			'levelDict':LevelDict,
+			}, options.ckptDir+'/level.pth')
+
+		prevLvl=-1
 		q = []
 		q.append(rootNode)
 		start = 0
 		end = 1
 		while start != end:
 			node = q[start]
+			curLvl=node.level
+			if curLvl>prevLvl:
+				LevelDict = torch.load(options.ckptDir+'/level.pth')['levelDict']
+				LevelDict['levelAcc'][curLvl] = LevelDict['leafAcc'][:]
+				torch.save({
+					'levelDict':LevelDict,
+					}, options.ckptDir+'/level.pth')
+				prevLvl=curLvl
+
 			start+=1
 			if not node.isLeaf:
 				lTrainDict, rTrainDict,  giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses = node.workTest()
@@ -249,8 +266,12 @@ class Tree:
 		print()
 		correct = testPredDict['pred'].eq(testPredDict['actual']).sum().item()
 		total = len(testPredDict['actual'])
-		print('Acc: %.3f'% (100.*correct/total))
+		print('Final Acc: %.3f'% (100.*correct/total))
+		print()
 
+		LevelDict = torch.load(options.ckptDir+'/level.pth')['levelDict']
+		for i,val in enumerate(LevelDict['levelAcc'].items()):
+			print('Level %d Acc: %.3f'% (val[0], 100.*val[1][0]/val[1][1]))
 	
 	def printTree(self):
 		nodeId=1
@@ -275,6 +296,7 @@ class Tree:
 			node.classLabels = currNodeDict['classLabels']
 			node.giniGain = currNodeDict['giniGain']
 			node.splitAcc = currNodeDict['splitAcc']
+			node.nodeAcc = currNodeDict['nodeAcc']
 
 			if not node.isLeaf:
 				if not (node.lchildId == -1):
@@ -303,6 +325,8 @@ class Tree:
 		print_tree(rootNode, "children", "classLabels", horizontal=False)
 		print()	
 		print_tree(rootNode, "children", "splitAcc", horizontal=False)
+		print()
+		print_tree(rootNode, "children", "nodeAcc", horizontal=True)
 		print()	
 		print_tree(rootNode, "children", "giniGain", horizontal=False)
 		print()	
@@ -398,7 +422,7 @@ def loadNewDictionaries():
 
 
 
-	'''   -->  PREPEND # FOR NO VALIDATION
+	# '''   -->  PREPEND # FOR NO VALIDATION
 	train_idx, valid_idx= train_test_split(
 	np.arange(len(class_labels)),
 	test_size=0.02,
@@ -459,6 +483,7 @@ if __name__ == '__main__':
 
 	tree = Tree(device, maxDepth=options.maxDepth, classThreshold = 2, dataNumThreshold = 100, numClasses = 10)
 	
+	start = time.time()
 	if options.trainFlg == True:
 		resumeFromNodeId = -1
 		tree.tree_traversal(trainInputDict, valInputDict, resumeTrain=False, resumeFromNodeId=resumeFromNodeId)
@@ -469,3 +494,6 @@ if __name__ == '__main__':
 	tree.testTraversal(testInputDict)
 
 	tree.printTree()
+
+	end = time.time()
+	print("Time Taken by whole program is ", end-start)

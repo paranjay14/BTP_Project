@@ -13,7 +13,7 @@ import smote_variants as sv
 import random
 import numpy as np
 from getOptions import options
-
+import time
 
 def kmeans_output(all_images_flat, device, num_clusters=2):
 	cluster_ids_x, cluster_centers = kmeans(X=all_images_flat, num_clusters=num_clusters, distance='euclidean', device=device)
@@ -54,6 +54,7 @@ class myNode:
 		self.lchildId = lchildId
 		self.rchildId = rchildId
 		self.numData = trainInputDict["data"].shape[0]
+		self.nodeAcc = [0,0,0.0]
 		self.classLabels = { l:cnt for l,cnt in zip(*np.unique(trainInputDict["label"].numpy(),return_counts=True))}
 		print("nodeId:", self.nodeId, ",  parentId:", self.parentId, ",  level:", self.level, ",  lchildId:", self.lchildId, ",  rchildId:", self.rchildId, ",  isLeaf:", self.isLeaf, ",  leafClass:", self.leafClass, ",  numClasses:", self.numClasses, ",  numData:", self.numData)
 
@@ -411,9 +412,27 @@ class myNode:
 
 		correct = predicted.eq(self.trainInputDict["label"].to(self.device)).sum().item()
 		total = len(est_labels)
-
-		print('Node %d Acc: %.3f'% ( self.nodeId, 100.*correct/total))
+		self.nodeAcc[2] = round(100.*correct/total,3)
+		self.nodeAcc[1] = total
+		self.nodeAcc[0] = correct
+		print('Node %d Acc: %.3f'% ( self.nodeId, self.nodeAcc[2]))
 		
+		NodeDict = torch.load(options.ckptDir+'/node_'+str(self.nodeId)+'.pth')['nodeDict']
+		NodeDict['nodeAcc'] = self.nodeAcc[:]
+		torch.save({
+			'nodeDict':NodeDict,
+			}, options.ckptDir+'/node_'+str(self.nodeId)+'.pth')
+
+		LevelDict = torch.load(options.ckptDir+'/level.pth')['levelDict']
+		LevelDict['levelAcc'][self.level][0] += correct
+		LevelDict['levelAcc'][self.level][1] += total
+		if(self.isLeaf):
+			LevelDict['leafAcc'][0] += correct
+			LevelDict['leafAcc'][1] += total
+		torch.save({
+			'levelDict':LevelDict,
+			}, options.ckptDir+'/level.pth')
+
 		if self.isLeaf:
 			self.setFinalPredictions(predicted)
 
@@ -704,10 +723,15 @@ class myNode:
 		img_flat_nmpy = image_next_flat.numpy()
 		print("image_next_flat.shape : ", image_next_flat.shape)
 		countImageTotal = image_next_flat.shape[0]
+
+		start = time.time()
 		# kmeans = KMeans(n_clusters=2, n_jobs=-1).fit(img_flat_nmpy)
 		kmeans = MiniBatchKMeans(n_clusters=2,random_state=0).fit(img_flat_nmpy)
+		end = time.time()
+		print("Time Taken by Kmeans is ", end-start)
+
 		cluster_ids = kmeans.labels_
-		print("Kmeans trained successfully...")		
+		print("Kmeans completed successfully...")		
 
 
 		leftSortedListOfTuples, rightSortedListOfTuples, expected_dict = self.separateLabels(cluster_ids)
@@ -778,6 +802,7 @@ class myNode:
 		nodeDict['classLabels'] = self.classLabels
 		nodeDict['giniGain'] = self.giniGain
 		nodeDict['splitAcc'] = self.splitAcc
+		nodeDict['nodeAcc'] = self.nodeAcc
 
 		torch.save({
 					'nodeDict':nodeDict,

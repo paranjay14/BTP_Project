@@ -1,4 +1,4 @@
-['options.ckptDir:valDir1024_cOut16_mFC2_32', 'options.maxDepth:6', 'options.cnnLR:0.001', 'options.mlpLR:0.001', 'options.cnnEpochs:200', 'options.mlpEpochs:60', 'options.cnnOut:16', 'options.mlpFC1:1024', 'options.mlpFC2:32']
+['options.ckptDir: valDir1024_cOut16_mFC2_32', 'options.maxDepth: 6', 'options.cnnLR: 0.001', 'options.mlpLR: 0.001', 'options.cnnEpochs: 100', 'options.mlpEpochs: 60', 'options.cnnOut: 16', 'options.mlpFC1: 1024', 'options.mlpFC2: 32']
 ==> Preparing data..
 Files already downloaded and verified
 Files already downloaded and verified
@@ -19,21 +19,6 @@ Epoch     8: reducing learning rate of group 0 to 4.0000e-05.
 80 Train Loss: 62.439 | Train Acc: 79.669 | Val Loss: 1.183 | Val Accuracy: 61.100
 Epoch    10: reducing learning rate of group 0 to 8.0000e-06.
 90 Train Loss: 62.157 | Train Acc: 79.829 | Val Loss: 1.187 | Val Accuracy: 61.100
-100 Train Loss: 61.828 | Train Acc: 79.947 | Val Loss: 1.187 | Val Accuracy: 61.300
-Epoch    12: reducing learning rate of group 0 to 1.6000e-06.
-110 Train Loss: 61.763 | Train Acc: 80.002 | Val Loss: 1.187 | Val Accuracy: 61.500
-120 Train Loss: 61.695 | Train Acc: 80.018 | Val Loss: 1.187 | Val Accuracy: 61.400
-Epoch    14: reducing learning rate of group 0 to 3.2000e-07.
-130 Train Loss: 61.682 | Train Acc: 80.041 | Val Loss: 1.187 | Val Accuracy: 61.400
-140 Train Loss: 61.664 | Train Acc: 80.031 | Val Loss: 1.187 | Val Accuracy: 61.400
-Epoch    16: reducing learning rate of group 0 to 6.4000e-08.
-150 Train Loss: 61.661 | Train Acc: 80.035 | Val Loss: 1.187 | Val Accuracy: 61.400
-160 Train Loss: 61.658 | Train Acc: 80.033 | Val Loss: 1.187 | Val Accuracy: 61.400
-Epoch    18: reducing learning rate of group 0 to 1.2800e-08.
-170 Train Loss: 61.657 | Train Acc: 80.035 | Val Loss: 1.187 | Val Accuracy: 61.400
-180 Train Loss: 61.656 | Train Acc: 80.035 | Val Loss: 1.187 | Val Accuracy: 61.400
-Epoch    20: reducing learning rate of group 0 to 2.5600e-09.
-190 Train Loss: 61.656 | Train Acc: 80.037 | Val Loss: 1.187 | Val Accuracy: 61.400
 CNN trained successfully...
 image_next_flat.shape :  torch.Size([49000, 12544])
 Kmeans trained successfully...
@@ -43,66 +28,66 @@ Printing final_dict items...
 {8: 0, 0: 0, 9: 0, 1: 0, 2: 0, 3: 1, 7: 1, 5: 1, 4: 1, 6: 1}
 Image Statistics before MLP : L R :  24500 24500
 expectedMlpLabels.shape :  torch.Size([49000])
-0 Loss: 80.547 | Acc: 82.206
-1 Loss: 70.450 | Acc: 84.765
-2 Loss: 64.447 | Acc: 86.186
-3 Loss: 60.967 | Acc: 86.890
-4 Loss: 57.306 | Acc: 87.700
-5 Loss: 54.777 | Acc: 88.133
-6 Loss: 51.717 | Acc: 88.908
-7 Loss: 48.692 | Acc: 89.596
-8 Loss: 45.563 | Acc: 90.314
-9 Loss: 44.495 | Acc: 90.447
-10 Loss: 35.507 | Acc: 92.510
-11 Loss: 32.549 | Acc: 93.161
-12 Loss: 30.368 | Acc: 93.661
-13 Loss: 29.272 | Acc: 93.929
-14 Loss: 27.554 | Acc: 94.300
-15 Loss: 25.196 | Acc: 94.802
-16 Loss: 24.123 | Acc: 95.043
-17 Loss: 22.528 | Acc: 95.273
-18 Loss: 20.869 | Acc: 95.765
-19 Loss: 20.048 | Acc: 95.967
-20 Loss: 15.944 | Acc: 96.812
-21 Loss: 14.613 | Acc: 97.063
-22 Loss: 13.817 | Acc: 97.210
-23 Loss: 13.097 | Acc: 97.408
-24 Loss: 12.373 | Acc: 97.600
-25 Loss: 12.198 | Acc: 97.629
-26 Loss: 11.667 | Acc: 97.755
-27 Loss: 11.538 | Acc: 97.778
-28 Loss: 10.800 | Acc: 97.904
-29 Loss: 10.828 | Acc: 97.896
-30 Loss: 8.993 | Acc: 98.294
-31 Loss: 8.550 | Acc: 98.433
-32 Loss: 8.181 | Acc: 98.512
-33 Loss: 8.233 | Acc: 98.484
-34 Loss: 7.685 | Acc: 98.594
-35 Loss: 8.045 | Acc: 98.565
-36 Loss: 7.891 | Acc: 98.508
-37 Loss: 7.377 | Acc: 98.643
-38 Loss: 7.047 | Acc: 98.657
-39 Loss: 7.274 | Acc: 98.678
-40 Loss: 6.630 | Acc: 98.806
-41 Loss: 6.322 | Acc: 98.841
-42 Loss: 6.469 | Acc: 98.816
-43 Loss: 6.236 | Acc: 98.827
-44 Loss: 6.076 | Acc: 98.898
-45 Loss: 6.344 | Acc: 98.833
-46 Loss: 6.024 | Acc: 98.912
-47 Loss: 6.020 | Acc: 98.900
-48 Loss: 5.863 | Acc: 98.963
-49 Loss: 5.941 | Acc: 98.941
-50 Loss: 6.058 | Acc: 98.902
-51 Loss: 5.836 | Acc: 98.957
-52 Loss: 5.726 | Acc: 98.937
-53 Loss: 5.498 | Acc: 99.063
-54 Loss: 5.606 | Acc: 99.041
-55 Loss: 5.418 | Acc: 99.010
-56 Loss: 5.459 | Acc: 99.008
-57 Loss: 5.435 | Acc: 99.031
-58 Loss: 5.188 | Acc: 99.049
-59 Loss: 5.524 | Acc: 99.012
+0 Loss: 82.048 | Acc: 81.735
+1 Loss: 69.612 | Acc: 84.869
+2 Loss: 64.812 | Acc: 85.965
+3 Loss: 60.849 | Acc: 86.857
+4 Loss: 57.140 | Acc: 87.710
+5 Loss: 55.135 | Acc: 88.145
+6 Loss: 51.324 | Acc: 88.984
+7 Loss: 48.788 | Acc: 89.441
+8 Loss: 47.026 | Acc: 89.792
+9 Loss: 43.885 | Acc: 90.580
+10 Loss: 36.561 | Acc: 92.429
+11 Loss: 33.385 | Acc: 93.020
+12 Loss: 30.855 | Acc: 93.633
+13 Loss: 29.571 | Acc: 93.735
+14 Loss: 28.143 | Acc: 94.206
+15 Loss: 26.882 | Acc: 94.445
+16 Loss: 24.132 | Acc: 95.098
+17 Loss: 23.187 | Acc: 95.227
+18 Loss: 22.053 | Acc: 95.524
+19 Loss: 20.926 | Acc: 95.778
+20 Loss: 16.391 | Acc: 96.769
+21 Loss: 15.898 | Acc: 96.867
+22 Loss: 14.395 | Acc: 97.100
+23 Loss: 13.670 | Acc: 97.316
+24 Loss: 13.618 | Acc: 97.386
+25 Loss: 12.678 | Acc: 97.539
+26 Loss: 12.091 | Acc: 97.690
+27 Loss: 11.666 | Acc: 97.718
+28 Loss: 11.687 | Acc: 97.780
+29 Loss: 10.858 | Acc: 97.904
+30 Loss: 9.969 | Acc: 98.131
+31 Loss: 8.931 | Acc: 98.345
+32 Loss: 8.471 | Acc: 98.457
+33 Loss: 8.389 | Acc: 98.365
+34 Loss: 8.142 | Acc: 98.543
+35 Loss: 7.751 | Acc: 98.573
+36 Loss: 7.797 | Acc: 98.590
+37 Loss: 7.799 | Acc: 98.551
+38 Loss: 7.563 | Acc: 98.592
+39 Loss: 7.259 | Acc: 98.641
+40 Loss: 6.951 | Acc: 98.702
+41 Loss: 6.881 | Acc: 98.771
+42 Loss: 6.792 | Acc: 98.767
+43 Loss: 6.753 | Acc: 98.737
+44 Loss: 6.533 | Acc: 98.792
+45 Loss: 6.400 | Acc: 98.849
+46 Loss: 6.418 | Acc: 98.859
+47 Loss: 6.594 | Acc: 98.782
+48 Loss: 6.353 | Acc: 98.831
+49 Loss: 6.089 | Acc: 98.902
+50 Loss: 5.941 | Acc: 98.910
+51 Loss: 5.926 | Acc: 98.902
+52 Loss: 5.867 | Acc: 98.906
+53 Loss: 6.021 | Acc: 98.957
+54 Loss: 6.163 | Acc: 98.898
+55 Loss: 5.699 | Acc: 98.978
+56 Loss: 5.754 | Acc: 98.980
+57 Loss: 5.548 | Acc: 99.069
+58 Loss: 5.868 | Acc: 98.935
+59 Loss: 5.549 | Acc: 98.976
 MLP trained successfully...
 lTrainDict[data].shape:  torch.Size([24500, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([24500])
 rTrainDict[data].shape:  torch.Size([24500, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([24500])
@@ -124,102 +109,87 @@ nodeId: 2 ,  parentId: 1 ,  level: 1 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: 
 nodeId:  3 , imgTensorShape :  torch.Size([24500, 3, 32, 32])
 nodeId: 3 ,  parentId: 1 ,  level: 1 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 5 ,  numData: 24500
 Running nodeId:  2
-0 Train Loss: 116.285 | Train Acc: 53.669 | Val Loss: 1.008 | Val Accuracy: 62.800
-10 Train Loss: 64.701 | Train Acc: 76.294 | Val Loss: 0.717 | Val Accuracy: 74.200
-20 Train Loss: 50.926 | Train Acc: 81.882 | Val Loss: 0.691 | Val Accuracy: 75.400
-30 Train Loss: 43.345 | Train Acc: 84.727 | Val Loss: 0.705 | Val Accuracy: 75.800
-40 Train Loss: 37.549 | Train Acc: 86.678 | Val Loss: 0.705 | Val Accuracy: 76.600
-50 Train Loss: 31.398 | Train Acc: 89.657 | Val Loss: 0.847 | Val Accuracy: 73.600
-Epoch     7: reducing learning rate of group 0 to 2.0000e-04.
-60 Train Loss: 27.914 | Train Acc: 90.584 | Val Loss: 0.812 | Val Accuracy: 74.000
-70 Train Loss: 23.802 | Train Acc: 92.971 | Val Loss: 0.810 | Val Accuracy: 75.400
-Epoch     9: reducing learning rate of group 0 to 4.0000e-05.
-80 Train Loss: 22.779 | Train Acc: 93.351 | Val Loss: 0.817 | Val Accuracy: 75.600
-90 Train Loss: 21.920 | Train Acc: 93.955 | Val Loss: 0.827 | Val Accuracy: 75.000
-Epoch    11: reducing learning rate of group 0 to 8.0000e-06.
-100 Train Loss: 21.744 | Train Acc: 93.951 | Val Loss: 0.827 | Val Accuracy: 75.400
-110 Train Loss: 21.516 | Train Acc: 94.106 | Val Loss: 0.829 | Val Accuracy: 74.600
-Epoch    13: reducing learning rate of group 0 to 1.6000e-06.
-120 Train Loss: 21.480 | Train Acc: 94.159 | Val Loss: 0.834 | Val Accuracy: 75.000
-130 Train Loss: 21.429 | Train Acc: 94.155 | Val Loss: 0.832 | Val Accuracy: 74.600
-Epoch    15: reducing learning rate of group 0 to 3.2000e-07.
-140 Train Loss: 21.422 | Train Acc: 94.155 | Val Loss: 0.832 | Val Accuracy: 75.000
-150 Train Loss: 21.410 | Train Acc: 94.167 | Val Loss: 0.832 | Val Accuracy: 74.600
-Epoch    17: reducing learning rate of group 0 to 6.4000e-08.
-160 Train Loss: 21.408 | Train Acc: 94.163 | Val Loss: 0.832 | Val Accuracy: 74.600
-170 Train Loss: 21.406 | Train Acc: 94.163 | Val Loss: 0.832 | Val Accuracy: 74.600
-Epoch    19: reducing learning rate of group 0 to 1.2800e-08.
-180 Train Loss: 21.405 | Train Acc: 94.163 | Val Loss: 0.832 | Val Accuracy: 74.600
-190 Train Loss: 21.405 | Train Acc: 94.163 | Val Loss: 0.832 | Val Accuracy: 74.600
+0 Train Loss: 117.490 | Train Acc: 53.371 | Val Loss: 0.999 | Val Accuracy: 63.400
+10 Train Loss: 66.338 | Train Acc: 75.690 | Val Loss: 0.748 | Val Accuracy: 72.200
+20 Train Loss: 52.890 | Train Acc: 80.943 | Val Loss: 0.698 | Val Accuracy: 73.800
+30 Train Loss: 44.869 | Train Acc: 83.849 | Val Loss: 0.739 | Val Accuracy: 73.600
+40 Train Loss: 38.561 | Train Acc: 86.584 | Val Loss: 0.734 | Val Accuracy: 74.800
+50 Train Loss: 33.259 | Train Acc: 88.759 | Val Loss: 0.768 | Val Accuracy: 77.200
+60 Train Loss: 29.958 | Train Acc: 89.751 | Val Loss: 0.836 | Val Accuracy: 75.000
+Epoch     8: reducing learning rate of group 0 to 2.0000e-04.
+70 Train Loss: 25.593 | Train Acc: 91.714 | Val Loss: 0.914 | Val Accuracy: 73.200
+80 Train Loss: 21.590 | Train Acc: 94.184 | Val Loss: 0.908 | Val Accuracy: 74.600
+Epoch    10: reducing learning rate of group 0 to 4.0000e-05.
+90 Train Loss: 20.814 | Train Acc: 94.506 | Val Loss: 0.931 | Val Accuracy: 73.000
 CNN trained successfully...
 image_next_flat.shape :  torch.Size([24500, 12544])
 Kmeans trained successfully...
 printing expected split from k means
-{3: 0, 4: 1, 2: 1, 0: 0, 1: 1}
+{4: 0, 2: 0, 1: 0, 0: 1, 3: 1}
 Printing final_dict items...
-{3: 0, 0: 0, 4: 1, 1: 1, 2: 1}
+{2: 0, 1: 0, 4: 1, 0: 1, 3: 1}
 Image Statistics before MLP : L R :  9800 14700
 expectedMlpLabels.shape :  torch.Size([24500])
-0 Loss: 71.688 | Acc: 80.192
-1 Loss: 58.614 | Acc: 83.996
-2 Loss: 52.307 | Acc: 85.963
-3 Loss: 48.287 | Acc: 86.967
-4 Loss: 43.261 | Acc: 88.314
-5 Loss: 40.068 | Acc: 89.269
-6 Loss: 36.531 | Acc: 90.310
-7 Loss: 34.243 | Acc: 90.902
-8 Loss: 31.979 | Acc: 91.580
-9 Loss: 30.283 | Acc: 92.012
-10 Loss: 21.345 | Acc: 94.433
-11 Loss: 19.026 | Acc: 95.118
-12 Loss: 17.953 | Acc: 95.318
-13 Loss: 15.918 | Acc: 95.935
-14 Loss: 14.585 | Acc: 96.265
-15 Loss: 13.585 | Acc: 96.514
-16 Loss: 13.531 | Acc: 96.624
-17 Loss: 12.532 | Acc: 96.914
-18 Loss: 10.696 | Acc: 97.343
-19 Loss: 11.392 | Acc: 97.098
-20 Loss: 7.828 | Acc: 98.082
-21 Loss: 6.849 | Acc: 98.384
-22 Loss: 6.406 | Acc: 98.486
-23 Loss: 5.691 | Acc: 98.629
-24 Loss: 5.732 | Acc: 98.649
-25 Loss: 5.766 | Acc: 98.600
-26 Loss: 5.486 | Acc: 98.653
-27 Loss: 4.810 | Acc: 98.837
-28 Loss: 5.079 | Acc: 98.829
-29 Loss: 4.707 | Acc: 98.947
-30 Loss: 3.841 | Acc: 99.102
-31 Loss: 3.804 | Acc: 99.098
-32 Loss: 3.444 | Acc: 99.171
-33 Loss: 3.087 | Acc: 99.310
-34 Loss: 3.351 | Acc: 99.184
-35 Loss: 3.270 | Acc: 99.253
-36 Loss: 2.756 | Acc: 99.367
-37 Loss: 3.094 | Acc: 99.322
-38 Loss: 3.042 | Acc: 99.306
-39 Loss: 3.073 | Acc: 99.318
-40 Loss: 2.660 | Acc: 99.420
-41 Loss: 2.534 | Acc: 99.424
-42 Loss: 2.318 | Acc: 99.465
-43 Loss: 2.468 | Acc: 99.449
-44 Loss: 2.472 | Acc: 99.502
-45 Loss: 2.409 | Acc: 99.482
-46 Loss: 2.230 | Acc: 99.522
-47 Loss: 2.187 | Acc: 99.567
-48 Loss: 2.064 | Acc: 99.551
-49 Loss: 2.270 | Acc: 99.498
-50 Loss: 2.384 | Acc: 99.502
-51 Loss: 2.294 | Acc: 99.514
-52 Loss: 2.040 | Acc: 99.576
-53 Loss: 2.019 | Acc: 99.567
-54 Loss: 2.069 | Acc: 99.522
-55 Loss: 2.106 | Acc: 99.551
-56 Loss: 2.056 | Acc: 99.563
-57 Loss: 2.084 | Acc: 99.547
-58 Loss: 2.006 | Acc: 99.584
-59 Loss: 2.041 | Acc: 99.559
+0 Loss: 84.051 | Acc: 74.669
+1 Loss: 68.478 | Acc: 80.363
+2 Loss: 60.677 | Acc: 83.294
+3 Loss: 55.530 | Acc: 84.682
+4 Loss: 50.808 | Acc: 86.167
+5 Loss: 46.566 | Acc: 87.531
+6 Loss: 44.394 | Acc: 88.090
+7 Loss: 39.974 | Acc: 89.306
+8 Loss: 36.260 | Acc: 90.420
+9 Loss: 33.790 | Acc: 91.127
+10 Loss: 25.315 | Acc: 93.412
+11 Loss: 21.869 | Acc: 94.612
+12 Loss: 19.760 | Acc: 95.069
+13 Loss: 18.291 | Acc: 95.233
+14 Loss: 16.572 | Acc: 95.886
+15 Loss: 15.727 | Acc: 96.212
+16 Loss: 13.690 | Acc: 96.559
+17 Loss: 13.435 | Acc: 96.661
+18 Loss: 12.462 | Acc: 97.008
+19 Loss: 13.174 | Acc: 96.747
+20 Loss: 8.791 | Acc: 98.037
+21 Loss: 7.562 | Acc: 98.306
+22 Loss: 7.091 | Acc: 98.355
+23 Loss: 6.722 | Acc: 98.441
+24 Loss: 5.809 | Acc: 98.616
+25 Loss: 5.755 | Acc: 98.665
+26 Loss: 5.753 | Acc: 98.706
+27 Loss: 6.018 | Acc: 98.629
+28 Loss: 5.184 | Acc: 98.849
+29 Loss: 4.928 | Acc: 98.935
+30 Loss: 4.101 | Acc: 99.118
+31 Loss: 3.803 | Acc: 99.200
+32 Loss: 3.648 | Acc: 99.278
+33 Loss: 3.640 | Acc: 99.261
+34 Loss: 4.120 | Acc: 99.098
+35 Loss: 3.367 | Acc: 99.273
+36 Loss: 3.721 | Acc: 99.200
+37 Loss: 2.897 | Acc: 99.392
+38 Loss: 2.997 | Acc: 99.351
+39 Loss: 3.037 | Acc: 99.371
+40 Loss: 2.761 | Acc: 99.392
+41 Loss: 3.014 | Acc: 99.392
+42 Loss: 2.490 | Acc: 99.543
+43 Loss: 2.633 | Acc: 99.478
+44 Loss: 2.559 | Acc: 99.453
+45 Loss: 2.453 | Acc: 99.486
+46 Loss: 2.446 | Acc: 99.522
+47 Loss: 2.573 | Acc: 99.498
+48 Loss: 2.426 | Acc: 99.473
+49 Loss: 2.718 | Acc: 99.433
+50 Loss: 2.232 | Acc: 99.522
+51 Loss: 2.397 | Acc: 99.449
+52 Loss: 2.330 | Acc: 99.527
+53 Loss: 2.216 | Acc: 99.563
+54 Loss: 2.195 | Acc: 99.559
+55 Loss: 2.213 | Acc: 99.535
+56 Loss: 2.082 | Acc: 99.571
+57 Loss: 2.293 | Acc: 99.531
+58 Loss: 2.211 | Acc: 99.588
+59 Loss: 2.006 | Acc: 99.612
 MLP trained successfully...
 lTrainDict[data].shape:  torch.Size([9800, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([9800])
 rTrainDict[data].shape:  torch.Size([14700, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([14700])
@@ -231,8 +201,8 @@ giniRightRatio:  0.6666666666666667
 giniLeftRatio:  0.5
 impurityDrop:  0.5555555555555556
 giniGain:  0.24444444444444458
-lclasses:  [4900, 0, 0, 4900, 0, 0, 0, 0, 0, 0]
-rclasses:  [0, 4900, 4900, 0, 4900, 0, 0, 0, 0, 0]
+lclasses:  [0, 4900, 4900, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [4900, 0, 0, 4900, 4900, 0, 0, 0, 0, 0]
 noOfLeftClasses:  2
 noOfRightClasses:  3
 RETURNING FROM WORK...
@@ -241,102 +211,88 @@ nodeId: 4 ,  parentId: 2 ,  level: 2 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: 
 nodeId:  5 , imgTensorShape :  torch.Size([14700, 3, 32, 32])
 nodeId: 5 ,  parentId: 2 ,  level: 2 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3 ,  numData: 14700
 Running nodeId:  3
-0 Train Loss: 139.106 | Train Acc: 41.927 | Val Loss: 1.247 | Val Accuracy: 53.000
-10 Train Loss: 92.518 | Train Acc: 64.073 | Val Loss: 1.005 | Val Accuracy: 60.200
-20 Train Loss: 75.137 | Train Acc: 71.371 | Val Loss: 0.971 | Val Accuracy: 62.800
-30 Train Loss: 67.893 | Train Acc: 74.478 | Val Loss: 0.989 | Val Accuracy: 62.000
-40 Train Loss: 60.657 | Train Acc: 77.629 | Val Loss: 1.030 | Val Accuracy: 63.400
-50 Train Loss: 55.563 | Train Acc: 79.682 | Val Loss: 1.112 | Val Accuracy: 60.400
-Epoch     7: reducing learning rate of group 0 to 2.0000e-04.
-60 Train Loss: 51.367 | Train Acc: 81.033 | Val Loss: 1.142 | Val Accuracy: 61.800
-70 Train Loss: 44.794 | Train Acc: 84.780 | Val Loss: 1.151 | Val Accuracy: 60.400
-Epoch     9: reducing learning rate of group 0 to 4.0000e-05.
-80 Train Loss: 43.704 | Train Acc: 85.469 | Val Loss: 1.180 | Val Accuracy: 62.200
-90 Train Loss: 42.452 | Train Acc: 86.216 | Val Loss: 1.175 | Val Accuracy: 60.800
-Epoch    11: reducing learning rate of group 0 to 8.0000e-06.
-100 Train Loss: 42.181 | Train Acc: 86.282 | Val Loss: 1.179 | Val Accuracy: 60.000
-110 Train Loss: 41.863 | Train Acc: 86.453 | Val Loss: 1.179 | Val Accuracy: 60.600
-Epoch    13: reducing learning rate of group 0 to 1.6000e-06.
-120 Train Loss: 41.802 | Train Acc: 86.539 | Val Loss: 1.182 | Val Accuracy: 60.800
-130 Train Loss: 41.745 | Train Acc: 86.559 | Val Loss: 1.181 | Val Accuracy: 60.400
-Epoch    15: reducing learning rate of group 0 to 3.2000e-07.
-140 Train Loss: 41.730 | Train Acc: 86.629 | Val Loss: 1.181 | Val Accuracy: 60.600
-150 Train Loss: 41.716 | Train Acc: 86.620 | Val Loss: 1.181 | Val Accuracy: 60.600
-Epoch    17: reducing learning rate of group 0 to 6.4000e-08.
-160 Train Loss: 41.714 | Train Acc: 86.624 | Val Loss: 1.181 | Val Accuracy: 60.600
-170 Train Loss: 41.711 | Train Acc: 86.620 | Val Loss: 1.181 | Val Accuracy: 60.600
-Epoch    19: reducing learning rate of group 0 to 1.2800e-08.
-180 Train Loss: 41.711 | Train Acc: 86.612 | Val Loss: 1.181 | Val Accuracy: 60.600
-190 Train Loss: 41.710 | Train Acc: 86.612 | Val Loss: 1.181 | Val Accuracy: 60.600
+0 Train Loss: 138.452 | Train Acc: 41.690 | Val Loss: 1.261 | Val Accuracy: 48.600
+10 Train Loss: 90.144 | Train Acc: 65.469 | Val Loss: 1.008 | Val Accuracy: 61.400
+20 Train Loss: 76.241 | Train Acc: 71.020 | Val Loss: 0.981 | Val Accuracy: 63.400
+30 Train Loss: 69.575 | Train Acc: 73.706 | Val Loss: 1.017 | Val Accuracy: 65.000
+40 Train Loss: 63.095 | Train Acc: 76.073 | Val Loss: 1.021 | Val Accuracy: 62.600
+Epoch     6: reducing learning rate of group 0 to 2.0000e-04.
+50 Train Loss: 58.029 | Train Acc: 78.416 | Val Loss: 1.063 | Val Accuracy: 63.400
+60 Train Loss: 52.841 | Train Acc: 81.282 | Val Loss: 1.064 | Val Accuracy: 62.400
+Epoch     8: reducing learning rate of group 0 to 4.0000e-05.
+70 Train Loss: 51.544 | Train Acc: 81.947 | Val Loss: 1.056 | Val Accuracy: 62.000
+80 Train Loss: 50.227 | Train Acc: 82.596 | Val Loss: 1.060 | Val Accuracy: 63.400
+Epoch    10: reducing learning rate of group 0 to 8.0000e-06.
+90 Train Loss: 49.923 | Train Acc: 82.751 | Val Loss: 1.061 | Val Accuracy: 63.200
 CNN trained successfully...
 image_next_flat.shape :  torch.Size([24500, 12544])
 Kmeans trained successfully...
 printing expected split from k means
-{2: 1, 1: 0, 0: 1, 3: 0, 4: 1}
+{2: 1, 1: 0, 4: 0, 0: 0, 3: 0}
 Printing final_dict items...
-{3: 0, 1: 0, 2: 1, 0: 1, 4: 1}
+{1: 0, 4: 0, 3: 1, 0: 1, 2: 1}
 Image Statistics before MLP : L R :  9800 14700
 expectedMlpLabels.shape :  torch.Size([24500])
-0 Loss: 79.704 | Acc: 76.106
-1 Loss: 68.555 | Acc: 80.580
-2 Loss: 63.487 | Acc: 82.049
-3 Loss: 59.732 | Acc: 83.404
-4 Loss: 55.326 | Acc: 84.584
-5 Loss: 51.387 | Acc: 85.816
-6 Loss: 47.792 | Acc: 86.918
-7 Loss: 44.346 | Acc: 87.857
-8 Loss: 40.667 | Acc: 88.641
-9 Loss: 36.151 | Acc: 90.216
-10 Loss: 28.132 | Acc: 92.396
-11 Loss: 24.190 | Acc: 93.678
-12 Loss: 23.047 | Acc: 93.784
-13 Loss: 20.550 | Acc: 94.641
-14 Loss: 18.640 | Acc: 95.204
-15 Loss: 17.172 | Acc: 95.555
-16 Loss: 15.313 | Acc: 96.012
-17 Loss: 15.141 | Acc: 96.127
-18 Loss: 13.139 | Acc: 96.649
-19 Loss: 13.674 | Acc: 96.518
-20 Loss: 9.482 | Acc: 97.739
-21 Loss: 8.424 | Acc: 97.935
-22 Loss: 7.738 | Acc: 98.098
-23 Loss: 7.329 | Acc: 98.196
-24 Loss: 6.844 | Acc: 98.331
-25 Loss: 6.786 | Acc: 98.482
-26 Loss: 6.744 | Acc: 98.461
-27 Loss: 6.085 | Acc: 98.535
-28 Loss: 5.305 | Acc: 98.800
-29 Loss: 5.148 | Acc: 98.722
-30 Loss: 4.536 | Acc: 98.939
-31 Loss: 3.914 | Acc: 99.004
-32 Loss: 3.699 | Acc: 99.106
-33 Loss: 3.736 | Acc: 99.151
-34 Loss: 3.737 | Acc: 99.114
-35 Loss: 3.810 | Acc: 99.167
-36 Loss: 3.263 | Acc: 99.298
-37 Loss: 3.265 | Acc: 99.282
-38 Loss: 3.350 | Acc: 99.331
-39 Loss: 3.027 | Acc: 99.355
-40 Loss: 3.078 | Acc: 99.314
-41 Loss: 2.739 | Acc: 99.359
-42 Loss: 2.934 | Acc: 99.343
-43 Loss: 2.781 | Acc: 99.420
-44 Loss: 2.429 | Acc: 99.457
-45 Loss: 2.506 | Acc: 99.461
-46 Loss: 2.446 | Acc: 99.465
-47 Loss: 2.485 | Acc: 99.453
-48 Loss: 2.821 | Acc: 99.359
-49 Loss: 2.515 | Acc: 99.461
-50 Loss: 2.320 | Acc: 99.522
-51 Loss: 2.285 | Acc: 99.522
-52 Loss: 2.382 | Acc: 99.510
-53 Loss: 2.046 | Acc: 99.571
-54 Loss: 2.213 | Acc: 99.518
-55 Loss: 2.259 | Acc: 99.514
-56 Loss: 2.197 | Acc: 99.531
-57 Loss: 2.068 | Acc: 99.563
-58 Loss: 2.196 | Acc: 99.494
-59 Loss: 2.160 | Acc: 99.543
+0 Loss: 80.510 | Acc: 75.784
+1 Loss: 67.576 | Acc: 80.878
+2 Loss: 61.185 | Acc: 83.049
+3 Loss: 55.915 | Acc: 84.522
+4 Loss: 52.435 | Acc: 85.576
+5 Loss: 49.153 | Acc: 86.453
+6 Loss: 45.033 | Acc: 87.669
+7 Loss: 42.306 | Acc: 88.465
+8 Loss: 38.769 | Acc: 89.363
+9 Loss: 36.140 | Acc: 90.147
+10 Loss: 27.274 | Acc: 92.824
+11 Loss: 23.433 | Acc: 93.861
+12 Loss: 21.898 | Acc: 94.229
+13 Loss: 20.772 | Acc: 94.604
+14 Loss: 18.813 | Acc: 94.971
+15 Loss: 16.656 | Acc: 95.633
+16 Loss: 15.944 | Acc: 95.947
+17 Loss: 14.494 | Acc: 96.363
+18 Loss: 12.966 | Acc: 96.702
+19 Loss: 12.834 | Acc: 96.865
+20 Loss: 8.868 | Acc: 97.820
+21 Loss: 7.924 | Acc: 98.094
+22 Loss: 6.988 | Acc: 98.388
+23 Loss: 7.065 | Acc: 98.371
+24 Loss: 6.255 | Acc: 98.498
+25 Loss: 6.617 | Acc: 98.563
+26 Loss: 6.056 | Acc: 98.620
+27 Loss: 5.313 | Acc: 98.743
+28 Loss: 5.543 | Acc: 98.771
+29 Loss: 5.433 | Acc: 98.718
+30 Loss: 4.213 | Acc: 99.065
+31 Loss: 3.613 | Acc: 99.204
+32 Loss: 3.519 | Acc: 99.331
+33 Loss: 3.551 | Acc: 99.208
+34 Loss: 3.175 | Acc: 99.286
+35 Loss: 3.329 | Acc: 99.290
+36 Loss: 3.076 | Acc: 99.384
+37 Loss: 2.773 | Acc: 99.420
+38 Loss: 2.869 | Acc: 99.380
+39 Loss: 3.071 | Acc: 99.339
+40 Loss: 2.707 | Acc: 99.429
+41 Loss: 2.373 | Acc: 99.543
+42 Loss: 2.794 | Acc: 99.380
+43 Loss: 2.630 | Acc: 99.473
+44 Loss: 2.373 | Acc: 99.482
+45 Loss: 2.266 | Acc: 99.453
+46 Loss: 2.218 | Acc: 99.506
+47 Loss: 2.317 | Acc: 99.518
+48 Loss: 2.278 | Acc: 99.498
+49 Loss: 2.076 | Acc: 99.567
+50 Loss: 2.039 | Acc: 99.608
+51 Loss: 2.133 | Acc: 99.522
+52 Loss: 2.130 | Acc: 99.535
+53 Loss: 2.271 | Acc: 99.535
+54 Loss: 2.113 | Acc: 99.514
+55 Loss: 1.983 | Acc: 99.592
+56 Loss: 1.951 | Acc: 99.608
+57 Loss: 2.152 | Acc: 99.551
+58 Loss: 2.241 | Acc: 99.486
+59 Loss: 1.901 | Acc: 99.600
 MLP trained successfully...
 lTrainDict[data].shape:  torch.Size([9800, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([9800])
 rTrainDict[data].shape:  torch.Size([14700, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([14700])
@@ -348,8 +304,8 @@ giniRightRatio:  0.6666666666666667
 giniLeftRatio:  0.5
 impurityDrop:  0.5555555555555556
 giniGain:  0.24444444444444458
-lclasses:  [0, 4900, 0, 4900, 0, 0, 0, 0, 0, 0]
-rclasses:  [4900, 0, 4900, 0, 4900, 0, 0, 0, 0, 0]
+lclasses:  [0, 4900, 0, 0, 4900, 0, 0, 0, 0, 0]
+rclasses:  [4900, 0, 4900, 4900, 0, 0, 0, 0, 0, 0]
 noOfLeftClasses:  2
 noOfRightClasses:  3
 RETURNING FROM WORK...
@@ -358,32 +314,20 @@ nodeId: 6 ,  parentId: 3 ,  level: 2 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: 
 nodeId:  7 , imgTensorShape :  torch.Size([14700, 3, 32, 32])
 nodeId: 7 ,  parentId: 3 ,  level: 2 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3 ,  numData: 14700
 Running nodeId:  4
-0 Train Loss: 57.007 | Train Acc: 70.082 | Val Loss: 0.550 | Val Accuracy: 71.000
-10 Train Loss: 31.323 | Train Acc: 86.969 | Val Loss: 0.434 | Val Accuracy: 78.500
-20 Train Loss: 24.823 | Train Acc: 89.969 | Val Loss: 0.437 | Val Accuracy: 79.000
-30 Train Loss: 18.928 | Train Acc: 92.786 | Val Loss: 0.405 | Val Accuracy: 82.500
-40 Train Loss: 15.600 | Train Acc: 94.184 | Val Loss: 0.428 | Val Accuracy: 81.000
-50 Train Loss: 12.674 | Train Acc: 95.633 | Val Loss: 0.446 | Val Accuracy: 83.500
-60 Train Loss: 10.984 | Train Acc: 96.133 | Val Loss: 0.477 | Val Accuracy: 83.500
-70 Train Loss: 8.145 | Train Acc: 97.469 | Val Loss: 0.425 | Val Accuracy: 85.500
-80 Train Loss: 7.836 | Train Acc: 97.500 | Val Loss: 0.559 | Val Accuracy: 83.000
-Epoch    10: reducing learning rate of group 0 to 2.0000e-04.
-90 Train Loss: 6.420 | Train Acc: 98.020 | Val Loss: 0.545 | Val Accuracy: 82.500
-100 Train Loss: 3.659 | Train Acc: 99.551 | Val Loss: 0.582 | Val Accuracy: 81.500
-Epoch    12: reducing learning rate of group 0 to 4.0000e-05.
-110 Train Loss: 3.441 | Train Acc: 99.643 | Val Loss: 0.587 | Val Accuracy: 81.500
-120 Train Loss: 3.149 | Train Acc: 99.755 | Val Loss: 0.572 | Val Accuracy: 81.500
-Epoch    14: reducing learning rate of group 0 to 8.0000e-06.
-130 Train Loss: 3.104 | Train Acc: 99.765 | Val Loss: 0.581 | Val Accuracy: 81.000
-140 Train Loss: 3.018 | Train Acc: 99.745 | Val Loss: 0.578 | Val Accuracy: 82.000
-Epoch    16: reducing learning rate of group 0 to 1.6000e-06.
-150 Train Loss: 3.003 | Train Acc: 99.755 | Val Loss: 0.579 | Val Accuracy: 81.500
-160 Train Loss: 2.987 | Train Acc: 99.755 | Val Loss: 0.579 | Val Accuracy: 81.500
-Epoch    18: reducing learning rate of group 0 to 3.2000e-07.
-170 Train Loss: 2.984 | Train Acc: 99.755 | Val Loss: 0.579 | Val Accuracy: 81.500
-180 Train Loss: 2.981 | Train Acc: 99.755 | Val Loss: 0.579 | Val Accuracy: 81.500
-Epoch    20: reducing learning rate of group 0 to 6.4000e-08.
-190 Train Loss: 2.980 | Train Acc: 99.755 | Val Loss: 0.579 | Val Accuracy: 81.500
+0 Train Loss: 37.590 | Train Acc: 82.745 | Val Loss: 0.252 | Val Accuracy: 90.500
+10 Train Loss: 10.783 | Train Acc: 96.020 | Val Loss: 0.164 | Val Accuracy: 95.000
+20 Train Loss: 7.429 | Train Acc: 97.286 | Val Loss: 0.177 | Val Accuracy: 94.000
+Epoch     4: reducing learning rate of group 0 to 2.0000e-04.
+30 Train Loss: 5.291 | Train Acc: 98.337 | Val Loss: 0.217 | Val Accuracy: 94.000
+40 Train Loss: 3.206 | Train Acc: 99.367 | Val Loss: 0.216 | Val Accuracy: 94.000
+Epoch     6: reducing learning rate of group 0 to 4.0000e-05.
+50 Train Loss: 2.997 | Train Acc: 99.398 | Val Loss: 0.211 | Val Accuracy: 94.000
+60 Train Loss: 2.517 | Train Acc: 99.633 | Val Loss: 0.220 | Val Accuracy: 93.500
+Epoch     8: reducing learning rate of group 0 to 8.0000e-06.
+70 Train Loss: 2.443 | Train Acc: 99.582 | Val Loss: 0.224 | Val Accuracy: 93.500
+80 Train Loss: 2.365 | Train Acc: 99.643 | Val Loss: 0.228 | Val Accuracy: 93.500
+Epoch    10: reducing learning rate of group 0 to 1.6000e-06.
+90 Train Loss: 2.344 | Train Acc: 99.663 | Val Loss: 0.227 | Val Accuracy: 93.500
 CNN trained successfully...
 image_next_flat.shape :  torch.Size([9800, 12544])
 Kmeans trained successfully...
@@ -393,66 +337,66 @@ Printing final_dict items...
 {1: 0, 0: 1}
 Image Statistics before MLP : L R :  4900 4900
 expectedMlpLabels.shape :  torch.Size([9800])
-0 Loss: 93.810 | Acc: 77.929
-1 Loss: 71.375 | Acc: 84.582
-2 Loss: 59.734 | Acc: 86.949
-3 Loss: 52.796 | Acc: 88.724
-4 Loss: 44.683 | Acc: 90.561
-5 Loss: 39.879 | Acc: 91.643
-6 Loss: 34.478 | Acc: 92.684
-7 Loss: 28.595 | Acc: 94.235
-8 Loss: 26.305 | Acc: 94.541
-9 Loss: 22.442 | Acc: 95.102
-10 Loss: 13.010 | Acc: 97.571
-11 Loss: 8.806 | Acc: 98.245
-12 Loss: 7.855 | Acc: 98.541
-13 Loss: 8.452 | Acc: 98.388
-14 Loss: 8.591 | Acc: 98.459
-15 Loss: 6.777 | Acc: 98.745
-16 Loss: 5.589 | Acc: 99.051
-17 Loss: 4.913 | Acc: 99.051
-18 Loss: 4.746 | Acc: 99.255
-19 Loss: 5.454 | Acc: 99.051
-20 Loss: 2.864 | Acc: 99.480
-21 Loss: 1.940 | Acc: 99.684
-22 Loss: 2.194 | Acc: 99.633
-23 Loss: 1.867 | Acc: 99.663
-24 Loss: 1.356 | Acc: 99.765
-25 Loss: 1.379 | Acc: 99.735
-26 Loss: 1.540 | Acc: 99.694
-27 Loss: 1.553 | Acc: 99.735
-28 Loss: 1.355 | Acc: 99.765
-29 Loss: 1.540 | Acc: 99.776
-30 Loss: 1.082 | Acc: 99.857
-31 Loss: 0.837 | Acc: 99.878
-32 Loss: 0.691 | Acc: 99.878
-33 Loss: 0.694 | Acc: 99.939
-34 Loss: 0.572 | Acc: 99.949
-35 Loss: 0.519 | Acc: 99.918
-36 Loss: 0.557 | Acc: 99.898
-37 Loss: 0.483 | Acc: 99.959
-38 Loss: 0.394 | Acc: 99.969
-39 Loss: 0.541 | Acc: 99.908
-40 Loss: 0.551 | Acc: 99.908
-41 Loss: 0.221 | Acc: 99.990
-42 Loss: 0.264 | Acc: 99.980
-43 Loss: 0.270 | Acc: 99.949
-44 Loss: 0.297 | Acc: 99.949
-45 Loss: 0.356 | Acc: 99.949
-46 Loss: 0.245 | Acc: 99.969
-47 Loss: 0.315 | Acc: 99.959
-48 Loss: 0.265 | Acc: 99.959
-49 Loss: 0.513 | Acc: 99.939
-50 Loss: 0.307 | Acc: 99.959
-51 Loss: 0.624 | Acc: 99.918
-52 Loss: 0.296 | Acc: 99.939
-53 Loss: 0.167 | Acc: 100.000
-54 Loss: 0.281 | Acc: 99.969
-55 Loss: 0.337 | Acc: 99.959
-56 Loss: 0.369 | Acc: 99.969
-57 Loss: 0.277 | Acc: 99.949
-58 Loss: 0.415 | Acc: 99.939
-59 Loss: 0.309 | Acc: 99.959
+0 Loss: 43.070 | Acc: 91.133
+1 Loss: 30.430 | Acc: 93.969
+2 Loss: 25.391 | Acc: 95.082
+3 Loss: 21.576 | Acc: 95.867
+4 Loss: 20.818 | Acc: 95.704
+5 Loss: 15.956 | Acc: 96.898
+6 Loss: 14.884 | Acc: 96.990
+7 Loss: 11.107 | Acc: 97.898
+8 Loss: 12.105 | Acc: 97.735
+9 Loss: 10.142 | Acc: 98.214
+10 Loss: 5.873 | Acc: 98.867
+11 Loss: 2.926 | Acc: 99.408
+12 Loss: 2.289 | Acc: 99.551
+13 Loss: 2.488 | Acc: 99.551
+14 Loss: 2.427 | Acc: 99.612
+15 Loss: 1.715 | Acc: 99.673
+16 Loss: 2.023 | Acc: 99.704
+17 Loss: 1.670 | Acc: 99.684
+18 Loss: 2.962 | Acc: 99.500
+19 Loss: 1.476 | Acc: 99.724
+20 Loss: 0.686 | Acc: 99.867
+21 Loss: 0.268 | Acc: 99.990
+22 Loss: 0.251 | Acc: 99.959
+23 Loss: 0.186 | Acc: 99.980
+24 Loss: 0.308 | Acc: 99.959
+25 Loss: 0.249 | Acc: 99.969
+26 Loss: 0.202 | Acc: 99.980
+27 Loss: 0.204 | Acc: 99.969
+28 Loss: 0.108 | Acc: 99.990
+29 Loss: 0.132 | Acc: 99.990
+30 Loss: 0.218 | Acc: 99.929
+31 Loss: 0.058 | Acc: 100.000
+32 Loss: 0.070 | Acc: 100.000
+33 Loss: 0.062 | Acc: 100.000
+34 Loss: 0.110 | Acc: 99.990
+35 Loss: 0.027 | Acc: 100.000
+36 Loss: 0.042 | Acc: 100.000
+37 Loss: 0.231 | Acc: 99.969
+38 Loss: 0.107 | Acc: 99.980
+39 Loss: 0.050 | Acc: 100.000
+40 Loss: 0.098 | Acc: 99.980
+41 Loss: 0.072 | Acc: 99.990
+42 Loss: 0.030 | Acc: 100.000
+43 Loss: 0.037 | Acc: 100.000
+44 Loss: 0.018 | Acc: 100.000
+45 Loss: 0.065 | Acc: 99.990
+46 Loss: 0.044 | Acc: 99.990
+47 Loss: 0.102 | Acc: 99.969
+48 Loss: 0.039 | Acc: 100.000
+49 Loss: 0.029 | Acc: 100.000
+50 Loss: 0.024 | Acc: 100.000
+51 Loss: 0.025 | Acc: 100.000
+52 Loss: 0.040 | Acc: 100.000
+53 Loss: 0.050 | Acc: 99.990
+54 Loss: 0.046 | Acc: 99.990
+55 Loss: 0.043 | Acc: 99.990
+56 Loss: 0.154 | Acc: 99.980
+57 Loss: 0.039 | Acc: 100.000
+58 Loss: 0.036 | Acc: 100.000
+59 Loss: 0.050 | Acc: 99.990
 MLP trained successfully...
 lTrainDict[data].shape:  torch.Size([4900, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([4900])
 rTrainDict[data].shape:  torch.Size([4900, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([4900])
@@ -469,112 +413,96 @@ rclasses:  [4900, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 noOfLeftClasses:  1
 noOfRightClasses:  1
 RETURNING FROM WORK...
-CLASS THRESHOLD REACHED 1 IN LEFT 1 2 3
-CLASS THRESHOLD REACHED 1 IN RIGHT 1 2 0
-DOMINANCE THRESHOLD REACHED IN LEFT 1.0 0.95 3
-DOMINANCE THRESHOLD REACHED IN RIGHT 1.0 0.95 0
+CLASS THRESHOLD REACHED 1 IN LEFT 1 2 2
+CLASS THRESHOLD REACHED 1 IN RIGHT 1 2 1
+DOMINANCE THRESHOLD REACHED IN LEFT 1.0 0.95 2
+DOMINANCE THRESHOLD REACHED IN RIGHT 1.0 0.95 1
 nodeId:  8 , imgTensorShape :  torch.Size([4900, 3, 32, 32])
-nodeId: 8 ,  parentId: 4 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 3 ,  numClasses: 1 ,  numData: 4900
+nodeId: 8 ,  parentId: 4 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 2 ,  numClasses: 1 ,  numData: 4900
 nodeId:  9 , imgTensorShape :  torch.Size([4900, 3, 32, 32])
-nodeId: 9 ,  parentId: 4 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 0 ,  numClasses: 1 ,  numData: 4900
+nodeId: 9 ,  parentId: 4 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 1 ,  numClasses: 1 ,  numData: 4900
 Running nodeId:  5
-0 Train Loss: 76.521 | Train Acc: 65.449 | Val Loss: 0.621 | Val Accuracy: 76.000
-10 Train Loss: 38.457 | Train Acc: 84.735 | Val Loss: 0.437 | Val Accuracy: 84.667
-20 Train Loss: 29.809 | Train Acc: 88.340 | Val Loss: 0.473 | Val Accuracy: 83.667
-Epoch     4: reducing learning rate of group 0 to 2.0000e-04.
-30 Train Loss: 23.136 | Train Acc: 91.408 | Val Loss: 0.459 | Val Accuracy: 83.333
-40 Train Loss: 19.139 | Train Acc: 93.565 | Val Loss: 0.459 | Val Accuracy: 82.333
-Epoch     6: reducing learning rate of group 0 to 4.0000e-05.
-50 Train Loss: 18.034 | Train Acc: 94.061 | Val Loss: 0.502 | Val Accuracy: 81.667
-60 Train Loss: 17.230 | Train Acc: 94.605 | Val Loss: 0.462 | Val Accuracy: 82.333
-Epoch     8: reducing learning rate of group 0 to 8.0000e-06.
-70 Train Loss: 17.043 | Train Acc: 94.687 | Val Loss: 0.472 | Val Accuracy: 82.333
-80 Train Loss: 16.779 | Train Acc: 94.844 | Val Loss: 0.473 | Val Accuracy: 82.667
-Epoch    10: reducing learning rate of group 0 to 1.6000e-06.
-90 Train Loss: 16.729 | Train Acc: 94.823 | Val Loss: 0.476 | Val Accuracy: 82.000
-100 Train Loss: 16.685 | Train Acc: 94.925 | Val Loss: 0.473 | Val Accuracy: 82.667
-Epoch    12: reducing learning rate of group 0 to 3.2000e-07.
-110 Train Loss: 16.673 | Train Acc: 94.918 | Val Loss: 0.474 | Val Accuracy: 82.667
-120 Train Loss: 16.663 | Train Acc: 94.925 | Val Loss: 0.474 | Val Accuracy: 82.667
-Epoch    14: reducing learning rate of group 0 to 6.4000e-08.
-130 Train Loss: 16.660 | Train Acc: 94.925 | Val Loss: 0.474 | Val Accuracy: 82.667
-140 Train Loss: 16.658 | Train Acc: 94.925 | Val Loss: 0.474 | Val Accuracy: 82.667
-Epoch    16: reducing learning rate of group 0 to 1.2800e-08.
-150 Train Loss: 16.658 | Train Acc: 94.925 | Val Loss: 0.474 | Val Accuracy: 82.667
-160 Train Loss: 16.657 | Train Acc: 94.925 | Val Loss: 0.474 | Val Accuracy: 82.667
-Epoch    18: reducing learning rate of group 0 to 2.5600e-09.
-170 Train Loss: 16.657 | Train Acc: 94.925 | Val Loss: 0.474 | Val Accuracy: 82.667
-180 Train Loss: 16.657 | Train Acc: 94.925 | Val Loss: 0.474 | Val Accuracy: 82.667
-190 Train Loss: 16.657 | Train Acc: 94.925 | Val Loss: 0.474 | Val Accuracy: 82.667
+0 Train Loss: 85.145 | Train Acc: 61.735 | Val Loss: 0.750 | Val Accuracy: 65.333
+10 Train Loss: 43.323 | Train Acc: 83.082 | Val Loss: 0.509 | Val Accuracy: 80.000
+20 Train Loss: 34.454 | Train Acc: 86.918 | Val Loss: 0.489 | Val Accuracy: 78.667
+30 Train Loss: 28.655 | Train Acc: 89.293 | Val Loss: 0.517 | Val Accuracy: 81.000
+40 Train Loss: 24.119 | Train Acc: 91.231 | Val Loss: 0.558 | Val Accuracy: 80.000
+Epoch     6: reducing learning rate of group 0 to 2.0000e-04.
+50 Train Loss: 20.616 | Train Acc: 92.401 | Val Loss: 0.634 | Val Accuracy: 78.667
+60 Train Loss: 16.662 | Train Acc: 94.973 | Val Loss: 0.610 | Val Accuracy: 82.333
+70 Train Loss: 15.945 | Train Acc: 95.163 | Val Loss: 0.638 | Val Accuracy: 82.000
+Epoch     9: reducing learning rate of group 0 to 4.0000e-05.
+80 Train Loss: 15.107 | Train Acc: 95.510 | Val Loss: 0.620 | Val Accuracy: 80.000
+90 Train Loss: 14.443 | Train Acc: 95.939 | Val Loss: 0.638 | Val Accuracy: 81.667
 CNN trained successfully...
 image_next_flat.shape :  torch.Size([14700, 12544])
 Kmeans trained successfully...
 printing expected split from k means
-{2: 1, 1: 0, 0: 0}
+{1: 1, 0: 0, 2: 1}
 Printing final_dict items...
-{1: 0, 0: 1, 2: 1}
+{0: 0, 1: 1, 2: 1}
 Image Statistics before MLP : L R :  4900 9800
 expectedMlpLabels.shape :  torch.Size([14700])
-0 Loss: 33.543 | Acc: 89.884
-1 Loss: 23.464 | Acc: 93.171
-2 Loss: 19.988 | Acc: 94.164
-3 Loss: 16.949 | Acc: 95.068
-4 Loss: 14.869 | Acc: 95.486
-5 Loss: 12.906 | Acc: 96.027
-6 Loss: 11.342 | Acc: 96.692
-7 Loss: 10.618 | Acc: 96.856
-8 Loss: 8.803 | Acc: 97.301
-9 Loss: 7.649 | Acc: 97.685
-10 Loss: 4.433 | Acc: 98.733
-11 Loss: 3.129 | Acc: 99.123
-12 Loss: 2.783 | Acc: 99.185
-13 Loss: 2.767 | Acc: 99.199
-14 Loss: 2.480 | Acc: 99.315
-15 Loss: 2.100 | Acc: 99.384
-16 Loss: 2.314 | Acc: 99.384
-17 Loss: 1.941 | Acc: 99.493
-18 Loss: 1.844 | Acc: 99.452
-19 Loss: 1.380 | Acc: 99.644
-20 Loss: 0.617 | Acc: 99.870
-21 Loss: 0.548 | Acc: 99.870
-22 Loss: 0.352 | Acc: 99.932
-23 Loss: 0.407 | Acc: 99.911
-24 Loss: 0.317 | Acc: 99.959
-25 Loss: 0.473 | Acc: 99.877
-26 Loss: 0.360 | Acc: 99.897
-27 Loss: 0.256 | Acc: 99.938
-28 Loss: 0.309 | Acc: 99.938
-29 Loss: 0.468 | Acc: 99.856
-30 Loss: 0.361 | Acc: 99.890
-31 Loss: 0.298 | Acc: 99.932
-32 Loss: 0.211 | Acc: 99.952
-33 Loss: 0.127 | Acc: 99.986
-34 Loss: 0.163 | Acc: 99.959
-35 Loss: 0.122 | Acc: 99.986
-36 Loss: 0.131 | Acc: 99.952
-37 Loss: 0.100 | Acc: 99.973
-38 Loss: 0.144 | Acc: 99.973
-39 Loss: 0.152 | Acc: 99.966
-40 Loss: 0.066 | Acc: 99.993
-41 Loss: 0.052 | Acc: 100.000
-42 Loss: 0.115 | Acc: 99.979
-43 Loss: 0.079 | Acc: 99.979
-44 Loss: 0.125 | Acc: 99.979
-45 Loss: 0.073 | Acc: 99.986
-46 Loss: 0.083 | Acc: 99.986
-47 Loss: 0.067 | Acc: 99.993
-48 Loss: 0.101 | Acc: 99.973
-49 Loss: 0.063 | Acc: 99.986
-50 Loss: 0.105 | Acc: 99.959
-51 Loss: 0.087 | Acc: 99.993
-52 Loss: 0.082 | Acc: 99.986
-53 Loss: 0.047 | Acc: 99.986
-54 Loss: 0.183 | Acc: 99.986
-55 Loss: 0.069 | Acc: 99.993
-56 Loss: 0.052 | Acc: 99.993
-57 Loss: 0.038 | Acc: 100.000
-58 Loss: 0.054 | Acc: 99.993
-59 Loss: 0.033 | Acc: 99.993
+0 Loss: 63.684 | Acc: 77.795
+1 Loss: 51.800 | Acc: 82.774
+2 Loss: 47.021 | Acc: 84.808
+3 Loss: 40.897 | Acc: 86.623
+4 Loss: 37.769 | Acc: 87.466
+5 Loss: 33.689 | Acc: 89.055
+6 Loss: 30.328 | Acc: 90.390
+7 Loss: 26.882 | Acc: 91.308
+8 Loss: 24.752 | Acc: 92.068
+9 Loss: 24.049 | Acc: 92.445
+10 Loss: 16.048 | Acc: 94.911
+11 Loss: 13.083 | Acc: 95.952
+12 Loss: 11.939 | Acc: 96.356
+13 Loss: 11.206 | Acc: 96.582
+14 Loss: 10.939 | Acc: 96.582
+15 Loss: 10.376 | Acc: 96.788
+16 Loss: 9.188 | Acc: 97.301
+17 Loss: 8.094 | Acc: 97.678
+18 Loss: 7.045 | Acc: 97.870
+19 Loss: 7.079 | Acc: 97.781
+20 Loss: 5.315 | Acc: 98.534
+21 Loss: 4.052 | Acc: 98.795
+22 Loss: 3.635 | Acc: 98.979
+23 Loss: 3.525 | Acc: 99.000
+24 Loss: 3.066 | Acc: 99.185
+25 Loss: 2.774 | Acc: 99.260
+26 Loss: 3.086 | Acc: 99.247
+27 Loss: 2.652 | Acc: 99.260
+28 Loss: 3.047 | Acc: 99.103
+29 Loss: 2.946 | Acc: 99.205
+30 Loss: 2.122 | Acc: 99.438
+31 Loss: 1.840 | Acc: 99.466
+32 Loss: 1.930 | Acc: 99.500
+33 Loss: 1.735 | Acc: 99.589
+34 Loss: 1.700 | Acc: 99.521
+35 Loss: 1.634 | Acc: 99.575
+36 Loss: 1.364 | Acc: 99.610
+37 Loss: 1.626 | Acc: 99.623
+38 Loss: 1.287 | Acc: 99.658
+39 Loss: 1.190 | Acc: 99.719
+40 Loss: 1.595 | Acc: 99.596
+41 Loss: 1.248 | Acc: 99.658
+42 Loss: 1.051 | Acc: 99.767
+43 Loss: 1.059 | Acc: 99.705
+44 Loss: 1.060 | Acc: 99.788
+45 Loss: 1.041 | Acc: 99.712
+46 Loss: 1.042 | Acc: 99.726
+47 Loss: 1.024 | Acc: 99.705
+48 Loss: 0.929 | Acc: 99.760
+49 Loss: 0.759 | Acc: 99.795
+50 Loss: 0.866 | Acc: 99.767
+51 Loss: 0.918 | Acc: 99.753
+52 Loss: 0.952 | Acc: 99.767
+53 Loss: 0.971 | Acc: 99.767
+54 Loss: 0.905 | Acc: 99.801
+55 Loss: 0.888 | Acc: 99.801
+56 Loss: 0.711 | Acc: 99.836
+57 Loss: 0.959 | Acc: 99.774
+58 Loss: 0.967 | Acc: 99.760
+59 Loss: 0.990 | Acc: 99.719
 MLP trained successfully...
 lTrainDict[data].shape:  torch.Size([4900, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([4900])
 rTrainDict[data].shape:  torch.Size([9800, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([9800])
@@ -586,115 +514,98 @@ giniRightRatio:  0.5
 giniLeftRatio:  0.0
 impurityDrop:  0.25
 giniGain:  0.41666666666666674
-lclasses:  [0, 4900, 0, 0, 0, 0, 0, 0, 0, 0]
-rclasses:  [4900, 0, 4900, 0, 0, 0, 0, 0, 0, 0]
+lclasses:  [4900, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [0, 4900, 4900, 0, 0, 0, 0, 0, 0, 0]
 noOfLeftClasses:  1
 noOfRightClasses:  2
 RETURNING FROM WORK...
-CLASS THRESHOLD REACHED 1 IN LEFT 1 2 2
-DOMINANCE THRESHOLD REACHED IN LEFT 1.0 0.95 2
+CLASS THRESHOLD REACHED 1 IN LEFT 1 2 0
+DOMINANCE THRESHOLD REACHED IN LEFT 1.0 0.95 0
 nodeId:  10 , imgTensorShape :  torch.Size([4900, 3, 32, 32])
-nodeId: 10 ,  parentId: 5 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 2 ,  numClasses: 1 ,  numData: 4900
+nodeId: 10 ,  parentId: 5 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 0 ,  numClasses: 1 ,  numData: 4900
 nodeId:  11 , imgTensorShape :  torch.Size([9800, 3, 32, 32])
 nodeId: 11 ,  parentId: 5 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2 ,  numData: 9800
 Running nodeId:  6
-0 Train Loss: 60.356 | Train Acc: 68.357 | Val Loss: 0.505 | Val Accuracy: 78.000
-10 Train Loss: 27.943 | Train Acc: 88.653 | Val Loss: 0.365 | Val Accuracy: 87.500
-20 Train Loss: 20.801 | Train Acc: 91.663 | Val Loss: 0.388 | Val Accuracy: 87.500
-Epoch     4: reducing learning rate of group 0 to 2.0000e-04.
-30 Train Loss: 17.098 | Train Acc: 93.327 | Val Loss: 0.396 | Val Accuracy: 86.500
-40 Train Loss: 12.546 | Train Acc: 95.918 | Val Loss: 0.413 | Val Accuracy: 88.500
-50 Train Loss: 12.006 | Train Acc: 96.061 | Val Loss: 0.430 | Val Accuracy: 88.500
-Epoch     7: reducing learning rate of group 0 to 4.0000e-05.
-60 Train Loss: 10.960 | Train Acc: 96.653 | Val Loss: 0.443 | Val Accuracy: 88.000
-70 Train Loss: 10.364 | Train Acc: 97.194 | Val Loss: 0.437 | Val Accuracy: 87.000
-Epoch     9: reducing learning rate of group 0 to 8.0000e-06.
-80 Train Loss: 10.178 | Train Acc: 97.235 | Val Loss: 0.438 | Val Accuracy: 88.000
-90 Train Loss: 10.044 | Train Acc: 97.388 | Val Loss: 0.438 | Val Accuracy: 89.500
-100 Train Loss: 10.005 | Train Acc: 97.357 | Val Loss: 0.438 | Val Accuracy: 88.000
-Epoch    12: reducing learning rate of group 0 to 1.6000e-06.
-110 Train Loss: 9.985 | Train Acc: 97.337 | Val Loss: 0.439 | Val Accuracy: 88.500
-120 Train Loss: 9.936 | Train Acc: 97.337 | Val Loss: 0.439 | Val Accuracy: 88.500
-Epoch    14: reducing learning rate of group 0 to 3.2000e-07.
-130 Train Loss: 9.929 | Train Acc: 97.337 | Val Loss: 0.439 | Val Accuracy: 88.500
-140 Train Loss: 9.922 | Train Acc: 97.327 | Val Loss: 0.439 | Val Accuracy: 88.500
-Epoch    16: reducing learning rate of group 0 to 6.4000e-08.
-150 Train Loss: 9.920 | Train Acc: 97.337 | Val Loss: 0.439 | Val Accuracy: 88.500
-160 Train Loss: 9.919 | Train Acc: 97.337 | Val Loss: 0.439 | Val Accuracy: 88.500
-Epoch    18: reducing learning rate of group 0 to 1.2800e-08.
-170 Train Loss: 9.919 | Train Acc: 97.337 | Val Loss: 0.439 | Val Accuracy: 88.500
-180 Train Loss: 9.918 | Train Acc: 97.337 | Val Loss: 0.439 | Val Accuracy: 88.500
-Epoch    20: reducing learning rate of group 0 to 2.5600e-09.
-190 Train Loss: 9.918 | Train Acc: 97.337 | Val Loss: 0.439 | Val Accuracy: 88.500
+0 Train Loss: 53.892 | Train Acc: 71.908 | Val Loss: 0.409 | Val Accuracy: 82.000
+10 Train Loss: 31.769 | Train Acc: 86.296 | Val Loss: 0.339 | Val Accuracy: 84.000
+20 Train Loss: 24.710 | Train Acc: 90.000 | Val Loss: 0.363 | Val Accuracy: 84.000
+30 Train Loss: 19.377 | Train Acc: 92.459 | Val Loss: 0.336 | Val Accuracy: 87.000
+40 Train Loss: 15.244 | Train Acc: 94.592 | Val Loss: 0.312 | Val Accuracy: 87.500
+50 Train Loss: 12.483 | Train Acc: 95.765 | Val Loss: 0.376 | Val Accuracy: 89.000
+60 Train Loss: 10.286 | Train Acc: 96.827 | Val Loss: 0.390 | Val Accuracy: 89.000
+Epoch     8: reducing learning rate of group 0 to 2.0000e-04.
+70 Train Loss: 8.026 | Train Acc: 97.704 | Val Loss: 0.421 | Val Accuracy: 88.000
+80 Train Loss: 5.717 | Train Acc: 98.888 | Val Loss: 0.431 | Val Accuracy: 89.500
+90 Train Loss: 5.200 | Train Acc: 99.235 | Val Loss: 0.435 | Val Accuracy: 89.000
 CNN trained successfully...
 image_next_flat.shape :  torch.Size([9800, 12544])
 Kmeans trained successfully...
 printing expected split from k means
-{0: 0, 1: 1}
+{0: 1, 1: 0}
 Printing final_dict items...
-{0: 0, 1: 1}
+{1: 0, 0: 1}
 Image Statistics before MLP : L R :  4900 4900
 expectedMlpLabels.shape :  torch.Size([9800])
-0 Loss: 86.646 | Acc: 79.939
-1 Loss: 60.709 | Acc: 87.061
-2 Loss: 52.447 | Acc: 89.010
-3 Loss: 44.997 | Acc: 91.102
-4 Loss: 41.463 | Acc: 91.388
-5 Loss: 35.777 | Acc: 92.673
-6 Loss: 32.271 | Acc: 93.378
-7 Loss: 29.008 | Acc: 94.071
-8 Loss: 25.285 | Acc: 94.827
-9 Loss: 23.428 | Acc: 95.367
-10 Loss: 12.829 | Acc: 97.541
-11 Loss: 10.589 | Acc: 97.939
-12 Loss: 8.653 | Acc: 98.296
-13 Loss: 7.756 | Acc: 98.633
-14 Loss: 6.633 | Acc: 98.745
-15 Loss: 6.150 | Acc: 98.837
-16 Loss: 6.045 | Acc: 98.796
-17 Loss: 4.843 | Acc: 99.071
-18 Loss: 4.829 | Acc: 99.102
-19 Loss: 4.540 | Acc: 99.214
-20 Loss: 2.025 | Acc: 99.643
-21 Loss: 2.072 | Acc: 99.673
-22 Loss: 1.325 | Acc: 99.776
-23 Loss: 1.436 | Acc: 99.786
-24 Loss: 1.349 | Acc: 99.816
-25 Loss: 1.871 | Acc: 99.684
-26 Loss: 1.149 | Acc: 99.837
-27 Loss: 1.271 | Acc: 99.755
-28 Loss: 1.459 | Acc: 99.796
-29 Loss: 0.959 | Acc: 99.857
-30 Loss: 0.746 | Acc: 99.929
-31 Loss: 0.761 | Acc: 99.918
-32 Loss: 0.429 | Acc: 99.959
-33 Loss: 0.367 | Acc: 99.969
-34 Loss: 0.508 | Acc: 99.949
-35 Loss: 0.525 | Acc: 99.898
-36 Loss: 0.490 | Acc: 99.929
-37 Loss: 0.403 | Acc: 99.939
-38 Loss: 0.430 | Acc: 99.929
-39 Loss: 0.491 | Acc: 99.939
-40 Loss: 0.463 | Acc: 99.939
-41 Loss: 0.265 | Acc: 99.969
-42 Loss: 0.243 | Acc: 99.969
-43 Loss: 0.339 | Acc: 99.969
-44 Loss: 0.327 | Acc: 99.949
-45 Loss: 0.227 | Acc: 99.969
-46 Loss: 0.276 | Acc: 99.959
-47 Loss: 0.321 | Acc: 99.939
-48 Loss: 0.194 | Acc: 99.980
-49 Loss: 0.344 | Acc: 99.929
-50 Loss: 0.168 | Acc: 99.990
-51 Loss: 0.186 | Acc: 99.980
-52 Loss: 0.206 | Acc: 99.990
-53 Loss: 0.144 | Acc: 99.990
-54 Loss: 0.233 | Acc: 99.980
-55 Loss: 0.204 | Acc: 99.990
-56 Loss: 0.195 | Acc: 99.980
-57 Loss: 0.153 | Acc: 100.000
-58 Loss: 0.166 | Acc: 99.980
-59 Loss: 0.132 | Acc: 99.980
+0 Loss: 92.887 | Acc: 77.622
+1 Loss: 71.332 | Acc: 84.092
+2 Loss: 60.700 | Acc: 86.908
+3 Loss: 53.562 | Acc: 88.418
+4 Loss: 48.426 | Acc: 89.612
+5 Loss: 43.104 | Acc: 90.806
+6 Loss: 38.556 | Acc: 91.622
+7 Loss: 34.161 | Acc: 92.735
+8 Loss: 30.995 | Acc: 93.490
+9 Loss: 27.103 | Acc: 94.520
+10 Loss: 15.475 | Acc: 96.908
+11 Loss: 12.682 | Acc: 97.408
+12 Loss: 10.035 | Acc: 98.102
+13 Loss: 8.879 | Acc: 98.296
+14 Loss: 7.782 | Acc: 98.398
+15 Loss: 7.713 | Acc: 98.541
+16 Loss: 5.829 | Acc: 98.857
+17 Loss: 6.589 | Acc: 98.551
+18 Loss: 6.315 | Acc: 98.959
+19 Loss: 5.461 | Acc: 98.980
+20 Loss: 2.594 | Acc: 99.541
+21 Loss: 1.727 | Acc: 99.684
+22 Loss: 1.353 | Acc: 99.806
+23 Loss: 2.242 | Acc: 99.684
+24 Loss: 1.204 | Acc: 99.827
+25 Loss: 1.323 | Acc: 99.847
+26 Loss: 1.264 | Acc: 99.786
+27 Loss: 1.171 | Acc: 99.837
+28 Loss: 1.449 | Acc: 99.735
+29 Loss: 1.359 | Acc: 99.776
+30 Loss: 0.799 | Acc: 99.867
+31 Loss: 0.440 | Acc: 99.980
+32 Loss: 0.771 | Acc: 99.878
+33 Loss: 0.707 | Acc: 99.898
+34 Loss: 0.418 | Acc: 99.949
+35 Loss: 0.327 | Acc: 99.959
+36 Loss: 0.578 | Acc: 99.939
+37 Loss: 0.759 | Acc: 99.898
+38 Loss: 0.334 | Acc: 99.959
+39 Loss: 0.514 | Acc: 99.888
+40 Loss: 0.701 | Acc: 99.888
+41 Loss: 0.487 | Acc: 99.959
+42 Loss: 0.464 | Acc: 99.918
+43 Loss: 0.533 | Acc: 99.929
+44 Loss: 0.459 | Acc: 99.888
+45 Loss: 0.360 | Acc: 99.949
+46 Loss: 0.298 | Acc: 99.980
+47 Loss: 0.305 | Acc: 99.969
+48 Loss: 0.291 | Acc: 99.980
+49 Loss: 0.338 | Acc: 99.959
+50 Loss: 0.520 | Acc: 99.939
+51 Loss: 0.403 | Acc: 99.918
+52 Loss: 0.163 | Acc: 99.980
+53 Loss: 0.249 | Acc: 99.949
+54 Loss: 0.240 | Acc: 99.969
+55 Loss: 0.398 | Acc: 99.939
+56 Loss: 0.293 | Acc: 99.959
+57 Loss: 0.381 | Acc: 99.949
+58 Loss: 0.341 | Acc: 99.929
+59 Loss: 0.155 | Acc: 99.990
 MLP trained successfully...
 lTrainDict[data].shape:  torch.Size([4900, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([4900])
 rTrainDict[data].shape:  torch.Size([4900, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([4900])
@@ -706,117 +617,101 @@ giniRightRatio:  0.0
 giniLeftRatio:  0.0
 impurityDrop:  0.0
 giniGain:  0.5
-lclasses:  [4900, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-rclasses:  [0, 4900, 0, 0, 0, 0, 0, 0, 0, 0]
+lclasses:  [0, 4900, 0, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [4900, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 noOfLeftClasses:  1
 noOfRightClasses:  1
 RETURNING FROM WORK...
-CLASS THRESHOLD REACHED 1 IN LEFT 1 2 1
-CLASS THRESHOLD REACHED 1 IN RIGHT 1 2 3
-DOMINANCE THRESHOLD REACHED IN LEFT 1.0 0.95 1
-DOMINANCE THRESHOLD REACHED IN RIGHT 1.0 0.95 3
+CLASS THRESHOLD REACHED 1 IN LEFT 1 2 7
+CLASS THRESHOLD REACHED 1 IN RIGHT 1 2 4
+DOMINANCE THRESHOLD REACHED IN LEFT 1.0 0.95 7
+DOMINANCE THRESHOLD REACHED IN RIGHT 1.0 0.95 4
 nodeId:  12 , imgTensorShape :  torch.Size([4900, 3, 32, 32])
-nodeId: 12 ,  parentId: 6 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 1 ,  numClasses: 1 ,  numData: 4900
+nodeId: 12 ,  parentId: 6 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 7 ,  numClasses: 1 ,  numData: 4900
 nodeId:  13 , imgTensorShape :  torch.Size([4900, 3, 32, 32])
-nodeId: 13 ,  parentId: 6 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 3 ,  numClasses: 1 ,  numData: 4900
+nodeId: 13 ,  parentId: 6 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 4 ,  numClasses: 1 ,  numData: 4900
 Running nodeId:  7
-0 Train Loss: 104.497 | Train Acc: 46.435 | Val Loss: 0.900 | Val Accuracy: 58.667
-10 Train Loss: 66.977 | Train Acc: 70.912 | Val Loss: 0.748 | Val Accuracy: 67.000
-20 Train Loss: 54.855 | Train Acc: 77.000 | Val Loss: 0.699 | Val Accuracy: 70.333
-30 Train Loss: 45.976 | Train Acc: 81.381 | Val Loss: 0.790 | Val Accuracy: 68.667
+0 Train Loss: 100.734 | Train Acc: 49.571 | Val Loss: 0.936 | Val Accuracy: 55.333
+10 Train Loss: 64.379 | Train Acc: 71.735 | Val Loss: 0.737 | Val Accuracy: 65.667
+20 Train Loss: 53.819 | Train Acc: 77.218 | Val Loss: 0.684 | Val Accuracy: 68.667
+30 Train Loss: 45.656 | Train Acc: 81.272 | Val Loss: 0.744 | Val Accuracy: 68.333
 Epoch     5: reducing learning rate of group 0 to 2.0000e-04.
-40 Train Loss: 39.993 | Train Acc: 84.163 | Val Loss: 0.836 | Val Accuracy: 68.333
-50 Train Loss: 35.141 | Train Acc: 86.966 | Val Loss: 0.843 | Val Accuracy: 66.333
+40 Train Loss: 39.587 | Train Acc: 84.313 | Val Loss: 0.769 | Val Accuracy: 67.333
+50 Train Loss: 34.590 | Train Acc: 87.571 | Val Loss: 0.771 | Val Accuracy: 67.667
 Epoch     7: reducing learning rate of group 0 to 4.0000e-05.
-60 Train Loss: 33.998 | Train Acc: 87.537 | Val Loss: 0.849 | Val Accuracy: 65.667
-70 Train Loss: 32.831 | Train Acc: 88.327 | Val Loss: 0.850 | Val Accuracy: 66.000
-Epoch     9: reducing learning rate of group 0 to 8.0000e-06.
-80 Train Loss: 32.559 | Train Acc: 88.435 | Val Loss: 0.857 | Val Accuracy: 66.000
-90 Train Loss: 32.329 | Train Acc: 88.592 | Val Loss: 0.852 | Val Accuracy: 66.000
-Epoch    11: reducing learning rate of group 0 to 1.6000e-06.
-100 Train Loss: 32.283 | Train Acc: 88.585 | Val Loss: 0.852 | Val Accuracy: 66.000
-110 Train Loss: 32.222 | Train Acc: 88.653 | Val Loss: 0.854 | Val Accuracy: 66.000
-Epoch    13: reducing learning rate of group 0 to 3.2000e-07.
-120 Train Loss: 32.211 | Train Acc: 88.701 | Val Loss: 0.853 | Val Accuracy: 66.000
-130 Train Loss: 32.200 | Train Acc: 88.660 | Val Loss: 0.853 | Val Accuracy: 66.000
-Epoch    15: reducing learning rate of group 0 to 6.4000e-08.
-140 Train Loss: 32.198 | Train Acc: 88.667 | Val Loss: 0.853 | Val Accuracy: 66.000
-150 Train Loss: 32.195 | Train Acc: 88.667 | Val Loss: 0.854 | Val Accuracy: 66.000
-Epoch    17: reducing learning rate of group 0 to 1.2800e-08.
-160 Train Loss: 32.195 | Train Acc: 88.667 | Val Loss: 0.853 | Val Accuracy: 66.000
-170 Train Loss: 32.194 | Train Acc: 88.667 | Val Loss: 0.853 | Val Accuracy: 66.000
-Epoch    19: reducing learning rate of group 0 to 2.5600e-09.
-180 Train Loss: 32.194 | Train Acc: 88.667 | Val Loss: 0.853 | Val Accuracy: 66.000
-190 Train Loss: 32.194 | Train Acc: 88.667 | Val Loss: 0.853 | Val Accuracy: 66.000
+60 Train Loss: 33.325 | Train Acc: 88.190 | Val Loss: 0.770 | Val Accuracy: 68.667
+70 Train Loss: 32.294 | Train Acc: 88.769 | Val Loss: 0.775 | Val Accuracy: 68.667
+80 Train Loss: 31.982 | Train Acc: 88.952 | Val Loss: 0.772 | Val Accuracy: 69.333
+90 Train Loss: 31.770 | Train Acc: 89.102 | Val Loss: 0.776 | Val Accuracy: 69.333
 CNN trained successfully...
 image_next_flat.shape :  torch.Size([14700, 12544])
 Kmeans trained successfully...
 printing expected split from k means
-{1: 1, 2: 0, 0: 1}
+{0: 0, 1: 1, 2: 1}
 Printing final_dict items...
-{2: 0, 0: 1, 1: 1}
+{0: 0, 1: 1, 2: 1}
 Image Statistics before MLP : L R :  4900 9800
 expectedMlpLabels.shape :  torch.Size([14700])
-0 Loss: 58.276 | Acc: 80.678
-1 Loss: 45.101 | Acc: 86.630
-2 Loss: 39.912 | Acc: 88.062
-3 Loss: 34.207 | Acc: 89.870
-4 Loss: 30.250 | Acc: 91.027
-5 Loss: 25.962 | Acc: 92.288
-6 Loss: 24.177 | Acc: 92.623
-7 Loss: 20.107 | Acc: 94.021
-8 Loss: 18.231 | Acc: 94.699
-9 Loss: 14.511 | Acc: 95.521
-10 Loss: 8.972 | Acc: 97.404
-11 Loss: 6.260 | Acc: 98.164
-12 Loss: 6.169 | Acc: 98.199
-13 Loss: 4.828 | Acc: 98.651
-14 Loss: 3.873 | Acc: 98.870
-15 Loss: 4.740 | Acc: 98.726
-16 Loss: 3.985 | Acc: 98.959
-17 Loss: 3.165 | Acc: 99.158
-18 Loss: 3.668 | Acc: 98.973
-19 Loss: 4.038 | Acc: 98.884
-20 Loss: 2.046 | Acc: 99.500
-21 Loss: 1.301 | Acc: 99.747
-22 Loss: 1.081 | Acc: 99.740
-23 Loss: 0.738 | Acc: 99.863
-24 Loss: 0.967 | Acc: 99.781
-25 Loss: 0.757 | Acc: 99.829
-26 Loss: 0.801 | Acc: 99.815
-27 Loss: 0.931 | Acc: 99.781
-28 Loss: 0.913 | Acc: 99.815
-29 Loss: 0.572 | Acc: 99.890
-30 Loss: 0.579 | Acc: 99.870
-31 Loss: 0.571 | Acc: 99.863
-32 Loss: 0.425 | Acc: 99.911
-33 Loss: 0.322 | Acc: 99.945
-34 Loss: 0.482 | Acc: 99.932
-35 Loss: 0.584 | Acc: 99.856
-36 Loss: 0.328 | Acc: 99.938
-37 Loss: 0.286 | Acc: 99.979
-38 Loss: 0.312 | Acc: 99.952
-39 Loss: 0.279 | Acc: 99.938
-40 Loss: 0.233 | Acc: 99.959
-41 Loss: 0.181 | Acc: 99.973
-42 Loss: 0.197 | Acc: 99.979
-43 Loss: 0.283 | Acc: 99.959
-44 Loss: 0.323 | Acc: 99.925
-45 Loss: 0.233 | Acc: 99.959
-46 Loss: 0.177 | Acc: 99.966
-47 Loss: 0.163 | Acc: 99.973
-48 Loss: 0.237 | Acc: 99.932
-49 Loss: 0.223 | Acc: 99.945
-50 Loss: 0.223 | Acc: 99.945
-51 Loss: 0.376 | Acc: 99.925
-52 Loss: 0.266 | Acc: 99.938
-53 Loss: 0.232 | Acc: 99.952
-54 Loss: 0.265 | Acc: 99.952
-55 Loss: 0.217 | Acc: 99.973
-56 Loss: 0.245 | Acc: 99.945
-57 Loss: 0.248 | Acc: 99.952
-58 Loss: 0.199 | Acc: 99.959
-59 Loss: 0.178 | Acc: 99.959
+0 Loss: 84.340 | Acc: 65.315
+1 Loss: 74.744 | Acc: 70.240
+2 Loss: 69.305 | Acc: 72.281
+3 Loss: 64.181 | Acc: 75.240
+4 Loss: 59.068 | Acc: 76.849
+5 Loss: 53.755 | Acc: 79.548
+6 Loss: 49.066 | Acc: 81.712
+7 Loss: 44.309 | Acc: 83.945
+8 Loss: 39.689 | Acc: 85.836
+9 Loss: 36.119 | Acc: 87.295
+10 Loss: 24.548 | Acc: 91.959
+11 Loss: 19.137 | Acc: 93.897
+12 Loss: 17.246 | Acc: 94.425
+13 Loss: 15.856 | Acc: 95.048
+14 Loss: 12.859 | Acc: 95.973
+15 Loss: 11.406 | Acc: 96.473
+16 Loss: 10.649 | Acc: 96.863
+17 Loss: 9.912 | Acc: 96.877
+18 Loss: 8.715 | Acc: 97.493
+19 Loss: 9.049 | Acc: 97.370
+20 Loss: 6.314 | Acc: 98.253
+21 Loss: 5.050 | Acc: 98.521
+22 Loss: 4.177 | Acc: 98.932
+23 Loss: 3.670 | Acc: 99.041
+24 Loss: 3.546 | Acc: 99.068
+25 Loss: 3.529 | Acc: 99.123
+26 Loss: 3.262 | Acc: 99.205
+27 Loss: 2.541 | Acc: 99.397
+28 Loss: 3.220 | Acc: 99.164
+29 Loss: 3.229 | Acc: 99.240
+30 Loss: 2.371 | Acc: 99.445
+31 Loss: 1.889 | Acc: 99.562
+32 Loss: 1.877 | Acc: 99.479
+33 Loss: 1.850 | Acc: 99.534
+34 Loss: 1.595 | Acc: 99.575
+35 Loss: 1.771 | Acc: 99.582
+36 Loss: 1.724 | Acc: 99.596
+37 Loss: 1.781 | Acc: 99.630
+38 Loss: 1.702 | Acc: 99.616
+39 Loss: 1.867 | Acc: 99.555
+40 Loss: 1.317 | Acc: 99.651
+41 Loss: 1.421 | Acc: 99.671
+42 Loss: 1.493 | Acc: 99.685
+43 Loss: 1.370 | Acc: 99.726
+44 Loss: 1.180 | Acc: 99.767
+45 Loss: 1.451 | Acc: 99.651
+46 Loss: 1.004 | Acc: 99.795
+47 Loss: 1.122 | Acc: 99.808
+48 Loss: 1.103 | Acc: 99.795
+49 Loss: 1.063 | Acc: 99.788
+50 Loss: 1.220 | Acc: 99.719
+51 Loss: 1.376 | Acc: 99.671
+52 Loss: 1.080 | Acc: 99.712
+53 Loss: 1.038 | Acc: 99.788
+54 Loss: 1.218 | Acc: 99.692
+55 Loss: 0.958 | Acc: 99.808
+56 Loss: 1.094 | Acc: 99.726
+57 Loss: 0.853 | Acc: 99.829
+58 Loss: 1.020 | Acc: 99.767
+59 Loss: 0.916 | Acc: 99.795
 MLP trained successfully...
 lTrainDict[data].shape:  torch.Size([4900, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([4900])
 rTrainDict[data].shape:  torch.Size([9800, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([9800])
@@ -828,241 +723,102 @@ giniRightRatio:  0.5
 giniLeftRatio:  0.0
 impurityDrop:  0.25
 giniGain:  0.41666666666666674
-lclasses:  [0, 0, 4900, 0, 0, 0, 0, 0, 0, 0]
-rclasses:  [4900, 4900, 0, 0, 0, 0, 0, 0, 0, 0]
+lclasses:  [4900, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [0, 4900, 4900, 0, 0, 0, 0, 0, 0, 0]
 noOfLeftClasses:  1
 noOfRightClasses:  2
 RETURNING FROM WORK...
-CLASS THRESHOLD REACHED 1 IN LEFT 1 2 4
-DOMINANCE THRESHOLD REACHED IN LEFT 1.0 0.95 4
+CLASS THRESHOLD REACHED 1 IN LEFT 1 2 3
+DOMINANCE THRESHOLD REACHED IN LEFT 1.0 0.95 3
 nodeId:  14 , imgTensorShape :  torch.Size([4900, 3, 32, 32])
-nodeId: 14 ,  parentId: 7 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 4 ,  numClasses: 1 ,  numData: 4900
+nodeId: 14 ,  parentId: 7 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 3 ,  numClasses: 1 ,  numData: 4900
 nodeId:  15 , imgTensorShape :  torch.Size([9800, 3, 32, 32])
 nodeId: 15 ,  parentId: 7 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2 ,  numData: 9800
 Running nodeId:  8
 Running nodeId:  9
 Running nodeId:  10
 Running nodeId:  11
-0 Train Loss: 59.032 | Train Acc: 68.439 | Val Loss: 0.514 | Val Accuracy: 77.000
-10 Train Loss: 29.546 | Train Acc: 88.010 | Val Loss: 0.380 | Val Accuracy: 85.500
-20 Train Loss: 21.356 | Train Acc: 91.724 | Val Loss: 0.402 | Val Accuracy: 83.000
-30 Train Loss: 16.839 | Train Acc: 93.694 | Val Loss: 0.372 | Val Accuracy: 86.000
-40 Train Loss: 13.362 | Train Acc: 95.561 | Val Loss: 0.442 | Val Accuracy: 85.000
-50 Train Loss: 10.312 | Train Acc: 96.888 | Val Loss: 0.455 | Val Accuracy: 86.500
-60 Train Loss: 7.776 | Train Acc: 98.133 | Val Loss: 0.504 | Val Accuracy: 84.000
-Epoch     8: reducing learning rate of group 0 to 2.0000e-04.
-70 Train Loss: 5.986 | Train Acc: 98.673 | Val Loss: 0.577 | Val Accuracy: 83.500
-80 Train Loss: 4.270 | Train Acc: 99.531 | Val Loss: 0.537 | Val Accuracy: 86.000
-90 Train Loss: 3.930 | Train Acc: 99.633 | Val Loss: 0.546 | Val Accuracy: 87.000
-100 Train Loss: 3.478 | Train Acc: 99.724 | Val Loss: 0.559 | Val Accuracy: 85.500
-Epoch    12: reducing learning rate of group 0 to 4.0000e-05.
-110 Train Loss: 3.236 | Train Acc: 99.806 | Val Loss: 0.573 | Val Accuracy: 85.500
-120 Train Loss: 2.863 | Train Acc: 99.867 | Val Loss: 0.580 | Val Accuracy: 86.000
-Epoch    14: reducing learning rate of group 0 to 8.0000e-06.
-130 Train Loss: 2.787 | Train Acc: 99.878 | Val Loss: 0.586 | Val Accuracy: 85.500
-140 Train Loss: 2.735 | Train Acc: 99.878 | Val Loss: 0.587 | Val Accuracy: 86.500
-Epoch    16: reducing learning rate of group 0 to 1.6000e-06.
-150 Train Loss: 2.716 | Train Acc: 99.888 | Val Loss: 0.588 | Val Accuracy: 86.000
-160 Train Loss: 2.700 | Train Acc: 99.878 | Val Loss: 0.587 | Val Accuracy: 86.000
-Epoch    18: reducing learning rate of group 0 to 3.2000e-07.
-170 Train Loss: 2.698 | Train Acc: 99.878 | Val Loss: 0.588 | Val Accuracy: 85.500
-180 Train Loss: 2.694 | Train Acc: 99.878 | Val Loss: 0.588 | Val Accuracy: 85.500
-Epoch    20: reducing learning rate of group 0 to 6.4000e-08.
-190 Train Loss: 2.694 | Train Acc: 99.878 | Val Loss: 0.588 | Val Accuracy: 85.500
+0 Train Loss: 43.651 | Train Acc: 79.531 | Val Loss: 0.339 | Val Accuracy: 86.500
+10 Train Loss: 18.487 | Train Acc: 92.878 | Val Loss: 0.199 | Val Accuracy: 92.000
+20 Train Loss: 13.304 | Train Acc: 95.235 | Val Loss: 0.208 | Val Accuracy: 93.500
+30 Train Loss: 9.989 | Train Acc: 96.622 | Val Loss: 0.199 | Val Accuracy: 93.500
+Epoch     5: reducing learning rate of group 0 to 2.0000e-04.
+40 Train Loss: 7.210 | Train Acc: 97.796 | Val Loss: 0.231 | Val Accuracy: 92.500
+50 Train Loss: 5.217 | Train Acc: 98.990 | Val Loss: 0.212 | Val Accuracy: 93.500
+60 Train Loss: 4.879 | Train Acc: 99.163 | Val Loss: 0.222 | Val Accuracy: 94.000
+70 Train Loss: 4.336 | Train Acc: 99.296 | Val Loss: 0.228 | Val Accuracy: 93.500
+Epoch     9: reducing learning rate of group 0 to 4.0000e-05.
+80 Train Loss: 4.000 | Train Acc: 99.388 | Val Loss: 0.243 | Val Accuracy: 94.000
+90 Train Loss: 3.610 | Train Acc: 99.592 | Val Loss: 0.238 | Val Accuracy: 93.500
 CNN trained successfully...
 image_next_flat.shape :  torch.Size([9800, 12544])
 Kmeans trained successfully...
 printing expected split from k means
-{1: 0, 0: 1}
-Printing final_dict items...
-{1: 0, 0: 1}
-Image Statistics before MLP : L R :  4900 4900
-expectedMlpLabels.shape :  torch.Size([9800])
-0 Loss: 97.951 | Acc: 77.000
-1 Loss: 73.286 | Acc: 84.061
-2 Loss: 63.340 | Acc: 86.541
-3 Loss: 54.166 | Acc: 88.918
-4 Loss: 48.216 | Acc: 89.959
-5 Loss: 41.313 | Acc: 91.490
-6 Loss: 37.142 | Acc: 92.102
-7 Loss: 30.988 | Acc: 93.684
-8 Loss: 26.720 | Acc: 94.755
-9 Loss: 23.634 | Acc: 95.184
-10 Loss: 13.206 | Acc: 97.531
-11 Loss: 8.025 | Acc: 98.500
-12 Loss: 7.793 | Acc: 98.541
-13 Loss: 6.135 | Acc: 98.929
-14 Loss: 7.102 | Acc: 98.755
-15 Loss: 5.650 | Acc: 98.990
-16 Loss: 4.988 | Acc: 99.102
-17 Loss: 5.028 | Acc: 99.031
-18 Loss: 4.301 | Acc: 99.194
-19 Loss: 4.030 | Acc: 99.276
-20 Loss: 2.182 | Acc: 99.673
-21 Loss: 1.108 | Acc: 99.847
-22 Loss: 1.050 | Acc: 99.837
-23 Loss: 1.119 | Acc: 99.786
-24 Loss: 1.047 | Acc: 99.827
-25 Loss: 0.957 | Acc: 99.867
-26 Loss: 1.122 | Acc: 99.806
-27 Loss: 1.434 | Acc: 99.755
-28 Loss: 1.757 | Acc: 99.724
-29 Loss: 0.653 | Acc: 99.918
-30 Loss: 0.609 | Acc: 99.939
-31 Loss: 0.460 | Acc: 99.939
-32 Loss: 0.410 | Acc: 99.949
-33 Loss: 0.329 | Acc: 99.959
-34 Loss: 0.385 | Acc: 99.939
-35 Loss: 0.486 | Acc: 99.939
-36 Loss: 0.480 | Acc: 99.918
-37 Loss: 0.344 | Acc: 99.949
-38 Loss: 0.463 | Acc: 99.878
-39 Loss: 0.345 | Acc: 99.969
-40 Loss: 0.320 | Acc: 99.969
-41 Loss: 0.366 | Acc: 99.939
-42 Loss: 0.241 | Acc: 99.980
-43 Loss: 0.277 | Acc: 99.969
-44 Loss: 0.281 | Acc: 99.939
-45 Loss: 0.204 | Acc: 99.980
-46 Loss: 0.236 | Acc: 99.969
-47 Loss: 0.130 | Acc: 100.000
-48 Loss: 0.180 | Acc: 99.959
-49 Loss: 0.234 | Acc: 99.969
-50 Loss: 0.158 | Acc: 99.980
-51 Loss: 0.083 | Acc: 100.000
-52 Loss: 0.120 | Acc: 99.990
-53 Loss: 0.233 | Acc: 99.969
-54 Loss: 0.143 | Acc: 99.980
-55 Loss: 0.248 | Acc: 99.949
-56 Loss: 0.157 | Acc: 99.969
-57 Loss: 0.183 | Acc: 99.980
-58 Loss: 0.202 | Acc: 99.969
-59 Loss: 0.227 | Acc: 99.969
-MLP trained successfully...
-lTrainDict[data].shape:  torch.Size([4900, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([4900])
-rTrainDict[data].shape:  torch.Size([4900, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([4900])
-lValDict[data].shape:  torch.Size([100, 3, 32, 32])   lValDict[label].shape:  torch.Size([100])
-rValDict[data].shape:  torch.Size([100, 3, 32, 32])   rValDict[label].shape:  torch.Size([100])
-# of Left images:  4900.0
-# of Right images:  4900.0
-giniRightRatio:  0.0
-giniLeftRatio:  0.0
-impurityDrop:  0.0
-giniGain:  0.5
-lclasses:  [0, 4900, 0, 0, 0, 0, 0, 0, 0, 0]
-rclasses:  [4900, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-noOfLeftClasses:  1
-noOfRightClasses:  1
-RETURNING FROM WORK...
-CLASS THRESHOLD REACHED 1 IN LEFT 1 2 2
-CLASS THRESHOLD REACHED 1 IN RIGHT 1 2 0
-DOMINANCE THRESHOLD REACHED IN LEFT 1.0 0.95 2
-DOMINANCE THRESHOLD REACHED IN RIGHT 1.0 0.95 0
-nodeId:  16 , imgTensorShape :  torch.Size([4900, 3, 32, 32])
-nodeId: 16 ,  parentId: 11 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 2 ,  numClasses: 1 ,  numData: 4900
-nodeId:  17 , imgTensorShape :  torch.Size([4900, 3, 32, 32])
-nodeId: 17 ,  parentId: 11 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 0 ,  numClasses: 1 ,  numData: 4900
-Running nodeId:  12
-Running nodeId:  13
-Running nodeId:  14
-Running nodeId:  15
-0 Train Loss: 68.603 | Train Acc: 56.296 | Val Loss: 0.623 | Val Accuracy: 71.500
-10 Train Loss: 48.706 | Train Acc: 76.469 | Val Loss: 0.554 | Val Accuracy: 70.500
-Epoch     3: reducing learning rate of group 0 to 2.0000e-04.
-20 Train Loss: 39.487 | Train Acc: 81.969 | Val Loss: 0.598 | Val Accuracy: 67.500
-30 Train Loss: 34.680 | Train Acc: 85.439 | Val Loss: 0.606 | Val Accuracy: 68.500
-Epoch     5: reducing learning rate of group 0 to 4.0000e-05.
-40 Train Loss: 33.085 | Train Acc: 86.255 | Val Loss: 0.624 | Val Accuracy: 68.500
-50 Train Loss: 32.061 | Train Acc: 87.224 | Val Loss: 0.632 | Val Accuracy: 67.500
-Epoch     7: reducing learning rate of group 0 to 8.0000e-06.
-60 Train Loss: 31.793 | Train Acc: 87.357 | Val Loss: 0.631 | Val Accuracy: 67.000
-70 Train Loss: 31.562 | Train Acc: 87.480 | Val Loss: 0.633 | Val Accuracy: 67.500
-Epoch     9: reducing learning rate of group 0 to 1.6000e-06.
-80 Train Loss: 31.498 | Train Acc: 87.582 | Val Loss: 0.634 | Val Accuracy: 67.000
-90 Train Loss: 31.452 | Train Acc: 87.582 | Val Loss: 0.634 | Val Accuracy: 67.500
-Epoch    11: reducing learning rate of group 0 to 3.2000e-07.
-100 Train Loss: 31.441 | Train Acc: 87.643 | Val Loss: 0.634 | Val Accuracy: 67.500
-110 Train Loss: 31.430 | Train Acc: 87.592 | Val Loss: 0.634 | Val Accuracy: 67.500
-Epoch    13: reducing learning rate of group 0 to 6.4000e-08.
-120 Train Loss: 31.428 | Train Acc: 87.602 | Val Loss: 0.634 | Val Accuracy: 67.500
-130 Train Loss: 31.426 | Train Acc: 87.602 | Val Loss: 0.634 | Val Accuracy: 67.500
-Epoch    15: reducing learning rate of group 0 to 1.2800e-08.
-140 Train Loss: 31.425 | Train Acc: 87.602 | Val Loss: 0.634 | Val Accuracy: 67.500
-150 Train Loss: 31.425 | Train Acc: 87.602 | Val Loss: 0.634 | Val Accuracy: 67.500
-Epoch    17: reducing learning rate of group 0 to 2.5600e-09.
-160 Train Loss: 31.425 | Train Acc: 87.602 | Val Loss: 0.634 | Val Accuracy: 67.500
-170 Train Loss: 31.425 | Train Acc: 87.602 | Val Loss: 0.634 | Val Accuracy: 67.500
-180 Train Loss: 31.425 | Train Acc: 87.602 | Val Loss: 0.634 | Val Accuracy: 67.500
-190 Train Loss: 31.425 | Train Acc: 87.602 | Val Loss: 0.634 | Val Accuracy: 67.500
-CNN trained successfully...
-image_next_flat.shape :  torch.Size([9800, 12544])
-Kmeans trained successfully...
-printing expected split from k means
-{1: 1, 0: 0}
+{0: 0, 1: 1}
 Printing final_dict items...
 {0: 0, 1: 1}
 Image Statistics before MLP : L R :  4900 4900
 expectedMlpLabels.shape :  torch.Size([9800])
-0 Loss: 126.423 | Acc: 64.408
-1 Loss: 111.841 | Acc: 70.857
-2 Loss: 101.976 | Acc: 73.929
-3 Loss: 94.931 | Acc: 76.673
-4 Loss: 85.389 | Acc: 79.449
-5 Loss: 77.290 | Acc: 81.827
-6 Loss: 68.076 | Acc: 83.888
-7 Loss: 59.456 | Acc: 86.929
-8 Loss: 51.255 | Acc: 88.694
-9 Loss: 45.884 | Acc: 90.388
-10 Loss: 26.953 | Acc: 94.347
-11 Loss: 17.996 | Acc: 96.469
-12 Loss: 15.116 | Acc: 97.163
-13 Loss: 14.719 | Acc: 97.153
-14 Loss: 12.059 | Acc: 97.786
-15 Loss: 10.639 | Acc: 98.020
-16 Loss: 9.638 | Acc: 98.235
-17 Loss: 10.169 | Acc: 98.143
-18 Loss: 7.790 | Acc: 98.714
-19 Loss: 5.574 | Acc: 98.959
-20 Loss: 4.612 | Acc: 99.316
-21 Loss: 3.337 | Acc: 99.449
-22 Loss: 3.029 | Acc: 99.612
-23 Loss: 2.256 | Acc: 99.602
-24 Loss: 2.941 | Acc: 99.561
-25 Loss: 2.166 | Acc: 99.663
-26 Loss: 2.433 | Acc: 99.551
-27 Loss: 2.457 | Acc: 99.643
-28 Loss: 2.385 | Acc: 99.602
-29 Loss: 1.713 | Acc: 99.765
-30 Loss: 1.588 | Acc: 99.776
-31 Loss: 1.301 | Acc: 99.796
-32 Loss: 1.052 | Acc: 99.878
-33 Loss: 1.245 | Acc: 99.827
-34 Loss: 1.198 | Acc: 99.816
-35 Loss: 0.848 | Acc: 99.918
-36 Loss: 1.233 | Acc: 99.827
-37 Loss: 1.353 | Acc: 99.776
-38 Loss: 1.268 | Acc: 99.827
-39 Loss: 0.883 | Acc: 99.898
-40 Loss: 0.879 | Acc: 99.847
-41 Loss: 0.617 | Acc: 99.918
-42 Loss: 1.025 | Acc: 99.867
-43 Loss: 0.635 | Acc: 99.939
-44 Loss: 0.696 | Acc: 99.929
-45 Loss: 0.800 | Acc: 99.888
-46 Loss: 0.859 | Acc: 99.847
-47 Loss: 0.578 | Acc: 99.929
-48 Loss: 0.990 | Acc: 99.847
-49 Loss: 0.925 | Acc: 99.847
-50 Loss: 0.594 | Acc: 99.908
-51 Loss: 0.648 | Acc: 99.949
-52 Loss: 0.679 | Acc: 99.918
-53 Loss: 0.761 | Acc: 99.888
-54 Loss: 0.639 | Acc: 99.929
-55 Loss: 0.568 | Acc: 99.939
-56 Loss: 0.423 | Acc: 99.959
-57 Loss: 0.713 | Acc: 99.918
-58 Loss: 0.682 | Acc: 99.929
-59 Loss: 0.577 | Acc: 99.918
+0 Loss: 62.954 | Acc: 86.357
+1 Loss: 46.218 | Acc: 90.776
+2 Loss: 38.946 | Acc: 92.061
+3 Loss: 35.034 | Acc: 92.949
+4 Loss: 30.593 | Acc: 93.735
+5 Loss: 28.090 | Acc: 94.541
+6 Loss: 25.563 | Acc: 94.878
+7 Loss: 22.088 | Acc: 95.592
+8 Loss: 18.626 | Acc: 96.622
+9 Loss: 17.124 | Acc: 96.888
+10 Loss: 9.996 | Acc: 98.122
+11 Loss: 7.916 | Acc: 98.480
+12 Loss: 6.088 | Acc: 98.949
+13 Loss: 5.396 | Acc: 99.061
+14 Loss: 4.076 | Acc: 99.163
+15 Loss: 4.412 | Acc: 99.255
+16 Loss: 3.968 | Acc: 99.337
+17 Loss: 2.841 | Acc: 99.429
+18 Loss: 3.413 | Acc: 99.378
+19 Loss: 3.694 | Acc: 99.367
+20 Loss: 1.597 | Acc: 99.724
+21 Loss: 1.345 | Acc: 99.786
+22 Loss: 0.881 | Acc: 99.867
+23 Loss: 0.793 | Acc: 99.867
+24 Loss: 0.531 | Acc: 99.929
+25 Loss: 0.316 | Acc: 99.959
+26 Loss: 0.889 | Acc: 99.898
+27 Loss: 0.840 | Acc: 99.867
+28 Loss: 1.005 | Acc: 99.847
+29 Loss: 1.186 | Acc: 99.816
+30 Loss: 0.625 | Acc: 99.908
+31 Loss: 0.491 | Acc: 99.939
+32 Loss: 0.423 | Acc: 99.959
+33 Loss: 0.257 | Acc: 99.969
+34 Loss: 0.229 | Acc: 99.990
+35 Loss: 0.296 | Acc: 99.969
+36 Loss: 0.327 | Acc: 99.959
+37 Loss: 0.212 | Acc: 99.980
+38 Loss: 0.153 | Acc: 99.980
+39 Loss: 0.299 | Acc: 99.949
+40 Loss: 0.335 | Acc: 99.959
+41 Loss: 0.174 | Acc: 99.969
+42 Loss: 0.261 | Acc: 99.949
+43 Loss: 0.191 | Acc: 99.980
+44 Loss: 0.107 | Acc: 100.000
+45 Loss: 0.121 | Acc: 99.990
+46 Loss: 0.316 | Acc: 99.969
+47 Loss: 0.138 | Acc: 99.990
+48 Loss: 0.182 | Acc: 99.969
+49 Loss: 0.097 | Acc: 99.990
+50 Loss: 0.097 | Acc: 99.990
+51 Loss: 0.154 | Acc: 99.959
+52 Loss: 0.085 | Acc: 100.000
+53 Loss: 0.137 | Acc: 99.969
+54 Loss: 0.279 | Acc: 99.959
+55 Loss: 0.096 | Acc: 100.000
+56 Loss: 0.151 | Acc: 99.990
+57 Loss: 0.104 | Acc: 99.980
+58 Loss: 0.118 | Acc: 99.990
+59 Loss: 0.083 | Acc: 99.990
 MLP trained successfully...
 lTrainDict[data].shape:  torch.Size([4900, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([4900])
 rTrainDict[data].shape:  torch.Size([4900, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([4900])
@@ -1079,14 +835,124 @@ rclasses:  [0, 4900, 0, 0, 0, 0, 0, 0, 0, 0]
 noOfLeftClasses:  1
 noOfRightClasses:  1
 RETURNING FROM WORK...
-CLASS THRESHOLD REACHED 1 IN LEFT 1 2 0
-CLASS THRESHOLD REACHED 1 IN RIGHT 1 2 1
-DOMINANCE THRESHOLD REACHED IN LEFT 1.0 0.95 0
-DOMINANCE THRESHOLD REACHED IN RIGHT 1.0 0.95 1
+CLASS THRESHOLD REACHED 1 IN LEFT 1 2 8
+CLASS THRESHOLD REACHED 1 IN RIGHT 1 2 9
+DOMINANCE THRESHOLD REACHED IN LEFT 1.0 0.95 8
+DOMINANCE THRESHOLD REACHED IN RIGHT 1.0 0.95 9
+nodeId:  16 , imgTensorShape :  torch.Size([4900, 3, 32, 32])
+nodeId: 16 ,  parentId: 11 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 8 ,  numClasses: 1 ,  numData: 4900
+nodeId:  17 , imgTensorShape :  torch.Size([4900, 3, 32, 32])
+nodeId: 17 ,  parentId: 11 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 9 ,  numClasses: 1 ,  numData: 4900
+Running nodeId:  12
+Running nodeId:  13
+Running nodeId:  14
+Running nodeId:  15
+0 Train Loss: 51.945 | Train Acc: 74.112 | Val Loss: 0.512 | Val Accuracy: 73.500
+10 Train Loss: 23.206 | Train Acc: 90.837 | Val Loss: 0.322 | Val Accuracy: 85.500
+20 Train Loss: 17.596 | Train Acc: 93.112 | Val Loss: 0.324 | Val Accuracy: 86.500
+30 Train Loss: 13.361 | Train Acc: 95.204 | Val Loss: 0.358 | Val Accuracy: 87.000
+40 Train Loss: 10.018 | Train Acc: 96.837 | Val Loss: 0.374 | Val Accuracy: 84.500
+Epoch     6: reducing learning rate of group 0 to 2.0000e-04.
+50 Train Loss: 8.093 | Train Acc: 97.480 | Val Loss: 0.397 | Val Accuracy: 85.000
+60 Train Loss: 5.520 | Train Acc: 98.969 | Val Loss: 0.415 | Val Accuracy: 85.000
+Epoch     8: reducing learning rate of group 0 to 4.0000e-05.
+70 Train Loss: 5.199 | Train Acc: 99.082 | Val Loss: 0.426 | Val Accuracy: 84.500
+80 Train Loss: 4.755 | Train Acc: 99.296 | Val Loss: 0.421 | Val Accuracy: 86.000
+Epoch    10: reducing learning rate of group 0 to 8.0000e-06.
+90 Train Loss: 4.640 | Train Acc: 99.265 | Val Loss: 0.424 | Val Accuracy: 85.500
+CNN trained successfully...
+image_next_flat.shape :  torch.Size([9800, 12544])
+Kmeans trained successfully...
+printing expected split from k means
+{0: 0, 1: 1}
+Printing final_dict items...
+{0: 0, 1: 1}
+Image Statistics before MLP : L R :  4900 4900
+expectedMlpLabels.shape :  torch.Size([9800])
+0 Loss: 70.276 | Acc: 84.418
+1 Loss: 50.234 | Acc: 89.459
+2 Loss: 42.643 | Acc: 91.082
+3 Loss: 36.259 | Acc: 92.398
+4 Loss: 32.628 | Acc: 93.357
+5 Loss: 26.764 | Acc: 94.633
+6 Loss: 23.304 | Acc: 95.388
+7 Loss: 21.195 | Acc: 95.867
+8 Loss: 15.945 | Acc: 96.806
+9 Loss: 17.472 | Acc: 96.561
+10 Loss: 8.704 | Acc: 98.306
+11 Loss: 5.448 | Acc: 99.000
+12 Loss: 4.113 | Acc: 99.163
+13 Loss: 3.725 | Acc: 99.327
+14 Loss: 3.947 | Acc: 99.255
+15 Loss: 3.997 | Acc: 99.347
+16 Loss: 2.437 | Acc: 99.571
+17 Loss: 2.684 | Acc: 99.510
+18 Loss: 2.589 | Acc: 99.531
+19 Loss: 3.646 | Acc: 99.306
+20 Loss: 1.426 | Acc: 99.724
+21 Loss: 0.789 | Acc: 99.898
+22 Loss: 0.889 | Acc: 99.867
+23 Loss: 0.645 | Acc: 99.878
+24 Loss: 0.687 | Acc: 99.857
+25 Loss: 0.492 | Acc: 99.918
+26 Loss: 0.732 | Acc: 99.867
+27 Loss: 0.449 | Acc: 99.939
+28 Loss: 0.410 | Acc: 99.939
+29 Loss: 0.741 | Acc: 99.867
+30 Loss: 0.298 | Acc: 99.959
+31 Loss: 0.205 | Acc: 99.980
+32 Loss: 0.187 | Acc: 99.980
+33 Loss: 0.137 | Acc: 100.000
+34 Loss: 0.164 | Acc: 99.990
+35 Loss: 0.245 | Acc: 99.959
+36 Loss: 0.162 | Acc: 99.990
+37 Loss: 0.230 | Acc: 99.959
+38 Loss: 0.229 | Acc: 99.959
+39 Loss: 0.238 | Acc: 99.969
+40 Loss: 0.156 | Acc: 99.980
+41 Loss: 0.203 | Acc: 99.980
+42 Loss: 0.194 | Acc: 99.959
+43 Loss: 0.088 | Acc: 100.000
+44 Loss: 0.128 | Acc: 99.990
+45 Loss: 0.231 | Acc: 99.969
+46 Loss: 0.227 | Acc: 99.959
+47 Loss: 0.122 | Acc: 99.980
+48 Loss: 0.098 | Acc: 100.000
+49 Loss: 0.083 | Acc: 99.990
+50 Loss: 0.124 | Acc: 99.980
+51 Loss: 0.059 | Acc: 100.000
+52 Loss: 0.086 | Acc: 99.990
+53 Loss: 0.081 | Acc: 100.000
+54 Loss: 0.113 | Acc: 99.990
+55 Loss: 0.066 | Acc: 100.000
+56 Loss: 0.176 | Acc: 99.990
+57 Loss: 0.056 | Acc: 100.000
+58 Loss: 0.068 | Acc: 99.990
+59 Loss: 0.073 | Acc: 100.000
+MLP trained successfully...
+lTrainDict[data].shape:  torch.Size([4900, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([4900])
+rTrainDict[data].shape:  torch.Size([4900, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([4900])
+lValDict[data].shape:  torch.Size([100, 3, 32, 32])   lValDict[label].shape:  torch.Size([100])
+rValDict[data].shape:  torch.Size([100, 3, 32, 32])   rValDict[label].shape:  torch.Size([100])
+# of Left images:  4900.0
+# of Right images:  4900.0
+giniRightRatio:  0.0
+giniLeftRatio:  0.0
+impurityDrop:  0.0
+giniGain:  0.5
+lclasses:  [4900, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [0, 4900, 0, 0, 0, 0, 0, 0, 0, 0]
+noOfLeftClasses:  1
+noOfRightClasses:  1
+RETURNING FROM WORK...
+CLASS THRESHOLD REACHED 1 IN LEFT 1 2 5
+CLASS THRESHOLD REACHED 1 IN RIGHT 1 2 6
+DOMINANCE THRESHOLD REACHED IN LEFT 1.0 0.95 5
+DOMINANCE THRESHOLD REACHED IN RIGHT 1.0 0.95 6
 nodeId:  18 , imgTensorShape :  torch.Size([4900, 3, 32, 32])
-nodeId: 18 ,  parentId: 15 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 0 ,  numClasses: 1 ,  numData: 4900
+nodeId: 18 ,  parentId: 15 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 5 ,  numClasses: 1 ,  numData: 4900
 nodeId:  19 , imgTensorShape :  torch.Size([4900, 3, 32, 32])
-nodeId: 19 ,  parentId: 15 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 1 ,  numClasses: 1 ,  numData: 4900
+nodeId: 19 ,  parentId: 15 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 6 ,  numClasses: 1 ,  numData: 4900
 Running nodeId:  16
 Running nodeId:  17
 Running nodeId:  18
@@ -1094,208 +960,208 @@ Running nodeId:  19
 TESTING STARTS
 nodeId:  1 , imgTensorShape :  torch.Size([10000, 3, 32, 32])
 nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: 2 ,  rchildId: 3 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 10000
-Node 1 Acc: 60.370
-Split Acc: 87.700
-lTrainDict[data].shape:  torch.Size([4862, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([4862])
-rTrainDict[data].shape:  torch.Size([5138, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([5138])
-# of Left images:  4862.0
-# of Right images:  5138.0
-giniRightRatio:  0.8426611206072462
-giniLeftRatio:  0.8359664629415638
-impurityDrop:  0.8363260825436908
-giniGain:  0.06367391745630924
-lclasses:  [906, 956, 597, 129, 141, 88, 90, 98, 939, 918]
-rclasses:  [94, 44, 403, 871, 859, 912, 910, 902, 61, 82]
+Node 1 Acc: 60.490
+Split Acc: 87.630
+lTrainDict[data].shape:  torch.Size([4873, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([4873])
+rTrainDict[data].shape:  torch.Size([5127, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([5127])
+# of Left images:  4873.0
+# of Right images:  5127.0
+giniRightRatio:  0.8427064327349227
+giniLeftRatio:  0.8365780376245744
+impurityDrop:  0.8368816483829182
+giniGain:  0.06311835161708179
+lclasses:  [906, 951, 600, 132, 137, 92, 98, 96, 942, 919]
+rclasses:  [94, 49, 400, 868, 863, 908, 902, 904, 58, 81]
 noOfLeftClasses:  10
 noOfRightClasses:  10
 RETURNING FROM WORK...
-nodeId:  2 , imgTensorShape :  torch.Size([4862, 3, 32, 32])
-nodeId: 2 ,  parentId: 1 ,  level: 1 ,  lchildId: 4 ,  rchildId: 5 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 5 ,  numData: 4862
-nodeId:  3 , imgTensorShape :  torch.Size([5138, 3, 32, 32])
-nodeId: 3 ,  parentId: 1 ,  level: 1 ,  lchildId: 6 ,  rchildId: 7 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 5 ,  numData: 5138
+nodeId:  2 , imgTensorShape :  torch.Size([4873, 3, 32, 32])
+nodeId: 2 ,  parentId: 1 ,  level: 1 ,  lchildId: 4 ,  rchildId: 5 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 5 ,  numData: 4873
+nodeId:  3 , imgTensorShape :  torch.Size([5127, 3, 32, 32])
+nodeId: 3 ,  parentId: 1 ,  level: 1 ,  lchildId: 6 ,  rchildId: 7 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 5 ,  numData: 5127
 Nodes sizes =  5 5
-Node 2 Acc: 66.228
-Split Acc: 78.630
-lTrainDict[data].shape:  torch.Size([1985, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([1985])
-rTrainDict[data].shape:  torch.Size([2877, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([2877])
-# of Left images:  1985.0
-# of Right images:  2877.0
-giniRightRatio:  0.7835994823809076
-giniLeftRatio:  0.6657411696032587
-impurityDrop:  0.7022825721050532
-giniGain:  0.13368389083651067
-lclasses:  [775, 64, 97, 36, 40, 17, 13, 19, 831, 93]
-rclasses:  [131, 892, 500, 93, 101, 71, 77, 79, 108, 825]
+Node 2 Acc: 64.827
+Split Acc: 76.072
+lTrainDict[data].shape:  torch.Size([1888, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([1888])
+rTrainDict[data].shape:  torch.Size([2985, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([2985])
+# of Left images:  1888.0
+# of Right images:  2985.0
+giniRightRatio:  0.7675664755940506
+giniLeftRatio:  0.754090845841712
+impurityDrop:  0.7590431962063069
+giniGain:  0.0775348414182675
+lclasses:  [91, 762, 490, 73, 81, 65, 62, 43, 85, 136]
+rclasses:  [815, 189, 110, 59, 56, 27, 36, 53, 857, 783]
 noOfLeftClasses:  10
 noOfRightClasses:  10
 RETURNING FROM WORK...
-nodeId:  4 , imgTensorShape :  torch.Size([1985, 3, 32, 32])
-nodeId: 4 ,  parentId: 2 ,  level: 2 ,  lchildId: 8 ,  rchildId: 9 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2 ,  numData: 1985
-nodeId:  5 , imgTensorShape :  torch.Size([2877, 3, 32, 32])
-nodeId: 5 ,  parentId: 2 ,  level: 2 ,  lchildId: 10 ,  rchildId: 11 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3 ,  numData: 2877
+nodeId:  4 , imgTensorShape :  torch.Size([1888, 3, 32, 32])
+nodeId: 4 ,  parentId: 2 ,  level: 2 ,  lchildId: 8 ,  rchildId: 9 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2 ,  numData: 1888
+nodeId:  5 , imgTensorShape :  torch.Size([2985, 3, 32, 32])
+nodeId: 5 ,  parentId: 2 ,  level: 2 ,  lchildId: 10 ,  rchildId: 11 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3 ,  numData: 2985
 Nodes sizes =  2 3
-Node 3 Acc: 54.846
-Split Acc: 73.200
-lTrainDict[data].shape:  torch.Size([2023, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([2023])
-rTrainDict[data].shape:  torch.Size([3115, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([3115])
-# of Left images:  2023.0
-# of Right images:  3115.0
-giniRightRatio:  0.7951092549126706
-giniLeftRatio:  0.7362958209947932
-impurityDrop:  0.7569135641210603
-giniGain:  0.08574755648618593
-lclasses:  [45, 18, 186, 164, 619, 84, 786, 81, 19, 21]
-rclasses:  [49, 26, 217, 707, 240, 828, 124, 821, 42, 61]
+Node 3 Acc: 55.978
+Split Acc: 73.805
+lTrainDict[data].shape:  torch.Size([1998, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([1998])
+rTrainDict[data].shape:  torch.Size([3129, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([3129])
+# of Left images:  1998.0
+# of Right images:  3129.0
+giniRightRatio:  0.7971469896608404
+giniLeftRatio:  0.7264286308330352
+impurityDrop:  0.7519903003230473
+giniGain:  0.09071613241187548
+lclasses:  [32, 11, 147, 137, 659, 131, 56, 771, 20, 34]
+rclasses:  [62, 38, 253, 731, 204, 777, 846, 133, 38, 47]
 noOfLeftClasses:  10
 noOfRightClasses:  10
 RETURNING FROM WORK...
-nodeId:  6 , imgTensorShape :  torch.Size([2023, 3, 32, 32])
-nodeId: 6 ,  parentId: 3 ,  level: 2 ,  lchildId: 12 ,  rchildId: 13 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2 ,  numData: 2023
-nodeId:  7 , imgTensorShape :  torch.Size([3115, 3, 32, 32])
-nodeId: 7 ,  parentId: 3 ,  level: 2 ,  lchildId: 14 ,  rchildId: 15 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3 ,  numData: 3115
+nodeId:  6 , imgTensorShape :  torch.Size([1998, 3, 32, 32])
+nodeId: 6 ,  parentId: 3 ,  level: 2 ,  lchildId: 12 ,  rchildId: 13 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2 ,  numData: 1998
+nodeId:  7 , imgTensorShape :  torch.Size([3129, 3, 32, 32])
+nodeId: 7 ,  parentId: 3 ,  level: 2 ,  lchildId: 14 ,  rchildId: 15 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 3 ,  numData: 3129
 Nodes sizes =  2 3
-Node 4 Acc: 34.408
-Split Acc: 35.718
-lTrainDict[data].shape:  torch.Size([989, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([989])
+Node 4 Acc: 63.824
+Split Acc: 63.983
+lTrainDict[data].shape:  torch.Size([886, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([886])
+rTrainDict[data].shape:  torch.Size([1002, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([1002])
+# of Left images:  886.0
+# of Right images:  1002.0
+giniRightRatio:  0.44275720017051723
+giniLeftRatio:  0.6863168729522189
+impurityDrop:  0.658120343967511
+giniGain:  0.09597050187420109
+lclasses:  [68, 27, 473, 61, 77, 57, 45, 37, 24, 17]
+rclasses:  [23, 735, 17, 12, 4, 8, 17, 6, 61, 119]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+nodeId:  8 , imgTensorShape :  torch.Size([886, 3, 32, 32])
+nodeId: 8 ,  parentId: 4 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 2 ,  numClasses: 1 ,  numData: 886
+nodeId:  9 , imgTensorShape :  torch.Size([1002, 3, 32, 32])
+nodeId: 9 ,  parentId: 4 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 1 ,  numClasses: 1 ,  numData: 1002
+Nodes sizes =  1 1
+Node 5 Acc: 67.672
+Split Acc: 72.965
+lTrainDict[data].shape:  torch.Size([980, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([980])
+rTrainDict[data].shape:  torch.Size([2005, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([2005])
+# of Left images:  980.0
+# of Right images:  2005.0
+giniRightRatio:  0.7028578180483952
+giniLeftRatio:  0.5158808829654311
+impurityDrop:  0.6114675954143279
+giniGain:  0.15609888017972262
+lclasses:  [670, 19, 70, 17, 32, 10, 10, 20, 75, 57]
+rclasses:  [145, 170, 40, 42, 24, 17, 26, 33, 782, 726]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+nodeId:  10 , imgTensorShape :  torch.Size([980, 3, 32, 32])
+nodeId: 10 ,  parentId: 5 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 0 ,  numClasses: 1 ,  numData: 980
+nodeId:  11 , imgTensorShape :  torch.Size([2005, 3, 32, 32])
+nodeId: 11 ,  parentId: 5 ,  level: 3 ,  lchildId: 16 ,  rchildId: 17 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2 ,  numData: 2005
+Nodes sizes =  1 2
+Node 6 Acc: 60.561
+Split Acc: 62.963
+lTrainDict[data].shape:  torch.Size([1002, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([1002])
 rTrainDict[data].shape:  torch.Size([996, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([996])
-# of Left images:  989.0
+# of Left images:  1002.0
 # of Right images:  996.0
-giniRightRatio:  0.5005060402251577
-giniLeftRatio:  0.41306545918143045
-impurityDrop:  0.4136800014176815
-giniGain:  0.25206116818557717
-lclasses:  [83, 40, 20, 17, 17, 6, 7, 4, 750, 45]
-rclasses:  [692, 24, 77, 19, 23, 11, 6, 15, 81, 48]
+giniRightRatio:  0.6437557458750665
+giniLeftRatio:  0.5083266600531472
+impurityDrop:  0.50751082218675
+giniGain:  0.21891780864628518
+lclasses:  [10, 5, 50, 56, 90, 68, 12, 689, 6, 16]
+rclasses:  [22, 6, 97, 81, 569, 63, 44, 82, 14, 18]
 noOfLeftClasses:  10
 noOfRightClasses:  10
 RETURNING FROM WORK...
-nodeId:  8 , imgTensorShape :  torch.Size([989, 3, 32, 32])
-nodeId: 8 ,  parentId: 4 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 3 ,  numClasses: 1 ,  numData: 989
-nodeId:  9 , imgTensorShape :  torch.Size([996, 3, 32, 32])
-nodeId: 9 ,  parentId: 4 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 0 ,  numClasses: 1 ,  numData: 996
+nodeId:  12 , imgTensorShape :  torch.Size([1002, 3, 32, 32])
+nodeId: 12 ,  parentId: 6 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 7 ,  numClasses: 1 ,  numData: 1002
+nodeId:  13 , imgTensorShape :  torch.Size([996, 3, 32, 32])
+nodeId: 13 ,  parentId: 6 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 4 ,  numClasses: 1 ,  numData: 996
 Nodes sizes =  1 1
-Node 5 Acc: 41.293
-Split Acc: 47.341
-lTrainDict[data].shape:  torch.Size([837, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([837])
-rTrainDict[data].shape:  torch.Size([2040, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([2040])
-# of Left images:  837.0
-# of Right images:  2040.0
-giniRightRatio:  0.6543742791234141
-giniLeftRatio:  0.6641116007131346
-impurityDrop:  0.6583694448933142
-giniGain:  0.12523003748759343
-lclasses:  [49, 14, 465, 54, 82, 51, 46, 37, 18, 21]
-rclasses:  [82, 878, 35, 39, 19, 20, 31, 42, 90, 804]
+Node 7 Acc: 53.531
+Split Acc: 58.166
+lTrainDict[data].shape:  torch.Size([981, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([981])
+rTrainDict[data].shape:  torch.Size([2148, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([2148])
+# of Left images:  981.0
+# of Right images:  2148.0
+giniRightRatio:  0.7638667817969337
+giniLeftRatio:  0.7266732546310584
+impurityDrop:  0.7468803524907308
+giniGain:  0.050266637170109596
+lclasses:  [28, 16, 79, 454, 72, 196, 61, 42, 14, 19]
+rclasses:  [34, 22, 174, 277, 132, 581, 785, 91, 24, 28]
 noOfLeftClasses:  10
 noOfRightClasses:  10
 RETURNING FROM WORK...
-nodeId:  10 , imgTensorShape :  torch.Size([837, 3, 32, 32])
-nodeId: 10 ,  parentId: 5 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 2 ,  numClasses: 1 ,  numData: 837
-nodeId:  11 , imgTensorShape :  torch.Size([2040, 3, 32, 32])
-nodeId: 11 ,  parentId: 5 ,  level: 3 ,  lchildId: 16 ,  rchildId: 17 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2 ,  numData: 2040
+nodeId:  14 , imgTensorShape :  torch.Size([981, 3, 32, 32])
+nodeId: 14 ,  parentId: 7 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 3 ,  numClasses: 1 ,  numData: 981
+nodeId:  15 , imgTensorShape :  torch.Size([2148, 3, 32, 32])
+nodeId: 15 ,  parentId: 7 ,  level: 3 ,  lchildId: 18 ,  rchildId: 19 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2 ,  numData: 2148
 Nodes sizes =  1 2
-Node 6 Acc: 4.449
-Split Acc: 4.498
-lTrainDict[data].shape:  torch.Size([946, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([946])
-rTrainDict[data].shape:  torch.Size([1077, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([1077])
-# of Left images:  946.0
-# of Right images:  1077.0
-giniRightRatio:  0.5216767578015552
-giniLeftRatio:  0.6415283669081789
-impurityDrop:  0.6269503160326286
-giniGain:  0.10934550496216455
-lclasses:  [25, 6, 107, 79, 541, 47, 56, 65, 10, 10]
-rclasses:  [20, 12, 79, 85, 78, 37, 730, 16, 9, 11]
+Node 8 Acc: 53.386
+Node 9 Acc: 73.353
+Node 10 Acc: 68.367
+Node 11 Acc: 69.925
+Split Acc: 70.773
+lTrainDict[data].shape:  torch.Size([1016, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([1016])
+rTrainDict[data].shape:  torch.Size([989, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([989])
+# of Left images:  1016.0
+# of Right images:  989.0
+giniRightRatio:  0.5111024096200777
+giniLeftRatio:  0.45050452600905205
+impurityDrop:  0.4488501854049088
+giniGain:  0.2540076326434864
+lclasses:  [96, 46, 20, 23, 15, 7, 10, 6, 743, 50]
+rclasses:  [49, 124, 20, 19, 9, 10, 16, 27, 39, 676]
 noOfLeftClasses:  10
 noOfRightClasses:  10
 RETURNING FROM WORK...
-nodeId:  12 , imgTensorShape :  torch.Size([946, 3, 32, 32])
-nodeId: 12 ,  parentId: 6 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 1 ,  numClasses: 1 ,  numData: 946
-nodeId:  13 , imgTensorShape :  torch.Size([1077, 3, 32, 32])
-nodeId: 13 ,  parentId: 6 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 3 ,  numClasses: 1 ,  numData: 1077
+nodeId:  16 , imgTensorShape :  torch.Size([1016, 3, 32, 32])
+nodeId: 16 ,  parentId: 11 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 8 ,  numClasses: 1 ,  numData: 1016
+nodeId:  17 , imgTensorShape :  torch.Size([989, 3, 32, 32])
+nodeId: 17 ,  parentId: 11 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 9 ,  numClasses: 1 ,  numData: 989
 Nodes sizes =  1 1
-Node 7 Acc: 6.485
-Split Acc: 9.567
-lTrainDict[data].shape:  torch.Size([992, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([992])
-rTrainDict[data].shape:  torch.Size([2123, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([2123])
-# of Left images:  992.0
-# of Right images:  2123.0
-giniRightRatio:  0.7580368789089462
-giniLeftRatio:  0.4959657095473465
-impurityDrop:  0.6355806377376287
-giniGain:  0.15952861717504185
-lclasses:  [13, 4, 39, 63, 84, 63, 10, 692, 7, 17]
-rclasses:  [36, 22, 178, 644, 156, 765, 114, 129, 35, 44]
+Node 12 Acc: 68.762
+Node 13 Acc: 57.129
+Node 14 Acc: 46.279
+Node 15 Acc: 58.706
+Split Acc: 59.264
+lTrainDict[data].shape:  torch.Size([1052, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([1052])
+rTrainDict[data].shape:  torch.Size([1096, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([1096])
+# of Left images:  1052.0
+# of Right images:  1096.0
+giniRightRatio:  0.5262267568863552
+giniLeftRatio:  0.6887550781419421
+impurityDrop:  0.6822302185294915
+giniGain:  0.08163656326744217
+lclasses:  [11, 7, 89, 199, 64, 533, 45, 79, 12, 13]
+rclasses:  [23, 15, 85, 78, 68, 48, 740, 12, 12, 15]
 noOfLeftClasses:  10
 noOfRightClasses:  10
 RETURNING FROM WORK...
-nodeId:  14 , imgTensorShape :  torch.Size([992, 3, 32, 32])
-nodeId: 14 ,  parentId: 7 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 4 ,  numClasses: 1 ,  numData: 992
-nodeId:  15 , imgTensorShape :  torch.Size([2123, 3, 32, 32])
-nodeId: 15 ,  parentId: 7 ,  level: 3 ,  lchildId: 18 ,  rchildId: 19 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 2 ,  numData: 2123
-Nodes sizes =  1 2
-Node 8 Acc: 1.719
-Node 9 Acc: 69.478
-Node 10 Acc: 55.556
-Node 11 Acc: 2.451
-Split Acc: 2.402
-lTrainDict[data].shape:  torch.Size([1017, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([1017])
-rTrainDict[data].shape:  torch.Size([1023, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([1023])
-# of Left images:  1017.0
-# of Right images:  1023.0
-giniRightRatio:  0.43177972134551457
-giniLeftRatio:  0.5168961479818504
-impurityDrop:  0.5163969314033382
-giniGain:  0.13797734772007586
-lclasses:  [55, 118, 22, 25, 11, 12, 15, 31, 36, 692]
-rclasses:  [27, 760, 13, 14, 8, 8, 16, 11, 54, 112]
-noOfLeftClasses:  10
-noOfRightClasses:  10
-RETURNING FROM WORK...
-nodeId:  16 , imgTensorShape :  torch.Size([1017, 3, 32, 32])
-nodeId: 16 ,  parentId: 11 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 2 ,  numClasses: 1 ,  numData: 1017
-nodeId:  17 , imgTensorShape :  torch.Size([1023, 3, 32, 32])
-nodeId: 17 ,  parentId: 11 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 0 ,  numClasses: 1 ,  numData: 1023
+nodeId:  18 , imgTensorShape :  torch.Size([1052, 3, 32, 32])
+nodeId: 18 ,  parentId: 15 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 5 ,  numClasses: 1 ,  numData: 1052
+nodeId:  19 , imgTensorShape :  torch.Size([1096, 3, 32, 32])
+nodeId: 19 ,  parentId: 15 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 6 ,  numClasses: 1 ,  numData: 1096
 Nodes sizes =  1 1
-Node 12 Acc: 0.634
-Node 13 Acc: 7.892
-Node 14 Acc: 8.468
-Node 15 Acc: 1.507
-Split Acc: 1.460
-lTrainDict[data].shape:  torch.Size([1101, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([1101])
-rTrainDict[data].shape:  torch.Size([1022, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([1022])
-# of Left images:  1101.0
-# of Right images:  1022.0
-giniRightRatio:  0.6831545528701255
-giniLeftRatio:  0.7474305003873122
-impurityDrop:  0.7523989933950007
-giniGain:  0.005637885513945506
-lclasses:  [24, 15, 100, 474, 89, 233, 66, 56, 19, 25]
-rclasses:  [12, 7, 78, 170, 67, 532, 48, 73, 16, 19]
-noOfLeftClasses:  10
-noOfRightClasses:  10
-RETURNING FROM WORK...
-nodeId:  18 , imgTensorShape :  torch.Size([1101, 3, 32, 32])
-nodeId: 18 ,  parentId: 15 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 0 ,  numClasses: 1 ,  numData: 1101
-nodeId:  19 , imgTensorShape :  torch.Size([1022, 3, 32, 32])
-nodeId: 19 ,  parentId: 15 ,  level: 4 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 1 ,  numClasses: 1 ,  numData: 1022
-Nodes sizes =  1 1
-Node 16 Acc: 2.163
-Node 17 Acc: 2.639
-Node 18 Acc: 2.180
-Node 19 Acc: 0.685
-[[743  37 104 103  13   0   0   0   0   0]
- [799  13 132  52   4   0   0   0   0   0]
- [190 185 487  99  39   0   0   0   0   0]
- [507 249  79 102  63   0   0   0   0   0]
- [120 608  93  95  84   0   0   0   0   0]
- [252 579  63  43  63   0   0   0   0   0]
- [ 88 104  61 737  10   0   0   0   0   0]
- [ 82 138  68  20 692   0   0   0   0   0]
- [154  26  54 759   7   0   0   0   0   0]
- [185  29 713  56  17   0   0   0   0   0]]
+Node 16 Acc: 73.130
+Node 17 Acc: 68.352
+Node 18 Acc: 50.665
+Node 19 Acc: 67.518
+[[670  23  68  28  22  11  23  10  96  49]
+ [ 19 735  27  16   6   7  15   5  46 124]
+ [ 70  17 473  79  97  89  85  50  20  20]
+ [ 17  12  61 454  81 199  78  56  23  19]
+ [ 32   4  77  72 569  64  68  90  15   9]
+ [ 10   8  57 196  63 533  48  68   7  10]
+ [ 10  17  45  61  44  45 740  12  10  16]
+ [ 20   6  37  42  82  79  12 689   6  27]
+ [ 75  61  24  14  14  12  12   6 743  39]
+ [ 57 119  17  19  18  13  15  16  50 676]]
 
-Acc: 14.290
+Acc: 62.820
 
                                                              1                                                                 
                    ┌─────────────────────────────────────────┴───────────────────────────┐                                     
@@ -1313,9 +1179,9 @@ Acc: 14.290
        ┌───────────┴───────────┐                                   ┌───────────┴───────────┐                   
        -1                      -1                                  -1                      -1                  
  ┌─────┴─────┐           ┌─────┴───────────┐                 ┌─────┴─────┐           ┌─────┴───────────┐       
- 3           0           2                 -1                1           3           4                 -1      
+ 2           1           0                 -1                7           4           3                 -1      
                                      ┌─────┴─────┐                                               ┌─────┴─────┐ 
-                                     2           0                                               0           1 
+                                     8           9                                               5           6 
 
                                                                          49000                                                                         
                            ┌───────────────────────────────────────────────┴───────────────────────────────┐                                           
@@ -1331,21 +1197,21 @@ Acc: 14.290
                                    ┌───────────────────────────────────────────────────────────┴───────────────────────────────────────┐                                                       
              {0: 4900, 1: 4900, 2: 4900, 8: 4900, 9: 4900}                                                       {3: 4900, 4: 4900, 5: 4900, 6: 4900, 7: 4900}                                 
                ┌───────────────────┴───────────────────┐                                                           ┌───────────────────┴───────────────────┐                                   
-       {0: 4900, 3: 4900}                 {1: 4900, 2: 4900, 4: 4900}                                      {1: 4900, 3: 4900}                 {0: 4900, 2: 4900, 4: 4900}                      
+       {1: 4900, 2: 4900}                 {0: 4900, 8: 4900, 9: 4900}                                      {4: 4900, 7: 4900}                 {3: 4900, 5: 4900, 6: 4900}                      
      ┌─────────┴─────────┐                   ┌─────────┴───────────────────┐                             ┌─────────┴─────────┐                   ┌─────────┴───────────────────┐               
- {1: 4900}           {0: 4900}           {1: 4900}                 {0: 4900, 2: 4900}                {0: 4900}           {1: 4900}           {2: 4900}                 {0: 4900, 1: 4900}      
+ {2: 4900}           {1: 4900}           {0: 4900}                 {8: 4900, 9: 4900}                {7: 4900}           {4: 4900}           {3: 4900}                 {5: 4900, 6: 4900}      
                                                                  ┌─────────┴─────────┐                                                                               ┌─────────┴─────────┐     
-                                                             {1: 4900}           {0: 4900}                                                                       {0: 4900}           {1: 4900} 
+                                                             {8: 4900}           {9: 4900}                                                                       {5: 4900}           {6: 4900} 
 
-                                                                  87.7                                                                
-                       ┌────────────────────────────────────────────┴───────────────────────────┐                                     
-               78.63019333607569                                                        73.19968859478396                             
-         ┌─────────────┴──────────────┐                                           ┌─────────────┴─────────────┐                       
- 35.71788413098237           47.340980187695514                           4.498269896193771            9.56661316211878               
-  ┌──────┴──────┐             ┌──────┴──────────────┐                      ┌──────┴──────┐             ┌──────┴─────────────┐         
- 0.0           0.0           0.0            2.4019607843137254            0.0           0.0           0.0           1.460197833254828 
-                                             ┌──────┴──────┐                                                         ┌──────┴──────┐  
-                                            0.0           0.0                                                       0.0           0.0 
+                                                                 87.63                                                               
+                         ┌─────────────────────────────────────────┴───────────────────────────┐                                     
+                 76.07223476297969                                                     73.80534425590014                             
+          ┌──────────────┴─────────────┐                                         ┌─────────────┴─────────────┐                       
+  63.983050847457626           72.96482412060301                         62.96296296296296            58.165548098434                
+   ┌──────┴──────┐              ┌──────┴─────────────┐                    ┌──────┴──────┐             ┌──────┴─────────────┐         
+  0.0           0.0            0.0           70.77306733167082           0.0           0.0           0.0           59.26443202979516 
+                                              ┌──────┴──────┐                                                       ┌──────┴──────┐  
+                                             0.0           0.0                                                     0.0           0.0 
 
                                                          0.09999999999999987                                                         
                        ┌──────────────────────────────────────────┴───────────────────────────┐                                      
