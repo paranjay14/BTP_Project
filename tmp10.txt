@@ -1,0 +1,22 @@
+['options.ckptDir: tmpDir10', 'options.maxDepth: 0', 'options.cnnLR: 0.001', 'options.mlpLR: 0.001', 'options.cnnEpochs: 10', 'options.mlpEpochs: 60', 'options.cnnOut: 32', 'options.mlpFC1: 516', 'options.mlpFC2: 32', 'options.trainFlg: True']
+==> Preparing data..
+Files already downloaded and verified
+Files already downloaded and verified
+len(trainInputDict["data"]):  49000 ,  len(valInputDict["data"]):  1000 ,  len(testInputDict["data"]):  10000
+nodeId:  1 , imgTensorShape :  torch.Size([49000, 3, 32, 32])
+nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 49000
+Running nodeId:  1
+0 Train Loss: 181.696 | Train Acc: 37.198 
+1 Train Loss: 139.607 | Train Acc: 51.280 
+2 Train Loss: 129.667 | Train Acc: 54.745 
+3 Train Loss: 122.588 | Train Acc: 57.400 
+4 Train Loss: 117.222 | Train Acc: 59.402 
+5 Train Loss: 113.060 | Train Acc: 60.953 
+6 Train Loss: 109.800 | Train Acc: 61.933 
+7 Train Loss: 106.419 | Train Acc: 63.557 
+8 Train Loss: 103.097 | Train Acc: 64.443 
+9 Train Loss: 99.393 | Train Acc: 65.845 
+CNN trained successfully...
+TESTING STARTS
+nodeId:  1 , imgTensorShape :  torch.Size([10000, 3, 32, 32])
+nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 10000

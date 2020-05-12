@@ -320,69 +320,69 @@ class Tree:
 		# print()	
 		# print_tree(rootNode, "children", "numClasses", horizontal=False)
 		# print()
-		print_tree(rootNode, "children", "numData", horizontal=False)
-		print()	
-		print_tree(rootNode, "children", "classLabels", horizontal=False)
+		print_tree(rootNode, "children", "classLabels", horizontal=True)
 		print()	
 		print_tree(rootNode, "children", "splitAcc", horizontal=False)
 		print()
-		print_tree(rootNode, "children", "nodeAcc", horizontal=True)
-		print()	
 		print_tree(rootNode, "children", "giniGain", horizontal=False)
+		print()	
+		print_tree(rootNode, "children", "numData", horizontal=False)
+		print()	
+		print_tree(rootNode, "children", "nodeAcc", horizontal=True)
 		print()	
 
 			
-def load_image(path):
-	img = cv2.imread(path)
-	img = img.astype(np.float32)
-	img = torch.from_numpy(img).permute(2,0,1)	
+# def load_image(path):
+# 	img = cv2.imread(path)
+# 	img = img.astype(np.float32)
+# 	img = torch.from_numpy(img).permute(2,0,1)	
 
-	return img
+# 	return img
 
 
-def loadDictionaries(rootPath):
-	trainInputDict = {}
-	valInputDict = {}
-	trainData = torch.empty(1,3,32,32)
-	valData = torch.empty(1,3,32,32)
-	trainlabels = []
-	vallabels = []
-	# index = 0
-	#change range index
-	for index in range(10):
-		for label in range(10):
-			path = rootPath + str(label) + "/" + str(index) + ".jpg"
-			img = load_image(path)
-			img = torch.unsqueeze(img,0)
-			if index == 0:
-				trainData = img
-			else:
-				trainData = torch.cat((trainData, img), 0)
-			trainlabels.append(label)
+# def loadDictionaries(rootPath):
+# 	trainInputDict = {}
+# 	valInputDict = {}
+# 	trainData = torch.empty(1,3,32,32)
+# 	valData = torch.empty(1,3,32,32)
+# 	trainlabels = []
+# 	vallabels = []
+# 	# index = 0
+# 	#change range index
+# 	for index in range(10):
+# 		for label in range(10):
+# 			path = rootPath + str(label) + "/" + str(index) + ".jpg"
+# 			img = load_image(path)
+# 			img = torch.unsqueeze(img,0)
+# 			if index == 0:
+# 				trainData = img
+# 			else:
+# 				trainData = torch.cat((trainData, img), 0)
+# 			trainlabels.append(label)
 	
-	trainLabels = torch.tensor(trainlabels)
+# 	trainLabels = torch.tensor(trainlabels)
 
-	#change range index
-	for index in range(10, 20):
-		for label in range(10):
-			path = rootPath + str(label) + "/" + str(index) + ".jpg"
-			img = load_image(path)
-			img = torch.unsqueeze(img, 0)
-			if index == 0:
-				valData = img
-			else:
-				valData = torch.cat((valData, img), 0)
-			vallabels.append(label)
+# 	#change range index
+# 	for index in range(10, 20):
+# 		for label in range(10):
+# 			path = rootPath + str(label) + "/" + str(index) + ".jpg"
+# 			img = load_image(path)
+# 			img = torch.unsqueeze(img, 0)
+# 			if index == 0:
+# 				valData = img
+# 			else:
+# 				valData = torch.cat((valData, img), 0)
+# 			vallabels.append(label)
 	
-	valLabels = torch.tensor(vallabels)
+# 	valLabels = torch.tensor(vallabels)
 
-	trainInputDict["data"] = trainData
-	trainInputDict["label"] = trainLabels
+# 	trainInputDict["data"] = trainData
+# 	trainInputDict["label"] = trainLabels
 
-	valInputDict["data"] = valData
-	valInputDict["label"] = valLabels
+# 	valInputDict["data"] = valData
+# 	valInputDict["label"] = valLabels
 
-	return trainInputDict, valInputDict
+# 	return trainInputDict, valInputDict
 
 
 def loadNewDictionaries():
@@ -474,7 +474,7 @@ def loadNewDictionaries():
 			
 if __name__ == '__main__':
 	options = getOptions(sys.argv[1:])
-	L = ["options.ckptDir: " + options.ckptDir,"options.maxDepth: " + str(options.maxDepth),"options.cnnLR: " + str(options.cnnLR),"options.mlpLR: " + str(options.mlpLR),"options.cnnEpochs: " + str(options.cnnEpochs),"options.mlpEpochs: " + str(options.mlpEpochs),"options.cnnOut: " + str(options.cnnOut),"options.mlpFC1: " + str(options.mlpFC1),"options.mlpFC2: " + str(options.mlpFC2)]
+	L = ["options.ckptDir: " + options.ckptDir,"options.maxDepth: " + str(options.maxDepth),"options.cnnLR: " + str(options.cnnLR),"options.mlpLR: " + str(options.mlpLR),"options.cnnEpochs: " + str(options.cnnEpochs),"options.mlpEpochs: " + str(options.mlpEpochs),"options.cnnOut: " + str(options.cnnOut),"options.mlpFC1: " + str(options.mlpFC1),"options.mlpFC2: " + str(options.mlpFC2),"options.trainFlg: " + str(options.trainFlg)]
 	print(L)
 
 	trainInputDict, valInputDict, testInputDict = loadNewDictionaries()
@@ -488,7 +488,7 @@ if __name__ == '__main__':
 		resumeFromNodeId = -1
 		tree.tree_traversal(trainInputDict, valInputDict, resumeTrain=False, resumeFromNodeId=resumeFromNodeId)
 
-		# resumeFromNodeId = 7
+		# resumeFromNodeId = 2
 		# tree.tree_traversal(trainInputDict, valInputDict, resumeTrain=True, resumeFromNodeId=resumeFromNodeId)
 
 	tree.testTraversal(testInputDict)
@@ -496,4 +496,4 @@ if __name__ == '__main__':
 	tree.printTree()
 
 	end = time.time()
-	print("Time Taken by whole program is ", end-start)
+	print("Time Taken by whole program is ", float(end-start)/60.0, " minutes.")
