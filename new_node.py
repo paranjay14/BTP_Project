@@ -408,11 +408,13 @@ class myNode:
 			'testPredDict':testPredDict,
 			}, options.ckptDir+'/testPred.pth')
 
-	def checkTestPreds(self, reverseLabelMap, est_labels):
+	def checkTestPreds(self, reverseLabelMap, est_labels, nodeProb, oneHotTensors):
 		_, predicted = est_labels.max(1)
 		predicted = predicted.to(self.device)
 		for i, val in enumerate(predicted):
 			predicted[i] = reverseLabelMap[val.item()]
+
+		oneHotTensors[torch.arange(len(oneHotTensors)), predicted.long()] += nodeProb
 
 		correct = predicted.eq(self.trainInputDict["label"].to(self.device)).sum().item()
 		total = len(est_labels)
@@ -545,7 +547,7 @@ class myNode:
 		
 
 
-	def classifyLabels(self, mlpPrediction, reverseLabelMap, labelMap):
+	def classifyLabels(self, mlpPrediction, reverseLabelMap, labelMap, lChildProb, rChildProb):
 		maxLeftClasses, maxRightClasses, testCorrectResults, leftClassesToBeRemoved, rightClassesToBeRemoved = self.countBalanceAndThreshold(mlpPrediction, labelMap)
 		totalLeftImages = 0.0
 		totalRightImages = 0.0
@@ -659,10 +661,13 @@ class myNode:
 		# print(testLclasses)
 		# print(testRclasses)
 
-		# lTrainDict = {"data":torch.tensor(trainLimages), "label":torch.tensor(trainLLabels)}
-		# rTrainDict = {"data":torch.tensor(trainRimages), "label":torch.tensor(trainRLabels)}
-		lTrainDict = {"data":self.trainInputDict["data"][leftChildIndexList], "label":self.trainInputDict["label"][leftChildIndexList]}
-		rTrainDict = {"data":self.trainInputDict["data"][rightChildIndexList], "label":self.trainInputDict["label"][rightChildIndexList]}
+		## lTrainDict = {"data":torch.tensor(trainLimages), "label":torch.tensor(trainLLabels)}
+		## rTrainDict = {"data":torch.tensor(trainRimages), "label":torch.tensor(trainRLabels)}
+
+		lTrainDict = {"data":self.trainInputDict["data"], "label":self.trainInputDict["label"]}
+		rTrainDict = {"data":self.trainInputDict["data"], "label":self.trainInputDict["label"]}
+		# lTrainDict = {"data":self.trainInputDict["data"][leftChildIndexList], "label":self.trainInputDict["label"][leftChildIndexList]}
+		# rTrainDict = {"data":self.trainInputDict["data"][rightChildIndexList], "label":self.trainInputDict["label"][rightChildIndexList]}
 		print("lTrainDict[data].shape: ", lTrainDict["data"].shape, "  lTrainDict[label].shape: ", lTrainDict["label"].shape)
 		print("rTrainDict[data].shape: ", rTrainDict["data"].shape, "  rTrainDict[label].shape: ", rTrainDict["label"].shape)
 
@@ -701,21 +706,21 @@ class myNode:
 		if self.isTrain and not self.isLeaf:
 			return lTrainDict, lValDict, rTrainDict, rValDict, giniLeftRatio, giniRightRatio, handleLeafDict
 		elif not self.isTrain and not self.isLeaf:
-			return lTrainDict, rTrainDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses
+			return lTrainDict, rTrainDict, giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses, lChildProb, rChildProb
 		elif self.isTrain and self.isLeaf:
 			return
 		else:
 			return
 
 
-	def workTest(self):
+	def workTest(self, nodeProb, oneHotTensors):
 		if not (self.leafClass == -1):
 			x=torch.Tensor(1,1).long()
 			x[0] = 1
 			est_labels = torch.cat(len(self.trainInputDict["label"].to(self.device))*[x])
 			reverseLabelMap = {}
 			reverseLabelMap[0] = self.leafClass
-			self.checkTestPreds(reverseLabelMap, est_labels)
+			self.checkTestPreds(reverseLabelMap, est_labels, nodeProb, oneHotTensors)
 			return
 
 		else:
@@ -762,7 +767,7 @@ class myNode:
 			# estLabels = est_labels.detach().cpu()
 
 			if not self.isTrain:
-				self.checkTestPreds(reverseLabelMap, estLabels.to(self.device))
+				self.checkTestPreds(reverseLabelMap, estLabels.to(self.device), nodeProb, oneHotTensors)
 				
 			if self.isLeaf:
 				return
@@ -782,9 +787,15 @@ class myNode:
 
 			estLabels = estLabels.view(-1)
 			mlpPrediction = estLabels.detach()
+
+			lChildProb = mlpPrediction.clone()
+			rChildProb = 1.0 - lChildProb
+			lChildProb = lChildProb*nodeProb
+			rChildProb = rChildProb*nodeProb
+
 			mlpPrediction += 0.5
 			mlpPrediction = mlpPrediction.long()
-			return self.classifyLabels(mlpPrediction, reverseLabelMap, labelMap)
+			return self.classifyLabels(mlpPrediction, reverseLabelMap, labelMap, lChildProb, rChildProb)
 
 	
 	def getTrainPredictionsNotLeaf(self):
@@ -932,4 +943,6 @@ class myNode:
 			if self.isLeaf:
 				return
 			else:
-				return self.workTest()
+				oneHotTensors = torch.zeros(0, 10)
+				nodeProb = torch.ones(0)
+				return self.workTest(nodeProb,oneHotTensors)
