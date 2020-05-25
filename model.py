@@ -14,7 +14,7 @@ from new_node import myNode
 # from prev_new_node import Node
 import cv2
 from sklearn.model_selection import train_test_split
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
 from getOptions import getOptions
 from pptree import *
@@ -110,8 +110,8 @@ class Tree:
 		else:
 			rootNode.setInput(trainInputDict=trainInputDict, valInputDict=valInputDict, numClasses=self.numClasses, giniValue=0.9, isLeaf=False, leafClass=-1, lchildId=-1, rchildId=-1)
 
-		oneHotTensors = torch.zeros(0, 10)
-		nodeProb = torch.ones(0)
+		oneHotTensors = torch.zeros(len(trainInputDict["label"]), 10)
+		nodeProb = torch.ones(len(trainInputDict["label"]))
 
 		self.nodeArray = []
 		self.nodeArray.append(rootNode)
@@ -178,8 +178,8 @@ class Tree:
 		rootNode = myNode(parentId=rootNodeDict['parentId'], nodeId=rootNodeDict['nodeId'], device=self.device, isTrain=False, level=rootNodeDict['level'], parentNode=None)
 		rootNode.setInput(trainInputDict=testInputDict, valInputDict={}, numClasses=noOfClasses, giniValue=0.9, isLeaf=isLeafRoot, leafClass=rootNodeDict['leafClass'], lchildId=leftChildId, rchildId=rightChildId)
 		
-		oneHotTensors = torch.zeros(0, 10)
-		nodeProb = torch.ones(0)
+		oneHotTensors = torch.zeros(len(testInputDict["label"]), 10)
+		nodeProb = torch.ones(len(testInputDict["label"]))
 
 		testPredDict = {}
 		testPredDict['actual'] = torch.rand(0)
@@ -338,76 +338,76 @@ class Tree:
 		print()	
 
 
-def DFS(self, testInputDict):
-	print("DFS STARTS")
-	nodeId=1
-	ckptRoot = torch.load(options.ckptDir+'/node_cnn_'+str(nodeId)+'.pth')['labelMap']
-	noOfClasses = len(ckptRoot)
-	rootNodeDict = torch.load(options.ckptDir+'/node_'+str(nodeId)+'.pth')['nodeDict']
-	isLeafRoot = rootNodeDict['isLeaf']
-	leftChildId = rootNodeDict['lchildId']
-	rightChildId = rootNodeDict['rchildId']
-	if rootNodeDict['level']>=self.maxDepth:
-		isLeafRoot=True
-		leftChildId=-1
-		rightChildId=-1
-	rootNode = myNode(parentId=rootNodeDict['parentId'], nodeId=rootNodeDict['nodeId'], device=self.device, isTrain=False, level=rootNodeDict['level'], parentNode=None)
-	rootNode.setInput(trainInputDict=testInputDict, valInputDict={}, numClasses=noOfClasses, giniValue=0.9, isLeaf=isLeafRoot, leafClass=rootNodeDict['leafClass'], lchildId=leftChildId, rchildId=rightChildId)
-	
-	oneHotTensors = torch.zeros(len(testInputDict), 10)
-	nodeProb = torch.ones(len(testInputDict))
-	dfsTraversal(rootNode,nodeProb,oneHotTensors)
-
-	_, predicted = oneHotTensors.max(1)
-	predicted = predicted.to(self.device)
-	correct = predicted.eq(testInputDict["label"].to(self.device)).sum().item()
-	total = len(oneHotTensors)
-	print('FINAL Acc: %.3f'% (100.*correct/total))
-
-
-def dfsTraversal(self, node, nodeProb, oneHotTensors):
-
-	if not node.isLeaf:
-		lTrainDict, rTrainDict,  giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses, lChildProb, rChildProb = node.workTest(nodeProb, oneHotTensors)
-	else:
-		node.workTest(nodeProb, oneHotTensors)
-
-	if not node.isLeaf:
-		if not (node.lchildId == -1):
-			leftNodeDict = torch.load(options.ckptDir+'/node_'+str(node.lchildId)+'.pth')['nodeDict']
-			noOfLeftClasses = 1		
-			if (leftNodeDict['leafClass'] == -1):
-				ckptLeft = torch.load(options.ckptDir+'/node_cnn_'+str(node.lchildId)+'.pth')['labelMap']
-				noOfLeftClasses = len(ckptLeft)
-
-			lNode = myNode(node.nodeId, node.lchildId, self.device, False, leftNodeDict['level'],node)
-			isLeafLeft = leftNodeDict['isLeaf']
-			leftChildId = leftNodeDict['lchildId']
-			rightChildId = leftNodeDict['rchildId']
-			if leftNodeDict['level']>=self.maxDepth:
-				isLeafLeft=True
-				leftChildId=-1
-				rightChildId=-1
-			lNode.setInput(lTrainDict, {}, noOfLeftClasses, giniLeftRatio, isLeafLeft, leftNodeDict['leafClass'], leftChildId, rightChildId)
-			dfsTraversal(lNode, lChildProb)
+	def DFS(self, testInputDict):
+		print("DFS STARTS")
+		nodeId=1
+		ckptRoot = torch.load(options.ckptDir+'/node_cnn_'+str(nodeId)+'.pth')['labelMap']
+		noOfClasses = len(ckptRoot)
+		rootNodeDict = torch.load(options.ckptDir+'/node_'+str(nodeId)+'.pth')['nodeDict']
+		isLeafRoot = rootNodeDict['isLeaf']
+		leftChildId = rootNodeDict['lchildId']
+		rightChildId = rootNodeDict['rchildId']
+		if rootNodeDict['level']>=self.maxDepth:
+			isLeafRoot=True
+			leftChildId=-1
+			rightChildId=-1
+		rootNode = myNode(parentId=rootNodeDict['parentId'], nodeId=rootNodeDict['nodeId'], device=self.device, isTrain=False, level=rootNodeDict['level'], parentNode=None)
+		rootNode.setInput(trainInputDict=testInputDict, valInputDict={}, numClasses=noOfClasses, giniValue=0.9, isLeaf=isLeafRoot, leafClass=rootNodeDict['leafClass'], lchildId=leftChildId, rchildId=rightChildId)
 		
-		if not (node.rchildId == -1):
-			rightNodeDict = torch.load(options.ckptDir+'/node_'+str(node.rchildId)+'.pth')['nodeDict']
-			noOfRightClasses=1
-			if (rightNodeDict['leafClass'] == -1):		
-				ckptRight = torch.load(options.ckptDir+'/node_cnn_'+str(node.rchildId)+'.pth')['labelMap']
-				noOfRightClasses = len(ckptRight)
-				
-			rNode = myNode(node.nodeId, node.rchildId, self.device, False, rightNodeDict['level'], node)
-			isLeafRight = rightNodeDict['isLeaf']
-			leftChildId = rightNodeDict['lchildId']
-			rightChildId = rightNodeDict['rchildId']
-			if rightNodeDict['level']>=self.maxDepth:
-				isLeafRight=True
-				leftChildId=-1
-				rightChildId=-1
-			rNode.setInput(rTrainDict, {}, noOfRightClasses, giniRightRatio, isLeafRight, rightNodeDict['leafClass'], leftChildId, rightChildId)
-			dfsTraversal(rNode, rChildProb)
+		oneHotTensors = torch.zeros(len(testInputDict["label"]), 10)
+		nodeProb = torch.ones(len(testInputDict["label"]))
+		self.dfsTraversal(rootNode,nodeProb,oneHotTensors)
+
+		_, predicted = oneHotTensors.max(1)
+		predicted = predicted.to(self.device)
+		correct = predicted.eq(testInputDict["label"].to(self.device)).sum().item()
+		total = len(oneHotTensors)
+		print('FINAL Acc: %.3f'% (100.*correct/total))
+
+
+	def dfsTraversal(self, node, nodeProb, oneHotTensors):
+
+		if not node.isLeaf:
+			lTrainDict, rTrainDict,  giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses, lChildProb, rChildProb = node.workTest(nodeProb, oneHotTensors)
+		else:
+			node.workTest(nodeProb, oneHotTensors)
+
+		if not node.isLeaf:
+			if not (node.lchildId == -1):
+				leftNodeDict = torch.load(options.ckptDir+'/node_'+str(node.lchildId)+'.pth')['nodeDict']
+				noOfLeftClasses = 1		
+				if (leftNodeDict['leafClass'] == -1):
+					ckptLeft = torch.load(options.ckptDir+'/node_cnn_'+str(node.lchildId)+'.pth')['labelMap']
+					noOfLeftClasses = len(ckptLeft)
+
+				lNode = myNode(node.nodeId, node.lchildId, self.device, False, leftNodeDict['level'],node)
+				isLeafLeft = leftNodeDict['isLeaf']
+				leftChildId = leftNodeDict['lchildId']
+				rightChildId = leftNodeDict['rchildId']
+				if leftNodeDict['level']>=self.maxDepth:
+					isLeafLeft=True
+					leftChildId=-1
+					rightChildId=-1
+				lNode.setInput(lTrainDict, {}, noOfLeftClasses, giniLeftRatio, isLeafLeft, leftNodeDict['leafClass'], leftChildId, rightChildId)
+				self.dfsTraversal(lNode, lChildProb, oneHotTensors)
+			
+			if not (node.rchildId == -1):
+				rightNodeDict = torch.load(options.ckptDir+'/node_'+str(node.rchildId)+'.pth')['nodeDict']
+				noOfRightClasses=1
+				if (rightNodeDict['leafClass'] == -1):		
+					ckptRight = torch.load(options.ckptDir+'/node_cnn_'+str(node.rchildId)+'.pth')['labelMap']
+					noOfRightClasses = len(ckptRight)
+					
+				rNode = myNode(node.nodeId, node.rchildId, self.device, False, rightNodeDict['level'], node)
+				isLeafRight = rightNodeDict['isLeaf']
+				leftChildId = rightNodeDict['lchildId']
+				rightChildId = rightNodeDict['rchildId']
+				if rightNodeDict['level']>=self.maxDepth:
+					isLeafRight=True
+					leftChildId=-1
+					rightChildId=-1
+				rNode.setInput(rTrainDict, {}, noOfRightClasses, giniRightRatio, isLeafRight, rightNodeDict['leafClass'], leftChildId, rightChildId)
+				self.dfsTraversal(rNode, rChildProb, oneHotTensors)
 
 
 
@@ -507,14 +507,15 @@ def loadNewDictionaries():
 	# '''   -->  PREPEND # FOR NO VALIDATION
 	train_idx, valid_idx= train_test_split(
 	np.arange(len(class_labels)),
-	test_size=0.02,
+	test_size=0.8,
 	shuffle=True,
 	stratify=class_labels)
 
 	train_sampler = torch.utils.data.SubsetRandomSampler(train_idx)
 	valid_sampler = torch.utils.data.SubsetRandomSampler(valid_idx)
 
-	train_loader = torch.utils.data.DataLoader(trainset, batch_size=49000, sampler=train_sampler, num_workers=0)
+	# train_loader = torch.utils.data.DataLoader(trainset, batch_size=49000, sampler=train_sampler, num_workers=0)
+	train_loader = torch.utils.data.DataLoader(trainset, batch_size=10000, sampler=train_sampler, num_workers=0)
 	valid_loader = torch.utils.data.DataLoader(trainset, batch_size=1000, sampler=valid_sampler, num_workers=0)
 	
 	iterator = iter(train_loader)

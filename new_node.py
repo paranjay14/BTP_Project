@@ -68,8 +68,8 @@ class myNode:
 		self.cnnModel.to(self.device)
 		trainLabels = self.trainInputDict["label"]
 		trainInputs = self.trainInputDict["data"]
-		trainLabels = trainLabels.to(self.device)
-		trainInputs = trainInputs.to(self.device)
+		# trainLabels = trainLabels.to(self.device)
+		# trainInputs = trainInputs.to(self.device)
 
 		numBatches = options.cnnBatches
 		batchSize = int((len(trainInputs))/(numBatches-1))
@@ -102,8 +102,8 @@ class myNode:
 				st_btch, end_btch = batch_sep[batch]
 				# print("st_btch: ",st_btch, ",  end_btch: ",end_btch, ",  trainLabels.shape: ",trainLabels.shape )
 				optimizer.zero_grad()
-				_, _, est_labels, feat_same = self.cnnModel(trainInputs[st_btch:end_btch])
-				batch_loss_label = loss_fn(est_labels, trainLabels[st_btch:end_btch])
+				_, _, est_labels, feat_same = self.cnnModel(trainInputs[st_btch:end_btch].to(self.device))
+				batch_loss_label = loss_fn(est_labels, trainLabels[st_btch:end_btch].to(self.device))
 				# print(feat_same.shape)
 				# print(trainInputs[st_btch:end_btch].shape)
 				# batch_loss_featr = loss_fn_mse(feat_same, trainInputs[st_btch:end_btch])
@@ -119,7 +119,7 @@ class myNode:
 				train_loss += batch_loss.item()
 				_, predicted = est_labels.max(1)
 				total += end_btch - st_btch
-				correct += predicted.eq(trainLabels[st_btch:end_btch]).sum().item()
+				correct += predicted.eq(trainLabels[st_btch:end_btch].to(self.device)).sum().item()
 			# scheduler.step(train_loss_tensor)
 			scheduler.step()
 			# train_loss = train_loss_tensor.item()
@@ -153,8 +153,8 @@ class myNode:
 		optimizer = torch.optim.Adam(self.mlpModel.parameters(),lr=options.mlpLR)
 		scheduler = torch.optim.lr_scheduler.StepLR(optimizer, options.mlpSchEpochs, options.mlpSchFactor)
 
-		trainInputs = trainInputs.to(self.device)
-		trainTargets = trainTargets.to(self.device)
+		# trainInputs = trainInputs.to(self.device)
+		# trainTargets = trainTargets.to(self.device)
 		weightVector = weightVector.to(self.device)
 		self.mlpModel.to(self.device)
 
@@ -176,7 +176,8 @@ class myNode:
 				batch_sep.append([st_btch, end_btch])
 				st_btch = end_btch
 
-		numEpochs = max(30, options.mlpEpochs-10*(self.level))
+		# numEpochs = max(30, options.mlpEpochs-10*(self.level))
+		numEpochs = options.mlpEpochs
 		self.mlpModel.train()
 		train_loss=0
 		for epoch in range(numEpochs):
@@ -189,14 +190,14 @@ class myNode:
 				st_btch, end_btch = batch_sep[batch]
 				# print("st_btch: ",st_btch, ",  end_btch: ",end_btch, ",  trainTargets.shape: ",trainTargets.shape )
 				optimizer.zero_grad()
-				est_labels = self.mlpModel(trainInputs[st_btch:end_btch])
+				est_labels = self.mlpModel(trainInputs[st_btch:end_btch].to(self.device))
 				# print(est_labels.shape)
 				est_labels = est_labels.view(-1)
 				# batch_loss = loss_fn(est_labels, trainTargets[st_btch:end_btch]) #if crossentropy
 				# print(est_labels.shape)
 				# print(weightVector[st_btch:end_btch].shape)
 				# print(trainTargets[st_btch:end_btch].shape)
-				batch_loss = weightVector[st_btch:end_btch] * loss_fn(est_labels, trainTargets[st_btch:end_btch].float()) #if bce
+				batch_loss = weightVector[st_btch:end_btch] * loss_fn(est_labels, trainTargets[st_btch:end_btch].float().to(self.device)) #if bce
 				batch_loss = batch_loss.mean()
 				batch_loss.backward()
 				optimizer.step()
@@ -208,7 +209,7 @@ class myNode:
 				predicted = predicted.long()
 				# total += trainTargets.size(0)
 				total += end_btch - st_btch
-				correct += predicted.eq(trainTargets[st_btch:end_btch]).sum().item()
+				correct += predicted.eq(trainTargets[st_btch:end_btch].to(self.device)).sum().item()
 			scheduler.step()
 			#TODO: add validation testing of MLP here
 			
@@ -417,6 +418,7 @@ class myNode:
 		if self.level != 0:
 			nodeProb = nodeProb.pow(1/self.level)
 
+		print(oneHotTensors.shape,nodeProb.shape,predicted.shape)
 		oneHotTensors[torch.arange(len(oneHotTensors)), predicted.long()] += nodeProb
 
 		correct = predicted.eq(self.trainInputDict["label"].to(self.device)).sum().item()
@@ -664,13 +666,16 @@ class myNode:
 		# print(testLclasses)
 		# print(testRclasses)
 
-		## lTrainDict = {"data":torch.tensor(trainLimages), "label":torch.tensor(trainLLabels)}
-		## rTrainDict = {"data":torch.tensor(trainRimages), "label":torch.tensor(trainRLabels)}
+		# lTrainDict = {"data":torch.tensor(trainLimages), "label":torch.tensor(trainLLabels)}
+		# rTrainDict = {"data":torch.tensor(trainRimages), "label":torch.tensor(trainRLabels)}
 
 		lTrainDict = {"data":self.trainInputDict["data"], "label":self.trainInputDict["label"]}
 		rTrainDict = {"data":self.trainInputDict["data"], "label":self.trainInputDict["label"]}
-		# lTrainDict = {"data":self.trainInputDict["data"][leftChildIndexList], "label":self.trainInputDict["label"][leftChildIndexList]}
-		# rTrainDict = {"data":self.trainInputDict["data"][rightChildIndexList], "label":self.trainInputDict["label"][rightChildIndexList]}
+
+		if self.isTrain:
+			lTrainDict = {"data":self.trainInputDict["data"][leftChildIndexList], "label":self.trainInputDict["label"][leftChildIndexList]}
+			rTrainDict = {"data":self.trainInputDict["data"][rightChildIndexList], "label":self.trainInputDict["label"][rightChildIndexList]}
+
 		print("lTrainDict[data].shape: ", lTrainDict["data"].shape, "  lTrainDict[label].shape: ", lTrainDict["label"].shape)
 		print("rTrainDict[data].shape: ", rTrainDict["data"].shape, "  rTrainDict[label].shape: ", rTrainDict["label"].shape)
 
@@ -730,7 +735,7 @@ class myNode:
 			reverseLabelMap, labelMap = self.loadCNNModel()
 			
 			trainInputs = self.trainInputDict["data"]
-			numBatches = 4
+			numBatches = 20
 			batchSize = int((len(trainInputs))/(numBatches-1))
 			if(batchSize<3):
 				batchSize=int(len(trainInputs))
@@ -793,6 +798,7 @@ class myNode:
 
 			lChildProb = mlpPrediction.clone()
 			rChildProb = 1.0 - lChildProb
+			print(lChildProb.shape, nodeProb.shape)
 			lChildProb = lChildProb*nodeProb
 			rChildProb = rChildProb*nodeProb
 
@@ -805,7 +811,7 @@ class myNode:
 		self.loadCNNModel()
 
 		trainInputs = self.trainInputDict["data"]
-		numBatches = 3
+		numBatches = 20
 		batchSize = int((len(trainInputs))/(numBatches-1))
 		if(batchSize<3):
 			batchSize=int(len(trainInputs))
@@ -946,6 +952,6 @@ class myNode:
 			if self.isLeaf:
 				return
 			else:
-				oneHotTensors = torch.zeros(0, 10)
-				nodeProb = torch.ones(0)
+				oneHotTensors = torch.zeros(len(self.trainInputDict["label"]), 10)
+				nodeProb = torch.ones(len(self.trainInputDict["label"]))
 				return self.workTest(nodeProb,oneHotTensors)
