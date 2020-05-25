@@ -414,6 +414,9 @@ class myNode:
 		for i, val in enumerate(predicted):
 			predicted[i] = reverseLabelMap[val.item()]
 
+		if self.level != 0:
+			nodeProb = nodeProb.pow(1/self.level)
+
 		oneHotTensors[torch.arange(len(oneHotTensors)), predicted.long()] += nodeProb
 
 		correct = predicted.eq(self.trainInputDict["label"].to(self.device)).sum().item()
