@@ -222,7 +222,7 @@ class Tree:
 				node.workTest(nodeProb, oneHotTensors)
 			if not node.isLeaf:
 
-				if not (node.lchildId == -1):
+				if not ((node.lchildId == -1) or (len(lTrainDict["label"]) == 0)):
 					leftNodeDict = torch.load(options.ckptDir+'/node_'+str(node.lchildId)+'.pth')['nodeDict']
 					noOfLeftClasses = 1		
 					if (leftNodeDict['leafClass'] == -1):
@@ -241,7 +241,7 @@ class Tree:
 					q.append(lNode)
 					end+=1
 				
-				if not (node.rchildId == -1):
+				if not ((node.rchildId == -1) or (len(rTrainDict["label"]) == 0)):
 					rightNodeDict = torch.load(options.ckptDir+'/node_'+str(node.rchildId)+'.pth')['nodeDict']
 					noOfRightClasses=1
 					if (rightNodeDict['leafClass'] == -1):		
@@ -267,6 +267,8 @@ class Tree:
 		testPredDict = ckpt['testPredDict']
 		testPredDict['actual'] = testPredDict['actual'].to("cpu")
 		testPredDict['pred'] = testPredDict['pred'].to("cpu")
+		# np.savetxt("testActual.txt", testPredDict['actual'].numpy(), fmt="%d")
+		# np.savetxt("testPred.txt", testPredDict['pred'].numpy(), fmt="%d")
 		cm = confusion_matrix(testPredDict['actual'], testPredDict['pred'])
 		print(cm)
 		print()
@@ -359,6 +361,13 @@ class Tree:
 		self.dfsTraversal(rootNode,nodeProb,oneHotTensors)
 
 		_, predicted = oneHotTensors.max(1)
+		# np.savetxt("oneHotTensors.txt", oneHotTensors.numpy(), fmt="%f")
+		# np.savetxt("pred.txt", predicted.numpy(), fmt="%d")
+		# np.savetxt("act.txt", testInputDict["label"].numpy(), fmt="%d")
+		ckpt = torch.load(options.ckptDir+'/testPred.pth')
+		testPredDict = ckpt['testPredDict']
+		testPredDict['actual'] = testPredDict['actual'].to("cpu")
+
 		predicted = predicted.to(self.device)
 		correct = predicted.eq(testInputDict["label"].to(self.device)).sum().item()
 		total = len(oneHotTensors)
@@ -366,14 +375,13 @@ class Tree:
 
 
 	def dfsTraversal(self, node, nodeProb, oneHotTensors):
-
 		if not node.isLeaf:
 			lTrainDict, rTrainDict,  giniLeftRatio, giniRightRatio, noOfLeftClasses, noOfRightClasses, lChildProb, rChildProb = node.workTest(nodeProb, oneHotTensors)
 		else:
 			node.workTest(nodeProb, oneHotTensors)
 
 		if not node.isLeaf:
-			if not (node.lchildId == -1):
+			if not ((node.lchildId == -1) or (len(lTrainDict["label"]) == 0)):
 				leftNodeDict = torch.load(options.ckptDir+'/node_'+str(node.lchildId)+'.pth')['nodeDict']
 				noOfLeftClasses = 1		
 				if (leftNodeDict['leafClass'] == -1):
@@ -391,7 +399,7 @@ class Tree:
 				lNode.setInput(lTrainDict, {}, noOfLeftClasses, giniLeftRatio, isLeafLeft, leftNodeDict['leafClass'], leftChildId, rightChildId)
 				self.dfsTraversal(lNode, lChildProb, oneHotTensors)
 			
-			if not (node.rchildId == -1):
+			if not ((node.rchildId == -1) or (len(rTrainDict["label"]) == 0)):
 				rightNodeDict = torch.load(options.ckptDir+'/node_'+str(node.rchildId)+'.pth')['nodeDict']
 				noOfRightClasses=1
 				if (rightNodeDict['leafClass'] == -1):		
@@ -408,9 +416,6 @@ class Tree:
 					rightChildId=-1
 				rNode.setInput(rTrainDict, {}, noOfRightClasses, giniRightRatio, isLeafRight, rightNodeDict['leafClass'], leftChildId, rightChildId)
 				self.dfsTraversal(rNode, rChildProb, oneHotTensors)
-
-
-
 
 
 		
@@ -504,7 +509,7 @@ def loadNewDictionaries():
 
 
 
-	# '''   -->  PREPEND # FOR NO VALIDATION
+	'''   -->  PREPEND # FOR NO VALIDATION
 	train_idx, valid_idx= train_test_split(
 	np.arange(len(class_labels)),
 	test_size=0.8,
@@ -544,6 +549,7 @@ def loadNewDictionaries():
 
 	testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform_test)
 	testloader = torch.utils.data.DataLoader(testset, batch_size=10000, shuffle=False)
+	# testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False)
 
 	testIterator = iter(testloader)
 	c3 = next(testIterator)
@@ -554,18 +560,30 @@ def loadNewDictionaries():
 
 
 
-			
+
 if __name__ == '__main__':
 	options = getOptions(sys.argv[1:])
 	L = ["options.ckptDir: " + options.ckptDir,"options.maxDepth: " + str(options.maxDepth),"options.cnnLR: " + str(options.cnnLR),"options.mlpLR: " + str(options.mlpLR),"options.cnnEpochs: " + str(options.cnnEpochs),"options.mlpEpochs: " + str(options.mlpEpochs),"options.cnnOut: " + str(options.cnnOut),"options.mlpFC1: " + str(options.mlpFC1),"options.mlpFC2: " + str(options.mlpFC2),"options.trainFlg: " + str(options.trainFlg)]
 	print(L)
 
 	trainInputDict, valInputDict, testInputDict = loadNewDictionaries()
+
+	# newTestInputDict = {}
+	# newTestInputDict["data"] = torch.rand(0,3,32,32)
+	# newTestInputDict["label"] = (torch.rand(0)).long()
+	# cnt=0
+	# for k,v in enumerate(testInputDict["label"]):
+	# 	if (v.item() == 1) and cnt<100:
+	# 		cnt += 1
+	# 		newTestInputDict["data"] = torch.cat((newTestInputDict["data"],testInputDict["data"][k].view(1,3,32,32)),0)
+	# 		newTestInputDict["label"] = torch.cat((newTestInputDict["label"],v.view(1)),0)
+
+
 	print("len(trainInputDict[\"data\"]): ",len(trainInputDict["data"]), ",  len(valInputDict[\"data\"]): ",len(valInputDict["data"]), ",  len(testInputDict[\"data\"]): ",len(testInputDict["data"]))		
 	device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 	tree = Tree(device, maxDepth=options.maxDepth, classThreshold = 2, dataNumThreshold = 100, numClasses = 10)
-	
+
 	start = time.time()
 	if options.trainFlg == True:
 		resumeFromNodeId = -1
@@ -574,12 +592,13 @@ if __name__ == '__main__':
 		# resumeFromNodeId = 2
 		# tree.tree_traversal(trainInputDict, valInputDict, resumeTrain=True, resumeFromNodeId=resumeFromNodeId)
 
+	# print(newTestInputDict["data"].shape,newTestInputDict["label"].shape)
+
 	tree.testTraversal(testInputDict)
 
 	tree.printTree()
 
-
-	tree.DFS(testInputDict)
+	# tree.DFS(testInputDict)  # when using this, comment testTraversal call above & inside newnode.py --> Comment lines : 445,676,677; unComment lines : 444,799,800
 
 	end = time.time()
 	print("Time Taken by whole program is ", float(end-start)/60.0, " minutes.")

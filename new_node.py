@@ -125,16 +125,16 @@ class myNode:
 			# train_loss = train_loss_tensor.item()
 			#TODO: Add validation iteration here(first change mode to eval)
 
-			if (epoch%options.cnnSchEpochs == options.cnnSchEpochs-1) or (epoch%options.cnnSchEpochs == 0):
-				self.cnnModel.eval()
-				_, _, est_labels, _ = self.cnnModel(self.valInputDict["data"].to(self.device))
-				val_loss = loss_fn(est_labels, self.valInputDict["label"].to(self.device))
-				_, predicted = est_labels.max(1)
-				valTotalSize = float(len(self.valInputDict["data"]))
-				valCorrect = predicted.eq(self.valInputDict["label"].to(self.device)).sum().item()
-				# scheduler.step(valCorrect)
-				print(epoch, 'Train Loss: %.3f | Train Acc: %.3f | Val Loss: %.3f | Val Accuracy: %.3f'% (train_loss, 100.*correct/total, val_loss.item(), 100.*float(valCorrect)/valTotalSize))
-# 			print(epoch, 'Train Loss: %.3f | Train Acc: %.3f '% (train_loss, 100.*correct/total))
+			# if (epoch%options.cnnSchEpochs == options.cnnSchEpochs-1) or (epoch%options.cnnSchEpochs == 0):
+			# 	self.cnnModel.eval()
+			# 	_, _, est_labels, _ = self.cnnModel(self.valInputDict["data"].to(self.device))
+			# 	val_loss = loss_fn(est_labels, self.valInputDict["label"].to(self.device))
+			# 	_, predicted = est_labels.max(1)
+			# 	valTotalSize = float(len(self.valInputDict["data"]))
+			# 	valCorrect = predicted.eq(self.valInputDict["label"].to(self.device)).sum().item()
+			# 	# scheduler.step(valCorrect)
+			# 	print(epoch, 'Train Loss: %.3f | Train Acc: %.3f | Val Loss: %.3f | Val Accuracy: %.3f'% (train_loss, 100.*correct/total, val_loss.item(), 100.*float(valCorrect)/valTotalSize))
+			print(epoch, 'Train Loss: %.3f | Train Acc: %.3f '% (train_loss, 100.*correct/total))
 
 		epoch = numEpochs
 		torch.save({
@@ -389,7 +389,7 @@ class myNode:
 		print(final_dict)
 
 		#TODO: separate for validation set too
-		torch.save({
+		torch.savtensore({
 				'splittingDict':final_dict,
 				}, options.ckptDir+'/node_split_'+str(self.nodeId)+'.pth')
 		return final_dict
@@ -415,12 +415,6 @@ class myNode:
 		for i, val in enumerate(predicted):
 			predicted[i] = reverseLabelMap[val.item()]
 
-		if self.level != 0:
-			nodeProb = nodeProb.pow(1/self.level)
-
-		print(oneHotTensors.shape,nodeProb.shape,predicted.shape)
-		oneHotTensors[torch.arange(len(oneHotTensors)), predicted.long()] += nodeProb
-
 		correct = predicted.eq(self.trainInputDict["label"].to(self.device)).sum().item()
 		total = len(est_labels)
 		self.nodeAcc[2] = round(100.*correct/total,3)
@@ -445,6 +439,9 @@ class myNode:
 			}, options.ckptDir+'/level.pth')
 
 		if self.isLeaf:
+			if self.level != 0:
+				nodeProb = nodeProb.pow(1/self.level)
+			# oneHotTensors[torch.arange(len(oneHotTensors)), predicted.long()] += nodeProb
 			self.setFinalPredictions(predicted)
 
 	def doLabelCounting(self, mlpPrediction):
@@ -468,7 +465,7 @@ class myNode:
 		testCorrectResults = 0.0
 		totalL = 0
 		totalR = 0
-		# print(final_dict)
+
 		for i, val in enumerate(lclasses):
 			# totalLeftImages += val
 			if not self.isTrain and (i in labelMap):
@@ -488,7 +485,9 @@ class myNode:
 		if not self.isTrain:
 			# total = float(len(self.trainInputDict["label"]))
 			total = float(totalL+totalR)
-			splitAcc = float(100.*testCorrectResults/total)
+			splitAcc = 0
+			if total != 0:
+				splitAcc = float(100.*testCorrectResults/total)
 			print('Split Acc: %.3f'% (splitAcc))
 			NodeDict = torch.load(options.ckptDir+'/node_'+str(self.nodeId)+'.pth')['nodeDict']
 			NodeDict['splitAcc'] = splitAcc
@@ -522,22 +521,27 @@ class myNode:
 		for i in lclasses:
 			if i != 0:
 				noOfLeftClasses += 1
-			pi = float(i)/totalLeftImages
+			pi=0
+			if totalLeftImages != 0:
+				pi = float(i)/totalLeftImages
 			lcheck += pi
 			giniLeftRatio += pi*(1-pi)
 
-		# print("---")
 		for i in rclasses:
 			if i != 0:
 				noOfRightClasses += 1
-			pi = float(i)/totalRightImages
+			pi=0
+			if totalRightImages != 0:
+				pi = float(i)/totalRightImages
 			rcheck += pi
 			giniRightRatio += pi*(1-pi)
 
 		print("giniRightRatio: ", giniRightRatio)
 		print("giniLeftRatio: ", giniLeftRatio)
 
-		leftChildrenRatio = totalLeftImages/totalRightImages
+		leftChildrenRatio = 0
+		if totalRightImages != 0:
+			leftChildrenRatio = totalLeftImages/totalRightImages
 
 		impurityDrop = leftChildrenRatio*float(giniLeftRatio) + (1-leftChildrenRatio)*float(giniRightRatio)
 		giniGain = self.giniValue - impurityDrop
@@ -552,7 +556,7 @@ class myNode:
 		
 
 
-	def classifyLabels(self, mlpPrediction, reverseLabelMap, labelMap, lChildProb, rChildProb):
+	def classifyLabels(self, mlpPrediction, reverseLabelMap, labelMap, lChildProb, rChildProb, oneHotTensors):
 		maxLeftClasses, maxRightClasses, testCorrectResults, leftClassesToBeRemoved, rightClassesToBeRemoved = self.countBalanceAndThreshold(mlpPrediction, labelMap)
 		totalLeftImages = 0.0
 		totalRightImages = 0.0
@@ -581,7 +585,6 @@ class myNode:
 		testLclasses = [0]*10
 		testRclasses = [0]*10
 
-
 		for k,v in final_dict.items():
 			if v == -1:
 				splitClassIndx = k
@@ -590,10 +593,8 @@ class myNode:
 				rmaxSplitClassCnt = int(splitClassCnt/2)
 				break
 
-
 		for i, val in enumerate(mlpPrediction):
 			label = self.trainInputDict["label"][i].item()
-			# print("i : ", i)
 			if val<=0.5:
 				if self.isTrain:
 					### if not (label in leftClassesToBeRemoved):
@@ -672,9 +673,8 @@ class myNode:
 		lTrainDict = {"data":self.trainInputDict["data"], "label":self.trainInputDict["label"]}
 		rTrainDict = {"data":self.trainInputDict["data"], "label":self.trainInputDict["label"]}
 
-		if self.isTrain:
-			lTrainDict = {"data":self.trainInputDict["data"][leftChildIndexList], "label":self.trainInputDict["label"][leftChildIndexList]}
-			rTrainDict = {"data":self.trainInputDict["data"][rightChildIndexList], "label":self.trainInputDict["label"][rightChildIndexList]}
+		lTrainDict = {"data":self.trainInputDict["data"][leftChildIndexList], "label":self.trainInputDict["label"][leftChildIndexList]}
+		rTrainDict = {"data":self.trainInputDict["data"][rightChildIndexList], "label":self.trainInputDict["label"][rightChildIndexList]}
 
 		print("lTrainDict[data].shape: ", lTrainDict["data"].shape, "  lTrainDict[label].shape: ", lTrainDict["label"].shape)
 		print("rTrainDict[data].shape: ", rTrainDict["data"].shape, "  rTrainDict[label].shape: ", rTrainDict["label"].shape)
@@ -708,7 +708,6 @@ class myNode:
 
 		handleLeafDict = {"lvl":self.level+1,"noOfLeftClasses":noOfLeftClasses, "noOfRightClasses":noOfRightClasses, "maxLeft":maxLeft, "maxRight":maxRight, "leftDataNum":leftDataNum, "rightDataNum":rightDataNum,"maxLeftClassIndex":maxLeftClassIndex,"maxRightClassIndex":maxRightClassIndex, "giniGain":giniGain}		
 
-
 		print("RETURNING FROM WORK...")
 
 		if self.isTrain and not self.isLeaf:
@@ -729,13 +728,12 @@ class myNode:
 			reverseLabelMap = {}
 			reverseLabelMap[0] = self.leafClass
 			self.checkTestPreds(reverseLabelMap, est_labels, nodeProb, oneHotTensors)
-			return
 
 		else:
 			reverseLabelMap, labelMap = self.loadCNNModel()
 			
 			trainInputs = self.trainInputDict["data"]
-			numBatches = 20
+			numBatches = 5
 			batchSize = int((len(trainInputs))/(numBatches-1))
 			if(batchSize<3):
 				batchSize=int(len(trainInputs))
@@ -769,14 +767,13 @@ class myNode:
 					estLabels = torch.cat((estLabels,est_labels.detach().cpu()))
 					# imgNext = torch.cat((imgNext,image_next))
 
-
 			# _, image_next_flat, est_labels, _ = self.cnnModel(self.trainInputDict["data"].to(self.device))
 			# imgNextFlat = image_next_flat.detach().cpu()	
 			# estLabels = est_labels.detach().cpu()
 
 			if not self.isTrain:
 				self.checkTestPreds(reverseLabelMap, estLabels.to(self.device), nodeProb, oneHotTensors)
-				
+
 			if self.isLeaf:
 				return
 
@@ -796,22 +793,23 @@ class myNode:
 			estLabels = estLabels.view(-1)
 			mlpPrediction = estLabels.detach()
 
-			lChildProb = mlpPrediction.clone()
-			rChildProb = 1.0 - lChildProb
-			print(lChildProb.shape, nodeProb.shape)
-			lChildProb = lChildProb*nodeProb
-			rChildProb = rChildProb*nodeProb
+			rChildProb = mlpPrediction.clone()
+			lChildProb = 1.0 - rChildProb
+
+			# lChildProb = lChildProb*nodeProb
+			# rChildProb = rChildProb*nodeProb
 
 			mlpPrediction += 0.5
 			mlpPrediction = mlpPrediction.long()
-			return self.classifyLabels(mlpPrediction, reverseLabelMap, labelMap, lChildProb, rChildProb)
+
+			return self.classifyLabels(mlpPrediction, reverseLabelMap, labelMap, lChildProb, rChildProb, oneHotTensors)
 
 	
 	def getTrainPredictionsNotLeaf(self):
 		self.loadCNNModel()
 
 		trainInputs = self.trainInputDict["data"]
-		numBatches = 20
+		numBatches = 5
 		batchSize = int((len(trainInputs))/(numBatches-1))
 		if(batchSize<3):
 			batchSize=int(len(trainInputs))
@@ -854,7 +852,6 @@ class myNode:
 
 		cluster_ids = kmeans.labels_
 		print("Kmeans completed successfully...")		
-
 
 		leftSortedListOfTuples, rightSortedListOfTuples, expected_dict = self.separateLabels(cluster_ids)
 		final_dict = self.makeFinalDict(leftSortedListOfTuples, rightSortedListOfTuples, expected_dict)
