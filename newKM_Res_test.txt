@@ -1,0 +1,1302 @@
+['options.trainFlg:False', ' options.testFlg:True', ' options.maxDepth:6', ' options.ckptDir:newKM', ' options.cnnOut:32', ' options.mlpFC1:512', ' options.mlpFC2:32', ' options.cnnLR:0.001', ' options.mlpLR:0.001', ' options.cnnEpochs:71', ' options.mlpEpochs:60', ' options.cnnSchEpochs:10', ' options.mlpSchEpochs:10', ' options.cnnSchFactor:0.37', ' options.mlpSchFactor:0.4', ' options.cnnBatches:100', ' options.mlpBatches:100', ' options.caseNum:3', ' options.optionNum:1', ' options.ensemble:1', ' options.probabilistic:False', ' options.verbose:2']
+trainData_size: 50000
+==> Preparing data...
+Files already downloaded and verified
+Files already downloaded and verified
+len(trainInputDict["data"]):  50000 ,  len(valInputDict["data"]):  0 ,  len(testInputDict["data"]):  10000
+
+TESTING STARTS
+Setting Input for nodeId: 1...
+imgTensorShape :  torch.Size([10000, 3, 32, 32])
+nodeId: 1 ,  parentId: 0 ,  level: 0 ,  lchildId: 2 ,  rchildId: 3 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 10000
+Node 1 Acc: 63.220
+lTrainDict[data].shape:  torch.Size([6330, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([6330])   lTrainDict[index].shape:  torch.Size([6330])
+rTrainDict[data].shape:  torch.Size([3670, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([3670])   rTrainDict[index].shape:  torch.Size([3670])
+# of Left images:  6330.0
+# of Right images:  3670.0
+giniRightRatio:  0.8463262775727789
+giniLeftRatio:  0.8819579274699331
+impurityDrop:  0.9077835919730476
+giniGain:  -0.0077835919730475656
+lclasses:  [190, 522, 739, 821, 863, 860, 932, 804, 194, 405]
+rclasses:  [810, 478, 261, 179, 137, 140, 68, 196, 806, 595]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 2...
+imgTensorShape :  torch.Size([6330, 3, 32, 32])
+nodeId: 2 ,  parentId: 1 ,  level: 1 ,  lchildId: 4 ,  rchildId: 5 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 6330
+Setting Input for nodeId: 3...
+imgTensorShape :  torch.Size([3670, 3, 32, 32])
+nodeId: 3 ,  parentId: 1 ,  level: 1 ,  lchildId: 6 ,  rchildId: 7 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 3670
+Nodes sizes =  10 10
+Node 2 Acc: 59.368
+lTrainDict[data].shape:  torch.Size([4724, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([4724])   lTrainDict[index].shape:  torch.Size([4724])
+rTrainDict[data].shape:  torch.Size([1606, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([1606])   rTrainDict[index].shape:  torch.Size([1606])
+# of Left images:  4724.0
+# of Right images:  1606.0
+giniRightRatio:  0.8672025359447526
+giniLeftRatio:  0.874385647433503
+impurityDrop:  0.8883314392279762
+giniGain:  -0.006373511758043127
+lclasses:  [146, 239, 632, 574, 792, 533, 769, 626, 117, 296]
+rclasses:  [44, 283, 107, 247, 71, 327, 163, 178, 77, 109]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 4...
+imgTensorShape :  torch.Size([4724, 3, 32, 32])
+nodeId: 4 ,  parentId: 2 ,  level: 2 ,  lchildId: 8 ,  rchildId: 9 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 4724
+Setting Input for nodeId: 5...
+imgTensorShape :  torch.Size([1606, 3, 32, 32])
+nodeId: 5 ,  parentId: 2 ,  level: 2 ,  lchildId: 10 ,  rchildId: 11 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 1606
+Nodes sizes =  10 10
+Node 3 Acc: 64.033
+lTrainDict[data].shape:  torch.Size([1644, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([1644])   lTrainDict[index].shape:  torch.Size([1644])
+rTrainDict[data].shape:  torch.Size([2026, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([2026])   rTrainDict[index].shape:  torch.Size([2026])
+# of Left images:  1644.0
+# of Right images:  2026.0
+giniRightRatio:  0.7896350406219639
+giniLeftRatio:  0.8286847106043653
+impurityDrop:  0.8213219396600033
+giniGain:  0.025004337912775565
+lclasses:  [176, 352, 72, 92, 37, 52, 47, 137, 200, 479]
+rclasses:  [634, 126, 189, 87, 100, 88, 21, 59, 606, 116]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 6...
+imgTensorShape :  torch.Size([1644, 3, 32, 32])
+nodeId: 6 ,  parentId: 3 ,  level: 2 ,  lchildId: 12 ,  rchildId: 13 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 1644
+Setting Input for nodeId: 7...
+imgTensorShape :  torch.Size([2026, 3, 32, 32])
+nodeId: 7 ,  parentId: 3 ,  level: 2 ,  lchildId: 14 ,  rchildId: 15 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 2026
+Nodes sizes =  10 10
+Node 4 Acc: 58.616
+lTrainDict[data].shape:  torch.Size([9, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([9])   lTrainDict[index].shape:  torch.Size([9])
+rTrainDict[data].shape:  torch.Size([4715, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([4715])   rTrainDict[index].shape:  torch.Size([4715])
+# of Left images:  9.0
+# of Right images:  4715.0
+giniRightRatio:  0.8744088551125726
+giniLeftRatio:  0.0
+impurityDrop:  0.8727397820063132
+giniGain:  0.0016458654271898077
+lclasses:  [0, 0, 0, 0, 0, 0, 0, 9, 0, 0]
+rclasses:  [146, 239, 632, 574, 792, 533, 769, 617, 117, 296]
+noOfLeftClasses:  1
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 8...
+imgTensorShape :  torch.Size([9, 3, 32, 32])
+nodeId: 8 ,  parentId: 4 ,  level: 3 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: 7 ,  numClasses: 1 ,  numData: 9
+Setting Input for nodeId: 9...
+imgTensorShape :  torch.Size([4715, 3, 32, 32])
+nodeId: 9 ,  parentId: 4 ,  level: 3 ,  lchildId: 16 ,  rchildId: 17 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 4715
+Nodes sizes =  1 10
+Node 5 Acc: 55.230
+lTrainDict[data].shape:  torch.Size([525, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([525])   lTrainDict[index].shape:  torch.Size([525])
+rTrainDict[data].shape:  torch.Size([1081, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([1081])   rTrainDict[index].shape:  torch.Size([1081])
+# of Left images:  525.0
+# of Right images:  1081.0
+giniRightRatio:  0.8610864131183568
+giniLeftRatio:  0.8441106575963718
+impurityDrop:  0.8528419435077721
+giniGain:  0.014360592436980513
+lclasses:  [2, 41, 40, 94, 34, 122, 106, 52, 5, 29]
+rclasses:  [42, 242, 67, 153, 37, 205, 57, 126, 72, 80]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 10...
+imgTensorShape :  torch.Size([525, 3, 32, 32])
+nodeId: 10 ,  parentId: 5 ,  level: 3 ,  lchildId: 18 ,  rchildId: 19 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 525
+Setting Input for nodeId: 11...
+imgTensorShape :  torch.Size([1081, 3, 32, 32])
+nodeId: 11 ,  parentId: 5 ,  level: 3 ,  lchildId: 20 ,  rchildId: 21 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 1081
+Nodes sizes =  10 10
+Node 6 Acc: 62.226
+lTrainDict[data].shape:  torch.Size([953, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([953])   lTrainDict[index].shape:  torch.Size([953])
+rTrainDict[data].shape:  torch.Size([691, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([691])   rTrainDict[index].shape:  torch.Size([691])
+# of Left images:  953.0
+# of Right images:  691.0
+giniRightRatio:  0.7275137649456208
+giniLeftRatio:  0.865109242476126
+impurityDrop:  0.9172800313516576
+giniGain:  -0.08859532074729226
+lclasses:  [136, 124, 65, 80, 28, 44, 41, 119, 89, 227]
+rclasses:  [40, 228, 7, 12, 9, 8, 6, 18, 111, 252]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 12...
+imgTensorShape :  torch.Size([953, 3, 32, 32])
+nodeId: 12 ,  parentId: 6 ,  level: 3 ,  lchildId: 22 ,  rchildId: 23 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 953
+Setting Input for nodeId: 13...
+imgTensorShape :  torch.Size([691, 3, 32, 32])
+nodeId: 13 ,  parentId: 6 ,  level: 3 ,  lchildId: 24 ,  rchildId: 25 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 691
+Nodes sizes =  10 10
+Node 7 Acc: 61.846
+lTrainDict[data].shape:  torch.Size([523, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([523])   lTrainDict[index].shape:  torch.Size([523])
+rTrainDict[data].shape:  torch.Size([1503, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([1503])   rTrainDict[index].shape:  torch.Size([1503])
+# of Left images:  523.0
+# of Right images:  1503.0
+giniRightRatio:  0.8087873930559816
+giniLeftRatio:  0.6905812546384479
+impurityDrop:  0.7676551173458218
+giniGain:  0.021979923276142066
+lclasses:  [251, 19, 48, 9, 24, 7, 3, 6, 133, 23]
+rclasses:  [383, 107, 141, 78, 76, 81, 18, 53, 473, 93]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 14...
+imgTensorShape :  torch.Size([523, 3, 32, 32])
+nodeId: 14 ,  parentId: 7 ,  level: 3 ,  lchildId: 26 ,  rchildId: 27 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 523
+Setting Input for nodeId: 15...
+imgTensorShape :  torch.Size([1503, 3, 32, 32])
+nodeId: 15 ,  parentId: 7 ,  level: 3 ,  lchildId: -1 ,  rchildId: 28 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 1503
+Nodes sizes =  10 10
+Node 8 Acc: 100.000
+Node 9 Acc: 58.834
+lTrainDict[data].shape:  torch.Size([802, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([802])   lTrainDict[index].shape:  torch.Size([802])
+rTrainDict[data].shape:  torch.Size([3913, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([3913])   rTrainDict[index].shape:  torch.Size([3913])
+# of Left images:  802.0
+# of Right images:  3913.0
+giniRightRatio:  0.8666055059412919
+giniLeftRatio:  0.8680169899440925
+impurityDrop:  0.8668948006436292
+giniGain:  0.007514054468943376
+lclasses:  [21, 120, 37, 83, 68, 76, 158, 94, 13, 132]
+rclasses:  [125, 119, 595, 491, 724, 457, 611, 523, 104, 164]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 16...
+imgTensorShape :  torch.Size([802, 3, 32, 32])
+nodeId: 16 ,  parentId: 9 ,  level: 4 ,  lchildId: 29 ,  rchildId: 30 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 802
+Setting Input for nodeId: 17...
+imgTensorShape :  torch.Size([3913, 3, 32, 32])
+nodeId: 17 ,  parentId: 9 ,  level: 4 ,  lchildId: 31 ,  rchildId: 32 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 3913
+Nodes sizes =  10 10
+Node 10 Acc: 48.000
+lTrainDict[data].shape:  torch.Size([405, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([405])   lTrainDict[index].shape:  torch.Size([405])
+rTrainDict[data].shape:  torch.Size([120, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([120])   rTrainDict[index].shape:  torch.Size([120])
+# of Left images:  405.0
+# of Right images:  120.0
+giniRightRatio:  0.8495833333333334
+giniLeftRatio:  0.8236793171772596
+impurityDrop:  0.7621572788065847
+giniGain:  0.08195337878978715
+lclasses:  [1, 13, 33, 76, 26, 100, 95, 45, 4, 12]
+rclasses:  [1, 28, 7, 18, 8, 22, 11, 7, 1, 17]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 18...
+imgTensorShape :  torch.Size([405, 3, 32, 32])
+nodeId: 18 ,  parentId: 10 ,  level: 4 ,  lchildId: 33 ,  rchildId: -1 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 405
+Setting Input for nodeId: 19...
+imgTensorShape :  torch.Size([120, 3, 32, 32])
+nodeId: 19 ,  parentId: 10 ,  level: 4 ,  lchildId: 34 ,  rchildId: 35 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 120
+Nodes sizes =  10 10
+Node 11 Acc: 54.024
+lTrainDict[data].shape:  torch.Size([348, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([348])   lTrainDict[index].shape:  torch.Size([348])
+rTrainDict[data].shape:  torch.Size([733, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([733])   rTrainDict[index].shape:  torch.Size([733])
+# of Left images:  348.0
+# of Right images:  733.0
+giniRightRatio:  0.8619160265704304
+giniLeftRatio:  0.798718456863522
+impurityDrop:  0.8319122690561
+giniGain:  0.029174144062256713
+lclasses:  [18, 133, 12, 24, 7, 36, 8, 48, 33, 29]
+rclasses:  [24, 109, 55, 129, 30, 169, 49, 78, 39, 51]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 20...
+imgTensorShape :  torch.Size([348, 3, 32, 32])
+nodeId: 20 ,  parentId: 11 ,  level: 4 ,  lchildId: 36 ,  rchildId: 37 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 348
+Setting Input for nodeId: 21...
+imgTensorShape :  torch.Size([733, 3, 32, 32])
+nodeId: 21 ,  parentId: 11 ,  level: 4 ,  lchildId: -1 ,  rchildId: 38 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 733
+Nodes sizes =  10 10
+Node 12 Acc: 55.089
+lTrainDict[data].shape:  torch.Size([221, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([221])   lTrainDict[index].shape:  torch.Size([221])
+rTrainDict[data].shape:  torch.Size([732, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([732])   rTrainDict[index].shape:  torch.Size([732])
+# of Left images:  221.0
+# of Right images:  732.0
+giniRightRatio:  0.8687479470871032
+giniLeftRatio:  0.7772977621260826
+impurityDrop:  0.8411379868734619
+giniGain:  0.02397125560266411
+lclasses:  [38, 66, 2, 9, 3, 2, 3, 1, 37, 60]
+rclasses:  [98, 58, 63, 71, 25, 42, 38, 118, 52, 167]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 22...
+imgTensorShape :  torch.Size([221, 3, 32, 32])
+nodeId: 22 ,  parentId: 12 ,  level: 4 ,  lchildId: 39 ,  rchildId: 40 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 221
+Setting Input for nodeId: 23...
+imgTensorShape :  torch.Size([732, 3, 32, 32])
+nodeId: 23 ,  parentId: 12 ,  level: 4 ,  lchildId: -1 ,  rchildId: 41 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 732
+Nodes sizes =  10 10
+Node 13 Acc: 66.425
+lTrainDict[data].shape:  torch.Size([105, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([105])   lTrainDict[index].shape:  torch.Size([105])
+rTrainDict[data].shape:  torch.Size([586, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([586])   rTrainDict[index].shape:  torch.Size([586])
+# of Left images:  105.0
+# of Right images:  586.0
+giniRightRatio:  0.7317266363032767
+giniLeftRatio:  0.6835374149659865
+impurityDrop:  0.7230920488622947
+giniGain:  0.004421716083326088
+lclasses:  [6, 46, 1, 2, 1, 1, 2, 1, 10, 35]
+rclasses:  [34, 182, 6, 10, 8, 7, 4, 17, 101, 217]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 24...
+imgTensorShape :  torch.Size([105, 3, 32, 32])
+nodeId: 24 ,  parentId: 13 ,  level: 4 ,  lchildId: 42 ,  rchildId: 43 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 105
+Setting Input for nodeId: 25...
+imgTensorShape :  torch.Size([586, 3, 32, 32])
+nodeId: 25 ,  parentId: 13 ,  level: 4 ,  lchildId: -1 ,  rchildId: 44 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 586
+Nodes sizes =  10 10
+Node 14 Acc: 64.627
+lTrainDict[data].shape:  torch.Size([399, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([399])   lTrainDict[index].shape:  torch.Size([399])
+rTrainDict[data].shape:  torch.Size([124, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([124])   rTrainDict[index].shape:  torch.Size([124])
+# of Left images:  399.0
+# of Right images:  124.0
+giniRightRatio:  0.7362122788761707
+giniLeftRatio:  0.649217027531234
+impurityDrop:  0.4562840104356083
+giniGain:  0.2342972442028396
+lclasses:  [215, 12, 46, 4, 15, 3, 3, 4, 83, 14]
+rclasses:  [36, 7, 2, 5, 9, 4, 0, 2, 50, 9]
+noOfLeftClasses:  10
+noOfRightClasses:  9
+RETURNING FROM WORK...
+Setting Input for nodeId: 26...
+imgTensorShape :  torch.Size([399, 3, 32, 32])
+nodeId: 26 ,  parentId: 14 ,  level: 4 ,  lchildId: 45 ,  rchildId: 46 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 399
+Setting Input for nodeId: 27...
+imgTensorShape :  torch.Size([124, 3, 32, 32])
+nodeId: 27 ,  parentId: 14 ,  level: 4 ,  lchildId: 47 ,  rchildId: 48 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 124
+Nodes sizes =  10 10
+Node 15 Acc: 57.552
+lTrainDict[data].shape:  torch.Size([0, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([0])   lTrainDict[index].shape:  torch.Size([0])
+rTrainDict[data].shape:  torch.Size([1503, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([1503])   rTrainDict[index].shape:  torch.Size([1503])
+# of Left images:  0.0
+# of Right images:  1503.0
+giniRightRatio:  0.8087873930559816
+giniLeftRatio:  0.0
+impurityDrop:  0.8087873930559816
+giniGain:  0.0
+lclasses:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [383, 107, 141, 78, 76, 81, 18, 53, 473, 93]
+noOfLeftClasses:  0
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 28...
+imgTensorShape :  torch.Size([1503, 3, 32, 32])
+nodeId: 28 ,  parentId: 15 ,  level: 4 ,  lchildId: -1 ,  rchildId: 49 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 1503
+Nodes sizes =  0 10
+Node 16 Acc: 59.975
+lTrainDict[data].shape:  torch.Size([508, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([508])   lTrainDict[index].shape:  torch.Size([508])
+rTrainDict[data].shape:  torch.Size([294, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([294])   rTrainDict[index].shape:  torch.Size([294])
+# of Left images:  508.0
+# of Right images:  294.0
+giniRightRatio:  0.7849507149798695
+giniLeftRatio:  0.8473479446958894
+impurityDrop:  0.8927663363939448
+giniGain:  -0.024749346449852272
+lclasses:  [15, 39, 33, 66, 63, 60, 144, 51, 1, 36]
+rclasses:  [6, 81, 4, 17, 5, 16, 14, 43, 12, 96]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 29...
+imgTensorShape :  torch.Size([508, 3, 32, 32])
+nodeId: 29 ,  parentId: 16 ,  level: 5 ,  lchildId: 50 ,  rchildId: 51 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 508
+Setting Input for nodeId: 30...
+imgTensorShape :  torch.Size([294, 3, 32, 32])
+nodeId: 30 ,  parentId: 16 ,  level: 5 ,  lchildId: 52 ,  rchildId: 53 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 294
+Nodes sizes =  10 10
+Node 17 Acc: 55.252
+lTrainDict[data].shape:  torch.Size([3446, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([3446])   lTrainDict[index].shape:  torch.Size([3446])
+rTrainDict[data].shape:  torch.Size([467, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([467])   rTrainDict[index].shape:  torch.Size([467])
+# of Left images:  3446.0
+# of Right images:  467.0
+giniRightRatio:  0.8087432195113005
+giniLeftRatio:  0.8646144528517086
+impurityDrop:  1.2210178878004792
+giniGain:  -0.3544123818591872
+lclasses:  [117, 109, 549, 425, 681, 387, 570, 361, 103, 144]
+rclasses:  [8, 10, 46, 66, 43, 70, 41, 162, 1, 20]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 31...
+imgTensorShape :  torch.Size([3446, 3, 32, 32])
+nodeId: 31 ,  parentId: 17 ,  level: 5 ,  lchildId: 54 ,  rchildId: 55 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 3446
+Setting Input for nodeId: 32...
+imgTensorShape :  torch.Size([467, 3, 32, 32])
+nodeId: 32 ,  parentId: 17 ,  level: 5 ,  lchildId: 56 ,  rchildId: 57 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 467
+Nodes sizes =  10 10
+Node 18 Acc: 51.358
+lTrainDict[data].shape:  torch.Size([405, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([405])   lTrainDict[index].shape:  torch.Size([405])
+rTrainDict[data].shape:  torch.Size([0, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([0])   rTrainDict[index].shape:  torch.Size([0])
+# of Left images:  405.0
+# of Right images:  0.0
+giniRightRatio:  0.0
+giniLeftRatio:  0.8236793171772596
+impurityDrop:  0.0
+giniGain:  0.8236793171772596
+lclasses:  [1, 13, 33, 76, 26, 100, 95, 45, 4, 12]
+rclasses:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+noOfLeftClasses:  10
+noOfRightClasses:  0
+RETURNING FROM WORK...
+Setting Input for nodeId: 33...
+imgTensorShape :  torch.Size([405, 3, 32, 32])
+nodeId: 33 ,  parentId: 18 ,  level: 5 ,  lchildId: 58 ,  rchildId: 59 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 405
+Nodes sizes =  10 0
+Node 19 Acc: 47.500
+lTrainDict[data].shape:  torch.Size([72, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([72])   lTrainDict[index].shape:  torch.Size([72])
+rTrainDict[data].shape:  torch.Size([48, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([48])   rTrainDict[index].shape:  torch.Size([48])
+# of Left images:  72.0
+# of Right images:  48.0
+giniRightRatio:  0.7473958333333334
+giniLeftRatio:  0.8549382716049383
+impurityDrop:  0.9087094907407407
+giniGain:  -0.05912615740740734
+lclasses:  [1, 7, 6, 12, 6, 17, 4, 6, 1, 12]
+rclasses:  [0, 21, 1, 6, 2, 5, 7, 1, 0, 5]
+noOfLeftClasses:  10
+noOfRightClasses:  8
+RETURNING FROM WORK...
+Setting Input for nodeId: 34...
+imgTensorShape :  torch.Size([72, 3, 32, 32])
+nodeId: 34 ,  parentId: 19 ,  level: 5 ,  lchildId: 60 ,  rchildId: 61 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 72
+Setting Input for nodeId: 35...
+imgTensorShape :  torch.Size([48, 3, 32, 32])
+nodeId: 35 ,  parentId: 19 ,  level: 5 ,  lchildId: 62 ,  rchildId: 63 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 48
+Nodes sizes =  10 10
+Node 20 Acc: 58.333
+lTrainDict[data].shape:  torch.Size([159, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([159])   lTrainDict[index].shape:  torch.Size([159])
+rTrainDict[data].shape:  torch.Size([189, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([189])   rTrainDict[index].shape:  torch.Size([189])
+# of Left images:  159.0
+# of Right images:  189.0
+giniRightRatio:  0.8424176254864085
+giniLeftRatio:  0.707171393536648
+impurityDrop:  0.7286390494016893
+giniGain:  0.07007940746183272
+lclasses:  [10, 81, 7, 8, 2, 10, 2, 15, 10, 14]
+rclasses:  [8, 52, 5, 16, 5, 26, 6, 33, 23, 15]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 36...
+imgTensorShape :  torch.Size([159, 3, 32, 32])
+nodeId: 36 ,  parentId: 20 ,  level: 5 ,  lchildId: 64 ,  rchildId: 65 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 159
+Setting Input for nodeId: 37...
+imgTensorShape :  torch.Size([189, 3, 32, 32])
+nodeId: 37 ,  parentId: 20 ,  level: 5 ,  lchildId: 66 ,  rchildId: 67 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 189
+Nodes sizes =  10 10
+Node 21 Acc: 47.749
+lTrainDict[data].shape:  torch.Size([0, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([0])   lTrainDict[index].shape:  torch.Size([0])
+rTrainDict[data].shape:  torch.Size([733, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([733])   rTrainDict[index].shape:  torch.Size([733])
+# of Left images:  0.0
+# of Right images:  733.0
+giniRightRatio:  0.8619160265704304
+giniLeftRatio:  0.0
+impurityDrop:  0.8619160265704304
+giniGain:  0.0
+lclasses:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [24, 109, 55, 129, 30, 169, 49, 78, 39, 51]
+noOfLeftClasses:  0
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 38...
+imgTensorShape :  torch.Size([733, 3, 32, 32])
+nodeId: 38 ,  parentId: 21 ,  level: 5 ,  lchildId: -1 ,  rchildId: 68 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 733
+Nodes sizes =  0 10
+Node 22 Acc: 63.348
+lTrainDict[data].shape:  torch.Size([86, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([86])   lTrainDict[index].shape:  torch.Size([86])
+rTrainDict[data].shape:  torch.Size([135, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([135])   rTrainDict[index].shape:  torch.Size([135])
+# of Left images:  86.0
+# of Right images:  135.0
+giniRightRatio:  0.7874897119341564
+giniLeftRatio:  0.7452677122769065
+impurityDrop:  0.7605927343747231
+giniGain:  0.016705027751359514
+lclasses:  [13, 23, 0, 1, 1, 0, 0, 0, 20, 28]
+rclasses:  [25, 43, 2, 8, 2, 2, 3, 1, 17, 32]
+noOfLeftClasses:  6
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 39...
+imgTensorShape :  torch.Size([86, 3, 32, 32])
+nodeId: 39 ,  parentId: 22 ,  level: 5 ,  lchildId: 69 ,  rchildId: 70 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 86
+Setting Input for nodeId: 40...
+imgTensorShape :  torch.Size([135, 3, 32, 32])
+nodeId: 40 ,  parentId: 22 ,  level: 5 ,  lchildId: 71 ,  rchildId: 72 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 135
+Nodes sizes =  10 10
+Node 23 Acc: 50.546
+lTrainDict[data].shape:  torch.Size([0, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([0])   lTrainDict[index].shape:  torch.Size([0])
+rTrainDict[data].shape:  torch.Size([732, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([732])   rTrainDict[index].shape:  torch.Size([732])
+# of Left images:  0.0
+# of Right images:  732.0
+giniRightRatio:  0.8687479470871032
+giniLeftRatio:  0.0
+impurityDrop:  0.8687479470871032
+giniGain:  0.0
+lclasses:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [98, 58, 63, 71, 25, 42, 38, 118, 52, 167]
+noOfLeftClasses:  0
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 41...
+imgTensorShape :  torch.Size([732, 3, 32, 32])
+nodeId: 41 ,  parentId: 23 ,  level: 5 ,  lchildId: -1 ,  rchildId: 73 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 732
+Nodes sizes =  0 10
+Node 24 Acc: 57.143
+lTrainDict[data].shape:  torch.Size([78, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([78])   lTrainDict[index].shape:  torch.Size([78])
+rTrainDict[data].shape:  torch.Size([27, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([27])   rTrainDict[index].shape:  torch.Size([27])
+# of Left images:  78.0
+# of Right images:  27.0
+giniRightRatio:  0.6995884773662552
+giniLeftRatio:  0.6637080867850097
+impurityDrop:  0.5959340156871016
+giniGain:  0.08760339927888494
+lclasses:  [5, 37, 1, 2, 1, 1, 2, 0, 4, 25]
+rclasses:  [1, 9, 0, 0, 0, 0, 0, 1, 6, 10]
+noOfLeftClasses:  9
+noOfRightClasses:  5
+RETURNING FROM WORK...
+Setting Input for nodeId: 42...
+imgTensorShape :  torch.Size([78, 3, 32, 32])
+nodeId: 42 ,  parentId: 24 ,  level: 5 ,  lchildId: 74 ,  rchildId: 75 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 78
+Setting Input for nodeId: 43...
+imgTensorShape :  torch.Size([27, 3, 32, 32])
+nodeId: 43 ,  parentId: 24 ,  level: 5 ,  lchildId: 76 ,  rchildId: 77 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 27
+Nodes sizes =  10 10
+Node 25 Acc: 66.553
+lTrainDict[data].shape:  torch.Size([0, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([0])   lTrainDict[index].shape:  torch.Size([0])
+rTrainDict[data].shape:  torch.Size([586, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([586])   rTrainDict[index].shape:  torch.Size([586])
+# of Left images:  0.0
+# of Right images:  586.0
+giniRightRatio:  0.7317266363032767
+giniLeftRatio:  0.0
+impurityDrop:  0.7317266363032767
+giniGain:  0.0
+lclasses:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [34, 182, 6, 10, 8, 7, 4, 17, 101, 217]
+noOfLeftClasses:  0
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 44...
+imgTensorShape :  torch.Size([586, 3, 32, 32])
+nodeId: 44 ,  parentId: 25 ,  level: 5 ,  lchildId: 78 ,  rchildId: 79 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 586
+Nodes sizes =  0 10
+Node 26 Acc: 67.669
+lTrainDict[data].shape:  torch.Size([235, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([235])   lTrainDict[index].shape:  torch.Size([235])
+rTrainDict[data].shape:  torch.Size([164, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([164])   rTrainDict[index].shape:  torch.Size([164])
+# of Left images:  235.0
+# of Right images:  164.0
+giniRightRatio:  0.5932480666270079
+giniLeftRatio:  0.6827704843820734
+impurityDrop:  0.7215271408492054
+giniGain:  -0.07231011331797144
+lclasses:  [117, 8, 28, 1, 11, 2, 2, 2, 52, 12]
+rclasses:  [98, 4, 18, 3, 4, 1, 1, 2, 31, 2]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 45...
+imgTensorShape :  torch.Size([235, 3, 32, 32])
+nodeId: 45 ,  parentId: 26 ,  level: 5 ,  lchildId: 80 ,  rchildId: 81 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 235
+Setting Input for nodeId: 46...
+imgTensorShape :  torch.Size([164, 3, 32, 32])
+nodeId: 46 ,  parentId: 26 ,  level: 5 ,  lchildId: 82 ,  rchildId: 83 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 164
+Nodes sizes =  10 10
+Node 27 Acc: 53.226
+lTrainDict[data].shape:  torch.Size([41, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([41])   lTrainDict[index].shape:  torch.Size([41])
+rTrainDict[data].shape:  torch.Size([83, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([83])   rTrainDict[index].shape:  torch.Size([83])
+# of Left images:  41.0
+# of Right images:  83.0
+giniRightRatio:  0.6854405574103644
+giniLeftRatio:  0.7816775728732898
+impurityDrop:  0.7329793240848215
+giniGain:  0.0032329547913492185
+lclasses:  [14, 5, 2, 0, 5, 1, 0, 0, 10, 4]
+rclasses:  [22, 2, 0, 5, 4, 3, 0, 2, 40, 5]
+noOfLeftClasses:  7
+noOfRightClasses:  8
+RETURNING FROM WORK...
+Setting Input for nodeId: 47...
+imgTensorShape :  torch.Size([41, 3, 32, 32])
+nodeId: 47 ,  parentId: 27 ,  level: 5 ,  lchildId: 84 ,  rchildId: 85 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 9 ,  numData: 41
+Setting Input for nodeId: 48...
+imgTensorShape :  torch.Size([83, 3, 32, 32])
+nodeId: 48 ,  parentId: 27 ,  level: 5 ,  lchildId: 86 ,  rchildId: 87 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 83
+Nodes sizes =  9 10
+Node 28 Acc: 57.884
+lTrainDict[data].shape:  torch.Size([0, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([0])   lTrainDict[index].shape:  torch.Size([0])
+rTrainDict[data].shape:  torch.Size([1503, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([1503])   rTrainDict[index].shape:  torch.Size([1503])
+# of Left images:  0.0
+# of Right images:  1503.0
+giniRightRatio:  0.8087873930559816
+giniLeftRatio:  0.0
+impurityDrop:  0.8087873930559816
+giniGain:  0.0
+lclasses:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [383, 107, 141, 78, 76, 81, 18, 53, 473, 93]
+noOfLeftClasses:  0
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 49...
+imgTensorShape :  torch.Size([1503, 3, 32, 32])
+nodeId: 49 ,  parentId: 28 ,  level: 5 ,  lchildId: -1 ,  rchildId: 88 ,  isLeaf: False ,  leafClass: -1 ,  numClasses: 10 ,  numData: 1503
+Nodes sizes =  0 10
+Node 29 Acc: 50.787
+lTrainDict[data].shape:  torch.Size([49, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([49])   lTrainDict[index].shape:  torch.Size([49])
+rTrainDict[data].shape:  torch.Size([459, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([459])   rTrainDict[index].shape:  torch.Size([459])
+# of Left images:  49.0
+# of Right images:  459.0
+giniRightRatio:  0.8400757543394991
+giniLeftRatio:  0.8304872969596001
+impurityDrop:  0.8390521499568956
+giniGain:  0.008295794738993778
+lclasses:  [3, 14, 0, 3, 5, 8, 8, 2, 0, 6]
+rclasses:  [12, 25, 33, 63, 58, 52, 136, 49, 1, 30]
+noOfLeftClasses:  8
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 50...
+imgTensorShape :  torch.Size([49, 3, 32, 32])
+nodeId: 50 ,  parentId: 29 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 49
+Setting Input for nodeId: 51...
+imgTensorShape :  torch.Size([459, 3, 32, 32])
+nodeId: 51 ,  parentId: 29 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 459
+Nodes sizes =  10 10
+Node 30 Acc: 63.605
+lTrainDict[data].shape:  torch.Size([75, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([75])   lTrainDict[index].shape:  torch.Size([75])
+rTrainDict[data].shape:  torch.Size([219, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([219])   rTrainDict[index].shape:  torch.Size([219])
+# of Left images:  75.0
+# of Right images:  219.0
+giniRightRatio:  0.7379746043660473
+giniLeftRatio:  0.8241777777777777
+impurityDrop:  0.767496239096092
+giniGain:  0.017454475883777465
+lclasses:  [0, 6, 1, 9, 0, 9, 13, 16, 2, 19]
+rclasses:  [6, 75, 3, 8, 5, 7, 1, 27, 10, 77]
+noOfLeftClasses:  8
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 52...
+imgTensorShape :  torch.Size([75, 3, 32, 32])
+nodeId: 52 ,  parentId: 30 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 75
+Setting Input for nodeId: 53...
+imgTensorShape :  torch.Size([219, 3, 32, 32])
+nodeId: 53 ,  parentId: 30 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 219
+Nodes sizes =  10 10
+Node 31 Acc: 54.701
+lTrainDict[data].shape:  torch.Size([2149, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([2149])   lTrainDict[index].shape:  torch.Size([2149])
+rTrainDict[data].shape:  torch.Size([1297, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([1297])   rTrainDict[index].shape:  torch.Size([1297])
+# of Left images:  2149.0
+# of Right images:  1297.0
+giniRightRatio:  0.8001455229403719
+giniLeftRatio:  0.8818182664634995
+impurityDrop:  0.9354691357631946
+giniGain:  -0.070854682911486
+lclasses:  [93, 102, 276, 342, 308, 270, 270, 255, 97, 136]
+rclasses:  [24, 7, 273, 83, 373, 117, 300, 106, 6, 8]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 54...
+imgTensorShape :  torch.Size([2149, 3, 32, 32])
+nodeId: 54 ,  parentId: 31 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 2149
+Setting Input for nodeId: 55...
+imgTensorShape :  torch.Size([1297, 3, 32, 32])
+nodeId: 55 ,  parentId: 31 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 1297
+Nodes sizes =  10 10
+Node 32 Acc: 57.173
+lTrainDict[data].shape:  torch.Size([182, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([182])   lTrainDict[index].shape:  torch.Size([182])
+rTrainDict[data].shape:  torch.Size([285, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([285])   rTrainDict[index].shape:  torch.Size([285])
+# of Left images:  182.0
+# of Right images:  285.0
+giniRightRatio:  0.8287596183441058
+giniLeftRatio:  0.7243086583745925
+impurityDrop:  0.762057601802171
+giniGain:  0.04668561770912949
+lclasses:  [5, 4, 21, 12, 20, 12, 13, 88, 0, 7]
+rclasses:  [3, 6, 25, 54, 23, 58, 28, 74, 1, 13]
+noOfLeftClasses:  9
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 56...
+imgTensorShape :  torch.Size([182, 3, 32, 32])
+nodeId: 56 ,  parentId: 32 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 182
+Setting Input for nodeId: 57...
+imgTensorShape :  torch.Size([285, 3, 32, 32])
+nodeId: 57 ,  parentId: 32 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 285
+Nodes sizes =  10 10
+Node 33 Acc: 47.160
+lTrainDict[data].shape:  torch.Size([404, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([404])   lTrainDict[index].shape:  torch.Size([404])
+rTrainDict[data].shape:  torch.Size([1, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([1])   rTrainDict[index].shape:  torch.Size([1])
+# of Left images:  404.0
+# of Right images:  1.0
+giniRightRatio:  0.0
+giniLeftRatio:  0.823350651896873
+impurityDrop:  332.6336633663367
+giniGain:  -331.8099840491594
+lclasses:  [1, 13, 33, 76, 26, 100, 95, 44, 4, 12]
+rclasses:  [0, 0, 0, 0, 0, 0, 0, 1, 0, 0]
+noOfLeftClasses:  10
+noOfRightClasses:  1
+RETURNING FROM WORK...
+Setting Input for nodeId: 58...
+imgTensorShape :  torch.Size([404, 3, 32, 32])
+nodeId: 58 ,  parentId: 33 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 404
+Setting Input for nodeId: 59...
+imgTensorShape :  torch.Size([1, 3, 32, 32])
+nodeId: 59 ,  parentId: 33 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 4 ,  numData: 1
+Nodes sizes =  10 4
+Node 34 Acc: 26.389
+lTrainDict[data].shape:  torch.Size([45, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([45])   lTrainDict[index].shape:  torch.Size([45])
+rTrainDict[data].shape:  torch.Size([27, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([27])   rTrainDict[index].shape:  torch.Size([27])
+# of Left images:  45.0
+# of Right images:  27.0
+giniRightRatio:  0.8257887517146776
+giniLeftRatio:  0.854320987654321
+impurityDrop:  0.8733424782807498
+giniGain:  -0.018404206675811552
+lclasses:  [0, 3, 5, 9, 5, 9, 4, 3, 0, 7]
+rclasses:  [1, 4, 1, 3, 1, 8, 0, 3, 1, 5]
+noOfLeftClasses:  8
+noOfRightClasses:  9
+RETURNING FROM WORK...
+Setting Input for nodeId: 60...
+imgTensorShape :  torch.Size([45, 3, 32, 32])
+nodeId: 60 ,  parentId: 34 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 45
+Setting Input for nodeId: 61...
+imgTensorShape :  torch.Size([27, 3, 32, 32])
+nodeId: 61 ,  parentId: 34 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 27
+Nodes sizes =  10 10
+Node 35 Acc: 43.750
+lTrainDict[data].shape:  torch.Size([44, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([44])   lTrainDict[index].shape:  torch.Size([44])
+rTrainDict[data].shape:  torch.Size([4, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([4])   rTrainDict[index].shape:  torch.Size([4])
+# of Left images:  44.0
+# of Right images:  4.0
+giniRightRatio:  0.375
+giniLeftRatio:  0.731404958677686
+impurityDrop:  4.295454545454545
+giniGain:  -3.5480587121212115
+lclasses:  [0, 20, 1, 6, 2, 2, 7, 1, 0, 5]
+rclasses:  [0, 1, 0, 0, 0, 3, 0, 0, 0, 0]
+noOfLeftClasses:  8
+noOfRightClasses:  2
+RETURNING FROM WORK...
+Setting Input for nodeId: 62...
+imgTensorShape :  torch.Size([44, 3, 32, 32])
+nodeId: 62 ,  parentId: 35 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 44
+Setting Input for nodeId: 63...
+imgTensorShape :  torch.Size([4, 3, 32, 32])
+nodeId: 63 ,  parentId: 35 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 7 ,  numData: 4
+Nodes sizes =  10 7
+Node 36 Acc: 59.119
+lTrainDict[data].shape:  torch.Size([86, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([86])   lTrainDict[index].shape:  torch.Size([86])
+rTrainDict[data].shape:  torch.Size([73, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([73])   rTrainDict[index].shape:  torch.Size([73])
+# of Left images:  86.0
+# of Right images:  73.0
+giniRightRatio:  0.6635391255395008
+giniLeftRatio:  0.7290427257977286
+impurityDrop:  0.7407077505012485
+giniGain:  -0.033536356964600444
+lclasses:  [8, 41, 6, 3, 1, 6, 1, 12, 4, 4]
+rclasses:  [2, 40, 1, 5, 1, 4, 1, 3, 6, 10]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 64...
+imgTensorShape :  torch.Size([86, 3, 32, 32])
+nodeId: 64 ,  parentId: 36 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 86
+Setting Input for nodeId: 65...
+imgTensorShape :  torch.Size([73, 3, 32, 32])
+nodeId: 65 ,  parentId: 36 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 73
+Nodes sizes =  10 10
+Node 37 Acc: 54.497
+lTrainDict[data].shape:  torch.Size([35, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([35])   lTrainDict[index].shape:  torch.Size([35])
+rTrainDict[data].shape:  torch.Size([154, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([154])   rTrainDict[index].shape:  torch.Size([154])
+# of Left images:  35.0
+# of Right images:  154.0
+giniRightRatio:  0.8205430932703661
+giniLeftRatio:  0.6661224489795918
+impurityDrop:  0.7854474922951902
+giniGain:  0.05697013319121835
+lclasses:  [0, 3, 2, 3, 0, 19, 1, 4, 0, 3]
+rclasses:  [8, 49, 3, 13, 5, 7, 5, 29, 23, 12]
+noOfLeftClasses:  7
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 66...
+imgTensorShape :  torch.Size([35, 3, 32, 32])
+nodeId: 66 ,  parentId: 37 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 35
+Setting Input for nodeId: 67...
+imgTensorShape :  torch.Size([154, 3, 32, 32])
+nodeId: 67 ,  parentId: 37 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 154
+Nodes sizes =  10 10
+Node 38 Acc: 46.794
+lTrainDict[data].shape:  torch.Size([0, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([0])   lTrainDict[index].shape:  torch.Size([0])
+rTrainDict[data].shape:  torch.Size([733, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([733])   rTrainDict[index].shape:  torch.Size([733])
+# of Left images:  0.0
+# of Right images:  733.0
+giniRightRatio:  0.8619160265704304
+giniLeftRatio:  0.0
+impurityDrop:  0.8619160265704304
+giniGain:  0.0
+lclasses:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [24, 109, 55, 129, 30, 169, 49, 78, 39, 51]
+noOfLeftClasses:  0
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 68...
+imgTensorShape :  torch.Size([733, 3, 32, 32])
+nodeId: 68 ,  parentId: 38 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 733
+Nodes sizes =  0 10
+Node 39 Acc: 59.302
+lTrainDict[data].shape:  torch.Size([9, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([9])   lTrainDict[index].shape:  torch.Size([9])
+rTrainDict[data].shape:  torch.Size([77, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([77])   rTrainDict[index].shape:  torch.Size([77])
+# of Left images:  9.0
+# of Right images:  77.0
+giniRightRatio:  0.7417777028166639
+giniLeftRatio:  0.37037037037037035
+impurityDrop:  0.698366456167097
+giniGain:  0.04690125610980944
+lclasses:  [1, 7, 0, 0, 0, 0, 0, 0, 0, 1]
+rclasses:  [12, 16, 0, 1, 1, 0, 0, 0, 20, 27]
+noOfLeftClasses:  3
+noOfRightClasses:  6
+RETURNING FROM WORK...
+Setting Input for nodeId: 69...
+imgTensorShape :  torch.Size([9, 3, 32, 32])
+nodeId: 69 ,  parentId: 39 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 9 ,  numData: 9
+Setting Input for nodeId: 70...
+imgTensorShape :  torch.Size([77, 3, 32, 32])
+nodeId: 70 ,  parentId: 39 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 9 ,  numData: 77
+Nodes sizes =  9 9
+Node 40 Acc: 57.778
+lTrainDict[data].shape:  torch.Size([43, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([43])   lTrainDict[index].shape:  torch.Size([43])
+rTrainDict[data].shape:  torch.Size([92, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([92])   rTrainDict[index].shape:  torch.Size([92])
+# of Left images:  43.0
+# of Right images:  92.0
+giniRightRatio:  0.7953686200378072
+giniLeftRatio:  0.7063277447268794
+impurityDrop:  0.7537516891859605
+giniGain:  0.03373802274819593
+lclasses:  [3, 18, 0, 2, 1, 2, 2, 0, 1, 14]
+rclasses:  [22, 25, 2, 6, 1, 0, 1, 1, 16, 18]
+noOfLeftClasses:  8
+noOfRightClasses:  9
+RETURNING FROM WORK...
+Setting Input for nodeId: 71...
+imgTensorShape :  torch.Size([43, 3, 32, 32])
+nodeId: 71 ,  parentId: 40 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 43
+Setting Input for nodeId: 72...
+imgTensorShape :  torch.Size([92, 3, 32, 32])
+nodeId: 72 ,  parentId: 40 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 92
+Nodes sizes =  10 10
+Node 41 Acc: 51.366
+lTrainDict[data].shape:  torch.Size([0, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([0])   lTrainDict[index].shape:  torch.Size([0])
+rTrainDict[data].shape:  torch.Size([732, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([732])   rTrainDict[index].shape:  torch.Size([732])
+# of Left images:  0.0
+# of Right images:  732.0
+giniRightRatio:  0.8687479470871032
+giniLeftRatio:  0.0
+impurityDrop:  0.8687479470871032
+giniGain:  0.0
+lclasses:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [98, 58, 63, 71, 25, 42, 38, 118, 52, 167]
+noOfLeftClasses:  0
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 73...
+imgTensorShape :  torch.Size([732, 3, 32, 32])
+nodeId: 73 ,  parentId: 41 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 732
+Nodes sizes =  0 10
+Node 42 Acc: 58.974
+lTrainDict[data].shape:  torch.Size([47, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([47])   lTrainDict[index].shape:  torch.Size([47])
+rTrainDict[data].shape:  torch.Size([31, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([31])   rTrainDict[index].shape:  torch.Size([31])
+# of Left images:  47.0
+# of Right images:  31.0
+giniRightRatio:  0.6451612903225805
+giniLeftRatio:  0.6482571299230422
+impurityDrop:  0.6498549826200546
+giniGain:  0.01385310416495511
+lclasses:  [2, 20, 1, 1, 0, 1, 0, 0, 3, 19]
+rclasses:  [3, 17, 0, 1, 1, 0, 2, 0, 1, 6]
+noOfLeftClasses:  7
+noOfRightClasses:  7
+RETURNING FROM WORK...
+Setting Input for nodeId: 74...
+imgTensorShape :  torch.Size([47, 3, 32, 32])
+nodeId: 74 ,  parentId: 42 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 9 ,  numData: 47
+Setting Input for nodeId: 75...
+imgTensorShape :  torch.Size([31, 3, 32, 32])
+nodeId: 75 ,  parentId: 42 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 31
+Nodes sizes =  9 10
+Node 43 Acc: 29.630
+lTrainDict[data].shape:  torch.Size([0, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([0])   lTrainDict[index].shape:  torch.Size([0])
+rTrainDict[data].shape:  torch.Size([27, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([27])   rTrainDict[index].shape:  torch.Size([27])
+# of Left images:  0.0
+# of Right images:  27.0
+giniRightRatio:  0.6995884773662552
+giniLeftRatio:  0.0
+impurityDrop:  0.6995884773662552
+giniGain:  0.0
+lclasses:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [1, 9, 0, 0, 0, 0, 0, 1, 6, 10]
+noOfLeftClasses:  0
+noOfRightClasses:  5
+RETURNING FROM WORK...
+Setting Input for nodeId: 77...
+imgTensorShape :  torch.Size([27, 3, 32, 32])
+nodeId: 77 ,  parentId: 43 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 27
+Nodes sizes =  0 10
+Node 44 Acc: 64.676
+lTrainDict[data].shape:  torch.Size([267, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([267])   lTrainDict[index].shape:  torch.Size([267])
+rTrainDict[data].shape:  torch.Size([319, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([319])   rTrainDict[index].shape:  torch.Size([319])
+# of Left images:  267.0
+# of Right images:  319.0
+giniRightRatio:  0.7418559172964102
+giniLeftRatio:  0.7045406724740143
+impurityDrop:  0.7106234083071321
+giniGain:  0.021103227996144613
+lclasses:  [8, 104, 2, 5, 4, 3, 1, 8, 40, 92]
+rclasses:  [26, 78, 4, 5, 4, 4, 3, 9, 61, 125]
+noOfLeftClasses:  10
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 78...
+imgTensorShape :  torch.Size([267, 3, 32, 32])
+nodeId: 78 ,  parentId: 44 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 267
+Setting Input for nodeId: 79...
+imgTensorShape :  torch.Size([319, 3, 32, 32])
+nodeId: 79 ,  parentId: 44 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 319
+Nodes sizes =  10 10
+Node 45 Acc: 66.383
+lTrainDict[data].shape:  torch.Size([95, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([95])   lTrainDict[index].shape:  torch.Size([95])
+rTrainDict[data].shape:  torch.Size([140, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([140])   rTrainDict[index].shape:  torch.Size([140])
+# of Left images:  95.0
+# of Right images:  140.0
+giniRightRatio:  0.6318367346938776
+giniLeftRatio:  0.7297506925207756
+impurityDrop:  0.6982783489335584
+giniGain:  -0.015507864551485007
+lclasses:  [41, 6, 3, 0, 8, 2, 2, 1, 24, 8]
+rclasses:  [76, 2, 25, 1, 3, 0, 0, 1, 28, 4]
+noOfLeftClasses:  9
+noOfRightClasses:  8
+RETURNING FROM WORK...
+Setting Input for nodeId: 80...
+imgTensorShape :  torch.Size([95, 3, 32, 32])
+nodeId: 80 ,  parentId: 45 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 95
+Setting Input for nodeId: 81...
+imgTensorShape :  torch.Size([140, 3, 32, 32])
+nodeId: 81 ,  parentId: 45 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 140
+Nodes sizes =  10 10
+Node 46 Acc: 64.024
+lTrainDict[data].shape:  torch.Size([48, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([48])   lTrainDict[index].shape:  torch.Size([48])
+rTrainDict[data].shape:  torch.Size([116, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([116])   rTrainDict[index].shape:  torch.Size([116])
+# of Left images:  48.0
+# of Right images:  116.0
+giniRightRatio:  0.6004756242568372
+giniLeftRatio:  0.5633680555555556
+impurityDrop:  0.5851207682425138
+giniGain:  0.008127298384494108
+lclasses:  [30, 1, 8, 1, 2, 0, 0, 0, 6, 0]
+rclasses:  [68, 3, 10, 2, 2, 1, 1, 2, 25, 2]
+noOfLeftClasses:  6
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 82...
+imgTensorShape :  torch.Size([48, 3, 32, 32])
+nodeId: 82 ,  parentId: 46 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 48
+Setting Input for nodeId: 83...
+imgTensorShape :  torch.Size([116, 3, 32, 32])
+nodeId: 83 ,  parentId: 46 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 116
+Nodes sizes =  10 10
+Node 47 Acc: 31.707
+lTrainDict[data].shape:  torch.Size([11, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([11])   lTrainDict[index].shape:  torch.Size([11])
+rTrainDict[data].shape:  torch.Size([30, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([30])   rTrainDict[index].shape:  torch.Size([30])
+# of Left images:  11.0
+# of Right images:  30.0
+giniRightRatio:  0.771111111111111
+giniLeftRatio:  0.7768595041322314
+impurityDrop:  0.773218855218855
+giniGain:  0.008458717654434733
+lclasses:  [3, 2, 1, 0, 2, 0, 0, 0, 3, 0]
+rclasses:  [11, 3, 1, 0, 3, 1, 0, 0, 7, 4]
+noOfLeftClasses:  5
+noOfRightClasses:  7
+RETURNING FROM WORK...
+Setting Input for nodeId: 84...
+imgTensorShape :  torch.Size([11, 3, 32, 32])
+nodeId: 84 ,  parentId: 47 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 9 ,  numData: 11
+Setting Input for nodeId: 85...
+imgTensorShape :  torch.Size([30, 3, 32, 32])
+nodeId: 85 ,  parentId: 47 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 9 ,  numData: 30
+Nodes sizes =  9 9
+Node 48 Acc: 54.217
+lTrainDict[data].shape:  torch.Size([43, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([43])   lTrainDict[index].shape:  torch.Size([43])
+rTrainDict[data].shape:  torch.Size([40, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([40])   rTrainDict[index].shape:  torch.Size([40])
+# of Left images:  43.0
+# of Right images:  40.0
+giniRightRatio:  0.6599999999999999
+giniLeftRatio:  0.6955110870740941
+impurityDrop:  0.6981744186046512
+giniGain:  -0.012733861194286877
+lclasses:  [9, 1, 0, 3, 2, 1, 0, 1, 21, 5]
+rclasses:  [13, 1, 0, 2, 2, 2, 0, 1, 19, 0]
+noOfLeftClasses:  8
+noOfRightClasses:  7
+RETURNING FROM WORK...
+Setting Input for nodeId: 86...
+imgTensorShape :  torch.Size([43, 3, 32, 32])
+nodeId: 86 ,  parentId: 48 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 43
+Setting Input for nodeId: 87...
+imgTensorShape :  torch.Size([40, 3, 32, 32])
+nodeId: 87 ,  parentId: 48 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 9 ,  numData: 40
+Nodes sizes =  10 9
+Node 49 Acc: 57.485
+lTrainDict[data].shape:  torch.Size([0, 3, 32, 32])   lTrainDict[label].shape:  torch.Size([0])   lTrainDict[index].shape:  torch.Size([0])
+rTrainDict[data].shape:  torch.Size([1503, 3, 32, 32])   rTrainDict[label].shape:  torch.Size([1503])   rTrainDict[index].shape:  torch.Size([1503])
+# of Left images:  0.0
+# of Right images:  1503.0
+giniRightRatio:  0.8087873930559816
+giniLeftRatio:  0.0
+impurityDrop:  0.8087873930559816
+giniGain:  0.0
+lclasses:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+rclasses:  [383, 107, 141, 78, 76, 81, 18, 53, 473, 93]
+noOfLeftClasses:  0
+noOfRightClasses:  10
+RETURNING FROM WORK...
+Setting Input for nodeId: 88...
+imgTensorShape :  torch.Size([1503, 3, 32, 32])
+nodeId: 88 ,  parentId: 49 ,  level: 6 ,  lchildId: -1 ,  rchildId: -1 ,  isLeaf: True ,  leafClass: -1 ,  numClasses: 10 ,  numData: 1503
+Nodes sizes =  0 10
+Node 50 Acc: 34.694
+Node 51 Acc: 48.802
+Node 52 Acc: 54.667
+Node 53 Acc: 65.753
+Node 54 Acc: 50.209
+Node 55 Acc: 53.739
+Node 56 Acc: 56.593
+Node 57 Acc: 49.825
+Node 58 Acc: 49.505
+Node 59 Acc: 0.000
+Node 60 Acc: 22.222
+Node 61 Acc: 33.333
+Node 62 Acc: 52.273
+Node 63 Acc: 75.000
+Node 64 Acc: 59.302
+Node 65 Acc: 53.425
+Node 66 Acc: 54.286
+Node 67 Acc: 47.403
+Node 68 Acc: 48.568
+Node 69 Acc: 77.778
+Node 70 Acc: 37.662
+Node 71 Acc: 41.860
+Node 72 Acc: 55.435
+Node 73 Acc: 52.186
+Node 74 Acc: 42.553
+Node 75 Acc: 61.290
+Node 77 Acc: 33.333
+Node 78 Acc: 60.300
+Node 79 Acc: 67.712
+Node 80 Acc: 55.789
+Node 81 Acc: 64.286
+Node 82 Acc: 62.500
+Node 83 Acc: 65.517
+Node 84 Acc: 36.364
+Node 85 Acc: 43.333
+Node 86 Acc: 48.837
+Node 87 Acc: 47.500
+Node 88 Acc: 59.548
+[[582  40  81  27  26  11  22  22 136  53]
+ [ 44 642  16  21  14  16  12  13  73 149]
+ [ 79  14 444  75 101  83  90  64  31  19]
+ [ 25  34  96 370  64 178 104  57  29  43]
+ [ 36  14 143  90 415  51 119  95  25  12]
+ [ 14  15  95 207  57 446  48  78  17  23]
+ [  6  24  62  97  63  37 663  18  13  17]
+ [ 26  23  53  71  81  78  27 585  18  38]
+ [112  75  16  19   9  12   9  12 661  75]
+ [ 42 206  19  35   9  26  19  36  64 544]]
+
+Final Acc: 53.520
+
+Level 0 Acc: 63.220
+Level 1 Acc: 61.080
+Level 2 Acc: 59.320
+Level 3 Acc: 58.060
+Level 4 Acc: 56.360
+Level 5 Acc: 54.980
+Level 6 Acc: 53.520
+
+PRINTING TREE STARTS
+nodeId
+                                                                                                                                                                                                                                                                                                      1                                                                                                                                                                                                                                                                                                                             
+                                                                                                                       ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐                                                                                                                                                                          
+                                                                                                                       2                                                                                                                                                                                                                                                                                                                                 3                                                                                                                                                                          
+       ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────┐                                                                                                                             ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────┐                                                                                      
+       4                                                                                                                                                                                                   5                                                                                                                             7                                                                                                                                                                                                   6                                                                                      
+ ┌─────┴───────────────────────────────────────────────────────┐                                                                                   ┌───────────────────────────────────────────────────────┴──────────────────────────────────┐                                                              ┌───────────────────────────┴───────────────────────────────────────────────────────┐                                                                                   ┌───────────────────────────────────────────────────────┴──────────────────────────────────┐                                                   
+ 8                                                             9                                                                                   11                                                                                        10                                                             15                                                                                   14                                                                                  12                                                                                        13                                                   
+                                   ┌───────────────────────────┴───────────────────────────┐                                  ┌────────────────────┴───────────────────────────┐                                  ┌───────────────────────────┴───────────────────────────┐                                 └──────┐                                                 ┌───────────────────────────┴───────────────────────────┐                                  ┌────────────────────┴───────────────────────────┐                                  ┌───────────────────────────┴───────────────────────────┐                       
+                                   16                                                      17                                 21                                               20                                18                                                       19                                       28                                                26                                                      27                                 23                                               22                                25                                                       24                      
+                     ┌─────────────┴─────────────┐                           ┌─────────────┴─────────────┐                    └──────┐                           ┌─────────────┴─────────────┐                   └─────────────┐                            ┌─────────────┴─────────────┐                          └──────┐                            ┌─────────────┴─────────────┐                           ┌─────────────┴─────────────┐                    └──────┐                           ┌─────────────┴─────────────┐                   └─────────────┐                            ┌─────────────┴─────────────┐         
+                     29                          30                          31                          32                         38                           36                          37                                33                           34                          35                               49                            45                          46                          47                          48                         41                           39                          40                                44                           42                          43        
+              ┌──────┴──────┐             ┌──────┴──────┐             ┌──────┴──────┐             ┌──────┴──────┐                   └──────┐              ┌──────┴──────┐             ┌──────┴──────┐                   ┌──────┴──────┐              ┌──────┴──────┐             ┌──────┴──────┐                         └──────┐               ┌──────┴──────┐             ┌──────┴──────┐             ┌──────┴──────┐             ┌──────┴──────┐                   └──────┐              ┌──────┴──────┐             ┌──────┴──────┐                   ┌──────┴──────┐              ┌──────┴──────┐             ┌──────┴──────┐  
+              50            51            52            53            54            55            56            57                         68             64            65            66            67                  58            59             60            61            62            63                               88              80            81            82            83            84            85            86            87                         73             69            70            71            72                  78            79             74            75            76            77 
+leafClass
+                                                                                                                                                                                                                                                                                                     -1                                                                                                                                                                                                                                                                                                                             
+                                                                                                                       ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐                                                                                                                                                                          
+                                                                                                                      -1                                                                                                                                                                                                                                                                                                                                 -1                                                                                                                                                                         
+       ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────┐                                                                                                                             ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────┐                                                                                      
+       -1                                                                                                                                                                                                 -1                                                                                                                            -1                                                                                                                                                                                                  -1                                                                                      
+ ┌─────┴───────────────────────────────────────────────────────┐                                                                                   ┌───────────────────────────────────────────────────────┴──────────────────────────────────┐                                                              ┌───────────────────────────┴───────────────────────────────────────────────────────┐                                                                                   ┌───────────────────────────────────────────────────────┴──────────────────────────────────┐                                                   
+ 7                                                             -1                                                                                  -1                                                                                        -1                                                             -1                                                                                   -1                                                                                  -1                                                                                        -1                                                   
+                                   ┌───────────────────────────┴───────────────────────────┐                                  ┌────────────────────┴───────────────────────────┐                                  ┌───────────────────────────┴───────────────────────────┐                                 └──────┐                                                 ┌───────────────────────────┴───────────────────────────┐                                  ┌────────────────────┴───────────────────────────┐                                  ┌───────────────────────────┴───────────────────────────┐                       
+                                   -1                                                      -1                                 -1                                               -1                                -1                                                       -1                                       -1                                                -1                                                      -1                                 -1                                               -1                                -1                                                       -1                      
+                     ┌─────────────┴─────────────┐                           ┌─────────────┴─────────────┐                    └──────┐                           ┌─────────────┴─────────────┐                   └─────────────┐                            ┌─────────────┴─────────────┐                          └──────┐                            ┌─────────────┴─────────────┐                           ┌─────────────┴─────────────┐                    └──────┐                           ┌─────────────┴─────────────┐                   └─────────────┐                            ┌─────────────┴─────────────┐         
+                     -1                          -1                          -1                          -1                         -1                           -1                          -1                                -1                           -1                          -1                               -1                            -1                          -1                          -1                          -1                         -1                           -1                          -1                                -1                           -1                          -1        
+              ┌──────┴──────┐             ┌──────┴──────┐             ┌──────┴──────┐             ┌──────┴──────┐                   └──────┐              ┌──────┴──────┐             ┌──────┴──────┐                   ┌──────┴──────┐              ┌──────┴──────┐             ┌──────┴──────┐                         └──────┐               ┌──────┴──────┐             ┌──────┴──────┐             ┌──────┴──────┐             ┌──────┴──────┐                   └──────┐              ┌──────┴──────┐             ┌──────┴──────┐                   ┌──────┴──────┐              ┌──────┴──────┐             ┌──────┴──────┐  
+              -1            -1            -1            -1            -1            -1            -1            -1                         -1             -1            -1            -1            -1                  -1            -1             -1            -1            -1            -1                               -1              -1            -1            -1            -1            -1            -1            -1            -1                         -1             -1            -1            -1            -1                  -1            -1             -1            -1            -1            -1 
+classLabels
+                                                                                                                                                                                                                                                                              ┌{7: 69}
+                                                                                                                                                                                     ┌{0: 804, 1: 1315, 2: 3191, 3: 2842, 4: 3861, 5: 2662, 6: 3812, 7: 3258, 8: 536, 9: 1560}┤
+                                                                                                                                                                                     │                                                                                        │                                                                                                                                                                                                                                                       ┌{0: 25, 1: 47, 2: 14, 3: 56, 4: 22, 5: 33, 6: 45, 7: 20, 8: 1, 9: 21}
+                                                                                                                                                                                     │                                                                                        │                                                                                                                                                                        ┌{0: 92, 1: 167, 2: 209, 3: 344, 4: 351, 5: 286, 6: 685, 7: 326, 8: 20, 9: 134}┤
+                                                                                                                                                                                     │                                                                                        │                                                                                                                                                                        │                                                                              └{0: 67, 1: 120, 2: 195, 3: 288, 4: 329, 5: 253, 6: 640, 7: 306, 8: 19, 9: 113}
+                                                                                                                                                                                     │                                                                                        │                                                                                        ┌{0: 125, 1: 589, 2: 237, 3: 410, 4: 379, 5: 352, 6: 752, 7: 519, 8: 60, 9: 678}┤
+                                                                                                                                                                                     │                                                                                        │                                                                                        │                                                                               │                                                                         ┌{0: 7, 1: 35, 2: 14, 3: 31, 4: 9, 5: 30, 6: 58, 7: 65, 8: 3, 9: 101}
+                                                                                                                                                                                     │                                                                                        │                                                                                        │                                                                               └{0: 33, 1: 422, 2: 28, 3: 66, 4: 28, 5: 66, 6: 67, 7: 193, 8: 40, 9: 544}┤
+                                                                                                                                                                                     │                                                                                        │                                                                                        │                                                                                                                                                         └{0: 26, 1: 387, 2: 14, 3: 35, 4: 19, 5: 36, 6: 9, 7: 128, 8: 37, 9: 443}
+                                                                                                                                                                                     │                                                                                        └{0: 804, 1: 1315, 2: 3191, 3: 2842, 4: 3861, 5: 2662, 6: 3812, 7: 3189, 8: 536, 9: 1560}┤
+                                                                                                                                                                                     │                                                                                                                                                                                 │                                                                                                                                                                             ┌{0: 478, 1: 604, 2: 1324, 3: 1700, 4: 1485, 5: 1411, 6: 1454, 7: 1219, 8: 436, 9: 748}
+                                                                                                                                                                                     │                                                                                                                                                                                 │                                                                                      ┌{0: 621, 1: 648, 2: 2701, 3: 2161, 4: 3282, 5: 1955, 6: 2903, 7: 1844, 8: 461, 9: 789}┤
+                                                                                                                                                                                     │                                                                                                                                                                                 │                                                                                      │                                                                                      └{0: 143, 1: 44, 2: 1377, 3: 461, 4: 1797, 5: 544, 6: 1449, 7: 625, 8: 25, 9: 41}
+                                                                                                                                                                                     │                                                                                                                                                                                 └{0: 679, 1: 726, 2: 2954, 3: 2432, 4: 3482, 5: 2310, 6: 3060, 7: 2670, 8: 476, 9: 882}┤
+                                                                                                                                                                                     │                                                                                                                                                                                                                                                                        │                                                                            ┌{0: 29, 1: 20, 2: 116, 3: 38, 4: 112, 5: 69, 6: 50, 7: 409, 8: 4, 9: 27}
+                                                                                                                                                                                     │                                                                                                                                                                                                                                                                        └{0: 58, 1: 78, 2: 253, 3: 271, 4: 200, 5: 355, 6: 157, 7: 826, 8: 15, 9: 93}┤
+                                                                                                                                                                                     │                                                                                                                                                                                                                                                                                                                                                     └{0: 29, 1: 58, 2: 137, 3: 233, 4: 88, 5: 286, 6: 107, 7: 417, 8: 11, 9: 66}
+                                                                                           ┌{0: 1073, 1: 2661, 2: 3706, 3: 4113, 4: 4225, 5: 4338, 6: 4632, 7: 4093, 8: 897, 9: 2110}┤
+                                                                                           │                                                                                         │                                                                                                                                                                      ┌{0: 105, 1: 427, 2: 322, 3: 694, 4: 180, 5: 799, 6: 241, 7: 376, 8: 205, 9: 256}┐
+                                                                                           │                                                                                         │                                                                                                                                                                      │                                                                                └{0: 105, 1: 427, 2: 322, 3: 694, 4: 180, 5: 799, 6: 241, 7: 376, 8: 205, 9: 256}┐
+                                                                                           │                                                                                         │                                                                                                                                                                      │                                                                                                                                                                 └{0: 105, 1: 427, 2: 322, 3: 694, 4: 180, 5: 799, 6: 241, 7: 376, 8: 205, 9: 256}
+                                                                                           │                                                                                         │                                                                                   ┌{0: 234, 1: 1099, 2: 358, 3: 807, 4: 215, 5: 1005, 6: 287, 7: 624, 8: 341, 9: 446}┤
+                                                                                           │                                                                                         │                                                                                   │                                                                                  │                                                                                                                                                      ┌{0: 51, 1: 179, 2: 8, 3: 22, 4: 16, 5: 22, 6: 9, 7: 64, 8: 36, 9: 60}
+                                                                                           │                                                                                         │                                                                                   │                                                                                  │                                                                             ┌{0: 74, 1: 370, 2: 10, 3: 34, 4: 20, 5: 40, 6: 15, 7: 79, 8: 70, 9: 119}┤
+                                                                                           │                                                                                         │                                                                                   │                                                                                  │                                                                             │                                                                        └{0: 23, 1: 191, 2: 2, 3: 12, 4: 4, 5: 18, 6: 6, 7: 15, 8: 34, 9: 59}
+                                                                                           │                                                                                         │                                                                                   │                                                                                  └{0: 129, 1: 672, 2: 36, 3: 113, 4: 35, 5: 206, 6: 46, 7: 248, 8: 136, 9: 190}┤
+                                                                                           │                                                                                         │                                                                                   │                                                                                                                                                                │                                                                         ┌{0: 3, 1: 9, 2: 6, 3: 30, 4: 3, 5: 96, 6: 4, 7: 14, 8: 11, 9: 7}
+                                                                                           │                                                                                         │                                                                                   │                                                                                                                                                                └{0: 55, 1: 302, 2: 26, 3: 79, 4: 15, 5: 166, 6: 31, 7: 169, 8: 66, 9: 71}┤
+                                                                                           │                                                                                         │                                                                                   │                                                                                                                                                                                                                                          └{0: 52, 1: 293, 2: 20, 3: 49, 4: 12, 5: 70, 6: 27, 7: 155, 8: 55, 9: 64}
+                                                                                           │                                                                                         └{0: 269, 1: 1346, 2: 515, 3: 1271, 4: 364, 5: 1676, 6: 820, 7: 835, 8: 361, 9: 550}┤
+                                                                                           │                                                                                                                                                                             │                                                                              ┌{0: 23, 1: 51, 2: 140, 3: 344, 4: 113, 5: 562, 6: 464, 7: 171, 8: 11, 9: 49}┐
+                                                                                           │                                                                                                                                                                             │                                                                              │                                                                            │                                                                            ┌{0: 21, 1: 51, 2: 140, 3: 343, 4: 113, 5: 561, 6: 464, 7: 170, 8: 11, 9: 49}
+                                                                                           │                                                                                                                                                                             │                                                                              │                                                                            └{0: 23, 1: 51, 2: 140, 3: 344, 4: 113, 5: 562, 6: 464, 7: 171, 8: 11, 9: 49}┤
+                                                                                           │                                                                                                                                                                             │                                                                              │                                                                                                                                                         └{0: 2, 3: 1, 5: 1, 7: 1}
+                                                                                           │                                                                                                                                                                             └{0: 35, 1: 247, 2: 157, 3: 464, 4: 149, 5: 671, 6: 533, 7: 211, 8: 20, 9: 104}┤
+                                                                                           │                                                                                                                                                                                                                                                            │                                                                                                                                             ┌{0: 1, 1: 22, 2: 13, 3: 62, 4: 24, 5: 47, 6: 33, 7: 12, 8: 5, 9: 14}
+                                                                                           │                                                                                                                                                                                                                                                            │                                                                        ┌{0: 3, 1: 50, 2: 14, 3: 90, 4: 30, 5: 83, 6: 37, 7: 32, 8: 8, 9: 21}┤
+                                                                                           │                                                                                                                                                                                                                                                            │                                                                        │                                                                    └{0: 2, 1: 28, 2: 1, 3: 28, 4: 6, 5: 36, 6: 4, 7: 20, 8: 3, 9: 7}
+                                                                                           │                                                                                                                                                                                                                                                            └{0: 12, 1: 196, 2: 17, 3: 120, 4: 36, 5: 109, 6: 69, 7: 40, 8: 9, 9: 55}┤
+                                                                                           │                                                                                                                                                                                                                                                                                                                                     │                                                                  ┌{0: 6, 1: 139, 2: 3, 3: 22, 4: 6, 5: 20, 6: 31, 7: 6, 8: 1, 9: 32}
+                                                                                           │                                                                                                                                                                                                                                                                                                                                     └{0: 9, 1: 146, 2: 3, 3: 30, 4: 6, 5: 26, 6: 32, 7: 8, 8: 1, 9: 34}┤
+                                                                                           │                                                                                                                                                                                                                                                                                                                                                                                                        └{0: 3, 1: 7, 3: 8, 5: 6, 6: 1, 7: 2, 9: 2}
+ {0: 5000, 1: 5000, 2: 5000, 3: 5000, 4: 5000, 5: 5000, 6: 5000, 7: 5000, 8: 5000, 9: 5000}┤
+                                                                                           │                                                                                                                                                                        ┌{0: 1900, 1: 536, 2: 682, 3: 379, 4: 424, 5: 371, 6: 135, 7: 260, 8: 2321, 9: 442}┐
+                                                                                           │                                                                                                                                                                        │                                                                                  └{0: 1900, 1: 536, 2: 682, 3: 379, 4: 424, 5: 371, 6: 135, 7: 260, 8: 2321, 9: 442}┐
+                                                                                           │                                                                                                                                                                        │                                                                                                                                                                     └{0: 1900, 1: 536, 2: 682, 3: 379, 4: 424, 5: 371, 6: 135, 7: 260, 8: 2321, 9: 442}┐
+                                                                                           │                                                                                                                                                                        │                                                                                                                                                                                                                                                        └{0: 1900, 1: 536, 2: 682, 3: 379, 4: 424, 5: 371, 6: 135, 7: 260, 8: 2321, 9: 442}
+                                                                                           │                                                                                     ┌{0: 3048, 1: 640, 2: 935, 3: 418, 4: 507, 5: 407, 6: 154, 7: 286, 8: 3116, 9: 551}┤
+                                                                                           │                                                                                     │                                                                                  │                                                                                                                                                                                                                            ┌{0: 211, 1: 17, 2: 19, 3: 1, 4: 23, 5: 3, 6: 4, 7: 3, 8: 188, 9: 38}
+                                                                                           │                                                                                     │                                                                                  │                                                                                                                                                      ┌{0: 547, 1: 36, 2: 135, 3: 5, 4: 40, 5: 8, 6: 5, 7: 7, 8: 329, 9: 59}┤
+                                                                                           │                                                                                     │                                                                                  │                                                                                                                                                      │                                                                     └{0: 336, 1: 19, 2: 116, 3: 4, 4: 17, 5: 5, 6: 1, 7: 4, 8: 141, 9: 21}
+                                                                                           │                                                                                     │                                                                                  │                                                                            ┌{0: 987, 1: 70, 2: 223, 3: 21, 4: 62, 5: 21, 6: 16, 7: 14, 8: 474, 9: 73}┤
+                                                                                           │                                                                                     │                                                                                  │                                                                            │                                                                         │                                                                       ┌{0: 153, 1: 18, 2: 34, 3: 5, 4: 6, 5: 5, 6: 2, 7: 2, 8: 39, 9: 5}
+                                                                                           │                                                                                     │                                                                                  │                                                                            │                                                                         └{0: 440, 1: 34, 2: 88, 3: 16, 4: 22, 5: 13, 6: 11, 7: 7, 8: 145, 9: 14}┤
+                                                                                           │                                                                                     │                                                                                  │                                                                            │                                                                                                                                                 └{0: 287, 1: 16, 2: 54, 3: 11, 4: 16, 5: 8, 6: 9, 7: 5, 8: 106, 9: 9}
+                                                                                           │                                                                                     │                                                                                  └{0: 1148, 1: 104, 2: 253, 3: 39, 4: 83, 5: 36, 6: 19, 7: 26, 8: 795, 9: 109}┤
+                                                                                           │                                                                                     │                                                                                                                                                               │                                                                                                                                    ┌{0: 22, 1: 1, 2: 9, 3: 2, 4: 9, 5: 1, 7: 2, 8: 16, 9: 10}
+                                                                                           │                                                                                     │                                                                                                                                                               │                                                                       ┌{0: 79, 1: 10, 2: 18, 3: 4, 4: 19, 5: 4, 7: 5, 8: 85, 9: 23}┤
+                                                                                           │                                                                                     │                                                                                                                                                               │                                                                       │                                                            └{0: 57, 1: 9, 2: 9, 3: 2, 4: 10, 5: 3, 7: 3, 8: 69, 9: 13}
+                                                                                           │                                                                                     │                                                                                                                                                               └{0: 161, 1: 34, 2: 30, 3: 18, 4: 21, 5: 15, 6: 3, 7: 12, 8: 321, 9: 36}┤
+                                                                                           │                                                                                     │                                                                                                                                                                                                                                       │                                                                    ┌{0: 41, 1: 7, 2: 5, 3: 6, 4: 2, 5: 9, 6: 1, 7: 3, 8: 147, 9: 6}
+                                                                                           │                                                                                     │                                                                                                                                                                                                                                       └{0: 82, 1: 24, 2: 12, 3: 14, 4: 2, 5: 11, 6: 3, 7: 7, 8: 236, 9: 13}┤
+                                                                                           │                                                                                     │                                                                                                                                                                                                                                                                                                            └{0: 41, 1: 17, 2: 7, 3: 8, 5: 2, 6: 2, 7: 4, 8: 89, 9: 7}
+                                                                                           └{0: 3927, 1: 2339, 2: 1294, 3: 887, 4: 775, 5: 662, 6: 368, 7: 907, 8: 4103, 9: 2890}┤
+                                                                                                                                                                                 │                                                                                                                                                                    ┌{0: 460, 1: 313, 2: 276, 3: 347, 4: 171, 5: 193, 6: 168, 7: 549, 8: 286, 9: 768}┐
+                                                                                                                                                                                 │                                                                                                                                                                    │                                                                                └{0: 460, 1: 313, 2: 276, 3: 347, 4: 171, 5: 193, 6: 168, 7: 549, 8: 286, 9: 768}┐
+                                                                                                                                                                                 │                                                                                                                                                                    │                                                                                                                                                                 └{0: 460, 1: 313, 2: 276, 3: 347, 4: 171, 5: 193, 6: 168, 7: 549, 8: 286, 9: 768}
+                                                                                                                                                                                 │                                                                                  ┌{0: 659, 1: 588, 2: 306, 3: 383, 4: 211, 5: 209, 6: 185, 7: 560, 8: 470, 9: 1030}┤
+                                                                                                                                                                                 │                                                                                  │                                                                                 │                                                                                                                                              ┌{0: 3, 1: 53, 3: 2, 4: 7, 5: 3, 6: 1, 7: 1, 8: 2, 9: 27}
+                                                                                                                                                                                 │                                                                                  │                                                                                 │                                                                          ┌{0: 51, 1: 120, 2: 2, 3: 5, 4: 12, 5: 4, 6: 1, 7: 2, 8: 64, 9: 130}┤
+                                                                                                                                                                                 │                                                                                  │                                                                                 │                                                                          │                                                                   └{0: 48, 1: 67, 2: 2, 3: 3, 4: 5, 5: 1, 7: 1, 8: 62, 9: 103}
+                                                                                                                                                                                 │                                                                                  │                                                                                 └{0: 199, 1: 275, 2: 30, 3: 36, 4: 40, 5: 16, 6: 17, 7: 11, 8: 184, 9: 262}┤
+                                                                                                                                                                                 │                                                                                  │                                                                                                                                                            │                                                                         ┌{0: 28, 1: 73, 2: 6, 3: 10, 4: 7, 5: 6, 6: 6, 7: 4, 8: 22, 9: 48}
+                                                                                                                                                                                 │                                                                                  │                                                                                                                                                            └{0: 148, 1: 155, 2: 28, 3: 31, 4: 28, 5: 12, 6: 16, 7: 9, 8: 120, 9: 132}┤
+                                                                                                                                                                                 │                                                                                  │                                                                                                                                                                                                                                      └{0: 120, 1: 82, 2: 22, 3: 21, 4: 21, 5: 6, 6: 10, 7: 5, 8: 98, 9: 84}
+                                                                                                                                                                                 └{0: 879, 1: 1699, 2: 359, 3: 469, 4: 268, 5: 255, 6: 214, 7: 621, 8: 987, 9: 2339}┤
+                                                                                                                                                                                                                                                                    │                                                                            ┌{0: 202, 1: 809, 2: 45, 3: 64, 4: 47, 5: 38, 6: 20, 7: 55, 8: 491, 9: 1064}┐
+                                                                                                                                                                                                                                                                    │                                                                            │                                                                           │                                                                           ┌{0: 88, 1: 452, 2: 24, 3: 43, 4: 17, 5: 26, 6: 9, 7: 35, 8: 196, 9: 557}
+                                                                                                                                                                                                                                                                    │                                                                            │                                                                           └{0: 202, 1: 809, 2: 45, 3: 64, 4: 47, 5: 38, 6: 20, 7: 55, 8: 491, 9: 1064}┤
+                                                                                                                                                                                                                                                                    │                                                                            │                                                                                                                                                       └{0: 114, 1: 357, 2: 21, 3: 21, 4: 30, 5: 12, 6: 11, 7: 20, 8: 295, 9: 507}
+                                                                                                                                                                                                                                                                    └{0: 220, 1: 1111, 2: 53, 3: 86, 4: 57, 5: 46, 6: 29, 7: 61, 8: 517, 9: 1309}┤
+                                                                                                                                                                                                                                                                                                                                                 │                                                                                                                                        ┌{0: 5, 1: 122, 3: 12, 4: 6, 5: 3, 6: 4, 7: 4, 8: 6, 9: 102}
+                                                                                                                                                                                                                                                                                                                                                 │                                                                    ┌{0: 12, 1: 207, 2: 2, 3: 19, 4: 8, 5: 5, 6: 8, 7: 5, 8: 14, 9: 174}┤
+                                                                                                                                                                                                                                                                                                                                                 │                                                                    │                                                                   └{0: 7, 1: 85, 2: 2, 3: 7, 4: 2, 5: 2, 6: 4, 7: 1, 8: 8, 9: 72}
+                                                                                                                                                                                                                                                                                                                                                 └{0: 18, 1: 302, 2: 8, 3: 22, 4: 10, 5: 8, 6: 9, 7: 6, 8: 26, 9: 245}┤
+                                                                                                                                                                                                                                                                                                                                                                                                                      │                                                               ┌{1: 6, 9: 4}
+                                                                                                                                                                                                                                                                                                                                                                                                                      └{0: 6, 1: 95, 2: 6, 3: 3, 4: 2, 5: 3, 6: 1, 7: 1, 8: 12, 9: 71}┤
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      └{0: 6, 1: 89, 2: 6, 3: 3, 4: 2, 5: 3, 6: 1, 7: 1, 8: 12, 9: 67}
+splitAcc
+                                                                                                                                                                                                                                                                                                       0.0                                                                                                                                                                                                                                                                                                                            
+                                                                                                                         ┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐                                                                                                                                                                          
+                                                                                                                        0.0                                                                                                                                                                                                                                                                                                                               0.0                                                                                                                                                                         
+         ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────┐                                                                                                                             ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────┐                                                                                      
+        0.0                                                                                                                                                                                                 0.0                                                                                                                           0.0                                                                                                                                                                                                 0.0                                                                                     
+  ┌──────┴───────────────────────────────────────────────────────┐                                                                                   ┌───────────────────────────────────────────────────────┴──────────────────────────────────┐                                                              ┌───────────────────────────┴───────────────────────────────────────────────────────┐                                                                                   ┌───────────────────────────────────────────────────────┴──────────────────────────────────┐                                                   
+ 0.0                                                            0.0                                                                                 0.0                                                                                        0.0                                                            0.0                                                                                 0.0                                                                                 0.0                                                                                        0.0                                                  
+                                     ┌───────────────────────────┴───────────────────────────┐                                  ┌────────────────────┴───────────────────────────┐                                  ┌───────────────────────────┴───────────────────────────┐                                 └──────┐                                                 ┌───────────────────────────┴───────────────────────────┐                                  ┌────────────────────┴───────────────────────────┐                                  ┌───────────────────────────┴───────────────────────────┐                       
+                                    0.0                                                     0.0                                0.0                                              0.0                                0.0                                                     0.0                                      0.0                                               0.0                                                     0.0                                0.0                                              0.0                                0.0                                                     0.0                      
+                       ┌─────────────┴─────────────┐                           ┌─────────────┴─────────────┐                    └──────┐                           ┌─────────────┴─────────────┐                   └─────────────┐                            ┌─────────────┴─────────────┐                          └──────┐                            ┌─────────────┴─────────────┐                           ┌─────────────┴─────────────┐                    └──────┐                           ┌─────────────┴─────────────┐                   └─────────────┐                            ┌─────────────┴─────────────┐         
+                      0.0                         0.0                         0.0                         0.0                         0.0                         0.0                         0.0                               0.0                          0.0                         0.0                               0.0                          0.0                         0.0                         0.0                         0.0                         0.0                         0.0                         0.0                               0.0                          0.0                         0.0        
+                ┌──────┴──────┐             ┌──────┴──────┐             ┌──────┴──────┐             ┌──────┴──────┐                   └──────┐              ┌──────┴──────┐             ┌──────┴──────┐                   ┌──────┴──────┐              ┌──────┴──────┐             ┌──────┴──────┐                         └──────┐               ┌──────┴──────┐             ┌──────┴──────┐             ┌──────┴──────┐             ┌──────┴──────┐                   └──────┐              ┌──────┴──────┐             ┌──────┴──────┐                   ┌──────┴──────┐              ┌──────┴──────┐             ┌──────┴──────┐  
+               0.0           0.0           0.0           0.0           0.0           0.0           0.0           0.0                        0.0            0.0           0.0           0.0           0.0                 0.0           0.0            0.0           0.0           0.0           0.0                              0.0             0.0           0.0           0.0           0.0           0.0           0.0           0.0           0.0                        0.0            0.0           0.0           0.0           0.0                 0.0           0.0            0.0           0.0           0.0           0.0 
+giniGain
+                                                                                                                                                                                                                                                                                                                                    -0.009851340926121721                                                                                                                                                                                                                                                                                                                                                   
+                                                                                                                                         ┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐                                                                                                                                                                                          
+                                                                                                                               -0.010497800909355703                                                                                                                                                                                                                                                                                                                                                    0.023231528531871604                                                                                                                                                                                
+           ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴─────────────────────────────────────────────────────────────────────────────────────────┐                                                                                                                                             ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────┐                                                                                                  
+ 0.0024766233138396876                                                                                                                                                                                                   0.015787752032158542                                                                                                                           0.01768337135175957                                                                                                                                                                                                    -0.08379940542138664                                                                                         
+   ┌──────┴───────────────────────────────────────────────────────────────┐                                                                                          ┌─────────────────────────────────────────────────────────────┴────────────────────────────────────────────┐                                                                    ┌───────────────────────────┴───────────────────────────────────────────────────────────────┐                                                                                           ┌───────────────────────────────────────────────────────────┴──────────────────────────────────────┐                                                           
+  0.0                                                            0.00619952159670667                                                                        0.03347709631724771                                                                                        0.0652844312498212                                                           0.0                                                                                 0.05633696085645401                                                                         0.01744290193558551                                                                               0.012061563381279283                                                  
+                                          ┌───────────────────────────────┴───────────────────────────────┐                                     ┌────────────────────┴───────────────────────────────┐                                            ┌─────────────────────────────┴───────────────────────────────┐                                   └──────┐                                                     ┌───────────────────────────────┴─────────────────────────────────┐                                    ┌────────────────────┴─────────────────────────────┐                                    ┌───────────────────────────────┴───────────────────────────────┐                           
+                                 -0.05266125555621448                                             -0.394471493152003                           0.0                                          0.040333524221911055                         0.8071825338751055                                           -0.046515674279925756                               0.0                                          -0.035191216910505974                                              -0.01457987236487901                         0.0                                        0.02408509250637847                          0.0                                                     0.003000978157951084                 
+                          ┌───────────────┴───────────────┐                               ┌───────────────┴──────────────┐                      └──────┐                             ┌───────────────┴──────────────┐                        └──────────────┐                                   ┌───────────────┴──────────────┐                           └──────┐                              ┌───────────────┴───────────────┐                                ┌────────────────┴──────────────┐                     └──────┐                            ┌──────────────┴──────────────┐                    └───────────────┐                                ┌───────────────┴───────────────┐           
+                 0.004089190759529737            0.010747754483433458            -0.06646756228058637           0.03728386797538563                   0.0                   -0.07365642928761773           0.05370741003720936                      -33.28994903138744                 -0.01552972982200751            0.9787672287303361                        0.0                    0.008970245249479203           0.0026602962189122836           -0.00022865664821991594           0.10458552827414735                  0.0                  0.04025038273950832           0.01666624258482019                  0.011770204730631284             0.014770609797178702           0.0016910118093015347 
+                   ┌──────┴──────┐                 ┌──────┴──────┐                 ┌──────┴──────┐                ┌──────┴──────┐                     └──────┐                ┌──────┴──────┐                ┌──────┴──────┐                         ┌──────┴──────┐                     ┌──────┴──────┐                ┌──────┴──────┐                          └──────┐                 ┌──────┴──────┐                 ┌──────┴──────┐                  ┌──────┴──────┐                 ┌──────┴──────┐                    └──────┐               ┌──────┴──────┐               ┌──────┴──────┐                      ┌──────┴──────┐                  ┌──────┴──────┐                 ┌──────┴──────┐    
+                  0.0           0.0               0.0           0.0               0.0           0.0              0.0           0.0                          0.0              0.0           0.0              0.0           0.0                       0.0           0.0                   0.0           0.0              0.0           0.0                               0.0               0.0           0.0               0.0           0.0                0.0           0.0               0.0           0.0                         0.0             0.0           0.0             0.0           0.0                    0.0           0.0                0.0           0.0               0.0           0.0   
+numData
+                                                                                                                                                                                                                                                                                                                     50000                                                                                                                                                                                                                                                                                                                                         
+                                                                                                                                   ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐                                                                                                                                                                                   
+                                                                                                                                 31848                                                                                                                                                                                                                                                                                                                                       18152                                                                                                                                                                                 
+         ┌─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────┐                                                                                                                                   ┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────┐                                                                                           
+       23841                                                                                                                                                                                                              8007                                                                                                                               10062                                                                                                                                                                                                    8090                                                                                         
+  ┌──────┴───────────────────────────────────────────────────────────┐                                                                                             ┌───────────────────────────────────────────────────────┴───────────────────────────────────┐                                                               ┌───────────────────────────────┴───────────────────────────────────────────────────────┐                                                                                       ┌───────────────────────────────────────────────────────┴───────────────────────────────────────┐                                                   
+  69                                                               23772                                                                                          5416                                                                                        2591                                                            7450                                                                                    2612                                                                                    4601                                                                                            3489                                                 
+                                       ┌─────────────────────────────┴───────────────────────────────┐                                     ┌───────────────────────┴───────────────────────────┐                                   ┌───────────────────────────┴───────────────────────────┐                                  └───────┐                                                    ┌───────────────────────────┴───────────────────────────┐                                   ┌───────────────────────┴───────────────────────────┐                                   ┌───────────────────────────────┴───────────────────────────┐                       
+                                      4101                                                         19671                                  3605                                                1811                                1928                                                    663                                        7450                                                 1961                                                    651                                 3531                                                1070                                2835                                                        654                      
+                       ┌───────────────┴─────────────┐                               ┌───────────────┴─────────────┐                      └───────┐                              ┌─────────────┴─────────────┐                    └───────────────┐                          ┌─────────────┴─────────────┐                           └───────┐                               ┌─────────────┴─────────────┐                           ┌─────────────┴─────────────┐                    └───────┐                              ┌─────────────┴─────────────┐                    └───────────────┐                              ┌─────────────┴─────────────┐         
+                      2614                          1487                           17365                          2306                           3605                           831                         980                                  1928                       368                         295                                 7450                            1171                        790                         247                         404                          3531                           391                         679                                  2835                           454                         200        
+                ┌──────┴───────┐              ┌──────┴───────┐               ┌───────┴───────┐              ┌──────┴───────┐                     └───────┐                ┌──────┴──────┐             ┌──────┴──────┐                     ┌───────┴─────┐             ┌──────┴──────┐             ┌──────┴──────┐                           └───────┐                 ┌──────┴──────┐             ┌──────┴──────┐             ┌──────┴──────┐             ┌──────┴──────┐                    └───────┐                ┌──────┴──────┐             ┌──────┴──────┐                     ┌───────┴───────┐               ┌──────┴──────┐             ┌──────┴──────┐  
+               284            2330           353            1134           10859            6506           874            1432                          3605             467           364           183           797                   1923           5            233           135           266            29                                 7450              507           664           269           521            72           175           227           177                          3531              99           292           210           469                   1447            1388            264           190            10           190 
+nodeAcc
+                                                               ┌[9, 9, 100.0]
+                                          ┌[2769, 4724, 58.616]┤
+                                          │                    │                                                          ┌[17, 49, 34.694]
+                                          │                    │                                       ┌[258, 508, 50.787]┤
+                                          │                    │                                       │                  └[224, 459, 48.802]
+                                          │                    │                    ┌[481, 802, 59.975]┤
+                                          │                    │                    │                  │                  ┌[41, 75, 54.667]
+                                          │                    │                    │                  └[187, 294, 63.605]┤
+                                          │                    │                    │                                     └[144, 219, 65.753]
+                                          │                    └[2774, 4715, 58.834]┤
+                                          │                                         │                                         ┌[1079, 2149, 50.209]
+                                          │                                         │                    ┌[1885, 3446, 54.701]┤
+                                          │                                         │                    │                    └[697, 1297, 53.739]
+                                          │                                         └[2162, 3913, 55.252]┤
+                                          │                                                              │                  ┌[103, 182, 56.593]
+                                          │                                                              └[267, 467, 57.173]┤
+                                          │                                                                                 └[142, 285, 49.825]
+                     ┌[3758, 6330, 59.368]┤
+                     │                    │                                      ┌[350, 733, 47.749]┐
+                     │                    │                                      │                  └[343, 733, 46.794]┐
+                     │                    │                                      │                                     └[356, 733, 48.568]
+                     │                    │                  ┌[584, 1081, 54.024]┤
+                     │                    │                  │                   │                                    ┌[51, 86, 59.302]
+                     │                    │                  │                   │                  ┌[94, 159, 59.119]┤
+                     │                    │                  │                   │                  │                 └[39, 73, 53.425]
+                     │                    │                  │                   └[203, 348, 58.333]┤
+                     │                    │                  │                                      │                  ┌[19, 35, 54.286]
+                     │                    │                  │                                      └[103, 189, 54.497]┤
+                     │                    │                  │                                                         └[73, 154, 47.403]
+                     │                    └[887, 1606, 55.23]┤
+                     │                                       │                ┌[208, 405, 51.358]┐
+                     │                                       │                │                  │                 ┌[200, 404, 49.505]
+                     │                                       │                │                  └[191, 405, 47.16]┤
+                     │                                       │                │                                    └[0, 1, 0.0]
+                     │                                       └[252, 525, 48.0]┤
+                     │                                                        │                                ┌[10, 45, 22.222]
+                     │                                                        │               ┌[19, 72, 26.389]┤
+                     │                                                        │               │                └[9, 27, 33.333]
+                     │                                                        └[57, 120, 47.5]┤
+                     │                                                                        │               ┌[23, 44, 52.273]
+                     │                                                                        └[21, 48, 43.75]┤
+                     │                                                                                        └[3, 4, 75.0]
+ [6322, 10000, 63.22]┤
+                     │                                         ┌[865, 1503, 57.552]┐
+                     │                                         │                   └[870, 1503, 57.884]┐
+                     │                                         │                                       └[864, 1503, 57.485]┐
+                     │                                         │                                                           └[895, 1503, 59.548]
+                     │                    ┌[1253, 2026, 61.846]┤
+                     │                    │                    │                                                        ┌[53, 95, 55.789]
+                     │                    │                    │                                     ┌[156, 235, 66.383]┤
+                     │                    │                    │                                     │                  └[90, 140, 64.286]
+                     │                    │                    │                  ┌[270, 399, 67.669]┤
+                     │                    │                    │                  │                  │                  ┌[30, 48, 62.5]
+                     │                    │                    │                  │                  └[105, 164, 64.024]┤
+                     │                    │                    │                  │                                     └[76, 116, 65.517]
+                     │                    │                    └[338, 523, 64.627]┤
+                     │                    │                                       │                                  ┌[4, 11, 36.364]
+                     │                    │                                       │                 ┌[13, 41, 31.707]┤
+                     │                    │                                       │                 │                └[13, 30, 43.333]
+                     │                    │                                       └[66, 124, 53.226]┤
+                     │                    │                                                         │                ┌[21, 43, 48.837]
+                     │                    │                                                         └[45, 83, 54.217]┤
+                     │                    │                                                                          └[19, 40, 47.5]
+                     └[2350, 3670, 64.033]┤
+                                          │                                       ┌[370, 732, 50.546]┐
+                                          │                                       │                  └[376, 732, 51.366]┐
+                                          │                                       │                                     └[382, 732, 52.186]
+                                          │                    ┌[525, 953, 55.089]┤
+                                          │                    │                  │                                   ┌[7, 9, 77.778]
+                                          │                    │                  │                  ┌[51, 86, 59.302]┤
+                                          │                    │                  │                  │                └[29, 77, 37.662]
+                                          │                    │                  └[140, 221, 63.348]┤
+                                          │                    │                                     │                 ┌[18, 43, 41.86]
+                                          │                    │                                     └[78, 135, 57.778]┤
+                                          │                    │                                                       └[51, 92, 55.435]
+                                          └[1023, 1644, 62.226]┤
+                                                               │                  ┌[390, 586, 66.553]┐
+                                                               │                  │                  │                  ┌[161, 267, 60.3]
+                                                               │                  │                  └[379, 586, 64.676]┤
+                                                               │                  │                                     └[216, 319, 67.712]
+                                                               └[459, 691, 66.425]┤
+                                                                                  │                                  ┌[20, 47, 42.553]
+                                                                                  │                 ┌[46, 78, 58.974]┤
+                                                                                  │                 │                └[19, 31, 61.29]
+                                                                                  └[60, 105, 57.143]┤
+                                                                                                    │              ┌[0, 0, 0.0]
+                                                                                                    └[8, 27, 29.63]┤
+                                                                                                                   └[9, 27, 33.333]
+
+Ensemble Final Acc: 53.520
+
+Time Taken by whole program is  1.2705052018165588  minutes.
