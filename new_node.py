@@ -153,6 +153,7 @@ class myNode:
                 if options.verbose > 1:
                     print(epoch, 'Train Loss: %.3f | Train Acc: %.3f | Val Loss: %.3f | Val Accuracy: %.3f'% (train_loss, 100.*correct/total, val_loss.item(), 100.*float(valCorrect)/valTotalSize))
             # '''
+            train_loss /= numBatches
             if total != 0:
                 if options.verbose > 1:
                     print(epoch, 'Train Loss: %.3f | Train Acc: %.3f '% (train_loss, 100.*correct/total))

@@ -398,28 +398,30 @@ class Tree:
             node = q[start]
             start+=1
             currNodeDict = torch.load(options.ckptDir+'/node_'+str(node.nodeId)+'.pth')['nodeDict']
+            node.nodeId = str(node.nodeId)
+            node.lchildId = str(currNodeDict['lchildId'])
+            node.rchildId = str(currNodeDict['rchildId'])
             node.isLeaf = currNodeDict['isLeaf']
-            node.lchildId = currNodeDict['lchildId']
-            node.rchildId = currNodeDict['rchildId']
-            node.level  =   currNodeDict['level']
-            node.leafClass = currNodeDict['leafClass']
-            node.numClasses = currNodeDict['numClasses']
-            node.numData = currNodeDict['numData']
-            node.classLabels = currNodeDict['classLabels']
-            node.giniGain = currNodeDict['giniGain']
-            node.splitAcc = currNodeDict['splitAcc']
-            node.nodeAcc = currNodeDict['nodeAcc']
+            node.level  =   str(currNodeDict['level'])
+            node.leafClass = str(currNodeDict['leafClass'])
+            node.numClasses = str(currNodeDict['numClasses'])
+            node.numData = str(currNodeDict['numData'])
+            node.classLabels = str(currNodeDict['classLabels'])
+            node.giniGain = str(currNodeDict['giniGain'])
+            node.splitAcc = str(currNodeDict['splitAcc'])
+            node.nodeAcc = str(currNodeDict['nodeAcc'])
 
             if not node.isLeaf:
-                if not (node.lchildId == -1):
-                    lNode = myNode(node.nodeId, node.lchildId, self.device, False, node.level+1, node)  # appends the current left node in the children of parent node
+                if not (int(node.lchildId) == -1):
+                    lNode = myNode(int(node.nodeId), int(node.lchildId), self.device, False, int(node.level)+1, node)  # appends the current left node in the children of parent node
                     q.append(lNode)
                     end+=1
 
-                if not (node.rchildId == -1):
-                    rNode = myNode(node.nodeId, node.rchildId, self.device, False, node.level+1, node)  # appends the current right node in the children of parent node
+                if not (int(node.rchildId) == -1):
+                    rNode = myNode(int(node.nodeId), int(node.rchildId), self.device, False, int(node.level)+1, node)  # appends the current right node in the children of parent node
                     q.append(rNode)
                     end+=1
+            node.isLeaf = str(node.isLeaf)
 
                 
         # <print_tree()> function is used from the online available pptree module (referrence https://github.com/clemtoy/pptree)
